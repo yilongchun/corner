@@ -57,7 +57,7 @@ static NSInteger const kOnePageSize = 20;
 
 - (void)initBarButton {
     UIBarButtonItem *backBtn = [[UIBarButtonItem alloc] initWithTitle:@"返回"
-                                                                style:UIBarButtonItemStyleBordered
+                                                                style:UIBarButtonItemStyleDone
                                                                target:nil
                                                                action:nil];
     [[self navigationItem] setBackBarButtonItem:backBtn];
