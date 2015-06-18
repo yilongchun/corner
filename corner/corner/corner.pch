@@ -1,0 +1,135 @@
+//
+//  corner.pch
+//  corner
+//
+//  Created by yons on 15-4-30.
+//  Copyright (c) 2015年 hmzl. All rights reserved.
+//
+
+#ifndef corner_corner_pch
+#define corner_corner_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#define HOST @"http://corner.songguokeji.com"
+
+#define GAODE_API_KEY @"ed58ad8bba7f735f54ddbeb44472a67d"
+
+#define LEANCLOUD_APP_ID  @"hkvqbh84v4aeta0pgay00qwws1bejf0g6xx7g2i2guoeji36"
+#define LEANCLOUD_APP_KEY @"ob1p5yatuw3do7jkuf9bqfpl1r4ohbe1lu4ioq2u21xzv9od"
+
+/*user*/
+//登陆
+#define USER_LOGIN_URL @"/user/login"
+//注册
+#define USER_REGISTER_URL @"/user/register"
+//附近的人列表
+#define USER_LIST_URL @"/user/list"
+//用户详情
+#define USER_DETAIL_URL @"/user/detail"
+//添加好友
+#define CONSTACTS_CREATE_URL @"/contact/create"
+//我喜欢的,喜欢我的,相互喜欢
+#define USER_CARE_URL @"/user/care"
+//头像上传
+#define USER_AVATAR_URL @"/user/avatar"
+//推荐用户,打分
+#define USER_RATE_URL @"/user/rate"
+//屏蔽用户
+#define USER_BLACK_URL @"/user/black"
+
+/*activity*/
+//发布邀约
+#define ACTIVITY_CREATE_URL @"/activity/create"
+//对邀约感兴趣
+#define ACTIVITY_CARED_URL @"/activity/cared"
+//关闭邀约
+#define ACTIVITY_CLOSE_URL @"/activity/close"
+//同意邀约
+//拒绝邀约
+//邀约详情
+#define ACTIVITY_DETAIL_URL @"/activity/detail/{activity_id}"
+
+/*photo*/
+//获取上传 token
+#define PHOTO_UPTOKEN_URL @"/photo/uptoken"
+//上传文件
+#define QINIU_UPLOAD @"http://upload.qiniu.com/"
+//图片路径
+#define QINIU_IMAGE_URL @"http://7xj8yp.com2.z0.glb.qiniucdn.com/"
+//上传照片
+#define PHOTO_CREATE_URL @"/photo/create"
+//删除照片
+#define PHOTO_DELETE_URL @"/photo/"
+
+/*post*/
+//动态列表
+#define POST_LIST_URL @"/post/plist"// (关注,同城,推荐)
+//单个用户的动态列表
+#define POST_USER_LIST_URL @"/post/list"
+//发布动态
+#define POST_CREATE_URL @"/post/create"
+//like
+#define POST_LILKED_URL @"/post/liked"
+//unlike
+#define POST_UNLIKED_URL @"/post/unliked"
+//动态加精
+#define POST_POSTLIST_URL @"/admin/postlist"
+
+/*feedback*/
+//常见问题列表
+#define FEED_BACK_LIST_URL @"/feedback/list"
+//用户提交意见反馈
+#define FEED_BACK_CREATE_URL @"/feedback/create"
+
+#define UD [NSUserDefaults standardUserDefaults]
+#define USER_TOKEN_ID @"USER_TOKEN_ID_"
+#define USER_ID @"USER_ID"
+#define LOGINED_USER @"LOGINED_USER"
+#define USER_INFO_CHANGE @"USER_INFO_CHANGE"
+#define USER_LOGIN_CHANGE @"USER_LOGIN_CHANGE"
+
+#define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
+//内存管理的安全释放对象
+#define SAFE_RELEASE(x) [x release];x=nil
+//当前系统版本号
+#define kCurrentSystemVersion [[[UIDevice currentDevice] systemVersion] floatValue]
+//判断是否是iOS7或更高的系统版本
+#define IOS_VERSION_7_OR_LATER (([[[UIDevice currentDevice] systemVersion] floatValue] >=7.0)? (YES):(NO))
+//当前的系统语言
+#define kCurrentLanguage [[NSLocale preferredLanguages] objectAtIndex:0]
+//定义常用的颜色
+#define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
+#define kDarkGrayColor [UIColor colorWithRed:100.0/255 green:100.0/255 blue:100.0/255alpha:1.0]
+//定义调试语句
+#define DEBUG_MODE 1
+#if DEBUG_MODE
+#define DLog( s, ... ) NSLog( @"<%p %@:(%d)> %@", self, [[NSString stringWithUTF8String:__FILE__] lastPathComponent], __LINE__, [NSString stringWithFormat:(s), ##__VA_ARGS__] )
+#else
+#define DLog( s, ... )
+#endif
+//后台运行
+#define BACK_GCD(block) dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
+//主线程运行
+#define MAIN_GCD(block) dispatch_async(dispatch_get_main_queue(),block)
+
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import "AFNetworking.h"
+    #import "UIImageView+AFNetworking.h"
+    #import "UIViewController+HUD.h"
+    #import "NSDictionary+Category.h"
+    #import "UIViewController+ValidaeUserToken.h"
+#endif
+
+#ifdef DEBUG
+    #define NSLog(...) NSLog(__VA_ARGS__)
+    #define debugMethod() NSLog(@"%s", __func__)
+#else
+    #define NSLog(...)
+    #define debugMethod()
+#endif

@@ -1,0 +1,24 @@
+PODS:
+  - AVOSCloud (3.1.2.4)
+  - AVOSCloudIM (3.1.2.4):
+    - AVOSCloud
+  - JSBadgeView (1.4.1)
+  - LeanChatLib (0.1.2):
+    - AVOSCloud
+    - AVOSCloudIM
+    - JSBadgeView
+    - LZConversationCell
+  - LZConversationCell (0.0.1):
+    - JSBadgeView (~> 1.4)
+
+DEPENDENCIES:
+  - LeanChatLib
+
+SPEC CHECKSUMS:
+  AVOSCloud: 83a2b0753eb784b2f6e5245241a841575dfb3cc6
+  AVOSCloudIM: 5aceff9e93780ac7b641ecfab7c53a32eb61a26f
+  JSBadgeView: 3861ddee41094284d9468e6d0af5107f703aaac5
+  LeanChatLib: 9bb18768129ca2e1a49a7b6a0e112e143e5a4c35
+  LZConversationCell: 1ca4144f48a77ce69f32026e0266e24f89eb3a60
+
+COCOAPODS: 0.37.1

@@ -1,0 +1,1 @@
+../../../LeanChatLib/LeanChatLib/LeanChatLib/Classes/vendor/MessageDisplayKit/Classes/Categorys/UIImage/UIImage+XHRounded.h

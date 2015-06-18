@@ -1,0 +1,7 @@
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AVOSCloud" "${PODS_ROOT}/Headers/Public/AVOSCloudIM" "${PODS_ROOT}/Headers/Public/JSBadgeView" "${PODS_ROOT}/Headers/Public/LZConversationCell" "${PODS_ROOT}/Headers/Public/LeanChatLib"
+LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/AVOSCloud" "$(PODS_ROOT)/AVOSCloudIM"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/AVOSCloud" -isystem "${PODS_ROOT}/Headers/Public/AVOSCloudIM" -isystem "${PODS_ROOT}/Headers/Public/JSBadgeView" -isystem "${PODS_ROOT}/Headers/Public/LZConversationCell" -isystem "${PODS_ROOT}/Headers/Public/LeanChatLib"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"AVOSCloud" -l"AVOSCloudIM" -l"Pods-AVOSCloud" -l"Pods-JSBadgeView" -l"Pods-LZConversationCell" -l"Pods-LeanChatLib" -l"icucore" -l"sqlite3" -framework "AVFoundation" -framework "AudioToolbox" -framework "CFNetwork" -framework "CoreGraphics" -framework "CoreLocation" -framework "CoreMedia" -framework "CoreTelephony" -framework "CoreText" -framework "Foundation" -framework "ImageIO" -framework "MapKit" -framework "MediaPlayer" -framework "MobileCoreServices" -framework "QuartzCore" -framework "Security" -framework "SystemConfiguration" -framework "UIKit"
+OTHER_LIBTOOLFLAGS = $(OTHER_LDFLAGS)
+PODS_ROOT = ${SRCROOT}/Pods

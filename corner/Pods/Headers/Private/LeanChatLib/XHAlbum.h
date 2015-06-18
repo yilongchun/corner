@@ -1,0 +1,1 @@
+../../../LeanChatLib/LeanChatLib/LeanChatLib/Classes/vendor/MessageDisplayKit/Classes/Models/XHAlbum.h

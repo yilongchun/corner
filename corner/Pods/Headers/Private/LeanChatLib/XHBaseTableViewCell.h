@@ -1,0 +1,1 @@
+../../../LeanChatLib/LeanChatLib/LeanChatLib/Classes/vendor/MessageDisplayKit/Classes/Views/BaseTableViewCell/XHBaseTableViewCell.h
