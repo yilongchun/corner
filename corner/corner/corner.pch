@@ -124,6 +124,7 @@
     #import "UIViewController+HUD.h"
     #import "NSDictionary+Category.h"
     #import "UIViewController+ValidaeUserToken.h"
+    #import <LeanChatLib/LeanChatLib.h>
 #endif
 
 #ifdef DEBUG

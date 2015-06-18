@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "IQKeyboardManager.h"
 #import <AVOSCloud/AVOSCloud.h>
+#import "CDUserFactory.h"
 
 @interface AppDelegate ()
 
@@ -20,6 +21,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [AVOSCloud setApplicationId: LEANCLOUD_APP_ID clientKey:LEANCLOUD_APP_KEY];
+    [CDIMConfig config].userDelegate=[[CDUserFactory alloc] init];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(userLoginChange)
                                                  name:USER_LOGIN_CHANGE
@@ -36,6 +39,21 @@
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     NSNumber *isLogin = [ud objectForKey:@"isLogin"];
     BOOL isLoggedIn = [isLogin boolValue];
+    
+    if (isLoggedIn) {
+        
+        NSString *userid = [UD objectForKey:USER_ID];
+        
+        CDIM* im=[CDIM sharedInstance];
+        [im openWithClientId:userid callback:^(BOOL succeeded, NSError *error) {
+            if(error){
+                DLog(@"%@",error);
+            }else{
+                DLog(@"leancloud 登录成功");
+            }
+        }];
+    }
+    
     NSString *storyboardId = isLoggedIn ? @"RootViewController" : @"loginnav";
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *initViewController = [storyboard instantiateViewControllerWithIdentifier:storyboardId];
@@ -77,6 +95,11 @@
     [UD removeObjectForKey:@"isLogin"];//移除登录状态
     [UD removeObjectForKey:USER_ID];//移除用户ID
     [UD removeObjectForKey:[NSString stringWithFormat:@"%@%@",USER_TOKEN_ID,USER_ID]];//移除token
+    
+    [[CDIM sharedInstance] closeWithCallback:^(BOOL succeeded, NSError *error) {
+        DLog(@"%@",error);
+    }];
+    
     NSString *storyboardId = @"loginnav";
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *initViewController = [storyboard instantiateViewControllerWithIdentifier:storyboardId];

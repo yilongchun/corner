@@ -212,6 +212,10 @@
 		E446F3111B32602D0060E9D7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E446F3101B32602D0060E9D7 /* Security.framework */; };
 		E446F3131B3260400060E9D7 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E446F3121B3260400060E9D7 /* libstdc++.6.0.9.dylib */; };
 		E446F3151B32604F0060E9D7 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E446F3141B32604F0060E9D7 /* libz.dylib */; };
+		E446F31C1B3294E00060E9D7 /* CDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E446F3191B3294E00060E9D7 /* CDUser.m */; };
+		E446F31D1B3294E00060E9D7 /* CDUserFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = E446F31B1B3294E00060E9D7 /* CDUserFactory.m */; };
+		E446F3241B32968B0060E9D7 /* LCEChatListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E446F31F1B32968B0060E9D7 /* LCEChatListVC.m */; };
+		E446F3251B32968B0060E9D7 /* LCEChatRoomVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E446F3211B32968B0060E9D7 /* LCEChatRoomVC.m */; };
 		E44D47EE1B325DA40064404B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E44D47ED1B325DA40064404B /* main.m */; };
 		E44D47F11B325DA40064404B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E44D47F01B325DA40064404B /* AppDelegate.m */; };
 		E44D47F71B325DA40064404B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E44D47F51B325DA40064404B /* Main.storyboard */; };
@@ -634,6 +638,14 @@
 		E446F3101B32602D0060E9D7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E446F3121B3260400060E9D7 /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
 		E446F3141B32604F0060E9D7 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		E446F3181B3294E00060E9D7 /* CDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDUser.h; sourceTree = "<group>"; };
+		E446F3191B3294E00060E9D7 /* CDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDUser.m; sourceTree = "<group>"; };
+		E446F31A1B3294E00060E9D7 /* CDUserFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDUserFactory.h; sourceTree = "<group>"; };
+		E446F31B1B3294E00060E9D7 /* CDUserFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDUserFactory.m; sourceTree = "<group>"; };
+		E446F31E1B32968B0060E9D7 /* LCEChatListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCEChatListVC.h; sourceTree = "<group>"; };
+		E446F31F1B32968B0060E9D7 /* LCEChatListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCEChatListVC.m; sourceTree = "<group>"; };
+		E446F3201B32968B0060E9D7 /* LCEChatRoomVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCEChatRoomVC.h; sourceTree = "<group>"; };
+		E446F3211B32968B0060E9D7 /* LCEChatRoomVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCEChatRoomVC.m; sourceTree = "<group>"; };
 		E44D47E81B325DA40064404B /* corner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = corner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E44D47EC1B325DA40064404B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E44D47ED1B325DA40064404B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1532,6 +1544,21 @@
 			path = cornerTests;
 			sourceTree = "<group>";
 		};
+		E446F3171B3294D10060E9D7 /* leanChat */ = {
+			isa = PBXGroup;
+			children = (
+				E446F3181B3294E00060E9D7 /* CDUser.h */,
+				E446F3191B3294E00060E9D7 /* CDUser.m */,
+				E446F31A1B3294E00060E9D7 /* CDUserFactory.h */,
+				E446F31B1B3294E00060E9D7 /* CDUserFactory.m */,
+				E446F31E1B32968B0060E9D7 /* LCEChatListVC.h */,
+				E446F31F1B32968B0060E9D7 /* LCEChatListVC.m */,
+				E446F3201B32968B0060E9D7 /* LCEChatRoomVC.h */,
+				E446F3211B32968B0060E9D7 /* LCEChatRoomVC.m */,
+			);
+			path = leanChat;
+			sourceTree = "<group>";
+		};
 		E44D47DF1B325DA40064404B = {
 			isa = PBXGroup;
 			children = (
@@ -1590,6 +1617,7 @@
 				E446F2101B325F240060E9D7 /* UserDetailTableViewController.m */,
 				E44D47F51B325DA40064404B /* Main.storyboard */,
 				E44D47F81B325DA40064404B /* Images.xcassets */,
+				E446F3171B3294D10060E9D7 /* leanChat */,
 				E446F2111B325F240060E9D7 /* view */,
 				E446F0721B325F230060E9D7 /* AFNetworking */,
 				E446F09F1B325F230060E9D7 /* Category */,
@@ -1792,6 +1820,7 @@
 				E446F2721B325F240060E9D7 /* NSSet+Block.m in Sources */,
 				E446F2A31B325F240060E9D7 /* UITextField+Blocks.m in Sources */,
 				E446F2DB1B325F240060E9D7 /* SDWebImageDecoder.m in Sources */,
+				E446F31C1B3294E00060E9D7 /* CDUser.m in Sources */,
 				E446F30A1B325F240060E9D7 /* TongchengyaoyueTableViewCell.m in Sources */,
 				E446F2861B325F240060E9D7 /* UIColor+Gradient.m in Sources */,
 				E446F26B1B325F240060E9D7 /* NSManagedObjectContext+ObjectClear.m in Sources */,
@@ -1833,6 +1862,7 @@
 				E446F3081B325F240060E9D7 /* RedupaihangViewController.m in Sources */,
 				E446F2651B325F240060E9D7 /* NSDictionary+SafeAccess.m in Sources */,
 				E446F2CB1B325F240060E9D7 /* MBProgressHUD.m in Sources */,
+				E446F3241B32968B0060E9D7 /* LCEChatListVC.m in Sources */,
 				E446F2EF1B325F240060E9D7 /* UserDetailTableViewCell2.m in Sources */,
 				E446F2B41B325F240060E9D7 /* UIWebView+JS.m in Sources */,
 				E446F2C31B325F240060E9D7 /* IQToolbar.m in Sources */,
@@ -1848,6 +1878,7 @@
 				E446F2591B325F240060E9D7 /* NSArray+SafeAccess.m in Sources */,
 				E446F2C81B325F240060E9D7 /* MainCollectionViewController.m in Sources */,
 				E446F2D61B325F240060E9D7 /* SDWaitingView.m in Sources */,
+				E446F3251B32968B0060E9D7 /* LCEChatRoomVC.m in Sources */,
 				E446F2691B325F240060E9D7 /* NSManagedObjectContext+Fetching.m in Sources */,
 				E446F2F71B325F240060E9D7 /* ChooseLocationViewController.m in Sources */,
 				E446F29B1B325F240060E9D7 /* UIResponder+Chain.m in Sources */,
@@ -1955,6 +1986,7 @@
 				E446F29A1B325F240060E9D7 /* UINavigationController+StackManager.m in Sources */,
 				E446F2A11B325F240060E9D7 /* UITableView+FDTemplateLayoutCell.m in Sources */,
 				E446F28A1B325F240060E9D7 /* UIColor+Web.m in Sources */,
+				E446F31D1B3294E00060E9D7 /* CDUserFactory.m in Sources */,
 				E44D47EE1B325DA40064404B /* main.m in Sources */,
 				E446F2C41B325F240060E9D7 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				E446F2981B325F240060E9D7 /* UINavigationController+BATransitions.m in Sources */,

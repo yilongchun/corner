@@ -7,7 +7,7 @@
 //
 
 #import "LeftMenuViewController.h"
-
+#import "LCEChatListVC.h"
 
 #define cellIdentifier @"leftMenuCell"
 
@@ -266,6 +266,16 @@
     oldButton = sender;
     [sender setImage:[UIImage imageNamed:@"menu7c_v1_2x"] forState:UIControlStateNormal];
     [self.mytableview deselectRowAtIndexPath:oldIndexPath animated:YES];
+    
+    
+    LCEChatListVC *chatListVC = [[LCEChatListVC alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:chatListVC];
+    nav.navigationBar.barTintColor = [UIColor colorWithRed:0/255. green:0/255. blue:0/255. alpha:1];
+    nav.navigationBar.tintColor = [UIColor whiteColor];
+    [nav.navigationBar setTitleTextAttributes:
+     @{NSFontAttributeName:[UIFont boldSystemFontOfSize:17],
+       NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    [self.sideMenuViewController setContentViewController:nav animated:YES];
     
     [self.sideMenuViewController hideMenuViewController];
 }

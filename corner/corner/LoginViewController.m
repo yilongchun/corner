@@ -10,6 +10,7 @@
 #import "IQKeyboardManager.h"
 #import "NSString+Valid.h"
 
+
 @interface LoginViewController ()
 
 @end
@@ -120,14 +121,26 @@
         }else{
             NSNumber *status = [dic objectForKey:@"status"];
             if ([status intValue] == 200) {
+                
                 NSDictionary *message = [[dic objectForKey:@"message"] cleanNull];
 //                NSString *perishable_token = [message objectForKey:@"perishable_token"];
                 NSString *single_access_token = [message objectForKey:@"single_access_token"];
-                NSString *userid = [message objectForKey:@"id"];
+                NSNumber *userid = [message objectForKey:@"id"];
                 [UD setObject:message forKey:LOGINED_USER];
-                [UD setObject:userid forKey:USER_ID];
-                [UD setObject:single_access_token forKey:[NSString stringWithFormat:@"%@%@",USER_TOKEN_ID,userid]];
+                [UD setObject:[userid stringValue] forKey:USER_ID];
+                [UD setObject:single_access_token forKey:[NSString stringWithFormat:@"%@%@",USER_TOKEN_ID,[userid stringValue]]];
                 [UD setObject:[NSNumber numberWithInt:1] forKey:@"isLogin"];//设置登录
+                
+                CDIM* im=[CDIM sharedInstance];
+                [im openWithClientId:[userid stringValue] callback:^(BOOL succeeded, NSError *error) {
+                    if(error){
+                        DLog(@"%@",error);
+                    }else{
+                        DLog(@"leancloud 登录成功");
+                    }
+                }];
+                
+                
                 [self performSelector:@selector(toMainView) withObject:nil afterDelay:0.5];
                 
             }else if([status intValue] >= 600){

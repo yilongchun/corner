@@ -114,8 +114,7 @@ static NSString * const reuseIdentifier = @"MyCollectionViewCell";
     }];
     
     //初始化数据
-    [self.collectionView triggerPullToRefresh];
-    [self loadData];
+//    [self.collectionView triggerPullToRefresh];
 }
 
 - (void)insertRowAtTop {
