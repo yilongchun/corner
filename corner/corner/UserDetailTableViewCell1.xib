@@ -76,6 +76,17 @@
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gLh-9x-pq2">
+                        <rect key="frame" x="154" y="261" width="70" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="70" id="0z7-Ci-3j9"/>
+                            <constraint firstAttribute="height" constant="40" id="bEi-ZK-kfL"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <state key="normal" title=" 聊天" image="like_love1_v1">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="MnC-0b-mGU" secondAttribute="trailing" constant="10" id="A09-qt-uf2"/>
@@ -87,11 +98,16 @@
                     <constraint firstItem="Le7-FX-pTf" firstAttribute="leading" secondItem="cv9-dI-zxa" secondAttribute="leading" id="c80-OC-HcA"/>
                     <constraint firstItem="cv9-dI-zxa" firstAttribute="top" secondItem="6Zh-up-I2k" secondAttribute="top" constant="9" id="hDP-VF-iKY"/>
                     <constraint firstItem="cv9-dI-zxa" firstAttribute="bottom" secondItem="eB1-KN-dzq" secondAttribute="bottom" constant="8" id="kti-Pg-0YR"/>
+                    <constraint firstItem="MnC-0b-mGU" firstAttribute="top" secondItem="gLh-9x-pq2" secondAttribute="bottom" constant="16" id="mgv-rL-Mg9"/>
                     <constraint firstItem="Le7-FX-pTf" firstAttribute="bottom" secondItem="cv9-dI-zxa" secondAttribute="bottom" id="nn8-aY-YGB"/>
                     <constraint firstAttribute="trailing" secondItem="cv9-dI-zxa" secondAttribute="trailing" constant="10" id="pIQ-m3-p7F"/>
+                    <constraint firstItem="gLh-9x-pq2" firstAttribute="width" secondItem="eB1-KN-dzq" secondAttribute="width" id="vgV-kZ-o2Z"/>
+                    <constraint firstItem="gLh-9x-pq2" firstAttribute="height" secondItem="eB1-KN-dzq" secondAttribute="height" id="ygM-Zb-dwp"/>
+                    <constraint firstItem="eB1-KN-dzq" firstAttribute="leading" secondItem="gLh-9x-pq2" secondAttribute="trailing" constant="8" id="zQL-kz-81R"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="chatbtn" destination="gLh-9x-pq2" id="7RJ-6V-Il9"/>
                 <outlet property="gongkaiBtn" destination="Cgl-ba-1Rk" id="RN3-Wf-yQU"/>
                 <outlet property="leadingConstraint" destination="i8m-op-xDl" id="oPZ-2T-ABP"/>
                 <outlet property="likebtn" destination="eB1-KN-dzq" id="Hrl-Ln-zUq"/>

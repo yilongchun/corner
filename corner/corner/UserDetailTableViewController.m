@@ -13,7 +13,7 @@
 #import "UserDetailTableViewCell5.h"
 
 #import "DongtaiTableViewController.h"
-
+#import "LCEChatRoomVC.h"
 #import "SVPullToRefresh.h"
 
 @interface UserDetailTableViewController (){
@@ -314,6 +314,12 @@
                 cell.likebtn.layer.masksToBounds = YES;
                 [cell.likebtn addTarget:self action:@selector(like) forControlEvents:UIControlEventTouchUpInside];
                 
+                cell.chatbtn.layer.borderWidth = 1.0;
+                cell.chatbtn.layer.borderColor = [UIColor whiteColor].CGColor;
+                cell.chatbtn.layer.cornerRadius = 20.0;
+                cell.chatbtn.layer.masksToBounds = YES;
+                [cell.chatbtn addTarget:self action:@selector(chat) forControlEvents:UIControlEventTouchUpInside];
+                
                 UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:cell.userImageBottom.bounds byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(5, 5)];
                 CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
                 maskLayer.frame = cell.userImageBottom.bounds;
@@ -540,7 +546,6 @@
                     [self.navigationController pushViewController:vc animated:YES];
                 }
                     break;
-                    
                 default:
                     break;
             }
@@ -595,6 +600,21 @@
         [self hideHud];
         [self showHint:@"连接失败"];
         
+    }];
+}
+
+//聊天
+-(void)chat{
+    WEAKSELF
+    NSNumber *userid = [userinfo objectForKey:@"id"];
+    [[CDIM sharedInstance] fetchConvWithOtherId:[userid stringValue] callback : ^(AVIMConversation *conversation, NSError *error) {
+        if (error) {
+            DLog(@"%@", error);
+        }
+        else {
+            LCEChatRoomVC *chatRoomVC = [[LCEChatRoomVC alloc] initWithConv:conversation];
+            [weakSelf.navigationController pushViewController:chatRoomVC animated:YES];
+        }
     }];
 }
 

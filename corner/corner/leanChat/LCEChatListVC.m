@@ -28,9 +28,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIBarButtonItem *addItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(rightBarButtonClicked:)];
-    UIBarButtonItem *logoutItem = [[UIBarButtonItem alloc] initWithTitle:@"退出" style:UIBarButtonItemStylePlain target:self action:@selector(logout:)];
-    self.navigationItem.rightBarButtonItems = @[logoutItem, addItem];
+//    UIBarButtonItem *addItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(rightBarButtonClicked:)];
+//    UIBarButtonItem *logoutItem = [[UIBarButtonItem alloc] initWithTitle:@"退出" style:UIBarButtonItemStylePlain target:self action:@selector(logout:)];
+//    self.navigationItem.rightBarButtonItems = @[logoutItem, addItem];
     
     UIImage *image = [[UIImage imageNamed:@"kiss_top1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStyleDone target:self action:@selector(leftMenu)];
@@ -73,16 +73,16 @@
 }
 
 - (void)rightBarButtonClicked:(id)sender {
-    WEAKSELF
-    [[CDIM sharedInstance] fetchConvWithOtherId:@"21" callback : ^(AVIMConversation *conversation, NSError *error) {
-        if (error) {
-            DLog(@"%@", error);
-        }
-        else {
-            LCEChatRoomVC *chatRoomVC = [[LCEChatRoomVC alloc] initWithConv:conversation];
-            [weakSelf.navigationController pushViewController:chatRoomVC animated:YES];
-        }
-    }];
+//    WEAKSELF
+//    [[CDIM sharedInstance] fetchConvWithOtherId:@"21" callback : ^(AVIMConversation *conversation, NSError *error) {
+//        if (error) {
+//            DLog(@"%@", error);
+//        }
+//        else {
+//            LCEChatRoomVC *chatRoomVC = [[LCEChatRoomVC alloc] initWithConv:conversation];
+//            [weakSelf.navigationController pushViewController:chatRoomVC animated:YES];
+//        }
+//    }];
     
 //    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 //    MainViewController *mainVC = [storyBoard instantiateViewControllerWithIdentifier:@"main"];

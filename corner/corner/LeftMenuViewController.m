@@ -26,6 +26,7 @@
     UINavigationController *nc6;
     UINavigationController *nc8;
     
+    UINavigationController *chatnav;
     UINavigationController *grzxnc;
     UINavigationController *ilikenc;
 }
@@ -260,26 +261,29 @@
     [self.sideMenuViewController hideMenuViewController];
 }
 
-
+//聊天按钮
 - (IBAction)action1:(UIButton *)sender {
     [self oldBtnReset];
     oldButton = sender;
     [sender setImage:[UIImage imageNamed:@"menu7c_v1_2x"] forState:UIControlStateNormal];
     [self.mytableview deselectRowAtIndexPath:oldIndexPath animated:YES];
     
+    if (chatnav == nil) {
+        LCEChatListVC *chatListVC = [[LCEChatListVC alloc] init];
+        chatnav = [[UINavigationController alloc] initWithRootViewController:chatListVC];
+        chatnav.navigationBar.barTintColor = [UIColor colorWithRed:0/255. green:0/255. blue:0/255. alpha:1];
+        chatnav.navigationBar.tintColor = [UIColor whiteColor];
+        [chatnav.navigationBar setTitleTextAttributes:
+         @{NSFontAttributeName:[UIFont boldSystemFontOfSize:17],
+           NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    }
     
-    LCEChatListVC *chatListVC = [[LCEChatListVC alloc] init];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:chatListVC];
-    nav.navigationBar.barTintColor = [UIColor colorWithRed:0/255. green:0/255. blue:0/255. alpha:1];
-    nav.navigationBar.tintColor = [UIColor whiteColor];
-    [nav.navigationBar setTitleTextAttributes:
-     @{NSFontAttributeName:[UIFont boldSystemFontOfSize:17],
-       NSForegroundColorAttributeName:[UIColor whiteColor]}];
-    [self.sideMenuViewController setContentViewController:nav animated:YES];
+    [self.sideMenuViewController setContentViewController:chatnav animated:YES];
     
     [self.sideMenuViewController hideMenuViewController];
 }
 
+//短信按钮
 - (IBAction)action2:(UIButton *)sender{
     [self oldBtnReset];
     oldButton = sender;
@@ -288,6 +292,7 @@
     [self.sideMenuViewController hideMenuViewController];
 }
 
+//喜欢按钮
 - (IBAction)action3:(UIButton *)sender{
     [self oldBtnReset];
     oldButton = sender;

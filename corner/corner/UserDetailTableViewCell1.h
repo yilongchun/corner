@@ -11,6 +11,7 @@
 @interface UserDetailTableViewCell1 : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIButton *likebtn;
+@property (weak, nonatomic) IBOutlet UIButton *chatbtn;
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
 @property (weak, nonatomic) IBOutlet UIImageView *userImageBottom;
 
