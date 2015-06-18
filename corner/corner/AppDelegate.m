@@ -95,7 +95,7 @@
     [UD removeObjectForKey:@"isLogin"];//移除登录状态
     [UD removeObjectForKey:USER_ID];//移除用户ID
     [UD removeObjectForKey:[NSString stringWithFormat:@"%@%@",USER_TOKEN_ID,USER_ID]];//移除token
-    
+    //退出会话
     [[CDIM sharedInstance] closeWithCallback:^(BOOL succeeded, NSError *error) {
         DLog(@"%@",error);
     }];

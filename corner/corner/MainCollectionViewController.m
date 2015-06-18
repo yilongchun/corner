@@ -26,41 +26,7 @@
 @synthesize dataSource;
 
 static NSString * const reuseIdentifier = @"MyCollectionViewCell";
-//static MainCollectionViewController *sharedObj = nil; //第一步：静态实例，并初始化。
-//
-//+ (MainCollectionViewController *) sharedInstance  //第二步：实例构造检查静态实例是否为nil
-//{
-//    @synchronized (self)
-//    {
-//        if (sharedObj == nil)
-//        {
-//            sharedObj = [[self alloc] init];
-//        }
-//    }
-//    return sharedObj;
-//}
-//
-//+ (id) allocWithZone:(NSZone *)zone //第三步：重写allocWithZone方法
-//{
-//    @synchronized (self) {
-//        if (sharedObj == nil) {
-//            sharedObj = [super allocWithZone:zone];
-//            return sharedObj;
-//        }
-//    }
-//    return nil;
-//}
-//- (id) copyWithZone:(NSZone *)zone //第四步
-//{
-//    return self;
-//}
-//- (id)init
-//{
-//    @synchronized(self) {
-//        self = [super init];//往往放一些要初始化的变量.
-//        return self;
-//    }
-//}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -78,16 +44,9 @@ static NSString * const reuseIdentifier = @"MyCollectionViewCell";
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationItem.backBarButtonItem = item;
     
-    
-    
     UIImage *image = [[UIImage imageNamed:@"kiss_top1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStyleDone target:self action:@selector(leftMenu)];
     self.navigationItem.leftBarButtonItem = leftItem;
-    
-   
-    
-
-    
     
     // Register cell classes
 //    [self.collectionView registerClass:[MyCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
@@ -100,9 +59,6 @@ static NSString * const reuseIdentifier = @"MyCollectionViewCell";
     sex = 0;
     address = @"";
     dataSource = [NSMutableArray array];
-    
-    
-    
     
     __weak MainCollectionViewController *weakSelf = self;
     
@@ -242,15 +198,6 @@ static NSString * const reuseIdentifier = @"MyCollectionViewCell";
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     
@@ -315,41 +262,8 @@ static NSString * const reuseIdentifier = @"MyCollectionViewCell";
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-////定义每个UICollectionView 的 margin
-//-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
-//{
-//    return UIEdgeInsetsMake(5, 5, 5, 5);
-//}
 
-#pragma mark <UICollectionViewDelegate>
 
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
 
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
 
 @end
