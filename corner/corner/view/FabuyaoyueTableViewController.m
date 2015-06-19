@@ -405,7 +405,7 @@
                 [self alertWithPicer2:typeCurrencyPicker title:@""];
             }else{
                 
-                if (typeActionSheet == nil) {
+                
                     typeActionSheet = [[UIActionSheet alloc] initWithTitle:@"\n\n\n\n\n\n\n\n\n\n\n\n\n"
                                                                   delegate:self
                                                          cancelButtonTitle:nil
@@ -433,7 +433,7 @@
                     [typeActionSheet addSubview:currencyPicker];
                     
                     [typeActionSheet showInView:self.view];
-                }
+                
                 
             }
 //            [currencyPicker selectedRowInComponent:typeSelectedIndexPath.row];
