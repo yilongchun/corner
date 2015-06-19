@@ -36,11 +36,12 @@
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="加载中" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gNP-0v-HQs">
                         <rect key="frame" x="45" y="44" width="194" height="17"/>
+                        <color key="backgroundColor" red="0.96078431369999995" green="0.72941176470000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="加载中" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A77-vO-kD5">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="加载中" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="194" translatesAutoresizingMaskIntoConstraints="NO" id="A77-vO-kD5">
                         <rect key="frame" x="45" y="69" width="194" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -83,6 +84,7 @@
                     <constraint firstItem="VfH-ra-uvj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="40" id="Azn-84-ufe"/>
                     <constraint firstItem="yYV-V8-Z9d" firstAttribute="top" secondItem="VfH-ra-uvj" secondAttribute="bottom" constant="10" id="D1a-1J-rLj"/>
                     <constraint firstAttribute="trailing" secondItem="VfH-ra-uvj" secondAttribute="trailing" constant="40" id="E3z-0q-2OS"/>
+                    <constraint firstItem="gNP-0v-HQs" firstAttribute="top" secondItem="FtK-CB-EuD" secondAttribute="bottom" constant="9" id="Ex3-Tj-uJB"/>
                     <constraint firstItem="FtK-CB-EuD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="FDa-AK-EWk"/>
                     <constraint firstItem="A77-vO-kD5" firstAttribute="top" secondItem="gNP-0v-HQs" secondAttribute="bottom" constant="8" id="GIM-pt-cpV"/>
                     <constraint firstItem="A77-vO-kD5" firstAttribute="leading" secondItem="Pvj-hF-pzs" secondAttribute="trailing" constant="15" id="HQQ-5z-Rcb"/>
@@ -91,7 +93,6 @@
                     <constraint firstItem="A77-vO-kD5" firstAttribute="width" secondItem="gNP-0v-HQs" secondAttribute="width" id="Pg5-MY-TEK"/>
                     <constraint firstItem="69I-rK-U12" firstAttribute="leading" secondItem="gNP-0v-HQs" secondAttribute="trailing" constant="8" id="Un7-nX-XRk"/>
                     <constraint firstAttribute="bottom" secondItem="yYV-V8-Z9d" secondAttribute="bottom" id="bpZ-7Z-j7F"/>
-                    <constraint firstItem="dti-ks-6cb" firstAttribute="top" secondItem="FtK-CB-EuD" secondAttribute="bottom" constant="15" id="ewv-TV-zGs"/>
                     <constraint firstAttribute="trailing" secondItem="69I-rK-U12" secondAttribute="trailing" constant="8" id="iff-MH-1PP"/>
                     <constraint firstItem="69I-rK-U12" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="44" id="l5d-KC-6s6"/>
                     <constraint firstAttribute="trailing" secondItem="yYV-V8-Z9d" secondAttribute="trailing" id="ma0-6z-8KN"/>

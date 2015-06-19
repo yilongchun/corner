@@ -16,4 +16,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *leftDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *leftDateLabel2;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *dateToTopHeight;
 @end

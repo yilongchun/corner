@@ -187,14 +187,31 @@
         default:
         {
             NSDictionary *info = [dataSource objectAtIndex:indexPath.row - 1];
-            
+            NSString *post_body = [info objectForKey:@"post_body"];
             NSString *pic_url = [info objectForKey:@"pic_url"];//头像
             
-            if ([pic_url isEqualToString:@"post.jpg"]) {
-                return 250 - 140;
+            CGFloat labelWidth = ([UIScreen mainScreen].bounds.size.width - 58 - 8);
+    
+            UIFont *font = [UIFont systemFontOfSize:14];
+            CGSize textSize;
+            if ([NSString instancesRespondToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+                NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+                paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+                //[paragraphStyle setLineSpacing:5];//调整行间距
+                NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
+                NSStringDrawingOptions options = NSStringDrawingUsesLineFragmentOrigin;
+                textSize = [post_body boundingRectWithSize:CGSizeMake(labelWidth, MAXFLOAT)
+                                                     options:options
+                                                  attributes:attributes
+                                                     context:nil].size;
+                
+                
             }
-            
-            return 250;
+            CGFloat height = 25 + textSize.height + 8 + 15 + 8;
+            if (![pic_url hasSuffix:@"post.jpg"]) {//有图片
+                height = height + 150 + 8;
+            }
+            return height;
         }
             
             break;
@@ -234,10 +251,11 @@
         cell.dateLabel.text = updated_at;
         NSString *pic_url = [NSString stringWithFormat:@"%@-small",[info objectForKey:@"pic_url"]];//头像
         
-        if ([pic_url isEqualToString:@"post.jpg-small"]) {
+        if ([pic_url isEqualToString:@"post.jpg-small"]) {//没有图片
             cell.imageWidth.constant = 0;
+            cell.dateToTopHeight.constant = 0;
         }else{
-            cell.imageWidth.constant = 140;
+            cell.imageWidth.constant = 150;
             [cell.userimage setImageWithURL:[NSURL URLWithString:pic_url] placeholderImage:[UIImage imageNamed:@"public_load"]];
         }
         

@@ -607,7 +607,7 @@
             </objects>
             <point key="canvasLocation" x="1350" y="4076"/>
         </scene>
-        <!--我的动态-->
+        <!--动态列表-->
         <scene sceneID="tOr-Ip-q5P">
             <objects>
                 <tableViewController storyboardIdentifier="DongtaiTableViewController" id="z8T-5P-uQe" customClass="DongtaiTableViewController" sceneMemberID="viewController">
@@ -714,8 +714,8 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="spot" translatesAutoresizingMaskIntoConstraints="NO" id="KSH-LK-8ig">
                                             <rect key="frame" x="40" y="18" width="5" height="5"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="更新了形象照" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="100" translatesAutoresizingMaskIntoConstraints="NO" id="LCC-tg-pvw">
-                                            <rect key="frame" x="58" y="25" width="84" height="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="更新了形象照" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="254" translatesAutoresizingMaskIntoConstraints="NO" id="LCC-tg-pvw">
+                                            <rect key="frame" x="58" y="25" width="254" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -744,6 +744,7 @@
                                         <constraint firstItem="KSH-LK-8ig" firstAttribute="top" secondItem="XzR-ES-3kH" secondAttribute="top" constant="18" id="3GC-a7-axv"/>
                                         <constraint firstItem="dn4-wx-f3J" firstAttribute="leading" secondItem="XzR-ES-3kH" secondAttribute="leading" constant="8" id="5pw-co-9fC"/>
                                         <constraint firstItem="LCC-tg-pvw" firstAttribute="leading" secondItem="uHc-7s-SuD" secondAttribute="trailing" constant="15" id="DIc-EY-UI6"/>
+                                        <constraint firstAttribute="trailing" secondItem="LCC-tg-pvw" secondAttribute="trailing" constant="8" id="DQm-KA-HqM"/>
                                         <constraint firstItem="wIy-7v-uQk" firstAttribute="leading" secondItem="uHc-7s-SuD" secondAttribute="trailing" constant="15" id="O8q-1T-r1K"/>
                                         <constraint firstItem="nuy-12-UnJ" firstAttribute="leading" secondItem="uHc-7s-SuD" secondAttribute="trailing" constant="15" id="cBa-bm-6St"/>
                                         <constraint firstAttribute="bottom" secondItem="uHc-7s-SuD" secondAttribute="bottom" id="gYq-rj-F25"/>
@@ -761,6 +762,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="dateLabel" destination="nuy-12-UnJ" id="Z5g-OH-c1O"/>
+                                    <outlet property="dateToTopHeight" destination="lI5-xx-LEm" id="Vr4-9a-2h2"/>
                                     <outlet property="imageWidth" destination="Xkq-Bf-FuP" id="WRP-8f-nWp"/>
                                     <outlet property="leftDateLabel" destination="SD7-gr-q13" id="P3d-V5-G3C"/>
                                     <outlet property="leftDateLabel2" destination="dn4-wx-f3J" id="cNi-6J-k8k"/>
@@ -774,7 +776,7 @@
                             <outlet property="delegate" destination="z8T-5P-uQe" id="bcO-oA-bSS"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="我的动态" id="EKa-Et-qIm"/>
+                    <navigationItem key="navigationItem" title="动态列表" id="EKa-Et-qIm"/>
                     <connections>
                         <segue destination="qrM-DH-wnc" kind="push" identifier="toFabudongtai" id="NMN-UR-nve"/>
                     </connections>
