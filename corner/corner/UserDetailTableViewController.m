@@ -265,8 +265,51 @@
         return 400 + height1;
     }else if (indexPath.section == 1){
         return 90;
-    }else if (indexPath.section == 2){
-        return 167;
+    }else if (indexPath.section == 2){//邀约计算高度
+        
+        NSArray *activities = [userinfo objectForKey:@"activities"];
+        NSDictionary *activity = [[activities objectAtIndex:indexPath.row] cleanNull];
+        NSString *pic_url = [activity objectForKey:@"pic_url"];
+        NSString *description = [activity objectForKey:@"description"];
+        NSString *location_desc = [activity objectForKey:@"location_desc"];
+        CGFloat label1Width = ([UIScreen mainScreen].bounds.size.width - 45 - 8 - 8 - 65);
+        
+        if ([pic_url hasSuffix:@"activity.jpg"]) {//没有图片
+            label1Width += 65;
+        }
+        
+        UIFont *font = [UIFont systemFontOfSize:14];
+        CGSize textSize;
+        CGSize textSize2;
+        if ([NSString instancesRespondToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+            NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+            paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+            //[paragraphStyle setLineSpacing:5];//调整行间距
+            NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
+            NSStringDrawingOptions options = NSStringDrawingUsesLineFragmentOrigin;
+            textSize = [description boundingRectWithSize:CGSizeMake(label1Width, MAXFLOAT)
+                                                 options:options
+                                              attributes:attributes
+                                                 context:nil].size;
+            
+            textSize2 = [location_desc boundingRectWithSize:CGSizeMake(label1Width, MAXFLOAT)
+                                                 options:options
+                                              attributes:attributes
+                                                 context:nil].size;
+        }
+        
+        CGFloat height;
+        if (![pic_url hasSuffix:@"activity.jpg"]) {//有图片
+            if (textSize.height + 8 + textSize2.height > 65) {
+                height = textSize.height + 8 + textSize2.height;
+            }else{
+                height = 65;
+            }
+        }else{//没有图片
+            height = textSize.height + 8 + textSize2.height;
+        }
+        
+        return 44 + height + 10 + 34 + 10;
     }else if (indexPath.section == 3){
         return 50;
     }else if (indexPath.section == 4){
@@ -424,7 +467,12 @@
                     break;
             }
             cell.descLabel.text = description;
-            [cell.userImageView setHidden:YES];
+            cell.addressLabel.text = location_desc;
+            if ([pic_url hasSuffix:@"activity.jpg"]) {//没有图片
+                cell.imageviewWidth.constant = 0;
+            }else{
+                [cell.userImageView setImageWithURL:[NSURL URLWithString:pic_url] placeholderImage:[UIImage imageNamed:@"public_load"]];
+            }
             
             if (indexPath.row == [activities count]) {
                 [cell.bottomLabel setHidden:YES];

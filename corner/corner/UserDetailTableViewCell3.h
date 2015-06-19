@@ -12,8 +12,9 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btn;
 @property (weak, nonatomic) IBOutlet UILabel *bottomLabel;
-
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageviewWidth;
 @property (weak, nonatomic) IBOutlet UILabel *typeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descLabel;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *userImageView;
 @end
