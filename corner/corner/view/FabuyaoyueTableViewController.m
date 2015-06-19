@@ -599,7 +599,7 @@
                 dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
                 dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
                     [self dismissViewControllerAnimated:YES completion:nil];
-//                    [[NSNotificationCenter defaultCenter] postNotificationName:@"loadDongTai" object:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"loadYaoyue" object:nil];
                 });
                 
             }else if([status intValue] >= 600){

@@ -12,6 +12,8 @@
 #import "UserDetailTableViewCell3.h"
 #import "UserDetailTableViewCell5.h"
 
+#import "YaoyueDetailViewController.h"
+
 #import "DongtaiTableViewController.h"
 #import "LCEChatRoomVC.h"
 #import "SVPullToRefresh.h"
@@ -534,7 +536,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.section) {
-        case 1:
+        case 1://动态
         {
             switch (indexPath.row) {
                 case 0:
@@ -551,7 +553,21 @@
             }
         }
             break;
+        case 2://邀约
+        {
+            NSArray *activities = [userinfo objectForKey:@"activities"];
             
+            if ([activities count] == 0) {
+            }else{
+                YaoyueDetailViewController *vc = [[YaoyueDetailViewController alloc] init];
+                vc.title = @"邀约";
+                vc.activityDic = [[activities objectAtIndex:indexPath.row] cleanNull];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+            
+            
+        }
+            break;
         default:
             break;
     }

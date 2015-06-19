@@ -1479,7 +1479,7 @@
                             </tableViewSection>
                             <tableViewSection id="7wy-l6-i48">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="103" id="veg-If-O6i">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="104" id="veg-If-O6i">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="veg-If-O6i" id="iRU-bO-Ux5">
                                             <autoresizingMask key="autoresizingMask"/>

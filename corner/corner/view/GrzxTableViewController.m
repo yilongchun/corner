@@ -12,9 +12,9 @@
 #import "UserDetailTableViewCell3.h"
 #import "UserDetailTableViewCell5.h"
 #import "RESideMenu.h"
-
+#import "YaoyueDetailViewController.h"
 #import "DongtaiTableViewController.h"
-
+#import "FabuyaoyueTableViewController.h"
 #import "SVPullToRefresh.h"
 
 //#import "MLPhotoBrowserAssets.h"
@@ -60,6 +60,14 @@
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationItem.backBarButtonItem = item;
     
+    UIBarButtonItem *item2 = [[UIBarButtonItem alloc] initWithTitle:@"发布邀约" style:UIBarButtonItemStyleDone target:self action:@selector(fabuyaoyue)];
+    self.navigationItem.rightBarButtonItem = item2;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loadData)
+                                                 name:@"loadYaoyue"
+                                               object:nil];
+    
     if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
         self.automaticallyAdjustsScrollViewInsets = YES;
@@ -89,6 +97,18 @@
     
     //初始化数据
     [self.tableView triggerPullToRefresh];
+}
+
+-(void)fabuyaoyue{
+    UINavigationController *nc =  [[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"FabuyaoyueTableViewController"]];
+    nc.navigationBar.barTintColor = [UIColor colorWithRed:0/255. green:0/255. blue:0/255. alpha:1];
+    nc.navigationBar.tintColor = [UIColor whiteColor];
+    [nc.navigationBar setTitleTextAttributes:
+     @{NSFontAttributeName:[UIFont boldSystemFontOfSize:17],
+       NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    [self presentViewController:nc animated:YES completion:nil];
+    
+    
 }
 
 - (void)insertRowAtTop {
@@ -1102,11 +1122,21 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    if (indexPath.section == 1){
+    if (indexPath.section == 1){//动态
         if (indexPath.row == 0) {
             DongtaiTableViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"DongtaiTableViewController"];
             NSString *userid = [UD objectForKey:USER_ID];
             vc.userid = userid;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }
+    else if(indexPath.section == 2){//邀约
+        NSArray *activities = [userinfo objectForKey:@"activities"];
+        if ([activities count] == 0) {
+        }else{
+            YaoyueDetailViewController *vc = [[YaoyueDetailViewController alloc] init];
+            vc.title = @"邀约";
+            vc.activityDic = [[activities objectAtIndex:indexPath.row] cleanNull];
             [self.navigationController pushViewController:vc animated:YES];
         }
     }

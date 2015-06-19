@@ -221,6 +221,8 @@
 		E44D47F71B325DA40064404B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E44D47F51B325DA40064404B /* Main.storyboard */; };
 		E44D47F91B325DA40064404B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E44D47F81B325DA40064404B /* Images.xcassets */; };
 		E44D48081B325DA40064404B /* cornerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E44D48071B325DA40064404B /* cornerTests.m */; };
+		E465C47B1B33BA180084CE29 /* YaoyueDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E465C4791B33BA180084CE29 /* YaoyueDetailViewController.m */; };
+		E465C47C1B33BA180084CE29 /* YaoyueDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E465C47A1B33BA180084CE29 /* YaoyueDetailViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -656,6 +658,9 @@
 		E44D48011B325DA40064404B /* cornerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cornerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E44D48061B325DA40064404B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E44D48071B325DA40064404B /* cornerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = cornerTests.m; sourceTree = "<group>"; };
+		E465C4781B33BA180084CE29 /* YaoyueDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YaoyueDetailViewController.h; sourceTree = "<group>"; };
+		E465C4791B33BA180084CE29 /* YaoyueDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YaoyueDetailViewController.m; sourceTree = "<group>"; };
+		E465C47A1B33BA180084CE29 /* YaoyueDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YaoyueDetailViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1476,6 +1481,11 @@
 		E446F2111B325F240060E9D7 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				E446F22A1B325F240060E9D7 /* GrzxTableViewController.h */,
+				E446F22B1B325F240060E9D7 /* GrzxTableViewController.m */,
+				E446F2271B325F240060E9D7 /* GrzxTableViewCell.h */,
+				E446F2281B325F240060E9D7 /* GrzxTableViewCell.m */,
+				E446F2291B325F240060E9D7 /* GrzxTableViewCell.xib */,
 				E446F2121B325F240060E9D7 /* BoyixiaViewController.h */,
 				E446F2131B325F240060E9D7 /* BoyixiaViewController.m */,
 				E446F2141B325F240060E9D7 /* ChooseLocationViewController.h */,
@@ -1494,14 +1504,12 @@
 				E446F2211B325F240060E9D7 /* FabudongtaiViewController.m */,
 				E446F2221B325F240060E9D7 /* FabuyaoyueTableViewController.h */,
 				E446F2231B325F240060E9D7 /* FabuyaoyueTableViewController.m */,
+				E465C4781B33BA180084CE29 /* YaoyueDetailViewController.h */,
+				E465C4791B33BA180084CE29 /* YaoyueDetailViewController.m */,
+				E465C47A1B33BA180084CE29 /* YaoyueDetailViewController.xib */,
 				E446F2241B325F240060E9D7 /* FeedbackViewController.h */,
 				E446F2251B325F240060E9D7 /* FeedbackViewController.m */,
 				E446F2261B325F240060E9D7 /* FeedbackViewController.xib */,
-				E446F2271B325F240060E9D7 /* GrzxTableViewCell.h */,
-				E446F2281B325F240060E9D7 /* GrzxTableViewCell.m */,
-				E446F2291B325F240060E9D7 /* GrzxTableViewCell.xib */,
-				E446F22A1B325F240060E9D7 /* GrzxTableViewController.h */,
-				E446F22B1B325F240060E9D7 /* GrzxTableViewController.m */,
 				E446F22C1B325F240060E9D7 /* HelpAndFeedbackTableViewController.h */,
 				E446F22D1B325F240060E9D7 /* HelpAndFeedbackTableViewController.m */,
 				E446F22E1B325F240060E9D7 /* ILikeCollectionViewCell.h */,
@@ -1747,6 +1755,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E465C47C1B33BA180084CE29 /* YaoyueDetailViewController.xib in Resources */,
 				E446F2F01B325F240060E9D7 /* UserDetailTableViewCell2.xib in Resources */,
 				E446F2F21B325F240060E9D7 /* UserDetailTableViewCell3.xib in Resources */,
 				E446F2E71B325F240060E9D7 /* sr_refresh.png in Resources */,
@@ -2000,6 +2009,7 @@
 				E446F2AF1B325F240060E9D7 /* UIViewController+ValidaeUserToken.m in Sources */,
 				E446F3041B325F240060E9D7 /* HelpAndFeedbackTableViewController.m in Sources */,
 				E446F27B1B325F240060E9D7 /* NSString+Valid.m in Sources */,
+				E465C47B1B33BA180084CE29 /* YaoyueDetailViewController.m in Sources */,
 				E446F2671B325F240060E9D7 /* NSFileManager+Paths.m in Sources */,
 				E446F2B11B325F240060E9D7 /* UIWebView+Alert.m in Sources */,
 				E446F3071B325F240060E9D7 /* PaihangTableViewCell.m in Sources */,
