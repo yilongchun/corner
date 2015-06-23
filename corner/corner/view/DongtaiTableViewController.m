@@ -186,7 +186,7 @@
             
         default:
         {
-            NSDictionary *info = [dataSource objectAtIndex:indexPath.row - 1];
+            NSDictionary *info = [[dataSource objectAtIndex:indexPath.row - 1] cleanNull];
             NSString *post_body = [info objectForKey:@"post_body"];
             NSString *pic_url = [info objectForKey:@"pic_url"];//头像
             
@@ -243,15 +243,16 @@
     }else{
         DongtaiTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"dongtaicell"];
         
-        NSDictionary *info = [dataSource objectAtIndex:indexPath.row - 1];
+        NSDictionary *info = [[dataSource objectAtIndex:indexPath.row - 1] cleanNull];
         NSString *post_body = [info objectForKey:@"post_body"];
         NSString *updated_at = [info objectForKey:@"updated_at"];
-        
+        NSString *pic_url = [info objectForKey:@"pic_url"];
         cell.msgLabel.text = post_body;
         cell.dateLabel.text = updated_at;
-        NSString *pic_url = [NSString stringWithFormat:@"%@-small",[info objectForKey:@"pic_url"]];//头像
         
-        if ([pic_url isEqualToString:@"post.jpg-small"]) {//没有图片
+        
+        
+        if ([pic_url hasSuffix:@"post.jpg"]) {//没有图片
             cell.imageWidth.constant = 0;
             cell.dateToTopHeight.constant = 0;
         }else{

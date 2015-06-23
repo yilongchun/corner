@@ -1040,7 +1040,7 @@
                 NSString *post_body = [post objectForKey:@"post_body"];
                 
                 cell.dateLabel.text = created_at;
-                if ([pic_url isEqualToString:@"post.jpg"]) {
+                if ([pic_url hasSuffix:@"post.jpg"]) {//没有图片
                     cell.imageviewWidth.constant = 0;
                     cell.leadingSpace.constant = 0;
                 }else{
