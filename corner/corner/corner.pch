@@ -47,9 +47,11 @@
 //关闭邀约
 #define ACTIVITY_CLOSE_URL @"/activity/close"
 //同意邀约
+#define ACTIVITY_AGREE_URL @"/activity/agree"
 //拒绝邀约
+ #define ACTIVITY_REGECT_URL @"/activity/reject"
 //邀约详情
-#define ACTIVITY_DETAIL_URL @"/activity/detail/{activity_id}"
+#define ACTIVITY_DETAIL_URL @"/activity/detail"
 
 /*photo*/
 //获取上传 token
