@@ -17,5 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *descLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (nonatomic, strong) NSDictionary *activityDic;
+- (IBAction)enjoy:(id)sender;
 
 @end

@@ -68,5 +68,48 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+//感兴趣
+- (IBAction)enjoy:(id)sender {
+    
+    [self showHudInView:self.view hint:@"加载中"];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    NSString *userid = [UD objectForKey:USER_ID];
+    NSString *token = [UD objectForKey:[NSString stringWithFormat:@"%@%@",USER_TOKEN_ID,userid]];
+    //参数
+    [parameters setValue:token forKey:@"token"];
+    [parameters setValue:[_activityDic objectForKey:@"id"] forKey:@"activity_id"];
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,POST_CREATE_URL];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //        NSLog(@"JSON: %@", operation.responseString);
+        [self hideHud];
+        NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+        NSError *error;
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if (dic == nil) {
+            NSLog(@"json parse failed \r\n");
+        }else{
+            NSNumber *status = [dic objectForKey:@"status"];
+            if ([status intValue] == 200) {
+                NSDictionary *message = [[dic objectForKey:@"message"] cleanNull];
+                [self showHint:@"发送邀约成功"];
+                DLog(@"%@",message);
+                
+            }else if([status intValue] >= 600){
+                NSString *message = [dic objectForKey:@"message"];
+                [self hideHud];
+                [self showHint:message];
+                [self validateUserToken:[status intValue]];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"发生错误！%@",error);
+        [self hideHud];
+        [self showHint:@"连接失败"];
+    }];
+}
 @end
