@@ -641,6 +641,16 @@
                     NSNumber *userid = [userinfo objectForKey:@"id"];
                     vc.userid = [NSString stringWithFormat:@"%d",[userid intValue]];
                     vc.title = [NSString stringWithFormat:@"%@的动态",self.title];
+                    
+                    NSString *avatar_url = [userinfo objectForKey:@"avatar_url"];//头像
+                    NSString *nickname = [userinfo objectForKey:@"nickname"];
+                    if ([nickname isEqualToString:@""]) {
+                        nickname = [NSString stringWithFormat:@"%d",[userid intValue]];
+                    }
+                    
+                    vc.avatar_url = avatar_url;
+                    vc.nickname = nickname;
+                    
                     [self.navigationController pushViewController:vc animated:YES];
                 }
                     break;

@@ -11,5 +11,7 @@
 @interface DongtaiTableViewController : UITableViewController
 
 @property(nonatomic,strong) NSString *userid;
+@property(nonatomic, strong) NSString *avatar_url;
+@property(nonatomic, strong) NSString *nickname;
 
 @end

@@ -42,6 +42,14 @@
     
     titles = @[@"转角", @"care一下", @"同城邀约", @"快速约饭", @"call她", @"热度排行", @"我的转角", @"vip专区", @"设置"];
     
+    LCEChatListVC *chatListVC = [[LCEChatListVC alloc] init];
+    chatnav = [[UINavigationController alloc] initWithRootViewController:chatListVC];
+    chatnav.navigationBar.barTintColor = [UIColor colorWithRed:0/255. green:0/255. blue:0/255. alpha:1];
+    chatnav.navigationBar.tintColor = [UIColor whiteColor];
+    [chatnav.navigationBar setTitleTextAttributes:
+     @{NSFontAttributeName:[UIFont boldSystemFontOfSize:17],
+       NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    
     
     self.userimage.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickImage)];
@@ -267,16 +275,6 @@
     oldButton = sender;
     [sender setImage:[UIImage imageNamed:@"menu7c_v1_2x"] forState:UIControlStateNormal];
     [self.mytableview deselectRowAtIndexPath:oldIndexPath animated:YES];
-    
-    if (chatnav == nil) {
-        LCEChatListVC *chatListVC = [[LCEChatListVC alloc] init];
-        chatnav = [[UINavigationController alloc] initWithRootViewController:chatListVC];
-        chatnav.navigationBar.barTintColor = [UIColor colorWithRed:0/255. green:0/255. blue:0/255. alpha:1];
-        chatnav.navigationBar.tintColor = [UIColor whiteColor];
-        [chatnav.navigationBar setTitleTextAttributes:
-         @{NSFontAttributeName:[UIFont boldSystemFontOfSize:17],
-           NSForegroundColorAttributeName:[UIColor whiteColor]}];
-    }
     
     [self.sideMenuViewController setContentViewController:chatnav animated:YES];
     

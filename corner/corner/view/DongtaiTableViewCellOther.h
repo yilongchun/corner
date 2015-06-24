@@ -10,4 +10,7 @@
 
 @interface DongtaiTableViewCellOther : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *userImage;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+
 @end

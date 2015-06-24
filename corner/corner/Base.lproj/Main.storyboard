@@ -649,6 +649,10 @@
                                         <constraint firstItem="6Nh-dv-OW3" firstAttribute="leading" secondItem="bPh-EF-P4Q" secondAttribute="trailing" constant="8" id="xkN-61-Cdg"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nameLabel" destination="6Nh-dv-OW3" id="9ys-IL-7fQ"/>
+                                    <outlet property="userImage" destination="bPh-EF-P4Q" id="a53-Ux-DlG"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="dongtaicell2" rowHeight="140" id="49t-12-xFL" customClass="DongtaiTableViewCellAdd">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -2042,6 +2046,13 @@
                                     <action selector="action1:" destination="de9-px-zlf" eventType="touchUpInside" id="dnk-lU-HyF"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menu_13_v1" translatesAutoresizingMaskIntoConstraints="NO" id="uJA-1l-59e">
+                                <rect key="frame" x="47" y="179" width="9" height="9"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="9" id="0Ef-fj-ob7"/>
+                                    <constraint firstAttribute="width" constant="9" id="dDQ-AG-7rh"/>
+                                </constraints>
+                            </imageView>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UhR-SB-hCL">
                                 <rect key="frame" x="98" y="175" width="44" height="44"/>
                                 <constraints>
@@ -2099,7 +2110,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menu_13_v1" translatesAutoresizingMaskIntoConstraints="NO" id="Dhl-AF-lRD">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menu_13_v1" translatesAutoresizingMaskIntoConstraints="NO" id="Dhl-AF-lRD">
                                 <rect key="frame" x="129" y="179" width="9" height="9"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="9" id="qge-CD-0em"/>
@@ -2121,12 +2132,14 @@
                             <constraint firstItem="UhR-SB-hCL" firstAttribute="centerX" secondItem="1Oc-m7-ID5" secondAttribute="centerX" id="7aE-Xc-7UB"/>
                             <constraint firstItem="1Oc-m7-ID5" firstAttribute="top" secondItem="Ojs-uH-HeK" secondAttribute="bottom" constant="1" id="8tc-Jy-lst"/>
                             <constraint firstItem="1Oc-m7-ID5" firstAttribute="top" secondItem="UhR-SB-hCL" secondAttribute="bottom" constant="1" id="8zp-fu-4Kd"/>
+                            <constraint firstItem="uJA-1l-59e" firstAttribute="trailing" secondItem="xJs-cQ-SJV" secondAttribute="trailing" constant="-4" id="DVy-xV-vqQ"/>
                             <constraint firstItem="UhR-SB-hCL" firstAttribute="trailing" secondItem="Dhl-AF-lRD" secondAttribute="trailing" constant="4" id="Eej-Fw-8gF"/>
                             <constraint firstItem="1Oc-m7-ID5" firstAttribute="leading" secondItem="btc-Fn-w2w" secondAttribute="leading" id="JDV-MN-FDc"/>
                             <constraint firstItem="xJs-cQ-SJV" firstAttribute="leading" secondItem="btc-Fn-w2w" secondAttribute="leading" constant="16" id="KGI-8l-lya"/>
                             <constraint firstItem="m9X-mb-q63" firstAttribute="bottom" secondItem="iEx-Kp-gQh" secondAttribute="bottom" constant="-2" id="M1L-00-lQS"/>
                             <constraint firstItem="UhR-SB-hCL" firstAttribute="top" secondItem="Dhl-AF-lRD" secondAttribute="top" constant="-4" id="OHF-KN-JMW"/>
                             <constraint firstItem="1Oc-m7-ID5" firstAttribute="top" secondItem="xJs-cQ-SJV" secondAttribute="bottom" constant="1" id="SQV-ft-Cry"/>
+                            <constraint firstItem="uJA-1l-59e" firstAttribute="top" secondItem="xJs-cQ-SJV" secondAttribute="top" constant="4" id="TRx-JX-jUR"/>
                             <constraint firstItem="UhR-SB-hCL" firstAttribute="centerX" secondItem="m9X-mb-q63" secondAttribute="centerX" id="Y0A-O3-67G"/>
                             <constraint firstItem="1Oc-m7-ID5" firstAttribute="top" secondItem="btc-Fn-w2w" secondAttribute="top" constant="220" id="bUs-ae-hGN"/>
                             <constraint firstItem="m9X-mb-q63" firstAttribute="centerX" secondItem="PgB-tq-dNR" secondAttribute="centerX" id="hi0-Qb-r61"/>
