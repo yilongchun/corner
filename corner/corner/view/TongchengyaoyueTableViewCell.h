@@ -10,6 +10,7 @@
 
 @interface TongchengyaoyueTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *bgview;
 @property (weak, nonatomic) IBOutlet UIImageView *topBg;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;

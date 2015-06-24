@@ -8,73 +8,27 @@
 
 #import "TongchengyaoyueViewController.h"
 #import "TongchengyaoyueTableViewCell.h"
-#import "DOPDropDownMenu.h"
+#import "SVPullToRefresh.h"
 
-@interface TongchengyaoyueViewController ()<DOPDropDownMenuDataSource, DOPDropDownMenuDelegate, UITableViewDataSource>
-@property (nonatomic, copy) NSArray *citys;
-@property (nonatomic, copy) NSArray *ages;
-@property (nonatomic, copy) NSArray *genders;
-@property (nonatomic, copy) NSArray *originalArray;
-@property (nonatomic, copy) NSArray *results;
-
-//@property (nonatomic, strong) UITableView *tableView;
-
-@end
-
-@implementation TongchengyaoyueViewController
+@implementation TongchengyaoyueViewController{
+    int page;//分页设置
+    NSMutableArray *dataSource;
+}
 
 static NSString * const reuseIdentifier = @"MyCollectionViewCell";
-//static TongchengyaoyueViewController *sharedObj = nil; //第一步：静态实例，并初始化。
-//
-//+ (TongchengyaoyueViewController *) sharedInstance  //第二步：实例构造检查静态实例是否为nil
-//{
-//    @synchronized (self)
-//    {
-//        if (sharedObj == nil)
-//        {
-//            sharedObj = [[self alloc] init];
-//        }
-//    }
-//    return sharedObj;
-//}
-//
-//+ (id) allocWithZone:(NSZone *)zone //第三步：重写allocWithZone方法
-//{
-//    @synchronized (self) {
-//        if (sharedObj == nil) {
-//            sharedObj = [super allocWithZone:zone];
-//            return sharedObj;
-//        }
-//    }
-//    return nil;
-//}
-//- (id) copyWithZone:(NSZone *)zone //第四步
-//{
-//    return self;
-//}
-//- (id)init
-//{
-//    @synchronized(self) {
-//        self = [super init];//往往放一些要初始化的变量.
-//        return self;
-//    }
-//}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    if (kCurrentSystemVersion > 6.0) {
-        self.automaticallyAdjustsScrollViewInsets = NO;
-        
+    if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.automaticallyAdjustsScrollViewInsets = YES;
+        self.extendedLayoutIncludesOpaqueBars = YES;
     }
     
-//    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-    
-//    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
-//        [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:38/255. green:38/255. blue:38/255. alpha:1]];
-//        [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-//    }
+    dataSource = [NSMutableArray array];
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationItem.backBarButtonItem = item;
@@ -83,39 +37,126 @@ static NSString * const reuseIdentifier = @"MyCollectionViewCell";
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStyleDone target:self action:@selector(leftMenu)];
     self.navigationItem.leftBarButtonItem = leftItem;
     
+    __weak TongchengyaoyueViewController *weakSelf = self;
     
+    [self.mytableview addPullToRefreshWithActionHandler:^{
+        [weakSelf insertRowAtTop];
+    }];
+    [self.mytableview addInfiniteScrollingWithActionHandler:^{
+        [weakSelf insertRowAtBottom];
+    }];
     
+    //初始化数据
+    [self.mytableview triggerPullToRefresh];
     
-//    self.navigationItem.title = NSLocalizedString(@"navbar_title", @"the navigation bar title");
-    self.citys = @[NSLocalizedString(@"city1", @"city1"),
-                   NSLocalizedString(@"city2", @"city2"),
-                   NSLocalizedString(@"city3", @"city3")];
-    self.ages = @[NSLocalizedString(@"age", @"age"), @"20", @"30"];
-    self.genders = @[NSLocalizedString(@"gender1", @"gender1"),
-                     NSLocalizedString(@"gender2", @"gender2"),
-                     NSLocalizedString(@"gender3", @"gender3")];
-    self.originalArray = @[[NSString stringWithFormat:@"%@_%@_%@",self.citys[1],self.ages[1],self.genders[1]],
-                           [NSString stringWithFormat:@"%@_%@_%@",self.citys[1],self.ages[1],self.genders[2]],
-                           [NSString stringWithFormat:@"%@_%@_%@",self.citys[1],self.ages[2],self.genders[1]],
-                           [NSString stringWithFormat:@"%@_%@_%@",self.citys[1],self.ages[2],self.genders[2]],
-                           [NSString stringWithFormat:@"%@_%@_%@",self.citys[2],self.ages[1],self.genders[1]],
-                           [NSString stringWithFormat:@"%@_%@_%@",self.citys[2],self.ages[1],self.genders[2]],
-                           [NSString stringWithFormat:@"%@_%@_%@",self.citys[2],self.ages[2],self.genders[1]],
-                           [NSString stringWithFormat:@"%@_%@_%@",self.citys[2],self.ages[2],self.genders[2]]];
-    self.results = self.originalArray;
+}
+
+- (void)insertRowAtTop {
+    int64_t delayInSeconds = 0.5;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [self loadData];
+    });
+}
+-(void)insertRowAtBottom{
+    int64_t delayInSeconds = 0.5;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [self loadMore];
+        
+    });
+}
+
+/**
+ *  初始化 加载数据
+ */
+-(void)loadData{
+    page = 1;
     
-    DOPDropDownMenu *menu = [[DOPDropDownMenu alloc] initWithOrigin:CGPointMake(0, 64) andHeight:40];
-    menu.dataSource = self;
-    menu.delegate = self;
-    [self.view addSubview:menu];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:[NSNumber numberWithInt:page] forKey:@"page"];
     
-//    self.tableView = ({
-//        CGSize screenSize = [UIScreen mainScreen].bounds.size;
-//        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 104, screenSize.width, screenSize.height - 104)];
-//        tableView.dataSource = self;
-//        [self.view addSubview:tableView];
-//        tableView;
-//    });
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,ACTIVITY_LIST_URL];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager GET:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", operation.responseString);
+        [self.mytableview.pullToRefreshView stopAnimating];
+        NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+        NSError *error;
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if (dic == nil) {
+            NSLog(@"json parse failed \r\n");
+        }else{
+            NSNumber *status = [dic objectForKey:@"status"];
+            if ([status intValue] == 200) {
+                [dataSource removeAllObjects];
+                [dataSource addObjectsFromArray:[dic objectForKey:@"message"]];
+                
+                [self.mytableview reloadData];
+            }else if([status intValue] >= 600){
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
+                [self validateUserToken:[status intValue]];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"发生错误！%@",error);
+        [self.mytableview.pullToRefreshView stopAnimating];
+        [self showHint:@"连接失败"];
+        
+    }];
+}
+
+/**
+ *  加载更多
+ */
+-(void)loadMore{
+    
+    page++;
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:[NSNumber numberWithInt:page] forKey:@"page"];
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,ACTIVITY_LIST_URL];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", operation.responseString);
+        [self.mytableview.infiniteScrollingView stopAnimating];
+        NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+        NSError *error;
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if (dic == nil) {
+            NSLog(@"json parse failed \r\n");
+        }else{
+            NSNumber *status = [dic objectForKey:@"status"];
+            if ([status intValue] == 200) {
+                NSArray *array = [dic objectForKey:@"message"];
+                
+                if ([array count] > 0) {
+                    [dataSource addObjectsFromArray:array];
+                    [self.mytableview reloadData];
+                }else{
+                    page--;
+                }
+            }else if([status intValue] >= 600){
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
+                [self validateUserToken:[status intValue]];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        page--;
+        NSLog(@"发生错误！%@",error);
+        [self.mytableview.pullToRefreshView stopAnimating];
+        [self showHint:@"连接失败"];
+        
+    }];
 }
 
 -(void)leftMenu{
@@ -128,72 +169,8 @@ static NSString * const reuseIdentifier = @"MyCollectionViewCell";
     // Dispose of any resources that can be recreated.
 }
 
-- (NSInteger)numberOfColumnsInMenu:(DOPDropDownMenu *)menu {
-    return 3;
-}
-
-- (NSInteger)menu:(DOPDropDownMenu *)menu numberOfRowsInColumn:(NSInteger)column {
-    return 3;
-}
-
-- (NSString *)menu:(DOPDropDownMenu *)menu titleForRowAtIndexPath:(DOPIndexPath *)indexPath {
-    switch (indexPath.column) {
-        case 0: return self.citys[indexPath.row];
-            break;
-        case 1: return self.genders[indexPath.row];
-            break;
-        case 2: return self.ages[indexPath.row];
-            break;
-        default:
-            return nil;
-            break;
-    }
-}
-
-- (void)menu:(DOPDropDownMenu *)menu didSelectRowAtIndexPath:(DOPIndexPath *)indexPath {
-    NSLog(@"column:%li row:%li", (long)indexPath.column, (long)indexPath.row);
-    NSLog(@"%@",[menu titleForRowAtIndexPath:indexPath]);
-    NSString *title = [menu titleForRowAtIndexPath:indexPath];
-    
-    static NSString *prediStr1 = @"SELF LIKE '*'",
-    *prediStr2 = @"SELF LIKE '*'",
-    *prediStr3 = @"SELF LIKE '*'";
-    switch (indexPath.column) {
-        case 0:{
-            if (indexPath.row == 0) {
-                prediStr1 = @"SELF LIKE '*'";
-            } else {
-                prediStr1 = [NSString stringWithFormat:@"SELF CONTAINS '%@'", title];
-            }
-        }
-            break;
-        case 1:{
-            if (indexPath.row == 0) {
-                prediStr2 = @"SELF LIKE '*'";
-            } else {
-                prediStr2 = [NSString stringWithFormat:@"SELF CONTAINS '%@'", title];
-            }
-        }
-            break;
-        case 2:{
-            if (indexPath.row == 0) {
-                prediStr3 = @"SELF LIKE '*'";
-            } else {
-                prediStr3 = [NSString stringWithFormat:@"SELF CONTAINS '%@'", title];
-            }
-        }
-            
-        default:
-            break;
-    }
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"%@ AND %@ AND %@",prediStr1,prediStr2,prediStr3]];
-    
-    self.results = [self.originalArray filteredArrayUsingPredicate:predicate];
-    [self.mytableview reloadData];
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.results.count;
+    return dataSource.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -201,14 +178,36 @@ static NSString * const reuseIdentifier = @"MyCollectionViewCell";
     TongchengyaoyueTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellreuseIdentifier];
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"TongchengyaoyueTableViewCell" owner:self options:nil] lastObject];
-        
+            [cell.bgview setImage:[[UIImage imageNamed:@"activity_9_v1"] stretchableImageWithLeftCapWidth:12 topCapHeight:12]];
+            [cell.topBg setImage:[[UIImage imageNamed:@"activity_top_v1"] stretchableImageWithLeftCapWidth:6 topCapHeight:0]];
     }
-    [cell.topBg setImage:[[UIImage imageNamed:@"activity_top_v1"] stretchableImageWithLeftCapWidth:6 topCapHeight:0]];
+
     
-    cell.userHeadImage.layer.cornerRadius = 2.0f;
-    cell.userHeadImage.layer.masksToBounds = YES;
-    cell.userHeadImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    cell.userHeadImage.layer.borderWidth = 0.2f;
+//    cell.userHeadImage.layer.cornerRadius = 2.0f;
+//    cell.userHeadImage.layer.masksToBounds = YES;
+//    cell.userHeadImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
+//    cell.userHeadImage.layer.borderWidth = 0.2f;
+    
+    NSDictionary *info = [[dataSource objectAtIndex:indexPath.row] cleanNull];
+    DLog(@"%@",info);
+    
+    NSString *created_at = [info objectForKey:@"created_at"];
+    NSString *description = [info objectForKey:@"description"];
+    NSString *location_desc = [info objectForKey:@"location_desc"];
+    NSString *pic_url = [info objectForKey:@"pic_url"];
+//    NSNumber *status = [info objectForKey:@"status"];
+    if ([description isEqualToString:@""]) {
+        description = @" ";
+    }
+    
+    if (![pic_url hasSuffix:@"activity.jpg"]) {//无图片
+        [cell.userImage setImageWithURL:[NSURL URLWithString:pic_url] placeholderImage:[UIImage imageNamed:@"public_load_face"]];
+    }
+    cell.titleLabel.text = description;
+    cell.addressLabel.text = [NSString stringWithFormat:@"地点:%@",location_desc];
+    cell.dateLabel.text = [NSString stringWithFormat:@"时间:%@", created_at];
+    
+    
     
     return cell;
 }

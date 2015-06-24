@@ -13,6 +13,5 @@
 
 //+ (TongchengyaoyueViewController *) sharedInstance;
 @property (weak, nonatomic) IBOutlet UITableView *mytableview;
-
 - (IBAction)add:(id)sender;
 @end

@@ -223,6 +223,7 @@
 		E44D48081B325DA40064404B /* cornerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E44D48071B325DA40064404B /* cornerTests.m */; };
 		E465C47B1B33BA180084CE29 /* YaoyueDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E465C4791B33BA180084CE29 /* YaoyueDetailViewController.m */; };
 		E465C47C1B33BA180084CE29 /* YaoyueDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E465C47A1B33BA180084CE29 /* YaoyueDetailViewController.xib */; };
+		E46928421B3AA3550094CA7A /* TongchengyaoyueTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E46928411B3AA3550094CA7A /* TongchengyaoyueTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -661,6 +662,7 @@
 		E465C4781B33BA180084CE29 /* YaoyueDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YaoyueDetailViewController.h; sourceTree = "<group>"; };
 		E465C4791B33BA180084CE29 /* YaoyueDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YaoyueDetailViewController.m; sourceTree = "<group>"; };
 		E465C47A1B33BA180084CE29 /* YaoyueDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YaoyueDetailViewController.xib; sourceTree = "<group>"; };
+		E46928411B3AA3550094CA7A /* TongchengyaoyueTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TongchengyaoyueTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1524,6 +1526,7 @@
 				E446F2371B325F240060E9D7 /* SettingTableViewController.m */,
 				E446F2381B325F240060E9D7 /* TongchengyaoyueTableViewCell.h */,
 				E446F2391B325F240060E9D7 /* TongchengyaoyueTableViewCell.m */,
+				E46928411B3AA3550094CA7A /* TongchengyaoyueTableViewCell.xib */,
 				E446F23A1B325F240060E9D7 /* TongchengyaoyueViewController.h */,
 				E446F23B1B325F240060E9D7 /* TongchengyaoyueViewController.m */,
 				E446F23C1B325F240060E9D7 /* WodezhuanjiaoTableViewCell.h */,
@@ -1765,6 +1768,7 @@
 				E446F2E81B325F240060E9D7 /* sr_refresh@2X.png in Resources */,
 				E446F2F41B325F240060E9D7 /* UserDetailTableViewCell5.xib in Resources */,
 				E446F3021B325F240060E9D7 /* GrzxTableViewCell.xib in Resources */,
+				E46928421B3AA3550094CA7A /* TongchengyaoyueTableViewCell.xib in Resources */,
 				E446F30E1B325F240060E9D7 /* Localizable.strings in Resources */,
 				E44D47F91B325DA40064404B /* Images.xcassets in Resources */,
 				E446F2C51B325F240060E9D7 /* IQKeyboardManager.bundle in Resources */,
