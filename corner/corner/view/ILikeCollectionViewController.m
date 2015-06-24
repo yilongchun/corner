@@ -8,7 +8,7 @@
 
 #import "ILikeCollectionViewController.h"
 #import "ILikeCollectionViewCell.h"
-
+#import "UserDetailTableViewController.h"
 #import "SVPullToRefresh.h"
 
 @interface ILikeCollectionViewController (){
@@ -154,6 +154,17 @@ static NSString * const reuseIdentifier = @"ILikeCollectionViewCell";
 
 
 #pragma mark <UICollectionViewDelegate>
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSDictionary *userinfo = [[dataSource objectAtIndex:indexPath.row] cleanNull];
+    NSString *nickname = [userinfo objectForKey:@"nickname"];
+    //    NSString *name = [userinfo objectForKey:@"name"];
+    UserDetailTableViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"UserDetailTableViewController"];
+    vc.title = nickname;
+    vc.userinfo = userinfo;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 /*
 // Uncomment this method to specify if the specified item should be highlighted during tracking
