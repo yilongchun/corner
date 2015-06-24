@@ -26,7 +26,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="跳舞，健身，找美食小吃" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0LA-bI-4I6">
-                                <rect key="frame" x="8" y="11" width="176" height="20"/>
+                                <rect key="frame" x="8" y="11" width="288" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -45,7 +45,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="地点：湖北，嘎纳印象小区" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iut-e7-y0G">
-                                <rect key="frame" x="8" y="169" width="192" height="20"/>
+                                <rect key="frame" x="8" y="169" width="288" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -128,6 +128,7 @@
                             <constraint firstItem="Gxy-hF-KpN" firstAttribute="leading" secondItem="M5v-Qm-8wI" secondAttribute="leading" constant="8" id="Xkx-yo-6eO"/>
                             <constraint firstItem="Iut-e7-y0G" firstAttribute="top" secondItem="wwi-rD-rPW" secondAttribute="bottom" constant="5" id="aeb-U1-Xjo"/>
                             <constraint firstItem="vWN-xg-0fk" firstAttribute="top" secondItem="eWf-Ez-xxi" secondAttribute="bottom" constant="2" id="bod-qF-IbC"/>
+                            <constraint firstItem="0LA-bI-4I6" firstAttribute="width" secondItem="M5v-Qm-8wI" secondAttribute="width" constant="-16" id="cSH-JF-iHX"/>
                             <constraint firstItem="pqT-jI-TyL" firstAttribute="top" secondItem="O7c-x9-ndg" secondAttribute="bottom" constant="8" id="cg9-12-WNa"/>
                             <constraint firstItem="F3J-oq-CcE" firstAttribute="leading" secondItem="M5v-Qm-8wI" secondAttribute="leading" id="dj5-2G-EGa"/>
                             <constraint firstItem="RNW-kM-9sU" firstAttribute="leading" secondItem="M5v-Qm-8wI" secondAttribute="leading" constant="8" id="efy-Eh-GpE"/>
@@ -138,6 +139,7 @@
                             <constraint firstAttribute="trailing" secondItem="1Zt-P0-OQD" secondAttribute="trailing" id="slH-DZ-3ts"/>
                             <constraint firstItem="F3J-oq-CcE" firstAttribute="top" secondItem="M5v-Qm-8wI" secondAttribute="top" id="uOa-Ve-6Gh"/>
                             <constraint firstItem="0LA-bI-4I6" firstAttribute="leading" secondItem="M5v-Qm-8wI" secondAttribute="leading" constant="8" id="v5i-UL-JaW"/>
+                            <constraint firstItem="Iut-e7-y0G" firstAttribute="width" secondItem="0LA-bI-4I6" secondAttribute="width" id="xNV-b5-Q7k"/>
                             <constraint firstItem="eWf-Ez-xxi" firstAttribute="leading" secondItem="M5v-Qm-8wI" secondAttribute="leading" constant="8" id="yVm-VP-q61"/>
                             <constraint firstItem="wwi-rD-rPW" firstAttribute="leading" secondItem="M5v-Qm-8wI" secondAttribute="leading" constant="8" id="z34-Te-lwm"/>
                         </constraints>
@@ -166,6 +168,7 @@
                 <outlet property="userImage" destination="RNW-kM-9sU" id="Zl1-yw-4Ok"/>
                 <outlet property="usernameLabel" destination="pqT-jI-TyL" id="kIg-CA-76b"/>
             </connections>
+            <point key="canvasLocation" x="140" y="150"/>
         </tableViewCell>
     </objects>
     <resources>

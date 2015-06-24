@@ -207,8 +207,6 @@ static NSString * const reuseIdentifier = @"MyCollectionViewCell";
     cell.addressLabel.text = [NSString stringWithFormat:@"地点:%@",location_desc];
     cell.dateLabel.text = [NSString stringWithFormat:@"时间:%@", created_at];
     
-    
-    
     return cell;
 }
 
