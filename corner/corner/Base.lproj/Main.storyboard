@@ -1588,7 +1588,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="1" id="64v-1e-T3u">
                             <size key="itemSize" width="104" height="104"/>
-                            <size key="headerReferenceSize" width="50" height="25"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
@@ -1666,25 +1666,6 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HeaderView" id="vM5-tv-cm7" customClass="MyCollectionReusableView">
-                            <rect key="frame" x="0.0" y="64" width="320" height="25"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="湖北 女" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0DY-R5-xkO">
-                                    <rect key="frame" x="8" y="5" width="43" height="16"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <constraints>
-                                <constraint firstItem="0DY-R5-xkO" firstAttribute="leading" secondItem="vM5-tv-cm7" secondAttribute="leading" constant="8" id="AYj-Cn-fA2"/>
-                                <constraint firstAttribute="centerY" secondItem="0DY-R5-xkO" secondAttribute="centerY" id="Zce-DL-qH0"/>
-                            </constraints>
-                            <connections>
-                                <outlet property="sctionLabel" destination="0DY-R5-xkO" id="vCp-zC-j1q"/>
-                            </connections>
-                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="tWa-YS-7qq" id="yS1-Io-xut"/>
                             <outlet property="delegate" destination="tWa-YS-7qq" id="giZ-P4-BrY"/>

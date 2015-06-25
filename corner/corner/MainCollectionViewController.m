@@ -199,24 +199,24 @@ static NSString * const reuseIdentifier = @"MyCollectionViewCell";
 }
 
 
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-    
-    MyCollectionReusableView *headView;
-    if([kind isEqual:UICollectionElementKindSectionHeader])
-    {
-        headView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
-        NSArray *arr = @[@"湖北",@"女"];
-        NSString *str = [arr componentsJoinedByString:@"・"];
-        headView.sctionLabel.text = str;
-        headView.sctionLabel.textColor = [UIColor colorWithWhite:0 alpha:0.7];
-    }
-    return headView;
-}
+//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+//    
+//    MyCollectionReusableView *headView;
+//    if([kind isEqual:UICollectionElementKindSectionHeader])
+//    {
+//        headView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
+//        NSArray *arr = @[@"湖北",@"女"];
+//        NSString *str = [arr componentsJoinedByString:@"・"];
+//        headView.sctionLabel.text = str;
+//        headView.sctionLabel.textColor = [UIColor colorWithWhite:0 alpha:0.7];
+//    }
+//    return headView;
+//}
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
-    CGSize size = {self.collectionView.frame.size.width, 25};
-    return size;
-}
+//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
+//    CGSize size = {self.collectionView.frame.size.width, 25};
+//    return size;
+//}
 
 
 #pragma mark <UICollectionViewDataSource>
