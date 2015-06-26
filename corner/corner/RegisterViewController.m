@@ -70,7 +70,7 @@
         }else{
             NSNumber *status = [dic objectForKey:@"status"];
             if ([status intValue] == 200) {
-                NSDictionary *message = [dic objectForKey:@"message"];
+                NSDictionary *message = [[dic objectForKey:@"message"] cleanNull];
 //                NSString *perishable_token = [message objectForKey:@"perishable_token"];
                 NSString *single_access_token = [message objectForKey:@"single_access_token"];
                 NSString *userid = [message objectForKey:@"id"];

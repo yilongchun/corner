@@ -22,8 +22,8 @@
     // Do any additional setup after loading the view.
     self.title = @"转角";
     
-//    self.usrename.text = @"5115413@qq.com";
-//    self.password.text = @"111111";
+    self.usrename.text = @"5115413@qq.com";
+    self.password.text = @"111111";
     
 //    UIView *leftview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, 40)];
 //    UIImageView *usernameImg = [[UIImageView alloc] initWithFrame:CGRectMake(5, 15, 20, 20)];

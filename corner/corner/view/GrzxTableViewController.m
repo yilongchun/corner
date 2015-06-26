@@ -142,7 +142,7 @@
         }else{
             NSNumber *status = [dic objectForKey:@"status"];
             if ([status intValue] == 200) {
-                userinfo = [dic objectForKey:@"message"];
+                userinfo = [[dic objectForKey:@"message"] cleanNull];
                 avatar_url = [userinfo objectForKey:@"avatar_url"];
                 
                 //用户的邀约

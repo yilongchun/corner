@@ -243,7 +243,12 @@
     NSNumber *user_id = [info objectForKey:@"user_id"];
     
     NSString *avatar_url = [NSString stringWithFormat:@"%@-small",pic_url];//头像
-    [cell.userImage setImageWithURL:[NSURL URLWithString:avatar_url] placeholderImage:[UIImage imageNamed:@"public_load_face"]];
+    
+    if (![pic_url hasSuffix:@"post.jpg"]) {//无图片
+        [cell.userImage setImageWithURL:[NSURL URLWithString:avatar_url] placeholderImage:[UIImage imageNamed:@"public_load_face"]];
+    }
+    
+    
     cell.username.text = [NSString stringWithFormat:@"%d",[user_id intValue]];
     cell.msgLabel.text = post_body;
     return cell;

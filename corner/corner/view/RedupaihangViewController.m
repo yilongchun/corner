@@ -123,10 +123,10 @@
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"PaihangTableViewCell" owner:self options:nil] lastObject];
     }
-    cell.userHeadImage.layer.cornerRadius = 5.0f;
-    cell.userHeadImage.layer.masksToBounds = YES;
-    cell.userHeadImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    cell.userHeadImage.layer.borderWidth = 0.2f;
+//    cell.userHeadImage.layer.cornerRadius = 5.0f;
+//    cell.userHeadImage.layer.masksToBounds = YES;
+//    cell.userHeadImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
+//    cell.userHeadImage.layer.borderWidth = 0.2f;
     
     if (indexPath.row < 3) {
         cell.leftTopView.backgroundColor = TOP_COLOR;
