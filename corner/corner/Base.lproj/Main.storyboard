@@ -1658,6 +1658,7 @@
                                 </constraints>
                                 <connections>
                                     <outlet property="myimageview" destination="I9R-E6-9wo" id="gg8-eK-UxU"/>
+                                    <outlet property="nickname" destination="rbt-x1-quK" id="R7h-Xx-7OQ"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>

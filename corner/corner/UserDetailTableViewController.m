@@ -183,7 +183,7 @@
         img.contentMode = UIViewContentModeScaleToFill;
 //        img.layer.cornerRadius = 5.0;
 //        img.layer.masksToBounds = YES;
-        [img setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@-small",[[photo1 objectAtIndex:i] objectForKey:@"url"]]]];
+        [img setImageWithURL:[NSURL URLWithString:[[photo1 objectAtIndex:i] objectForKey:@"url"]]];
         img.tag = i;
         img.userInteractionEnabled = YES;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageClick:)];
@@ -203,6 +203,7 @@
         }else{
             rect.origin.x = cell.gongkaiBtn.frame.size.width + cell.gongkaiBtn.frame.origin.x + 2;
             cell.leadingConstraint.constant = rect.origin.x;
+            cell.view1HeightConstraint.constant = rect.origin.y + rect.size.height;
         }
         
         [cell.gongkaiBtn setFrame:rect];
@@ -261,8 +262,20 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         CGFloat width = ([UIScreen mainScreen].bounds.size.width - 20 - 8) / 4;
-        CGFloat height1 = (photo1.count / 4) * (width + 2);
-        return 400 + height1;
+        CGFloat height1;
+        
+        CGFloat imgHeight = [UIScreen mainScreen].bounds.size.width - 20;
+        CGFloat jiange = 32;
+        
+        CGFloat totalHeight = imgHeight + jiange + 10;
+        
+        if ((photo1.count + 1) % 4 == 0) {
+            height1 = ((photo1.count + 1) / 4) * (width + ((photo1.count + 1) / 4 -1) * 2);
+        }else{
+            height1 = (((photo1.count + 1) / 4) + 1) * (width + ((photo1.count + 1) / 4) * 2);
+        }
+        
+        return totalHeight + height1;
     }else if (indexPath.section == 1){//动态计算高度
         NSArray *posts = [userinfo objectForKey:@"posts"];
         if ([posts count] == 0) {
@@ -407,9 +420,9 @@
                 cell.chatbtn.layer.masksToBounds = YES;
                 [cell.chatbtn addTarget:self action:@selector(chat) forControlEvents:UIControlEventTouchUpInside];
                 
-                UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:cell.userImageBottom.bounds byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(5, 5)];
+                UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width-20, 60) byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(5, 5)];
                 CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-                maskLayer.frame = cell.userImageBottom.bounds;
+                maskLayer.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width-20, 60);
                 maskLayer.path = maskPath.CGPath;
                 cell.userImageBottom.layer.mask = maskLayer;
                 
