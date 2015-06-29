@@ -19,6 +19,8 @@
 #define LEANCLOUD_APP_ID  @"hkvqbh84v4aeta0pgay00qwws1bejf0g6xx7g2i2guoeji36"
 #define LEANCLOUD_APP_KEY @"ob1p5yatuw3do7jkuf9bqfpl1r4ohbe1lu4ioq2u21xzv9od"
 
+#define QQ_APP_ID @"1104669365"
+
 /*user*/
 //登陆
 #define USER_LOGIN_URL @"/user/login"

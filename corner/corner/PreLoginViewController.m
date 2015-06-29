@@ -55,6 +55,34 @@
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationItem.backBarButtonItem = item;
+    
+    _permissions = [NSMutableArray arrayWithObjects:
+                     kOPEN_PERMISSION_GET_USER_INFO,
+                     kOPEN_PERMISSION_GET_SIMPLE_USER_INFO,
+                     kOPEN_PERMISSION_ADD_ALBUM,
+                     kOPEN_PERMISSION_ADD_IDOL,
+                     kOPEN_PERMISSION_ADD_ONE_BLOG,
+                     kOPEN_PERMISSION_ADD_PIC_T,
+                     kOPEN_PERMISSION_ADD_SHARE,
+                     kOPEN_PERMISSION_ADD_TOPIC,
+                     kOPEN_PERMISSION_CHECK_PAGE_FANS,
+                     kOPEN_PERMISSION_DEL_IDOL,
+                     kOPEN_PERMISSION_DEL_T,
+                     kOPEN_PERMISSION_GET_FANSLIST,
+                     kOPEN_PERMISSION_GET_IDOLLIST,
+                     kOPEN_PERMISSION_GET_INFO,
+                     kOPEN_PERMISSION_GET_OTHER_INFO,
+                     kOPEN_PERMISSION_GET_REPOST_LIST,
+                     kOPEN_PERMISSION_LIST_ALBUM,
+                     kOPEN_PERMISSION_UPLOAD_PIC,
+                     kOPEN_PERMISSION_GET_VIP_INFO,
+                     kOPEN_PERMISSION_GET_VIP_RICH_INFO,
+                     kOPEN_PERMISSION_GET_INTIMATE_FRIENDS_WEIBO,
+                     kOPEN_PERMISSION_MATCH_NICK_TIPS_WEIBO,
+                     nil];
+    
+    _tencentOAuth = [[TencentOAuth alloc] initWithAppId:QQ_APP_ID
+                                            andDelegate:self];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -73,6 +101,107 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (IBAction)wxlogin:(id)sender{
+    
+}
+- (IBAction)wblogin:(id)sender{
+    
+}
+- (IBAction)qqlogin:(id)sender{
+    [_tencentOAuth authorize:_permissions inSafari:NO];
+}
+
+/**
+ * Called when the user successfully logged in.
+ */
+- (void)tencentDidLogin {
+    // 登录成功
+//    _labelTitle.text = @"登录完成";
+    
+    DLog(@"登录完成");
+    if (_tencentOAuth.accessToken
+        && 0 != [_tencentOAuth.accessToken length])
+    {
+        DLog(@"_tencentOAuth.accessToken:%@",_tencentOAuth.accessToken);
+        
+        
+        
+        if([_tencentOAuth getUserInfo]){
+            DLog(@"获取个人信息成功");
+        }else{
+            DLog(@"获取个人信息失败");
+        }
+        
+        
+        
+//        _labelAccessToken.text = _tencentOAuth.accessToken;
+    }
+    else
+    {
+        DLog(@"登录不成功 没有获取accesstoken");
+//        _labelAccessToken.text = @"登录不成功 没有获取accesstoken";
+    }
+    
+    
+//    _getUserInfoButton.enabled = YES;
+//    _addShareButton.enabled = YES;
+//    _uploadPicButton.enabled = NO;
+//    _listalbumButton.enabled = YES;
+//    _topicButton.enabled = YES;
+//    _listphotoButton.enabled = NO;
+//    _checkfansButton.enabled = YES;
+//    _addalbumButton.enabled = YES;
+//    _addblogButton.enabled = YES;
+//    _setUserHeadPicButton.enabled = YES;
+//    _getVipInfoBtn.enabled = YES;
+//    _getVipRichInfoBtn.enabled = YES;
+//    _matchNickTipsBtn.enabled = YES;
+//    _getIntimateFriendsBtn.enabled = YES;
+//    _logoutBtn.enabled = YES;
+//    _sendStoryButton.enabled = YES;
+//    _appInvitationButton.enabled = YES;
+}
+
+
+/**
+ * Called when the user dismissed the dialog without logging in.
+ */
+- (void)tencentDidNotLogin:(BOOL)cancelled
+{
+    if (cancelled){
+        DLog(@"用户取消登录");
+//        _labelTitle.text = @"用户取消登录";
+    }
+    else {
+        DLog(@"登录失败");
+//        _labelTitle.text = @"登录失败";
+    }
+    
+}
+
+/**
+ * Called when the notNewWork.
+ */
+-(void)tencentDidNotNetWork
+{
+    DLog(@"无网络连接，请设置网络");
+//    _labelTitle.text=@"无网络连接，请设置网络";
+}
+
+//QQ登录获取用户信息
+- (void)getUserInfoResponse:(APIResponse*) response{
+    DLog(@"%@",response.jsonResponse);
+    
+    
+    NSString *nickname = response.jsonResponse[@"nickname"];
+    NSString *figureurl_qq_2 = response.jsonResponse[@"figureurl_qq_2"];
+    NSString *gender = response.jsonResponse[@"gender"];
+    NSString *province = response.jsonResponse[@"province"];
+    NSString *city = response.jsonResponse[@"city"];
+    
+}
+
 
 /*
 #pragma mark - Navigation
