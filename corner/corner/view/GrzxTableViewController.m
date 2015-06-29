@@ -1147,7 +1147,7 @@
             cell = [[[NSBundle mainBundle] loadNibNamed:@"UserDetailTableViewCell5" owner:self options:nil] lastObject];
         }
         if (indexPath.row < 5) {
-            UILabel *bottom = [[UILabel alloc] initWithFrame:CGRectMake(15, 49, cell.bounds.size.width-15, 1)];
+            UILabel *bottom = [[UILabel alloc] initWithFrame:CGRectMake(15, 49, [UIScreen mainScreen].bounds.size.width-15, 1)];
             bottom.backgroundColor = RGBACOLOR(229, 229, 229, 1);
             [cell.contentView addSubview:bottom];
         }
