@@ -232,6 +232,11 @@
 		E4D3C39E1B411C8400ED9652 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4D3C39D1B411C8400ED9652 /* CoreTelephony.framework */; };
 		E4D3C3A01B411C9700ED9652 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E4D3C39F1B411C9700ED9652 /* libstdc++.dylib */; };
 		E4D3C3A21B411D1E00ED9652 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E4D3C3A11B411D1E00ED9652 /* TencentOpenApi_IOS_Bundle.bundle */; };
+		E4F59DE11B423E2E00A6F002 /* WodeyaoyueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F59DE01B423E2E00A6F002 /* WodeyaoyueViewController.m */; };
+		E4F59DEA1B42437200A6F002 /* WodeyaoyueTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F59DE81B42437200A6F002 /* WodeyaoyueTableViewCell.m */; };
+		E4F59DEB1B42437200A6F002 /* WodeyaoyueTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4F59DE91B42437200A6F002 /* WodeyaoyueTableViewCell.xib */; };
+		E4F59DEF1B425F3900A6F002 /* WodeyaoyueTableViewCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F59DED1B425F3900A6F002 /* WodeyaoyueTableViewCell2.m */; };
+		E4F59DF01B425F3900A6F002 /* WodeyaoyueTableViewCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4F59DEE1B425F3900A6F002 /* WodeyaoyueTableViewCell2.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -679,6 +684,14 @@
 		E4D3C39D1B411C8400ED9652 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		E4D3C39F1B411C9700ED9652 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		E4D3C3A11B411D1E00ED9652 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
+		E4F59DDF1B423E2E00A6F002 /* WodeyaoyueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WodeyaoyueViewController.h; sourceTree = "<group>"; };
+		E4F59DE01B423E2E00A6F002 /* WodeyaoyueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WodeyaoyueViewController.m; sourceTree = "<group>"; };
+		E4F59DE71B42437200A6F002 /* WodeyaoyueTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WodeyaoyueTableViewCell.h; sourceTree = "<group>"; };
+		E4F59DE81B42437200A6F002 /* WodeyaoyueTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WodeyaoyueTableViewCell.m; sourceTree = "<group>"; };
+		E4F59DE91B42437200A6F002 /* WodeyaoyueTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WodeyaoyueTableViewCell.xib; sourceTree = "<group>"; };
+		E4F59DEC1B425F3900A6F002 /* WodeyaoyueTableViewCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WodeyaoyueTableViewCell2.h; sourceTree = "<group>"; };
+		E4F59DED1B425F3900A6F002 /* WodeyaoyueTableViewCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WodeyaoyueTableViewCell2.m; sourceTree = "<group>"; };
+		E4F59DEE1B425F3900A6F002 /* WodeyaoyueTableViewCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WodeyaoyueTableViewCell2.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1500,6 +1513,14 @@
 				E446F2271B325F240060E9D7 /* GrzxTableViewCell.h */,
 				E446F2281B325F240060E9D7 /* GrzxTableViewCell.m */,
 				E446F2291B325F240060E9D7 /* GrzxTableViewCell.xib */,
+				E4F59DDF1B423E2E00A6F002 /* WodeyaoyueViewController.h */,
+				E4F59DE01B423E2E00A6F002 /* WodeyaoyueViewController.m */,
+				E4F59DE71B42437200A6F002 /* WodeyaoyueTableViewCell.h */,
+				E4F59DE81B42437200A6F002 /* WodeyaoyueTableViewCell.m */,
+				E4F59DE91B42437200A6F002 /* WodeyaoyueTableViewCell.xib */,
+				E4F59DEC1B425F3900A6F002 /* WodeyaoyueTableViewCell2.h */,
+				E4F59DED1B425F3900A6F002 /* WodeyaoyueTableViewCell2.m */,
+				E4F59DEE1B425F3900A6F002 /* WodeyaoyueTableViewCell2.xib */,
 				E446F2121B325F240060E9D7 /* BoyixiaViewController.h */,
 				E446F2131B325F240060E9D7 /* BoyixiaViewController.m */,
 				E446F2141B325F240060E9D7 /* ChooseLocationViewController.h */,
@@ -1790,6 +1811,7 @@
 				E446F2601B325F240060E9D7 /* NSDateTimeAgo.bundle in Resources */,
 				E446F2541B325F240060E9D7 /* AMap.bundle in Resources */,
 				E446F2E81B325F240060E9D7 /* sr_refresh@2X.png in Resources */,
+				E4F59DF01B425F3900A6F002 /* WodeyaoyueTableViewCell2.xib in Resources */,
 				E446F2F41B325F240060E9D7 /* UserDetailTableViewCell5.xib in Resources */,
 				E446F3021B325F240060E9D7 /* GrzxTableViewCell.xib in Resources */,
 				E46928421B3AA3550094CA7A /* TongchengyaoyueTableViewCell.xib in Resources */,
@@ -1797,6 +1819,7 @@
 				E44D47F91B325DA40064404B /* Images.xcassets in Resources */,
 				E446F2C51B325F240060E9D7 /* IQKeyboardManager.bundle in Resources */,
 				E446F2EE1B325F240060E9D7 /* UserDetailTableViewCell1.xib in Resources */,
+				E4F59DEB1B42437200A6F002 /* WodeyaoyueTableViewCell.xib in Resources */,
 				E446F3001B325F240060E9D7 /* FeedbackViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1894,6 +1917,7 @@
 				E446F2431B325F240060E9D7 /* AFHTTPRequestOperation.m in Sources */,
 				E446F2A21B325F240060E9D7 /* UITableViewCell+NIB.m in Sources */,
 				E446F2AE1B325F240060E9D7 /* UIViewController+RecursiveDescription.m in Sources */,
+				E4F59DEA1B42437200A6F002 /* WodeyaoyueTableViewCell.m in Sources */,
 				E446F26E1B325F240060E9D7 /* NSObject+AutoCoding.m in Sources */,
 				E446F2821B325F240060E9D7 /* UIBezierPath+Symbol.m in Sources */,
 				E446F3081B325F240060E9D7 /* RedupaihangViewController.m in Sources */,
@@ -1901,6 +1925,7 @@
 				E446F2CB1B325F240060E9D7 /* MBProgressHUD.m in Sources */,
 				E446F3241B32968B0060E9D7 /* LCEChatListVC.m in Sources */,
 				E446F2EF1B325F240060E9D7 /* UserDetailTableViewCell2.m in Sources */,
+				E4F59DEF1B425F3900A6F002 /* WodeyaoyueTableViewCell2.m in Sources */,
 				E446F2B41B325F240060E9D7 /* UIWebView+JS.m in Sources */,
 				E446F2C31B325F240060E9D7 /* IQToolbar.m in Sources */,
 				E446F2851B325F240060E9D7 /* UIButton+Indicator.m in Sources */,
@@ -2017,6 +2042,7 @@
 				E446F2EC1B325F240060E9D7 /* UIScrollView+SVPullToRefresh.m in Sources */,
 				E446F2831B325F240060E9D7 /* UIButton+Block.m in Sources */,
 				E446F2941B325F240060E9D7 /* UIImage+RoundedCorner.m in Sources */,
+				E4F59DE11B423E2E00A6F002 /* WodeyaoyueViewController.m in Sources */,
 				E446F2A71B325F240060E9D7 /* UIView+Find.m in Sources */,
 				E446F2ED1B325F240060E9D7 /* UserDetailTableViewCell1.m in Sources */,
 				E446F2E11B325F240060E9D7 /* UIImage+GIF.m in Sources */,

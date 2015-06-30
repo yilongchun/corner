@@ -17,6 +17,8 @@
 #import "FabuyaoyueTableViewController.h"
 #import "SVPullToRefresh.h"
 
+#import "WodeyaoyueViewController.h"
+
 //#import "MLPhotoBrowserAssets.h"
 //#import "MLPhotoBrowserViewController.h"
 //#import "UIButton+WebCache.h"
@@ -947,7 +949,7 @@
                 height = textSize.height + 8 + textSize2.height;
             }
             
-            return 44 + height + 10 + 34 + 10;
+            return 10 + height + 10 + 34 + 10;
         }
         
         
@@ -1086,10 +1088,11 @@
             if (cell == nil) {
                 cell = [[[NSBundle mainBundle] loadNibNamed:@"UserDetailTableViewCell3" owner:self options:nil] lastObject];
                 
-                cell.btn.layer.borderColor = RGBACOLOR(90, 175, 235, 1).CGColor;
-                cell.btn.layer.borderWidth = 1.0;
-                cell.btn.layer.cornerRadius = 17.0;
-                cell.btn.layer.masksToBounds = YES;
+//                cell.btn.layer.borderColor = RGBACOLOR(90, 175, 235, 1).CGColor;
+//                cell.btn.layer.borderWidth = 1.0;
+//                cell.btn.layer.cornerRadius = 17.0;
+//                cell.btn.layer.masksToBounds = YES;
+                [cell.btn setHidden:YES];
                 //            DLog(@"cell3 init");
             }
             
@@ -1244,9 +1247,12 @@
         NSArray *activities = [userinfo objectForKey:@"activities"];
         if ([activities count] == 0) {
         }else{
-            YaoyueDetailViewController *vc = [[YaoyueDetailViewController alloc] init];
-            vc.title = @"邀约";
-            vc.activityDic = [[activities objectAtIndex:indexPath.row] cleanNull];
+            WodeyaoyueViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WodeyaoyueViewController"];
+            
+            
+//            YaoyueDetailViewController *vc = [[YaoyueDetailViewController alloc] init];
+//            vc.title = @"邀约";
+//            vc.activityDic = [[activities objectAtIndex:indexPath.row] cleanNull];
             [self.navigationController pushViewController:vc animated:YES];
         }
     }

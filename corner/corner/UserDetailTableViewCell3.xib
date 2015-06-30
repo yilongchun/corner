@@ -17,7 +17,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="加载中" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FtK-CB-EuD">
                         <rect key="frame" x="15" y="15" width="48" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="spot" translatesAutoresizingMaskIntoConstraints="NO" id="dti-ks-6cb">
@@ -53,7 +53,7 @@
                             <constraint firstAttribute="height" constant="1" id="BzG-39-n7v"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VfH-ra-uvj">
@@ -76,8 +76,16 @@
                             <constraint firstAttribute="width" constant="65" id="erh-wo-gpS"/>
                         </constraints>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0人参与" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="urv-S1-rw2">
+                        <rect key="frame" x="258" y="17" width="47" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="urv-S1-rw2" firstAttribute="centerY" secondItem="FtK-CB-EuD" secondAttribute="centerY" id="0If-gD-PIY"/>
+                    <constraint firstAttribute="trailing" secondItem="urv-S1-rw2" secondAttribute="trailing" constant="15" id="1eT-HW-zdi"/>
                     <constraint firstItem="FtK-CB-EuD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="2Cu-dT-7uI"/>
                     <constraint firstItem="Pvj-hF-pzs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="25" id="8cg-6N-Dez"/>
                     <constraint firstItem="VfH-ra-uvj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="40" id="Azn-84-ufe"/>
@@ -106,6 +114,7 @@
                 <outlet property="btn" destination="VfH-ra-uvj" id="0vl-bN-gv5"/>
                 <outlet property="descLabel" destination="gNP-0v-HQs" id="dlD-Kl-1SH"/>
                 <outlet property="imageviewWidth" destination="erh-wo-gpS" id="WRN-6j-ONi"/>
+                <outlet property="numLabel" destination="urv-S1-rw2" id="xTS-9h-Clk"/>
                 <outlet property="typeLabel" destination="FtK-CB-EuD" id="f6b-Dh-mpg"/>
                 <outlet property="userImageView" destination="69I-rK-U12" id="HGX-22-7BT"/>
             </connections>

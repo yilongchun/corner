@@ -485,6 +485,7 @@
                     <navigationItem key="navigationItem" title="个人中心" id="WYI-Jw-kXu"/>
                     <connections>
                         <segue destination="z8T-5P-uQe" kind="push" identifier="tomydongtai" id="ZD7-76-qHP"/>
+                        <segue destination="Fvu-c9-rD0" kind="push" identifier="towodeyaoyue" id="sfk-5w-qxo"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x0d-Um-ZFy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -610,6 +611,48 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q4n-5x-mWP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1350" y="4076"/>
+        </scene>
+        <!--我的邀约-->
+        <scene sceneID="4dH-qC-1He">
+            <objects>
+                <viewController storyboardIdentifier="WodeyaoyueViewController" title="我的邀约" id="Fvu-c9-rD0" customClass="WodeyaoyueViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UNh-eL-7pb"/>
+                        <viewControllerLayoutGuide type="bottom" id="IPa-EL-D0S"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zsU-pj-htI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="sps-B5-Acu">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="hOB-Xa-fmG">
+                            <rect key="frame" x="94" y="7" width="133" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="我发起的"/>
+                                <segment title="我参与的"/>
+                            </segments>
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="changeType:" destination="Fvu-c9-rD0" eventType="valueChanged" id="wag-ex-Sgy"/>
+                            </connections>
+                        </segmentedControl>
+                        <barButtonItem key="rightBarButtonItem" title="发布邀约" style="done" id="drR-W4-QXo">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="fabuyaoyue:" destination="Fvu-c9-rD0" id="VUA-nm-wNO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="segmentControl" destination="hOB-Xa-fmG" id="wyh-XS-CZc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BOm-J7-nny" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1766" y="4076"/>
         </scene>
         <!--动态列表-->
         <scene sceneID="tOr-Ip-q5P">

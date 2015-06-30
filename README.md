@@ -1,7 +1,40 @@
 #corner
 
+# 概述
+这是概述内容
+
 ## 介绍
-这个示例项目是为了帮助使用AVOSCloud的开发者, 尽快的熟悉和使用SDK而建立的。主要展示AVOSCloud SDK的各种基础和高级用法.
+这是介绍内容
+
+#API文档
+[http://sinaweibosdk.github.io/weibo_ios_sdk/index.html](http://sinaweibosdk.github.io/weibo_ios_sdk/index.html)
+
+#常见问题 FAQ
+[https://github.com/sinaweibosdk/weibo_ios_sdk/blob/master/FAQ.md](https://github.com/sinaweibosdk/weibo_ios_sdk/blob/master/FAQ.md)
+
+# 名词解释
+| 名词        | 注解    | 
+| --------    | :-----  | 
+| AppKey      | 分配给每个第三方应用的 app key。用于鉴权身份，显示来源等功能。|
+| RedirectURI | 应用回调页面，可在新浪微博开放平台->我的应用->应用信息->高级应用->授权设置->应用回调页中找到。|
+| AccessToken | 表示用户身份的 token，用于微博 API 的调用。| 
+| Expire in   | 过期时间，用于判断登录是否过期。| 
+
+# 功能列表
+### 1. 认证授权
+为开发者提供 Oauth2.0 授权认证，并集成 SSO 登录功能。
+### 2. 微博分享
+从第三方应用分享信息到微博，目前只支持通过微博官方客户端进行分享。
+### 3. 登入登出
+微博登入按钮主要是简化用户进行 SSO 登陆，实际上，它内部是对 SSO 认证流程进行了简单的封装。  
+微博登出按钮主要提供一键登出的功能，帮助开发者主动取消用户的授权。
+### 4.OpenAPI通用调用
+OpenAPI通用调用接口，帮助开发者访问开放平台open api(http://open.weibo.com/wiki/微博API)
+此外，还提供了一系列封装了open api调用的接口，方便开发者使用。
+### 5. 社会化评论服务、原生关注组件
+提供社会化评论按钮和原生关注按钮，简化用户进行关注以及评论的流程。
+# 适用范围
+使用此SDK需满足以下条件:  
 
 ![simple1](https://cloud.githubusercontent.com/assets/5022872/5718203/39fcbaf6-9b46-11e4-8bf4-f17fd08fc551.png)
 
@@ -45,4 +78,4 @@ pod install
 ----
 ## 其他
 
-如果您在使用AVOSCloud SDK中, 有自己独特高效的用法, 非常欢迎您fork 并提交pull request, 帮助其他开发者更好的使用SDK. 我们将在本项目的贡献者中, 加入您的名字和联系方式(如果您同意的话)
+其他内容

@@ -498,6 +498,7 @@
                 cell.btn.layer.borderWidth = 1.0;
                 cell.btn.layer.cornerRadius = 17.0;
                 cell.btn.layer.masksToBounds = YES;
+                [cell.numLabel setHidden:YES];
             }
             
             NSDictionary *activity = [[activities objectAtIndex:indexPath.row] cleanNull];
