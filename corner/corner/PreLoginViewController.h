@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <TencentOpenAPI/TencentOAuth.h>
+//#import <TencentOpenAPI/TencentOAuth.h>
 
-@interface PreLoginViewController : UIViewController<TencentSessionDelegate>{
-    TencentOAuth* _tencentOAuth;
-    NSMutableArray* _permissions;
+//@interface PreLoginViewController : UIViewController<TencentSessionDelegate>{
+@interface PreLoginViewController : UIViewController{
+//    TencentOAuth* _tencentOAuth;
+//    NSMutableArray* _permissions;
 }
 
 @property (weak, nonatomic) IBOutlet UIButton *wxBtn;

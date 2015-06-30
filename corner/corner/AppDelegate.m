@@ -11,7 +11,7 @@
 #import <AVOSCloud/AVOSCloud.h>
 #import "CDUserFactory.h"
 
-#import "TencentOpenAPI/TencentOAuth.h"
+//#import "TencentOpenAPI/TencentOAuth.h"
 
 @interface AppDelegate ()
 
@@ -89,13 +89,13 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
-    return [TencentOAuth HandleOpenURL:url];
-}
-
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
-    return [TencentOAuth HandleOpenURL:url];
-}
+//- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+//    return [TencentOAuth HandleOpenURL:url];
+//}
+//
+//- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
+//    return [TencentOAuth HandleOpenURL:url];
+//}
 
 /**
  *  退出登录
