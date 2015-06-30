@@ -27,25 +27,22 @@ static NSString * const reuseIdentifier = @"ILikeCollectionViewCell";
     
     type = 0;
     
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
     if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
         self.automaticallyAdjustsScrollViewInsets = YES;
         self.extendedLayoutIncludesOpaqueBars = YES;
     }
     
-    // Register cell classes
-//    [self.collectionView registerClass:[ILikeCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor yellowColor],NSForegroundColorAttributeName,[UIFont boldSystemFontOfSize:14],NSFontAttributeName, nil];
+    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont boldSystemFontOfSize:14],NSFontAttributeName, nil];
+    
+    [self.myseg setTitleTextAttributes:dic forState:UIControlStateSelected];
+    [self.myseg setTitleTextAttributes:dic2 forState:UIControlStateNormal];
     
     UIImage *image = [[UIImage imageNamed:@"kiss_top1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStyleDone target:self action:@selector(leftMenu)];
     self.navigationItem.leftBarButtonItem = leftItem;
     
-    
-    
-    // Do any additional setup after loading the view.
     __weak ILikeCollectionViewController *weakSelf = self;
     
     [self.collectionView addPullToRefreshWithActionHandler:^{
@@ -75,7 +72,6 @@ static NSString * const reuseIdentifier = @"ILikeCollectionViewCell";
     [parameters setValue:[NSNumber numberWithInt:type] forKey:@"type"];
     [parameters setValue:token forKey:@"token"];
     
-//    [self showHudInView:self.view hint:@"加载中"];
     NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,USER_CARE_URL];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -141,6 +137,39 @@ static NSString * const reuseIdentifier = @"ILikeCollectionViewCell";
     NSDictionary *info = [[dataSource objectAtIndex:indexPath.row] cleanNull];
     NSString *avatar_url = [info objectForKey:@"avatar_url"];//头像
     [cell.myimageview setImageWithURL:[NSURL URLWithString:avatar_url] placeholderImage:[UIImage imageNamed:@"public_load_face"]];
+    
+    NSNumber *sex = [info objectForKey:@"sex"];
+    NSString *address = [info objectForKey:@"address"];
+    NSString *zhiye = [info objectForKey:@"zhiye"];
+    NSString *shengao = [info objectForKey:@"shengao"];
+    NSString *tizhong = [info objectForKey:@"tizhong"];
+    NSString *age = [info objectForKey:@"age"];
+    
+    switch ([sex intValue]) {
+        case 0:
+            [cell.seximageview setImage:[UIImage imageNamed:@"pub_1_v1"]];
+            break;
+        case 1:
+            [cell.seximageview setImage:[UIImage imageNamed:@"pub_2_v1"]];
+            break;
+        default:
+            break;
+    }
+    cell.ageLabel.text = age;
+    cell.addressLabel.text = address;
+    
+    NSMutableString *desc = [NSMutableString string];
+    if (![zhiye isEqualToString:@""]) {
+        [desc appendFormat:@"%@,",zhiye];
+    }
+    if (![shengao isEqualToString:@""]) {
+        [desc appendFormat:@"%@cm,",shengao];
+    }
+    if (![tizhong isEqualToString:@""]) {
+        [desc appendFormat:@"%@kg,",tizhong];
+    }
+    cell.descLabel.text = desc;
+    
     return cell;
 }
 

@@ -420,11 +420,11 @@
                 cell.chatbtn.layer.masksToBounds = YES;
                 [cell.chatbtn addTarget:self action:@selector(chat) forControlEvents:UIControlEventTouchUpInside];
                 
-                UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width-20, 60) byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(5, 5)];
-                CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-                maskLayer.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width-20, 60);
-                maskLayer.path = maskPath.CGPath;
-                cell.userImageBottom.layer.mask = maskLayer;
+//                UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width-20, 60) byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(5, 5)];
+//                CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+//                maskLayer.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width-20, 60);
+//                maskLayer.path = maskPath.CGPath;
+//                cell.userImageBottom.layer.mask = maskLayer;
                 
                 view1 = cell.view1;
                 

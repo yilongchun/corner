@@ -81,11 +81,19 @@
 }
 
 /**
- *  用户信息更改
+ *  用户信息显示
  */
 -(void)userInfoChange{
     NSDictionary *userinfo = [UD objectForKey:LOGINED_USER];
     NSString *avatar_url = [userinfo objectForKey:@"avatar_url"];
+    NSString *nickname = [userinfo objectForKey:@"nickname"];
+    NSNumber *userid = [userinfo objectForKey:@"id"];
+    
+    if ([nickname isEqualToString:@""]) {
+        self.nicknameLabel.text = [NSString stringWithFormat:@"%d",[userid intValue]];
+    }else{
+        self.nicknameLabel.text = nickname;
+    }
     [self.userimage setImageWithURL:[NSURL URLWithString:avatar_url]];
 }
 

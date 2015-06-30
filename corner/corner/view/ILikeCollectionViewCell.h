@@ -11,5 +11,9 @@
 @interface ILikeCollectionViewCell : UICollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *myimageview;
+@property (weak, nonatomic) IBOutlet UIImageView *seximageview;
+@property (weak, nonatomic) IBOutlet UILabel *descLabel;
+@property (weak, nonatomic) IBOutlet UILabel *ageLabel;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 
 @end

@@ -12,5 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *myimageview;
 @property (weak, nonatomic) IBOutlet UILabel *nickname;
+@property (weak, nonatomic) IBOutlet UIImageView *seximageview;
 
 @end

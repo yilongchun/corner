@@ -237,9 +237,22 @@ static NSString * const reuseIdentifier = @"MyCollectionViewCell";
     NSDictionary *info = [[dataSource objectAtIndex:indexPath.row] cleanNull];
     NSString *avatar_url = [info objectForKey:@"avatar_url"];//头像
     NSString *nickname = [info objectForKey:@"nickname"];
-    
+    NSNumber *sexnum = [info objectForKey:@"sex"];
     [cell.myimageview setImageWithURL:[NSURL URLWithString:avatar_url] placeholderImage:[UIImage imageNamed:@"public_load_face"]];
     cell.nickname.text = nickname;
+    
+    
+    switch ([sexnum intValue]) {
+        case 0:
+            [cell.seximageview setImage:[UIImage imageNamed:@"ico_man"]];
+            break;
+        case 1:
+            [cell.seximageview setImage:[UIImage imageNamed:@"ico_woman"]];
+            break;
+        default:
+            break;
+    }
+    
 //    cell.backgroundColor = [UIColor colorWithRed:239/255. green:239/255. blue:239/255. alpha:1];
 //    [cell.myimageview setBackgroundColor:[UIColor grayColor]];
     return cell;

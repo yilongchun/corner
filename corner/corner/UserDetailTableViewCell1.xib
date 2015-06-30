@@ -21,12 +21,6 @@
                         <constraints>
                             <constraint firstAttribute="width" secondItem="cv9-dI-zxa" secondAttribute="height" multiplier="1:1" id="A3H-FX-n1e"/>
                         </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="5"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                        </userDefinedRuntimeAttributes>
                     </imageView>
                     <imageView userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Le7-FX-pTf">
                         <rect key="frame" x="10" y="249" width="300" height="60"/>

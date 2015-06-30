@@ -17,4 +17,6 @@
 - (IBAction)action3:(UIButton *)sender;
 
 @property (weak, nonatomic) IBOutlet UIImageView *userimage;
+@property (weak, nonatomic) IBOutlet UILabel *nicknameLabel;
+
 @end

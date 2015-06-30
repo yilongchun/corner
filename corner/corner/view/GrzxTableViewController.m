@@ -995,11 +995,11 @@
             GrzxTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GrzxTableViewCell"];
             if (cell == nil) {
                 cell = [[[NSBundle mainBundle] loadNibNamed:@"GrzxTableViewCell" owner:self options:nil] lastObject];
-                UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width-20, 60) byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(5, 5)];
-                CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-                maskLayer.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width-20, 60);
-                maskLayer.path = maskPath.CGPath;
-                cell.userImageBottom.layer.mask = maskLayer;
+//                UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width-20, 60) byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(5, 5)];
+//                CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+//                maskLayer.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width-20, 60);
+//                maskLayer.path = maskPath.CGPath;
+//                cell.userImageBottom.layer.mask = maskLayer;
                 
                 UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(uploadUserImagePrefix)];
                 [cell.userImage addGestureRecognizer:tap];
