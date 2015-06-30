@@ -11,5 +11,6 @@
 @interface WodeyaoyueTableViewCell2 : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *genderImageView;
 
 @end
