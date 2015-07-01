@@ -367,14 +367,12 @@
         
     }else if (indexPath.section == 3){
         return 50;
-    }else if (indexPath.section == 4){
-        return 50;
     }
     return 0;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 5;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -393,8 +391,8 @@
         }else{
             return [activities count];
         }
-    }else if (section == 4){
-        return 6;
+    }else if (section == 3){
+        return 9;
     }else{
         return 1;
     }
@@ -542,54 +540,81 @@
             return cell;
         }
         
-    }else if (indexPath.section == 3){
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userdetailcell4"];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"userdetailcell4"];
-        }
-        cell.textLabel.text = @"她想去的餐厅 (1)";
-        cell.textLabel.font = [UIFont systemFontOfSize:13];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
-        
-    }else if (indexPath.section == 4){
+    }
+//    else if (indexPath.section == 3){
+//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userdetailcell4"];
+//        if (cell == nil) {
+//            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"userdetailcell4"];
+//        }
+//        cell.textLabel.text = @"她想去的餐厅 (1)";
+//        cell.textLabel.font = [UIFont systemFontOfSize:13];
+//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        return cell;
+//        
+//    }
+    else if (indexPath.section == 3){
         UserDetailTableViewCell5 *cell = [tableView dequeueReusableCellWithIdentifier:@"userdetailcell5"];
         if (cell == nil) {
             cell = [[[NSBundle mainBundle] loadNibNamed:@"UserDetailTableViewCell5" owner:self options:nil] lastObject];
         }
-        if (indexPath.row < 5) {
+        if (indexPath.row < 8) {
             UILabel *bottom = [[UILabel alloc] initWithFrame:CGRectMake(15, 49, [UIScreen mainScreen].bounds.size.width-15, 1)];
             bottom.backgroundColor = RGBACOLOR(229, 229, 229, 1);
             [cell.contentView addSubview:bottom];
         }
         
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showLatestTime)];
+        NSNumber *userid = [userinfo objectForKey:@"id"];
+        NSString *qinggan = [userinfo objectForKey:@"qinggan"];
+        NSString *shengao = [userinfo objectForKey:@"shengao"];
+        NSString *aiqing = [userinfo objectForKey:@"aiqing"];
+        NSString *xing = [userinfo objectForKey:@"xing"];
+        NSString *diqu = [userinfo objectForKey:@"diqu"];
+        NSString *xue = [userinfo objectForKey:@"xue"];
+        NSString *chang = [userinfo objectForKey:@"chang"];
+        NSString *manyi = [userinfo objectForKey:@"manyi"];
+        
         switch (indexPath.row) {
             case 0:
-            {
                 cell.leftLabel.text = @"转角ID";
-                NSNumber *userid = [userinfo objectForKey:@"id"];
-                cell.rightLabel.text = [NSString stringWithFormat:@"%d",[userid intValue]];
-            }
+                cell.rightLabel.text = [[userid stringValue] isEqualToString:@""] ? @"未填" : [userid stringValue];
                 break;
             case 1:
                 cell.leftLabel.text = @"感情状况";
+                cell.rightLabel.text = [qinggan isEqualToString:@""] ? @"未填" : qinggan;
                 break;
             case 2:
                 cell.leftLabel.text = @"身高";
+                cell.rightLabel.text = [shengao isEqualToString:@""] ? @"未填" : [NSString stringWithFormat:@"%@cm",shengao];
                 break;
             case 3:
                 cell.leftLabel.text = @"对爱情的看法";
+                cell.rightLabel.text = [aiqing isEqualToString:@""] ? @"未填" : aiqing;
                 break;
             case 4:
                 cell.leftLabel.text = @"对性的看法";
+                cell.rightLabel.text = [xing isEqualToString:@""] ? @"未填" : xing;
                 break;
+                //            case 5:
+                //                cell.leftLabel.text = @"最近活跃时间";
+                //                cell.rightLabel.text = @"查看";
+                //                cell.rightLabel.textColor = RGBACOLOR(0, 122, 255, 1);
+                //                break;
             case 5:
-                cell.leftLabel.text = @"最近活跃时间";
-                cell.rightLabel.text = @"查看";
-                cell.rightLabel.textColor = RGBACOLOR(0, 122, 255, 1);
-                [cell.rightLabel addGestureRecognizer:tap];
+                cell.leftLabel.text = @"地区";
+                cell.rightLabel.text = [diqu isEqualToString:@""] ? @"未填" : diqu;
+                break;
+            case 6:
+                cell.leftLabel.text = @"想学";
+                cell.rightLabel.text = [xue isEqualToString:@""] ? @"未填" : xue;
+                break;
+            case 7:
+                cell.leftLabel.text = @"擅长";
+                cell.rightLabel.text = [chang isEqualToString:@""] ? @"未填" : chang;
+                break;
+            case 8:
+                cell.leftLabel.text = @"最满意的部位";
+                cell.rightLabel.text = [manyi isEqualToString:@""] ? @"未填" : manyi;
                 break;
             default:
                 break;
@@ -613,7 +638,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     if (section == 1) {
         return 10;
-    }else if(section < 4){
+    }else if(section < 3){
         return 5;
     }else{
         return 20;
