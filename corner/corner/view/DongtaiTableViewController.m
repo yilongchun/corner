@@ -158,7 +158,7 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         page--;
         NSLog(@"发生错误！%@",error);
-        [self.tableView.pullToRefreshView stopAnimating];
+        [self.tableView.infiniteScrollingView stopAnimating];
         [self showHint:@"连接失败"];
         
     }];

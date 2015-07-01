@@ -13,4 +13,10 @@
 @property (weak, nonatomic) IBOutlet UIView *leftTopView;
 @property (weak, nonatomic) IBOutlet UILabel *sortLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *userHeadImage;
+
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *ageLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *sexImageView;
+@property (weak, nonatomic) IBOutlet UILabel *zhiyeLabel;
+
 @end

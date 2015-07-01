@@ -24,6 +24,8 @@
 
 @implementation RedupaihangViewController{
     UISegmentedControl *segmentedControl;
+    NSMutableArray *dataSource;
+    int page;
 }
 
 - (void)viewDidLoad {
@@ -51,9 +53,11 @@
         [self.mytableview setLayoutMargins:UIEdgeInsetsZero];
     }
     
+    dataSource = [NSMutableArray array];
+    
     
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.mytableview.frame.size.width, 50)];
-    NSArray *segmentedArray = [[NSArray alloc]initWithObjects:@"今日排行",@"本周排行",nil];
+    NSArray *segmentedArray = [[NSArray alloc]initWithObjects:@"今日排行",@"本周排行",@"同城排行",nil];
     //初始化UISegmentedControl
     segmentedControl = [[UISegmentedControl alloc]initWithItems:segmentedArray];
     segmentedControl.frame = CGRectMake(10.0, 7.0, [UIScreen mainScreen].bounds.size.width - 20 , 35.0);
@@ -94,18 +98,102 @@
     int64_t delayInSeconds = 0.5;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [self.mytableview.infiniteScrollingView stopAnimating];
+        [self loadMore];
     });
 }
 
 -(void)loadData{
+    page = 1;
     
-    [self.mytableview.pullToRefreshView stopAnimating];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:[NSNumber numberWithInt:page] forKey:@"page"];
+    [parameters setValue:[NSNumber numberWithLong:segmentedControl.selectedSegmentIndex + 1] forKey:@"type"];
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,USER_LOVELY_URL];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager GET:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", operation.responseString);
+        [self.mytableview.pullToRefreshView stopAnimating];
+        NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+        NSError *error;
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if (dic == nil) {
+            NSLog(@"json parse failed \r\n");
+        }else{
+            NSNumber *status = [dic objectForKey:@"status"];
+            if ([status intValue] == 200) {
+                [dataSource removeAllObjects];
+                [dataSource addObjectsFromArray:[dic objectForKey:@"message"]];
+                
+                [self.mytableview reloadData];
+            }else if([status intValue] >= 600){
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
+                [self validateUserToken:[status intValue]];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"发生错误！%@",error);
+        [self.mytableview.pullToRefreshView stopAnimating];
+        [self showHint:@"连接失败"];
+        
+    }];
+}
+
+-(void)loadMore{
+    
+    page++;
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:[NSNumber numberWithInt:page] forKey:@"page"];
+    [parameters setValue:[NSNumber numberWithLong:segmentedControl.selectedSegmentIndex + 1] forKey:@"type"];
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,USER_LOVELY_URL];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager GET:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", operation.responseString);
+        [self.mytableview.infiniteScrollingView stopAnimating];
+        NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+        NSError *error;
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if (dic == nil) {
+            NSLog(@"json parse failed \r\n");
+        }else{
+            NSNumber *status = [dic objectForKey:@"status"];
+            if ([status intValue] == 200) {
+                NSArray *array = [dic objectForKey:@"message"];
+                
+                if ([array count] > 0) {
+                    [dataSource addObjectsFromArray:array];
+                    [self.mytableview reloadData];
+                }else{
+                    page--;
+                }
+            }else if([status intValue] >= 600){
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
+                [self validateUserToken:[status intValue]];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        page--;
+        NSLog(@"发生错误！%@",error);
+        [self.mytableview.infiniteScrollingView stopAnimating];
+        [self showHint:@"连接失败"];
+        
+    }];
 }
 
 //事件
 -(void)segmentAction:(UISegmentedControl *)Seg{
     NSInteger Index = Seg.selectedSegmentIndex;
+    [self loadData];
     NSLog(@"Seg.selectedSegmentIndex:%ld",(long)Index);
 }
 
@@ -114,7 +202,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 200;
+    return dataSource.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -128,6 +216,13 @@
 //    cell.userHeadImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
 //    cell.userHeadImage.layer.borderWidth = 0.2f;
     
+    NSDictionary *info = [[dataSource objectAtIndex:indexPath.row] cleanNull];
+    NSNumber *userid = [info objectForKey:@"id"];
+    NSString *nickname = [info objectForKey:@"nickname"];
+    NSNumber *sexnum = [info objectForKey:@"sex"];
+    NSString *age = [info objectForKey:@"age"];
+    NSString *zhiye = [info objectForKey:@"zhiye"];
+    NSString *avatar_url = [info objectForKey:@"avatar_url"];
     if (indexPath.row < 3) {
         cell.leftTopView.backgroundColor = TOP_COLOR;
         
@@ -168,7 +263,22 @@
         cell.leftTopView.backgroundColor = NORMAL_COLOR;
     }
     cell.sortLabel.text = [NSString stringWithFormat:@"%ld",indexPath.row + 1];
-    
+    if ([nickname isEqualToString:@""]) {
+        nickname = [userid stringValue];
+    }
+    cell.nameLabel.text = nickname;
+    cell.ageLabel.text = age;
+    cell.zhiyeLabel.text = zhiye;
+    switch ([sexnum intValue]) {
+        case 0:
+            [cell.sexImageView setImage:[UIImage imageNamed:@"ico_man"]];
+            break;
+        case 1:
+            [cell.sexImageView setImage:[UIImage imageNamed:@"ico_woman"]];
+            break;
+        default:
+            break;
+    }
     return cell;
 }
 

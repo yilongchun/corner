@@ -153,7 +153,7 @@ static NSString * const reuseIdentifier = @"MyCollectionViewCell";
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         page--;
         NSLog(@"发生错误！%@",error);
-        [self.mytableview.pullToRefreshView stopAnimating];
+        [self.mytableview.infiniteScrollingView stopAnimating];
         [self showHint:@"连接失败"];
         
     }];

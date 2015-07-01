@@ -83,6 +83,9 @@
 //动态加精
 #define POST_POSTLIST_URL @"/admin/postlist"
 
+//热度排行
+#define USER_LOVELY_URL @"/user/lovely"
+
 /*feedback*/
 //常见问题列表
 #define FEED_BACK_LIST_URL @"/feedback/list"

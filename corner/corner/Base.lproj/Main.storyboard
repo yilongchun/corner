@@ -378,10 +378,9 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Sg7-0k-fej" firstAttribute="leading" secondItem="tWg-KN-eyq" secondAttribute="trailing" constant="8" id="0hS-kx-b9D"/>
-                                                <constraint firstItem="jin-pF-KYt" firstAttribute="top" secondItem="SYQ-Ts-m8O" secondAttribute="bottom" constant="5" id="8Fa-ak-Bt5"/>
                                                 <constraint firstAttribute="centerY" secondItem="wrd-YM-2Zn" secondAttribute="centerY" id="8jU-1A-7nV"/>
+                                                <constraint firstItem="t0s-qO-y9v" firstAttribute="bottom" secondItem="Sg7-0k-fej" secondAttribute="bottom" constant="-9" id="BZH-yv-0em"/>
                                                 <constraint firstItem="SYQ-Ts-m8O" firstAttribute="leading" secondItem="Sg7-0k-fej" secondAttribute="trailing" constant="8" id="E3J-B9-53S"/>
-                                                <constraint firstItem="t0s-qO-y9v" firstAttribute="top" secondItem="jin-pF-KYt" secondAttribute="bottom" constant="5" id="Iel-6y-DFA"/>
                                                 <constraint firstAttribute="centerY" secondItem="tWg-KN-eyq" secondAttribute="centerY" id="LOi-cC-TfH"/>
                                                 <constraint firstAttribute="centerY" secondItem="Sg7-0k-fej" secondAttribute="centerY" id="LUN-ir-eZm"/>
                                                 <constraint firstAttribute="centerY" secondItem="ReC-Z6-BwP" secondAttribute="centerY" id="XSg-2W-Ibl"/>
@@ -390,15 +389,20 @@
                                                 <constraint firstItem="wrd-YM-2Zn" firstAttribute="leading" secondItem="jin-pF-KYt" secondAttribute="trailing" constant="5" id="cfj-5A-adi"/>
                                                 <constraint firstItem="tWg-KN-eyq" firstAttribute="leading" secondItem="F7h-bE-gDP" secondAttribute="leading" constant="8" id="gfV-0l-tgc"/>
                                                 <constraint firstAttribute="centerY" secondItem="jin-pF-KYt" secondAttribute="centerY" id="ios-xN-PWw"/>
+                                                <constraint firstItem="SYQ-Ts-m8O" firstAttribute="top" secondItem="Sg7-0k-fej" secondAttribute="top" constant="4" id="k1T-8S-Moe"/>
                                                 <constraint firstItem="ReC-Z6-BwP" firstAttribute="leading" secondItem="wrd-YM-2Zn" secondAttribute="trailing" constant="8" id="nlR-UU-IOz"/>
                                                 <constraint firstItem="t0s-qO-y9v" firstAttribute="leading" secondItem="Sg7-0k-fej" secondAttribute="trailing" constant="8" id="rOa-kw-Dcx"/>
                                                 <constraint firstItem="jin-pF-KYt" firstAttribute="leading" secondItem="Sg7-0k-fej" secondAttribute="trailing" constant="8" id="vcD-NY-cJo"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="ageLabel" destination="jin-pF-KYt" id="gVn-ef-iEd"/>
                                             <outlet property="leftTopView" destination="tWg-KN-eyq" id="RfI-gm-BkE"/>
+                                            <outlet property="nameLabel" destination="SYQ-Ts-m8O" id="Tf5-4I-m5F"/>
+                                            <outlet property="sexImageView" destination="wrd-YM-2Zn" id="SQl-iB-uVy"/>
                                             <outlet property="sortLabel" destination="ZTR-rO-Y8d" id="xHI-71-rX7"/>
                                             <outlet property="userHeadImage" destination="Sg7-0k-fej" id="wdA-Ca-Os4"/>
+                                            <outlet property="zhiyeLabel" destination="t0s-qO-y9v" id="fau-zF-Kcn"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
