@@ -105,9 +105,13 @@
 -(void)loadData{
     page = 1;
     
+    NSString *userid = [UD objectForKey:USER_ID];
+    NSString *token = [UD objectForKey:[NSString stringWithFormat:@"%@%@",USER_TOKEN_ID,userid]];
+    
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setValue:[NSNumber numberWithInt:page] forKey:@"page"];
     [parameters setValue:[NSNumber numberWithLong:segmentedControl.selectedSegmentIndex + 1] forKey:@"type"];
+    [parameters setValue:token forKey:@"token"];
     
     NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,USER_LOVELY_URL];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -147,9 +151,13 @@
     
     page++;
     
+    NSString *userid = [UD objectForKey:USER_ID];
+    NSString *token = [UD objectForKey:[NSString stringWithFormat:@"%@%@",USER_TOKEN_ID,userid]];
+    
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setValue:[NSNumber numberWithInt:page] forKey:@"page"];
     [parameters setValue:[NSNumber numberWithLong:segmentedControl.selectedSegmentIndex + 1] forKey:@"type"];
+    [parameters setValue:token forKey:@"token"];
     
     NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,USER_LOVELY_URL];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -269,6 +277,11 @@
     cell.nameLabel.text = nickname;
     cell.ageLabel.text = age;
     cell.zhiyeLabel.text = zhiye;
+    if (![avatar_url isEqualToString:@""]) {
+        [cell.userHeadImage setImageWithURL:[NSURL URLWithString:avatar_url] placeholderImage:[UIImage imageNamed:@"public_load_face"]];
+    }else{
+        [cell.userHeadImage setImage:[UIImage imageNamed:@"public_load_face"]];
+    }
     switch ([sexnum intValue]) {
         case 0:
             [cell.sexImageView setImage:[UIImage imageNamed:@"ico_man"]];
