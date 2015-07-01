@@ -359,7 +359,7 @@
 #pragma mark - UIActionSheet Delegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (actionSheet.tag == 1) {
+    if (actionSheet.tag == 1) {//弹出框 上传照片
         switch (buttonIndex) {
             case 0://照相机
             {
@@ -395,8 +395,7 @@
             default:
                 break;
         }
-    }else if(actionSheet.tag == 2){
-        
+    }else if(actionSheet.tag == 2){//弹出框 上传照片
         switch (buttonIndex) {
             case 0://查看大图
             {
@@ -1226,7 +1225,6 @@
             default:
                 break;
         }
-        
         return cell;
     }
     else if (indexPath.section == 4){
@@ -1342,6 +1340,91 @@
         }else{
             WodeyaoyueViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WodeyaoyueViewController"];
             [self.navigationController pushViewController:vc animated:YES];
+        }
+    }else if(indexPath.section == 3){//详情
+        switch (indexPath.row) {
+            case 1://昵称
+            {
+                
+            }
+                break;
+            case 2://自我介绍
+            {
+                
+            }
+                break;
+            case 3://美丽宣誓
+            {
+                
+            }
+                break;
+            case 4://感情状况 需要actionsheet
+            {
+                
+            }
+                break;
+            case 5://所在地区 需要actionsheet
+            {
+                
+            }
+                break;
+            case 6://年龄 需要actionsheet
+            {
+                
+            }
+                break;
+            case 7://职业
+            {
+                
+            }
+                break;
+            case 8://收入 需要actionsheet
+            {
+                
+            }
+                break;
+            case 9://身高 需要actionsheet
+            {
+                
+            }
+                break;
+            case 10://体重 需要actionsheet
+            {
+                
+            }
+                break;
+            case 11://对爱情的看法
+            {
+                
+            }
+                break;
+            case 12://对性的看法
+            {
+                
+            }
+                break;
+            default:
+                break;
+        }
+    }else if(indexPath.section == 4){
+        switch (indexPath.row) {
+            case 0://想学
+            {
+                
+            }
+                break;
+            case 1://擅长
+            {
+                
+            }
+                break;
+            case 2://最满意部位
+            {
+                
+            }
+                break;
+            default:
+                break;
         }
     }
 }
