@@ -13,5 +13,7 @@
 @property(nonatomic,strong) NSString *userid;
 @property(nonatomic, strong) NSString *avatar_url;
 @property(nonatomic, strong) NSString *nickname;
+@property(nonatomic, strong) NSNumber *sexnum;
+@property(nonatomic, strong) NSString *age;
 
 @end

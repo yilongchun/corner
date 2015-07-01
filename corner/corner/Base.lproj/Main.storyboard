@@ -450,7 +450,7 @@
         <scene sceneID="rJT-iT-moZ">
             <objects>
                 <tableViewController storyboardIdentifier="GrzxTableViewController" id="QAI-9j-G7h" customClass="GrzxTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="121" sectionHeaderHeight="10" sectionFooterHeight="10" id="Or9-07-fVY">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="121" sectionHeaderHeight="10" sectionFooterHeight="10" id="Or9-07-fVY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
@@ -462,7 +462,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mgl-yS-1AW">
-                                            <rect key="frame" x="40" y="123" width="240" height="34"/>
+                                            <rect key="frame" x="40" y="122" width="240" height="34"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="34" id="NgU-jt-H2m"/>
                                             </constraints>
@@ -687,21 +687,36 @@
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名字" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Nh-dv-OW3">
-                                            <rect key="frame" x="75" y="28" width="32" height="19"/>
+                                            <rect key="frame" x="75" y="25" width="32" height="19"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pub_girl_v1" translatesAutoresizingMaskIntoConstraints="NO" id="Cwj-Hi-xQA">
+                                            <rect key="frame" x="75" y="47" width="30" height="14"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y0x-tQ-19g">
+                                            <rect key="frame" x="77" y="46" width="15" height="16"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="6Nh-dv-OW3" secondAttribute="bottom" constant="23" id="76d-jb-Cw5"/>
+                                        <constraint firstItem="y0x-tQ-19g" firstAttribute="leading" secondItem="Cwj-Hi-xQA" secondAttribute="leading" constant="2" id="1tx-Ow-ros"/>
+                                        <constraint firstItem="Cwj-Hi-xQA" firstAttribute="leading" secondItem="6Nh-dv-OW3" secondAttribute="leading" id="3eb-jq-Ir0"/>
                                         <constraint firstItem="bPh-EF-P4Q" firstAttribute="leading" secondItem="Bsl-bl-eW0" secondAttribute="leading" constant="17" id="gVL-mE-XYL"/>
                                         <constraint firstAttribute="bottom" secondItem="bPh-EF-P4Q" secondAttribute="bottom" id="kbx-4z-IJY"/>
+                                        <constraint firstItem="bPh-EF-P4Q" firstAttribute="top" secondItem="6Nh-dv-OW3" secondAttribute="top" constant="-5" id="uzc-rS-W79"/>
+                                        <constraint firstItem="y0x-tQ-19g" firstAttribute="centerY" secondItem="Cwj-Hi-xQA" secondAttribute="centerY" id="xcE-3g-0DX"/>
                                         <constraint firstItem="6Nh-dv-OW3" firstAttribute="leading" secondItem="bPh-EF-P4Q" secondAttribute="trailing" constant="8" id="xkN-61-Cdg"/>
+                                        <constraint firstItem="Cwj-Hi-xQA" firstAttribute="bottom" secondItem="bPh-EF-P4Q" secondAttribute="bottom" constant="-9" id="y1b-tw-p9H"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="ageLabel" destination="y0x-tQ-19g" id="V96-UV-lCf"/>
                                     <outlet property="nameLabel" destination="6Nh-dv-OW3" id="9ys-IL-7fQ"/>
+                                    <outlet property="sexImage" destination="Cwj-Hi-xQA" id="Vlt-ds-msU"/>
                                     <outlet property="userImage" destination="bPh-EF-P4Q" id="a53-Ux-DlG"/>
                                 </connections>
                             </tableViewCell>
@@ -1996,6 +2011,7 @@
         <image name="menu_13_v1" width="9" height="9"/>
         <image name="near_4_v1" width="100" height="20"/>
         <image name="pub_2_v1" width="13" height="13"/>
+        <image name="pub_girl_v1" width="30" height="14"/>
         <image name="pub_top3" width="22" height="22"/>
         <image name="public_load" width="100" height="100"/>
         <image name="public_load_face" width="100" height="100"/>

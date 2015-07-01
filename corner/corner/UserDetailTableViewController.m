@@ -367,12 +367,15 @@
         
     }else if (indexPath.section == 3){
         return 50;
+    }else if (indexPath.section == 4){
+        return 50;
+    }else{
+        return 44;
     }
-    return 0;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 4;
+    return 5;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -392,7 +395,9 @@
             return [activities count];
         }
     }else if (section == 3){
-        return 9;
+        return 13;
+    }else if (section == 4){
+        return 3;
     }else{
         return 1;
     }
@@ -423,11 +428,8 @@
 //                maskLayer.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width-20, 60);
 //                maskLayer.path = maskPath.CGPath;
 //                cell.userImageBottom.layer.mask = maskLayer;
-                
                 view1 = cell.view1;
-                
             }
-            
             NSString *avatar_url = [userinfo objectForKey:@"avatar_url"];//头像
             [cell.userImage setImageWithURL:[NSURL URLWithString:avatar_url]];
             return cell;
@@ -463,7 +465,6 @@
                 if (cell == nil) {
                     cell = [[[NSBundle mainBundle] loadNibNamed:@"UserDetailTableViewCell2" owner:self options:nil] lastObject];
                 }
-                
                 NSDictionary *post = [[posts objectAtIndex:0] cleanNull];
                 NSString *created_at = [post objectForKey:@"created_at"];
                 NSString *pic_url = [post objectForKey:@"pic_url"];
@@ -476,15 +477,12 @@
                 }else{
                     [cell.userImageView setImageWithURL:[NSURL URLWithString:pic_url] placeholderImage:[UIImage imageNamed:@"public_load"]];
                 }
-                
                 cell.descLabel.text = post_body;
-                
                 return cell;
             }
         }
     }else if (indexPath.section == 2){//邀约
         NSArray *activities = [userinfo objectForKey:@"activities"];
-        
         if ([activities count] == 0) {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"zanwuyaoyuecell"];
             return cell;
@@ -498,7 +496,6 @@
                 cell.btn.layer.masksToBounds = YES;
                 [cell.numLabel setHidden:YES];
             }
-            
             NSDictionary *activity = [[activities objectAtIndex:indexPath.row] cleanNull];
             
             NSString *pic_url = [activity objectForKey:@"pic_url"];
@@ -529,17 +526,11 @@
             }else{
                 [cell.userImageView setImageWithURL:[NSURL URLWithString:pic_url] placeholderImage:[UIImage imageNamed:@"public_load"]];
             }
-            
-            
-            
-            
-            
             if (indexPath.row == [activities count]) {
                 [cell.bottomLabel setHidden:YES];
             }
             return cell;
         }
-        
     }
 //    else if (indexPath.section == 3){
 //        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userdetailcell4"];
@@ -558,69 +549,116 @@
         if (cell == nil) {
             cell = [[[NSBundle mainBundle] loadNibNamed:@"UserDetailTableViewCell5" owner:self options:nil] lastObject];
         }
-        if (indexPath.row < 8) {
+        if (indexPath.row < 12) {
             UILabel *bottom = [[UILabel alloc] initWithFrame:CGRectMake(15, 49, [UIScreen mainScreen].bounds.size.width-15, 1)];
             bottom.backgroundColor = RGBACOLOR(229, 229, 229, 1);
             [cell.contentView addSubview:bottom];
         }
         
         NSNumber *userid = [userinfo objectForKey:@"id"];
-        NSString *qinggan = [userinfo objectForKey:@"qinggan"];
-        NSString *shengao = [userinfo objectForKey:@"shengao"];
-        NSString *aiqing = [userinfo objectForKey:@"aiqing"];
-        NSString *xing = [userinfo objectForKey:@"xing"];
-        NSString *diqu = [userinfo objectForKey:@"diqu"];
+        NSString *nickname = [userinfo objectForKey:@"nickname"];//昵称
+        NSString *aboutme = [userinfo objectForKey:@"aboutme"];//自我介绍
+        NSString *xuanshi = [userinfo objectForKey:@"xuanshi"];//美丽宣誓
+        NSString *qinggan = [userinfo objectForKey:@"qinggan"];//感情状况
+        NSString *diqu = [userinfo objectForKey:@"diqu"];//地区
+        NSString *age = [userinfo objectForKey:@"age"];//年龄
+        NSString *zhiye = [userinfo objectForKey:@"zhiye"];//职业
+        NSString *shouru = [userinfo objectForKey:@"shouru"];//收入
+        NSString *shengao = [userinfo objectForKey:@"shengao"];//身高
+        NSString *tizhong = [userinfo objectForKey:@"tizhong"];//体重
+        NSString *aiqing = [userinfo objectForKey:@"aiqing"];//对爱情的想法
+        NSString *xing = [userinfo objectForKey:@"xing"];//对性的想法
+        
+        switch (indexPath.row) {
+            case 0:
+                cell.leftLabel.text = @"转角ID";
+                cell.rightLabel.text = [[userid stringValue] isEqualToString:@""] ? @"未填" : [userid stringValue];
+                cell.accessoryType = UITableViewCellAccessoryNone;
+                break;
+            case 1:
+                cell.leftLabel.text = @"昵称";
+                cell.rightLabel.text = [nickname isEqualToString:@""] ? @"未填" : nickname;
+                break;
+            case 2:
+                cell.leftLabel.text = @"自我介绍";
+                cell.rightLabel.text = [aboutme isEqualToString:@""] ? @"未填" : aboutme;
+                break;
+            case 3:
+                cell.leftLabel.text = @"美丽宣誓";
+                cell.rightLabel.text = [xuanshi isEqualToString:@""] ? @"未填" : xuanshi;
+                break;
+            case 4:
+                cell.leftLabel.text = @"感情状况";
+                cell.rightLabel.text = [qinggan isEqualToString:@""] ? @"未填" : qinggan;
+                break;
+            case 5:
+                cell.leftLabel.text = @"所在地区";
+                cell.rightLabel.text = [diqu isEqualToString:@""] ? @"未填" : diqu;
+                break;
+            case 6:
+                cell.leftLabel.text = @"年龄";
+                cell.rightLabel.text = [age isEqualToString:@""] ? @"未填" : age;
+                break;
+            case 7:
+                cell.leftLabel.text = @"职业";
+                cell.rightLabel.text = [zhiye isEqualToString:@""] ? @"未填" : zhiye;
+                break;
+            case 8:
+                cell.leftLabel.text = @"收入";
+                cell.rightLabel.text = [shouru isEqualToString:@""] ? @"未填" : shouru;
+                break;
+            case 9:
+                cell.leftLabel.text = @"身高";
+                cell.rightLabel.text = [shengao isEqualToString:@""] ? @"未填" : [NSString stringWithFormat:@"%@cm",shengao];
+                break;
+            case 10:
+                cell.leftLabel.text = @"体重";
+                cell.rightLabel.text = [tizhong isEqualToString:@""] ? @"未填" : tizhong;
+                break;
+            case 11:
+                cell.leftLabel.text = @"对爱情的看法";
+                cell.rightLabel.text = [aiqing isEqualToString:@""] ? @"未填" : aiqing;
+                break;
+            case 12:
+                cell.leftLabel.text = @"对性的看法";
+                cell.rightLabel.text = [xing isEqualToString:@""] ? @"未填" : xing;
+                break;
+            default:
+                break;
+        }
+        return cell;
+    }
+    else if (indexPath.section == 4){
+        UserDetailTableViewCell5 *cell = [tableView dequeueReusableCellWithIdentifier:@"userdetailcell6"];
+        if (cell == nil) {
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"UserDetailTableViewCell5" owner:self options:nil] lastObject];
+        }
+        if (indexPath.row < 2) {
+            UILabel *bottom = [[UILabel alloc] initWithFrame:CGRectMake(15, 49, [UIScreen mainScreen].bounds.size.width-15, 1)];
+            bottom.backgroundColor = RGBACOLOR(229, 229, 229, 1);
+            [cell.contentView addSubview:bottom];
+        }
         NSString *xue = [userinfo objectForKey:@"xue"];
         NSString *chang = [userinfo objectForKey:@"chang"];
         NSString *manyi = [userinfo objectForKey:@"manyi"];
         
         switch (indexPath.row) {
             case 0:
-                cell.leftLabel.text = @"转角ID";
-                cell.rightLabel.text = [[userid stringValue] isEqualToString:@""] ? @"未填" : [userid stringValue];
-                break;
-            case 1:
-                cell.leftLabel.text = @"感情状况";
-                cell.rightLabel.text = [qinggan isEqualToString:@""] ? @"未填" : qinggan;
-                break;
-            case 2:
-                cell.leftLabel.text = @"身高";
-                cell.rightLabel.text = [shengao isEqualToString:@""] ? @"未填" : [NSString stringWithFormat:@"%@cm",shengao];
-                break;
-            case 3:
-                cell.leftLabel.text = @"对爱情的看法";
-                cell.rightLabel.text = [aiqing isEqualToString:@""] ? @"未填" : aiqing;
-                break;
-            case 4:
-                cell.leftLabel.text = @"对性的看法";
-                cell.rightLabel.text = [xing isEqualToString:@""] ? @"未填" : xing;
-                break;
-                //            case 5:
-                //                cell.leftLabel.text = @"最近活跃时间";
-                //                cell.rightLabel.text = @"查看";
-                //                cell.rightLabel.textColor = RGBACOLOR(0, 122, 255, 1);
-                //                break;
-            case 5:
-                cell.leftLabel.text = @"地区";
-                cell.rightLabel.text = [diqu isEqualToString:@""] ? @"未填" : diqu;
-                break;
-            case 6:
                 cell.leftLabel.text = @"想学";
                 cell.rightLabel.text = [xue isEqualToString:@""] ? @"未填" : xue;
                 break;
-            case 7:
+            case 1:
                 cell.leftLabel.text = @"擅长";
                 cell.rightLabel.text = [chang isEqualToString:@""] ? @"未填" : chang;
                 break;
-            case 8:
-                cell.leftLabel.text = @"最满意的部位";
+            case 2:
+                cell.leftLabel.text = @"最满意部位";
                 cell.rightLabel.text = [manyi isEqualToString:@""] ? @"未填" : manyi;
                 break;
             default:
                 break;
         }
         return cell;
-        
     }
     return nil;
 }
@@ -638,7 +676,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     if (section == 1) {
         return 10;
-    }else if(section < 3){
+    }else if(section < 4){
         return 5;
     }else{
         return 20;
@@ -687,6 +725,10 @@
                         nickname = [NSString stringWithFormat:@"%d",[userid intValue]];
                     }
                     
+                    NSNumber *sex = [userinfo objectForKey:@"sex"];
+                    NSString *age = [userinfo objectForKey:@"age"];
+                    vc.age = age;
+                    vc.sexnum = sex;
                     vc.avatar_url = avatar_url;
                     vc.nickname = nickname;
                     

@@ -240,6 +240,24 @@
             [cell.userImage setImageWithURL:[NSURL URLWithString:_avatar_url] placeholderImage:[UIImage imageNamed:@"public_load_face"]];
             cell.nameLabel.text = _nickname;
             
+            
+            switch ([_sexnum intValue]) {
+                case 0:
+                    [cell.sexImage setImage:[UIImage imageNamed:@"pub_boy_v1"]];
+                    break;
+                case 1:
+                    [cell.sexImage setImage:[UIImage imageNamed:@"pub_girl_v1"]];
+                    break;
+                default:
+                    break;
+            }
+            if ([_age isEqualToString:@""]) {
+                [cell.sexImage setHidden:YES];
+            }else{
+                cell.ageLabel.text = _age;
+            }
+            
+            
             return cell;
         }
         
