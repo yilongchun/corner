@@ -1555,8 +1555,6 @@
 				E446F2331B325F240060E9D7 /* PaihangTableViewCell.m */,
 				E446F2341B325F240060E9D7 /* RedupaihangViewController.h */,
 				E446F2351B325F240060E9D7 /* RedupaihangViewController.m */,
-				E446F2361B325F240060E9D7 /* SettingTableViewController.h */,
-				E446F2371B325F240060E9D7 /* SettingTableViewController.m */,
 				E446F2381B325F240060E9D7 /* TongchengyaoyueTableViewCell.h */,
 				E446F2391B325F240060E9D7 /* TongchengyaoyueTableViewCell.m */,
 				E46928411B3AA3550094CA7A /* TongchengyaoyueTableViewCell.xib */,
@@ -1566,6 +1564,8 @@
 				E446F23D1B325F240060E9D7 /* WodezhuanjiaoTableViewCell.m */,
 				E446F23E1B325F240060E9D7 /* WodezhuanjiaoViewController.h */,
 				E446F23F1B325F240060E9D7 /* WodezhuanjiaoViewController.m */,
+				E446F2361B325F240060E9D7 /* SettingTableViewController.h */,
+				E446F2371B325F240060E9D7 /* SettingTableViewController.m */,
 			);
 			path = view;
 			sourceTree = "<group>";

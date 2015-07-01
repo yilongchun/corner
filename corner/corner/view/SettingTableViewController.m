@@ -120,13 +120,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.section == 2) {
-        if (indexPath.row == 1) {//帮助与反馈
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {//帮助与反馈
             HelpAndFeedbackTableViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"HelpAndFeedbackTableViewController"];
             [self.navigationController pushViewController:vc animated:YES];
         }
     }
-    else if (indexPath.section == 3) {
+    else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_7_1){
                 alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
