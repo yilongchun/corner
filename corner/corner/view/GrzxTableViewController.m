@@ -47,7 +47,24 @@
     
     CGRect resetRect;
     BOOL rectFlag;
+    
+    int pickerType;//判断选择的哪一项
+    NSArray *ganqingArr;//感情状况
+    
+    NSDictionary *pickerDic;
+    NSArray *provinceArray;
+    NSArray *cityArray;
+    NSArray *townArray;
+    NSArray *selectedArray;
+    
+    NSArray *shouruArr;//收入
+    NSArray *shengaoArr;//身高
+    NSArray *tizhongArr;//体重
 }
+
+@property (strong, nonatomic) IBOutlet UIPickerView *myPicker;
+@property (strong, nonatomic) IBOutlet UIView *pickerBgView;
+@property (strong, nonatomic) UIView *maskView;
 
 @end
 
@@ -55,6 +72,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self initView];//初始化弹出选择控件
+    [self initPickerData];//初始化选择数据
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -110,6 +130,46 @@
     
     //初始化数据
     [self.tableView triggerPullToRefresh];
+}
+
+#pragma mark - init view
+- (void)initView {
+    
+    self.maskView = [[UIView alloc] initWithFrame:kScreen_Frame];
+    self.maskView.backgroundColor = [UIColor blackColor];
+    self.maskView.alpha = 0.3;
+    [self.maskView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideMyPicker)]];
+    
+    self.pickerBgView.width = kScreen_Width;
+}
+//初始化选择数据
+-(void)initPickerData{
+    ganqingArr = [NSArray arrayWithObjects:@"单身",@"恋爱",@"貌似恋爱",@"已婚",@"分居",@"离异", nil];
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"Address" ofType:@"plist"];
+    pickerDic = [[NSDictionary alloc] initWithContentsOfFile:path];
+    provinceArray = [pickerDic allKeys];
+    selectedArray = [pickerDic objectForKey:[[pickerDic allKeys] objectAtIndex:0]];
+    if (selectedArray.count > 0) {
+        cityArray = [[selectedArray objectAtIndex:0] allKeys];
+    }
+    if (cityArray.count > 0) {
+        townArray = [[selectedArray objectAtIndex:0] objectForKey:[cityArray objectAtIndex:0]];
+    }
+    
+    shouruArr = [NSArray arrayWithObjects:@"3,000元以上/月",@"5,000元以上/月",@"10,000元以上/月",@"20,000元以上/月",@"50万以上/年收入",@"1000万以上/年收入",@"500万以上/年收入",@"1000万以上/年收入",@"保密", nil];
+    
+    NSMutableArray *shengao = [NSMutableArray array];
+    for (int i = 140 ; i <= 220 ; i++) {
+        [shengao addObject:[NSString stringWithFormat:@"%dcm",i]];
+    }
+    shengaoArr = [NSArray arrayWithArray:shengao];
+    
+    NSMutableArray *tizhong = [NSMutableArray array];
+    for (int i = 35 ; i <= 100 ; i++) {
+        [tizhong addObject:[NSString stringWithFormat:@"%dkg",i]];
+    }
+    tizhongArr = [NSArray arrayWithArray:tizhong];
 }
 
 -(void)fabuyaoyue{
@@ -1326,107 +1386,310 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.section == 1){//动态
-        if (indexPath.row == 0) {
-            DongtaiTableViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"DongtaiTableViewController"];
-            NSString *userid = [UD objectForKey:USER_ID];
-            vc.userid = userid;
-            [self.navigationController pushViewController:vc animated:YES];
+    
+    switch (indexPath.section) {
+        case 1://动态
+        {
+            if (indexPath.row == 0) {
+                DongtaiTableViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"DongtaiTableViewController"];
+                NSString *userid = [UD objectForKey:USER_ID];
+                vc.userid = userid;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
         }
-    }
-    else if(indexPath.section == 2){//邀约
-        NSArray *activities = [userinfo objectForKey:@"activities"];
-        if ([activities count] == 0) {
-        }else{
-            WodeyaoyueViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WodeyaoyueViewController"];
-            [self.navigationController pushViewController:vc animated:YES];
+            break;
+        case 2://邀约
+        {
+            NSArray *activities = [userinfo objectForKey:@"activities"];
+            if ([activities count] == 0) {
+            }else{
+                WodeyaoyueViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WodeyaoyueViewController"];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
         }
-    }else if(indexPath.section == 3){//详情
-        switch (indexPath.row) {
-            case 1://昵称
-            {
-                
+            break;
+        case 3://详情
+        {
+            switch (indexPath.row) {
+                case 1://昵称
+                {
+                    
+                }
+                    break;
+                case 2://自我介绍
+                {
+                    
+                }
+                    break;
+                case 3://美丽宣誓
+                {
+                    
+                }
+                    break;
+                case 4://感情状况 需要actionsheet
+                {
+                    pickerType = 1;
+                    [self showMyPicker];
+                }
+                    break;
+                case 5://所在地区 需要actionsheet
+                {
+                    pickerType = 2;
+                    [self showMyPicker];
+                }
+                    break;
+                case 6://年龄 进入下个界面
+                {
+                    
+                }
+                    break;
+                case 7://职业
+                {
+                    
+                }
+                    break;
+                case 8://收入 需要actionsheet
+                {
+                    pickerType = 3;
+                    [self showMyPicker];
+                }
+                    break;
+                case 9://身高 需要actionsheet
+                {
+                    pickerType = 4;
+                    [self showMyPicker];
+                }
+                    break;
+                case 10://体重 需要actionsheet
+                {
+                    pickerType = 5;
+                    [self showMyPicker];
+                }
+                    break;
+                case 11://对爱情的看法
+                {
+                    
+                }
+                    break;
+                case 12://对性的看法
+                {
+                    
+                }
+                    break;
+                default:
+                    break;
             }
-                break;
-            case 2://自我介绍
-            {
-                
-            }
-                break;
-            case 3://美丽宣誓
-            {
-                
-            }
-                break;
-            case 4://感情状况 需要actionsheet
-            {
-                
-            }
-                break;
-            case 5://所在地区 需要actionsheet
-            {
-                
-            }
-                break;
-            case 6://年龄 需要actionsheet
-            {
-                
-            }
-                break;
-            case 7://职业
-            {
-                
-            }
-                break;
-            case 8://收入 需要actionsheet
-            {
-                
-            }
-                break;
-            case 9://身高 需要actionsheet
-            {
-                
-            }
-                break;
-            case 10://体重 需要actionsheet
-            {
-                
-            }
-                break;
-            case 11://对爱情的看法
-            {
-                
-            }
-                break;
-            case 12://对性的看法
-            {
-                
-            }
-                break;
-            default:
-                break;
         }
-    }else if(indexPath.section == 4){
-        switch (indexPath.row) {
-            case 0://想学
-            {
-                
+            break;
+        case 4://其他信息
+        {
+            switch (indexPath.row) {
+                case 0://想学
+                {
+                    
+                }
+                    break;
+                case 1://擅长
+                {
+                    
+                }
+                    break;
+                case 2://最满意部位
+                {
+                    
+                }
+                    break;
+                default:
+                    break;
             }
-                break;
-            case 1://擅长
-            {
-                
-            }
-                break;
-            case 2://最满意部位
-            {
-                
-            }
-                break;
-            default:
-                break;
         }
+            break;
+        default:
+            break;
     }
 }
+
+#pragma mark - UIPicker Delegate
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    switch (pickerType) {
+        case 1://感情状况
+            return 1;
+            break;
+        case 2://所在地区
+            return 3;
+            break;
+        case 3://收入
+            return 1;
+            break;
+        case 4://身高
+            return 1;
+            break;
+        case 5://体重
+            return 1;
+            break;
+        default:
+            return 0;
+            break;
+    }
+    
+    
+    
+    
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    switch (pickerType) {
+        case 1://感情状况
+            return [ganqingArr count];
+            break;
+        case 2://所在地区
+        {
+            if (component == 0) {
+                return provinceArray.count;
+            } else if (component == 1) {
+                return cityArray.count;
+            } else {
+                return townArray.count;
+            }
+        }
+            break;
+        case 3://收入
+            return shouruArr.count;
+            break;
+        case 4://身高
+            return shengaoArr.count;
+            break;
+        case 5://体重
+            return tizhongArr.count;
+            break;
+        default:
+            return 0;
+            break;
+    }
+    
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    switch (pickerType) {
+        case 1://感情状况
+            return [ganqingArr objectAtIndex:row];
+            break;
+        case 2://所在地区
+        {
+            if (component == 0) {
+                return [provinceArray objectAtIndex:row];
+            } else if (component == 1) {
+                return [cityArray objectAtIndex:row];
+            } else {
+                return [townArray objectAtIndex:row];
+            }
+        }
+            break;
+        case 3://收入
+            return [shouruArr objectAtIndex:row];
+            break;
+        case 4://身高
+            return [shengaoArr objectAtIndex:row];
+            break;
+        case 5://体重
+            return [tizhongArr objectAtIndex:row];
+            break;
+        default:
+            return @"";
+            break;
+    }
+    
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    switch (pickerType) {
+        case 1://感情状况
+            
+            break;
+        case 2://所在地区
+        {
+            if (component == 0) {
+                selectedArray = [pickerDic objectForKey:[provinceArray objectAtIndex:row]];
+                if (selectedArray.count > 0) {
+                    cityArray = [[selectedArray objectAtIndex:0] allKeys];
+                } else {
+                    cityArray = nil;
+                }
+                if (cityArray.count > 0) {
+                    townArray = [[selectedArray objectAtIndex:0] objectForKey:[cityArray objectAtIndex:0]];
+                } else {
+                    townArray = nil;
+                }
+            }
+            [pickerView selectedRowInComponent:1];
+            [pickerView reloadComponent:1];
+            [pickerView selectedRowInComponent:2];
+            
+            if (component == 1) {
+                if (selectedArray.count > 0 && cityArray.count > 0) {
+                    townArray = [[selectedArray objectAtIndex:0] objectForKey:[cityArray objectAtIndex:row]];
+                } else {
+                    townArray = nil;
+                }
+                [pickerView selectRow:1 inComponent:2 animated:YES];
+            }
+            [pickerView reloadComponent:2];
+        }
+            break;
+        case 3://收入
+            
+            break;
+        case 4://身高
+            
+            break;
+            
+        case 5://体重
+            
+            break;
+        default:
+            break;
+    }
+}
+
+#pragma mark - private method
+- (void)showMyPicker {
+    [self.myPicker reloadAllComponents];
+    [self.tableView.superview addSubview:self.maskView];
+    [self.tableView.superview addSubview:self.pickerBgView];
+    self.maskView.alpha = 0.3;
+    self.pickerBgView.top = self.tableView.superview.height;
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.maskView.alpha = 0.3;
+        self.pickerBgView.bottom = self.tableView.superview.height;
+    }];
+}
+
+- (void)hideMyPicker {
+    [UIView animateWithDuration:0.3 animations:^{
+        self.maskView.alpha = 0;
+        self.pickerBgView.top = self.tableView.superview.height;
+    } completion:^(BOOL finished) {
+        [self.maskView removeFromSuperview];
+        [self.pickerBgView removeFromSuperview];
+    }];
+}
+
+
+#pragma mark - xib click
+
+- (IBAction)cancel:(id)sender {
+    [self hideMyPicker];
+}
+
+- (IBAction)ensure:(id)sender {
+//    self.locationBtn.hidden = YES;
+//    self.provinceBtn.hidden = self.cityBtn.hidden = self.townBtn.hidden = NO;
+//    [self.provinceBtn setTitle:[self.provinceArray objectAtIndex:[self.myPicker selectedRowInComponent:0]] forState:UIControlStateNormal];
+//    [self.cityBtn setTitle:[self.cityArray objectAtIndex:[self.myPicker selectedRowInComponent:1]] forState:UIControlStateNormal];
+//    [self.townBtn setTitle:[self.townArray objectAtIndex:[self.myPicker selectedRowInComponent:2]] forState:UIControlStateNormal];
+    [self hideMyPicker];
+}
+
 
 @end

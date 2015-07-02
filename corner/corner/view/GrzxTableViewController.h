@@ -9,7 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "SDPhotoBrowser.h"
 
-@interface GrzxTableViewController : UITableViewController<UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,SDPhotoBrowserDelegate>
+#import "UIView+RGSize.h"
+
+#define kScreen_Height      ([UIScreen mainScreen].bounds.size.height)
+#define kScreen_Width       ([UIScreen mainScreen].bounds.size.width)
+#define kScreen_Frame       (CGRectMake(0, 0 ,kScreen_Width,kScreen_Height))
+
+@interface GrzxTableViewController : UITableViewController<UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,SDPhotoBrowserDelegate,UIPickerViewDelegate, UIPickerViewDataSource>
 
 
 @end

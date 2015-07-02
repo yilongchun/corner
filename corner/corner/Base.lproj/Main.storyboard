@@ -488,10 +488,70 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="个人中心" id="WYI-Jw-kXu"/>
                     <connections>
+                        <outlet property="myPicker" destination="Ev8-Ve-qT0" id="XQN-WR-QyF"/>
+                        <outlet property="pickerBgView" destination="rfL-QF-pXG" id="TyY-ff-a5h"/>
                         <segue destination="z8T-5P-uQe" kind="push" identifier="tomydongtai" id="ZD7-76-qHP"/>
                         <segue destination="Fvu-c9-rD0" kind="push" identifier="towodeyaoyue" id="sfk-5w-qxo"/>
                     </connections>
                 </tableViewController>
+                <view contentMode="scaleToFill" id="rfL-QF-pXG">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="255"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ev8-Ve-qT0">
+                            <rect key="frame" x="0.0" y="34" width="320" height="216"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="216" id="Emm-ip-5YQ"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="dataSource" destination="QAI-9j-G7h" id="ckM-uv-L62"/>
+                                <outlet property="delegate" destination="QAI-9j-G7h" id="AuZ-XP-GvR"/>
+                            </connections>
+                        </pickerView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vs0-Ab-zcn">
+                            <rect key="frame" x="0.0" y="0.0" width="60" height="39"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="93g-Ce-ZfK"/>
+                                <constraint firstAttribute="height" constant="39" id="pPw-OH-tOL"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <state key="normal" title="取消">
+                                <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="cancel:" destination="QAI-9j-G7h" eventType="touchUpInside" id="wC1-aj-vwf"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Smc-Q6-Kkx">
+                            <rect key="frame" x="260" y="0.0" width="60" height="39"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="39" id="Drd-Yd-BUX"/>
+                                <constraint firstAttribute="width" constant="60" id="jev-dZ-cHq"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <state key="normal" title="完成">
+                                <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="ensure:" destination="QAI-9j-G7h" eventType="touchUpInside" id="VvK-yd-oqc"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ev8-Ve-qT0" secondAttribute="bottom" constant="5" id="0R3-cP-jqS"/>
+                        <constraint firstItem="Ev8-Ve-qT0" firstAttribute="leading" secondItem="rfL-QF-pXG" secondAttribute="leading" id="0bn-wv-4RH"/>
+                        <constraint firstItem="Vs0-Ab-zcn" firstAttribute="top" secondItem="rfL-QF-pXG" secondAttribute="top" id="0fI-pI-DGe"/>
+                        <constraint firstItem="Vs0-Ab-zcn" firstAttribute="leading" secondItem="rfL-QF-pXG" secondAttribute="leading" id="0lm-A2-Vb9"/>
+                        <constraint firstItem="Smc-Q6-Kkx" firstAttribute="top" secondItem="rfL-QF-pXG" secondAttribute="top" id="4NA-sQ-6ZW"/>
+                        <constraint firstItem="Ev8-Ve-qT0" firstAttribute="leading" secondItem="rfL-QF-pXG" secondAttribute="leading" id="NbI-aW-FM9"/>
+                        <constraint firstAttribute="trailing" secondItem="Ev8-Ve-qT0" secondAttribute="trailing" id="VhD-Ns-f2r"/>
+                        <constraint firstAttribute="trailing" secondItem="Ev8-Ve-qT0" secondAttribute="trailing" id="bNT-pE-1jH"/>
+                        <constraint firstItem="Ev8-Ve-qT0" firstAttribute="top" secondItem="rfL-QF-pXG" secondAttribute="top" constant="34" id="bjL-7b-RUb"/>
+                        <constraint firstAttribute="bottom" secondItem="Ev8-Ve-qT0" secondAttribute="bottom" constant="5" id="jmt-bp-aME"/>
+                        <constraint firstAttribute="trailing" secondItem="Smc-Q6-Kkx" secondAttribute="trailing" id="vnH-s9-PqW"/>
+                    </constraints>
+                </view>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x0d-Um-ZFy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1350" y="3429"/>
