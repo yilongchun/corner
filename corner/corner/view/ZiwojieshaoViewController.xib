@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZiwojieshaoViewController">
+            <connections>
+                <outlet property="jieshaoTextView" destination="XXr-II-UfD" id="a50-KX-ajA"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XXr-II-UfD">
+                    <rect key="frame" x="0.0" y="10" width="320" height="150"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="150" id="DhZ-HR-LXv"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="可以简单说你自己，也可以说说你喜欢怎样的男生/女生" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRI-5p-5my">
+                    <rect key="frame" x="17" y="189" width="268" height="14"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="point_yellow" translatesAutoresizingMaskIntoConstraints="NO" id="E1X-kF-Sav">
+                    <rect key="frame" x="8" y="175" width="4" height="4"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="point_yellow" translatesAutoresizingMaskIntoConstraints="NO" id="eMK-6N-8U9">
+                    <rect key="frame" x="8" y="194" width="4" height="4"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请勿填写任何与索要礼物有关的内容，被发现将直接封号" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m3r-db-XQF">
+                    <rect key="frame" x="17" y="170" width="275" height="14"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="XXr-II-UfD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="2IB-jn-3Rj"/>
+                <constraint firstAttribute="trailing" secondItem="XXr-II-UfD" secondAttribute="trailing" id="3bG-P2-XX0"/>
+                <constraint firstItem="XXr-II-UfD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="5Od-pE-tHr"/>
+                <constraint firstItem="eMK-6N-8U9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="Phz-hv-2fh"/>
+                <constraint firstItem="WRI-5p-5my" firstAttribute="centerY" secondItem="eMK-6N-8U9" secondAttribute="centerY" id="PvW-PI-PDv"/>
+                <constraint firstItem="m3r-db-XQF" firstAttribute="leading" secondItem="E1X-kF-Sav" secondAttribute="trailing" constant="5" id="ccc-wi-Lar"/>
+                <constraint firstItem="eMK-6N-8U9" firstAttribute="top" secondItem="E1X-kF-Sav" secondAttribute="bottom" constant="15" id="dQr-Mg-Bjj"/>
+                <constraint firstItem="E1X-kF-Sav" firstAttribute="top" secondItem="XXr-II-UfD" secondAttribute="bottom" constant="15" id="eEc-u8-qiY"/>
+                <constraint firstItem="E1X-kF-Sav" firstAttribute="centerY" secondItem="m3r-db-XQF" secondAttribute="centerY" id="g5T-3j-ILq"/>
+                <constraint firstItem="E1X-kF-Sav" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="r0W-r8-OvQ"/>
+                <constraint firstItem="WRI-5p-5my" firstAttribute="leading" secondItem="eMK-6N-8U9" secondAttribute="trailing" constant="5" id="xXj-Xz-Ccr"/>
+            </constraints>
+            <point key="canvasLocation" x="243" y="301"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="point_yellow" width="4" height="4"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

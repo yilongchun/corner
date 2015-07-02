@@ -19,6 +19,10 @@
 
 #import "WodeyaoyueViewController.h"
 
+#import "NichengUpdateViewController.h"
+#import "ZiwojieshaoViewController.h"
+#import "XuanshiViewController.h"
+
 //#import "MLPhotoBrowserAssets.h"
 //#import "MLPhotoBrowserViewController.h"
 //#import "UIButton+WebCache.h"
@@ -1191,22 +1195,14 @@
             return cell;
         }
     }
-//    else if (indexPath.section == 3){
-//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userdetailcell4"];
-//        if (cell == nil) {
-//            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"userdetailcell4"];
-//        }
-//        cell.textLabel.text = @"她想去的餐厅 (1)";
-//        cell.textLabel.font = [UIFont systemFontOfSize:13];
-//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        return cell;
-//        
-//    }
     else if (indexPath.section == 3){
-        UserDetailTableViewCell5 *cell = [tableView dequeueReusableCellWithIdentifier:@"userdetailcell5"];
+        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell3"];
         if (cell == nil) {
-            cell = [[[NSBundle mainBundle] loadNibNamed:@"UserDetailTableViewCell5" owner:self options:nil] lastObject];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell3"];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.textLabel.font = [UIFont systemFontOfSize:13];
+            cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
         }
         if (indexPath.row < 12) {
             UILabel *bottom = [[UILabel alloc] initWithFrame:CGRectMake(15, 49, [UIScreen mainScreen].bounds.size.width-15, 1)];
@@ -1228,59 +1224,60 @@
         NSString *aiqing = [userinfo objectForKey:@"aiqing"];//对爱情的想法
         NSString *xing = [userinfo objectForKey:@"xing"];//对性的想法
         
+        
         switch (indexPath.row) {
             case 0:
-                cell.leftLabel.text = @"转角ID";
-                cell.rightLabel.text = [[userid stringValue] isEqualToString:@""] ? @"未填" : [userid stringValue];
+                cell.textLabel.text = @"转角ID";
+                cell.detailTextLabel.text = [[userid stringValue] isEqualToString:@""] ? @"未填" : [userid stringValue];
                 cell.accessoryType = UITableViewCellAccessoryNone;
                 break;
             case 1:
-                cell.leftLabel.text = @"昵称";
-                cell.rightLabel.text = [nickname isEqualToString:@""] ? @"未填" : nickname;
+                cell.textLabel.text = @"昵称";
+                cell.detailTextLabel.text = [nickname isEqualToString:@""] ? @"未填" : nickname;
                 break;
             case 2:
-                cell.leftLabel.text = @"自我介绍";
-                cell.rightLabel.text = [aboutme isEqualToString:@""] ? @"未填" : aboutme;
+                cell.textLabel.text = @"自我介绍";
+                cell.detailTextLabel.text = [aboutme isEqualToString:@""] ? @"未填" : aboutme;
                 break;
             case 3:
-                cell.leftLabel.text = @"美丽宣誓";
-                cell.rightLabel.text = [xuanshi isEqualToString:@""] ? @"未填" : xuanshi;
+                cell.textLabel.text = @"美丽宣誓";
+                cell.detailTextLabel.text = [xuanshi isEqualToString:@""] ? @"未填" : xuanshi;
                 break;
             case 4:
-                cell.leftLabel.text = @"感情状况";
-                cell.rightLabel.text = [qinggan isEqualToString:@""] ? @"未填" : qinggan;
+                cell.textLabel.text = @"感情状况";
+                cell.detailTextLabel.text = [qinggan isEqualToString:@""] ? @"未填" : qinggan;
                 break;
             case 5:
-                cell.leftLabel.text = @"所在地区";
-                cell.rightLabel.text = [diqu isEqualToString:@""] ? @"未填" : diqu;
+                cell.textLabel.text = @"所在地区";
+                cell.detailTextLabel.text = [diqu isEqualToString:@""] ? @"未填" : diqu;
                 break;
             case 6:
-                cell.leftLabel.text = @"年龄";
-                cell.rightLabel.text = [age isEqualToString:@""] ? @"未填" : age;
+                cell.textLabel.text = @"年龄";
+                cell.detailTextLabel.text = [age isEqualToString:@""] ? @"未填" : age;
                 break;
             case 7:
-                cell.leftLabel.text = @"职业";
-                cell.rightLabel.text = [zhiye isEqualToString:@""] ? @"未填" : zhiye;
+                cell.textLabel.text = @"职业";
+                cell.detailTextLabel.text = [zhiye isEqualToString:@""] ? @"未填" : zhiye;
                 break;
             case 8:
-                cell.leftLabel.text = @"收入";
-                cell.rightLabel.text = [shouru isEqualToString:@""] ? @"未填" : shouru;
+                cell.textLabel.text = @"收入";
+                cell.detailTextLabel.text = [shouru isEqualToString:@""] ? @"未填" : shouru;
                 break;
             case 9:
-                cell.leftLabel.text = @"身高";
-                cell.rightLabel.text = [shengao isEqualToString:@""] ? @"未填" : [NSString stringWithFormat:@"%@cm",shengao];
+                cell.textLabel.text = @"身高";
+                cell.detailTextLabel.text = [shengao isEqualToString:@""] ? @"未填" : shengao;
                 break;
             case 10:
-                cell.leftLabel.text = @"体重";
-                cell.rightLabel.text = [tizhong isEqualToString:@""] ? @"未填" : tizhong;
+                cell.textLabel.text = @"体重";
+                cell.detailTextLabel.text = [tizhong isEqualToString:@""] ? @"未填" : tizhong;
                 break;
             case 11:
-                cell.leftLabel.text = @"对爱情的看法";
-                cell.rightLabel.text = [aiqing isEqualToString:@""] ? @"未填" : aiqing;
+                cell.textLabel.text = @"对爱情的看法";
+                cell.detailTextLabel.text = [aiqing isEqualToString:@""] ? @"未填" : aiqing;
                 break;
             case 12:
-                cell.leftLabel.text = @"对性的看法";
-                cell.rightLabel.text = [xing isEqualToString:@""] ? @"未填" : xing;
+                cell.textLabel.text = @"对性的看法";
+                cell.detailTextLabel.text = [xing isEqualToString:@""] ? @"未填" : xing;
                 break;
             default:
                 break;
@@ -1288,9 +1285,12 @@
         return cell;
     }
     else if (indexPath.section == 4){
-        UserDetailTableViewCell5 *cell = [tableView dequeueReusableCellWithIdentifier:@"userdetailcell6"];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell4"];
         if (cell == nil) {
-            cell = [[[NSBundle mainBundle] loadNibNamed:@"UserDetailTableViewCell5" owner:self options:nil] lastObject];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell4"];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.textLabel.font = [UIFont systemFontOfSize:13];
+            cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
         }
         if (indexPath.row < 2) {
             UILabel *bottom = [[UILabel alloc] initWithFrame:CGRectMake(15, 49, [UIScreen mainScreen].bounds.size.width-15, 1)];
@@ -1304,16 +1304,16 @@
         
         switch (indexPath.row) {
             case 0:
-                cell.leftLabel.text = @"想学";
-                cell.rightLabel.text = [xue isEqualToString:@""] ? @"未填" : xue;
+                cell.textLabel.text = @"想学";
+                cell.detailTextLabel.text = [xue isEqualToString:@""] ? @"未填" : xue;
                 break;
             case 1:
-                cell.leftLabel.text = @"擅长";
-                cell.rightLabel.text = [chang isEqualToString:@""] ? @"未填" : chang;
+                cell.textLabel.text = @"擅长";
+                cell.detailTextLabel.text = [chang isEqualToString:@""] ? @"未填" : chang;
                 break;
             case 2:
-                cell.leftLabel.text = @"最满意部位";
-                cell.rightLabel.text = [manyi isEqualToString:@""] ? @"未填" : manyi;
+                cell.textLabel.text = @"最满意部位";
+                cell.detailTextLabel.text = [manyi isEqualToString:@""] ? @"未填" : manyi;
                 break;
             default:
                 break;
@@ -1413,17 +1413,23 @@
             switch (indexPath.row) {
                 case 1://昵称
                 {
-                    
+                    NichengUpdateViewController *vc = [[NichengUpdateViewController alloc] init];
+                    vc.title = @"修改昵称";
+                    [self.navigationController pushViewController:vc animated:YES];
                 }
                     break;
                 case 2://自我介绍
                 {
-                    
+                    ZiwojieshaoViewController *vc = [[ZiwojieshaoViewController alloc] init];
+                    vc.title = @"自我介绍";
+                    [self.navigationController pushViewController:vc animated:YES];
                 }
                     break;
                 case 3://美丽宣誓
                 {
-                    
+                    XuanshiViewController *vc = [[XuanshiViewController alloc] init];
+                    vc.title = @"转角宣誓";
+                    [self.navigationController pushViewController:vc animated:YES];
                 }
                     break;
                 case 4://感情状况 需要actionsheet
@@ -1642,7 +1648,6 @@
         case 4://身高
             
             break;
-            
         case 5://体重
             
             break;
@@ -1683,11 +1688,29 @@
 }
 
 - (IBAction)ensure:(id)sender {
-//    self.locationBtn.hidden = YES;
-//    self.provinceBtn.hidden = self.cityBtn.hidden = self.townBtn.hidden = NO;
-//    [self.provinceBtn setTitle:[self.provinceArray objectAtIndex:[self.myPicker selectedRowInComponent:0]] forState:UIControlStateNormal];
-//    [self.cityBtn setTitle:[self.cityArray objectAtIndex:[self.myPicker selectedRowInComponent:1]] forState:UIControlStateNormal];
-//    [self.townBtn setTitle:[self.townArray objectAtIndex:[self.myPicker selectedRowInComponent:2]] forState:UIControlStateNormal];
+    switch (pickerType) {
+        case 1://感情状况
+            DLog(@"%@",[ganqingArr objectAtIndex:[self.myPicker selectedRowInComponent:0]]);
+            break;
+        case 2://所在地区
+        {
+            DLog(@"%@",[provinceArray objectAtIndex:[self.myPicker selectedRowInComponent:0]]);
+            DLog(@"%@",[cityArray objectAtIndex:[self.myPicker selectedRowInComponent:1]]);
+            DLog(@"%@",[townArray objectAtIndex:[self.myPicker selectedRowInComponent:2]]);
+        }
+            break;
+        case 3://收入
+            DLog(@"%@",[shouruArr objectAtIndex:[self.myPicker selectedRowInComponent:0]]);
+            break;
+        case 4://身高
+            DLog(@"%@",[shengaoArr objectAtIndex:[self.myPicker selectedRowInComponent:0]]);
+            break;
+        case 5://体重
+            DLog(@"%@",[tizhongArr objectAtIndex:[self.myPicker selectedRowInComponent:0]]);
+            break;
+        default:
+            break;
+    }
     [self hideMyPicker];
 }
 

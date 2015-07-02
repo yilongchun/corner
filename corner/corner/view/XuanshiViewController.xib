@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="XuanshiViewController">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8U0-Lf-bVE">
+                    <rect key="frame" x="20" y="102" width="280" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="qnA-iK-gOn"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="结交知己玩伴">
+                        <color key="titleColor" red="0.18431372549019609" green="0.46666666666666667" blue="0.65490196078431373" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Be-7k-p9d">
+                    <rect key="frame" x="20" y="150" width="280" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="sBA-iL-hOz"/>
+                    </constraints>
+                    <state key="normal" title="找寻恋爱对象">
+                        <color key="titleColor" red="0.0" green="0.4392156862745098" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qNa-4b-DBZ">
+                    <rect key="frame" x="20" y="198" width="280" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="CjQ-X6-6ey"/>
+                    </constraints>
+                    <state key="normal" title="仅以结婚目的">
+                        <color key="titleColor" red="0.49803921568627452" green="0.38039215686274508" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我来转角的目的：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D9d-gg-J2p">
+                    <rect key="frame" x="15" y="74" width="128" height="20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LTm-cj-QuI">
+                    <rect key="frame" x="20" y="246" width="280" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="N8f-Jt-kaB"/>
+                    </constraints>
+                    <state key="normal" title="放弃宣誓">
+                        <color key="titleColor" red="0.23137254901960785" green="0.2627450980392157" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="qNa-4b-DBZ" firstAttribute="top" secondItem="9Be-7k-p9d" secondAttribute="bottom" constant="8" id="183-PX-fa6"/>
+                <constraint firstItem="qNa-4b-DBZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="6BD-fz-NBq"/>
+                <constraint firstAttribute="trailing" secondItem="8U0-Lf-bVE" secondAttribute="trailing" constant="20" id="6Np-3e-DzY"/>
+                <constraint firstItem="D9d-gg-J2p" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="74" id="6TN-b7-dDX"/>
+                <constraint firstAttribute="trailing" secondItem="9Be-7k-p9d" secondAttribute="trailing" constant="20" id="AdS-7y-HqH"/>
+                <constraint firstAttribute="trailing" secondItem="LTm-cj-QuI" secondAttribute="trailing" constant="20" id="JOU-4M-no4"/>
+                <constraint firstItem="8U0-Lf-bVE" firstAttribute="top" secondItem="D9d-gg-J2p" secondAttribute="bottom" constant="8" id="N20-aW-AEh"/>
+                <constraint firstAttribute="trailing" secondItem="qNa-4b-DBZ" secondAttribute="trailing" constant="20" id="VGK-tG-B9T"/>
+                <constraint firstItem="9Be-7k-p9d" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="ZTM-iD-5nt"/>
+                <constraint firstItem="D9d-gg-J2p" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="bdX-w3-5Kj"/>
+                <constraint firstItem="9Be-7k-p9d" firstAttribute="top" secondItem="8U0-Lf-bVE" secondAttribute="bottom" constant="8" id="ccP-ag-IoY"/>
+                <constraint firstItem="LTm-cj-QuI" firstAttribute="top" secondItem="qNa-4b-DBZ" secondAttribute="bottom" constant="8" id="hfJ-t3-T1h"/>
+                <constraint firstItem="LTm-cj-QuI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="pw2-gR-9HP"/>
+                <constraint firstItem="8U0-Lf-bVE" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="sWu-3Q-Rkj"/>
+            </constraints>
+            <point key="canvasLocation" x="243" y="289"/>
+        </view>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
