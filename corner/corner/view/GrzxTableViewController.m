@@ -1690,7 +1690,11 @@
 - (IBAction)ensure:(id)sender {
     switch (pickerType) {
         case 1://感情状况
+        {
             DLog(@"%@",[ganqingArr objectAtIndex:[self.myPicker selectedRowInComponent:0]]);
+            NSString *value = [ganqingArr objectAtIndex:[self.myPicker selectedRowInComponent:0]];
+            [self updateUserInfo:@"qinggan" value:value];
+        }
             break;
         case 2://所在地区
         {
@@ -1700,19 +1704,73 @@
         }
             break;
         case 3://收入
+        {
             DLog(@"%@",[shouruArr objectAtIndex:[self.myPicker selectedRowInComponent:0]]);
+            NSString *value = [shouruArr objectAtIndex:[self.myPicker selectedRowInComponent:0]];
+            [self updateUserInfo:@"shouru" value:value];
+        }
             break;
         case 4://身高
+        {
             DLog(@"%@",[shengaoArr objectAtIndex:[self.myPicker selectedRowInComponent:0]]);
+            NSString *value = [shengaoArr objectAtIndex:[self.myPicker selectedRowInComponent:0]];
+            [self updateUserInfo:@"shengao" value:value];
+        }
             break;
         case 5://体重
+        {
             DLog(@"%@",[tizhongArr objectAtIndex:[self.myPicker selectedRowInComponent:0]]);
+            NSString *value = [tizhongArr objectAtIndex:[self.myPicker selectedRowInComponent:0]];
+            [self updateUserInfo:@"tizhong" value:value];
+        }
             break;
         default:
             break;
     }
     [self hideMyPicker];
 }
-
-
+/**
+ *  修改用户信息
+ *
+ *  @param attr  属性
+ *  @param value 值
+ */
+-(void)updateUserInfo:(NSString *)attr value:(NSString *)value{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    NSString *userid = [UD objectForKey:USER_ID];
+    NSString *token = [UD objectForKey:[NSString stringWithFormat:@"%@%@",USER_TOKEN_ID,userid]];
+    [parameters setValue:token forKey:@"token"];
+    [parameters setValue:attr forKey:@"attr"];
+    [parameters setValue:value forKey:@"value"];
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,USER_SET_URL];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", operation.responseString);
+        
+        
+        NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+        NSError *error;
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if (dic == nil) {
+            NSLog(@"json parse failed \r\n");
+        }else{
+            NSNumber *status = [dic objectForKey:@"status"];
+            if ([status intValue] == 200) {
+                
+                
+            }else if([status intValue] >= 600){
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
+                [self validateUserToken:[status intValue]];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"发生错误！%@",error);
+        [self showHint:@"连接失败"];
+    }];
+}
 @end
