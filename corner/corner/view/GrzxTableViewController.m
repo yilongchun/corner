@@ -1260,7 +1260,13 @@
                 break;
             case 5:
                 cell.textLabel.text = @"所在地区";
-                cell.detailTextLabel.text = [diqu isEqualToString:@""] ? @"未填" : diqu;
+                if (![diqu isEqualToString:@""]) {
+                    NSArray *address =[diqu componentsSeparatedByString:NSLocalizedString(@",", nil)];
+                    NSString *str = [address componentsJoinedByString:@" "];
+                    cell.detailTextLabel.text = str;
+                }else{
+                    cell.detailTextLabel.text = @"未填";
+                }
                 break;
             case 6:
                 cell.textLabel.text = @"年龄";
@@ -1674,6 +1680,102 @@
 #pragma mark - private method
 - (void)showMyPicker {
     [self.myPicker reloadAllComponents];
+    
+    switch (pickerType) {
+        case 1://感情状况
+        {
+            NSString *qinggan = [userinfo objectForKey:@"qinggan"];//感情状况
+            if (![qinggan isEqualToString:@""]) {
+                for (int i = 0 ; i < [ganqingArr count] ; i++) {
+                    if ([qinggan isEqualToString:[ganqingArr objectAtIndex:i]]) {
+                        [self.myPicker selectRow:i inComponent:0 animated:YES];
+                        break;
+                    }
+                }
+            }
+        }
+            break;
+        case 2://所在地区
+        {
+            NSString *diqu = [userinfo objectForKey:@"diqu"];//地区
+            if (![diqu isEqualToString:@""]) {
+                NSArray *address =[diqu componentsSeparatedByString:NSLocalizedString(@",", nil)];
+                
+                NSInteger index1 = [provinceArray indexOfObject:[address objectAtIndex:0]];
+                if (index1 > -1) {
+                    [self.myPicker selectRow:index1 inComponent:0 animated:NO];
+                    selectedArray = [pickerDic objectForKey:[provinceArray objectAtIndex:index1]];
+                    if (selectedArray.count > 0) {
+                        cityArray = [[selectedArray objectAtIndex:0] allKeys];
+                    } else {
+                        cityArray = nil;
+                    }
+
+                    NSInteger index2 = [cityArray indexOfObject:[address objectAtIndex:1]];
+                    if (index2 > -1) {
+                        [self.myPicker selectRow:index2 inComponent:1 animated:NO];
+                        if (selectedArray.count > 0 && cityArray.count > 0) {
+                            townArray = [[selectedArray objectAtIndex:0] objectForKey:[cityArray objectAtIndex:index2]];
+                        } else {
+                            townArray = nil;
+                        }
+                        NSInteger index3 = [townArray indexOfObject:[address objectAtIndex:2]];
+                        if (index3 > -1) {
+                            [self.myPicker selectRow:index3 inComponent:2 animated:NO];
+                        }
+                    }
+                }
+            }else{
+                [self.myPicker selectRow:0 inComponent:0 animated:YES];
+                [self.myPicker selectRow:0 inComponent:1 animated:YES];
+                [self.myPicker selectRow:0 inComponent:2 animated:YES];
+            }
+        }
+            break;
+        case 3://收入
+        {
+            NSString *shouru = [userinfo objectForKey:@"shouru"];//收入
+            if (![shouru isEqualToString:@""]) {
+                for (int i = 0 ; i < [shouruArr count] ; i++) {
+                    if ([shouru isEqualToString:[shouruArr objectAtIndex:i]]) {
+                        [self.myPicker selectRow:i inComponent:0 animated:YES];
+                        break;
+                    }
+                }
+            }
+        }
+            break;
+        case 4://身高
+        {
+            NSString *shengao = [userinfo objectForKey:@"shengao"];//身高
+            if (![shengao isEqualToString:@""]) {
+                for (int i = 0 ; i < [shengaoArr count] ; i++) {
+                    if ([shengao isEqualToString:[shengaoArr objectAtIndex:i]]) {
+                        [self.myPicker selectRow:i inComponent:0 animated:YES];
+                        break;
+                    }
+                }
+            }
+        }
+            break;
+        case 5://体重
+        {
+            NSString *tizhong = [userinfo objectForKey:@"tizhong"];//体重
+            if (![tizhong isEqualToString:@""]) {
+                for (int i = 0 ; i < [tizhongArr count] ; i++) {
+                    if ([tizhong isEqualToString:[tizhongArr objectAtIndex:i]]) {
+                        [self.myPicker selectRow:i inComponent:0 animated:YES];
+                        break;
+                    }
+                }
+            }
+        }
+            break;
+        default:
+            
+            break;
+    }
+    
     [self.tableView.superview addSubview:self.maskView];
     [self.tableView.superview addSubview:self.pickerBgView];
     self.maskView.alpha = 0.3;
@@ -1720,7 +1822,7 @@
             NSString *province = [provinceArray objectAtIndex:[self.myPicker selectedRowInComponent:0]];
             NSString *city = [cityArray objectAtIndex:[self.myPicker selectedRowInComponent:1]];
             NSString *town = [townArray objectAtIndex:[self.myPicker selectedRowInComponent:2]];
-            NSString *value = [NSString stringWithFormat:@"%@ %@ %@",province,city,town];
+            NSString *value = [NSString stringWithFormat:@"%@,%@,%@",province,city,town];
             [self updateUserInfo:@"diqu" value:value];
         }
             break;
