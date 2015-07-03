@@ -25,6 +25,9 @@
                         <color key="titleColor" red="0.18431372549019609" green="0.46666666666666667" blue="0.65490196078431373" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="action1:" destination="-1" eventType="touchUpInside" id="UM7-z6-nMy"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Be-7k-p9d">
                     <rect key="frame" x="20" y="150" width="280" height="40"/>
@@ -35,6 +38,9 @@
                         <color key="titleColor" red="0.0" green="0.4392156862745098" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="action2:" destination="-1" eventType="touchUpInside" id="Yk1-5V-Hvf"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qNa-4b-DBZ">
                     <rect key="frame" x="20" y="198" width="280" height="40"/>
@@ -45,6 +51,9 @@
                         <color key="titleColor" red="0.49803921568627452" green="0.38039215686274508" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="action3:" destination="-1" eventType="touchUpInside" id="fns-RQ-jaY"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我来转角的目的：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D9d-gg-J2p">
                     <rect key="frame" x="15" y="74" width="128" height="20"/>
@@ -61,6 +70,9 @@
                         <color key="titleColor" red="0.23137254901960785" green="0.2627450980392157" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="action4:" destination="-1" eventType="touchUpInside" id="oK1-98-S7a"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>

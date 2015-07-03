@@ -1197,19 +1197,7 @@
     }
     else if (indexPath.section == 3){
         
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell3"];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell3"];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.textLabel.font = [UIFont systemFontOfSize:13];
-            cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
-        }
-        if (indexPath.row < 12) {
-            UILabel *bottom = [[UILabel alloc] initWithFrame:CGRectMake(15, 49, [UIScreen mainScreen].bounds.size.width-15, 1)];
-            bottom.backgroundColor = RGBACOLOR(229, 229, 229, 1);
-            [cell.contentView addSubview:bottom];
-        }
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
         NSNumber *userid = [userinfo objectForKey:@"id"];
         NSString *nickname = [userinfo objectForKey:@"nickname"];//昵称
         NSString *aboutme = [userinfo objectForKey:@"aboutme"];//自我介绍
@@ -1224,6 +1212,21 @@
         NSString *aiqing = [userinfo objectForKey:@"aiqing"];//对爱情的想法
         NSString *xing = [userinfo objectForKey:@"xing"];//对性的想法
         
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell3"];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell3"];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.textLabel.font = [UIFont systemFontOfSize:13];
+            cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
+        }
+        
+        
+        if (indexPath.row < 12) {
+            UILabel *bottom = [[UILabel alloc] initWithFrame:CGRectMake(15, 49, [UIScreen mainScreen].bounds.size.width-15, 1)];
+            bottom.backgroundColor = RGBACOLOR(229, 229, 229, 1);
+            [cell.contentView addSubview:bottom];
+        }
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
         switch (indexPath.row) {
             case 0:
@@ -1236,8 +1239,11 @@
                 cell.detailTextLabel.text = [nickname isEqualToString:@""] ? @"未填" : nickname;
                 break;
             case 2:
+            {
                 cell.textLabel.text = @"自我介绍";
                 cell.detailTextLabel.text = [aboutme isEqualToString:@""] ? @"未填" : aboutme;
+            }
+                
                 break;
             case 3:
                 cell.textLabel.text = @"美丽宣誓";
@@ -1415,6 +1421,8 @@
                 {
                     NichengUpdateViewController *vc = [[NichengUpdateViewController alloc] init];
                     vc.title = @"修改昵称";
+                    NSString *nickname = [userinfo objectForKey:@"nickname"];
+                    vc.nicknameTextField.text = nickname;
                     [self.navigationController pushViewController:vc animated:YES];
                 }
                     break;
@@ -1701,6 +1709,12 @@
             DLog(@"%@",[provinceArray objectAtIndex:[self.myPicker selectedRowInComponent:0]]);
             DLog(@"%@",[cityArray objectAtIndex:[self.myPicker selectedRowInComponent:1]]);
             DLog(@"%@",[townArray objectAtIndex:[self.myPicker selectedRowInComponent:2]]);
+            
+            NSString *province = [provinceArray objectAtIndex:[self.myPicker selectedRowInComponent:0]];
+            NSString *city = [cityArray objectAtIndex:[self.myPicker selectedRowInComponent:1]];
+            NSString *town = [townArray objectAtIndex:[self.myPicker selectedRowInComponent:2]];
+            NSString *value = [NSString stringWithFormat:@"%@ %@ %@",province,city,town];
+            [self updateUserInfo:@"diqu" value:value];
         }
             break;
         case 3://收入

@@ -10,4 +10,9 @@
 
 @interface XuanshiViewController : UIViewController
 
+- (IBAction)action1:(id)sender;
+- (IBAction)action2:(id)sender;
+- (IBAction)action3:(id)sender;
+- (IBAction)action4:(id)sender;
+
 @end
