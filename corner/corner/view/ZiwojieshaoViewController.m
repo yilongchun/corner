@@ -25,6 +25,8 @@
         self.extendedLayoutIncludesOpaqueBars = YES;
     }
     
+    self.jieshaoTextView.text = self.jieshao;
+    
     UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStyleDone target:self action:@selector(done)];
     self.navigationItem.rightBarButtonItem = done;
 }
@@ -71,7 +73,8 @@
         }else{
             NSNumber *status = [dic objectForKey:@"status"];
             if ([status intValue] == 200) {
-                
+                NSDictionary *message = [[dic objectForKey:@"message"] cleanNull];
+                [[NSNotificationCenter defaultCenter] postNotificationName:USER_DETAIL_CHANGE object:nil userInfo:message];
                 [self.navigationController popViewControllerAnimated:YES];
             }else if([status intValue] >= 600){
                 NSString *message = [dic objectForKey:@"message"];

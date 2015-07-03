@@ -55,7 +55,8 @@
         }else{
             NSNumber *status = [dic objectForKey:@"status"];
             if ([status intValue] == 200) {
-                
+                NSDictionary *message = [[dic objectForKey:@"message"] cleanNull];
+                [[NSNotificationCenter defaultCenter] postNotificationName:USER_DETAIL_CHANGE object:nil userInfo:message];
                 [self.navigationController popViewControllerAnimated:YES];
             }else if([status intValue] >= 600){
                 NSString *message = [dic objectForKey:@"message"];

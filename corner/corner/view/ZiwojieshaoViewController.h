@@ -11,5 +11,6 @@
 @interface ZiwojieshaoViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITextView *jieshaoTextView;
+@property (nonatomic, strong) NSString *jieshao;
 
 @end

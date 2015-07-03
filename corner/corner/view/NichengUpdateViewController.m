@@ -22,6 +22,7 @@
     UIView *leftMargin = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 40)];
     self.nicknameTextField.leftView = leftMargin;
     self.nicknameTextField.leftViewMode = UITextFieldViewModeAlways;
+    self.nicknameTextField.text = self.nickname;
     
     UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStyleDone target:self action:@selector(done)];
     self.navigationItem.rightBarButtonItem = done;
@@ -72,6 +73,15 @@
             NSNumber *status = [dic objectForKey:@"status"];
             if ([status intValue] == 200) {
                 
+                NSDictionary *message = [[dic objectForKey:@"message"] cleanNull];
+                NSString *nickname = [message objectForKey:@"nickname"];
+                NSDictionary *userinfo = [UD objectForKey:LOGINED_USER];
+                NSMutableDictionary *userinfo2 = [NSMutableDictionary dictionaryWithDictionary:userinfo];
+                [userinfo2 setObject:nickname forKey:@"nickname"];
+                [UD setObject:userinfo2 forKey:LOGINED_USER];
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:USER_INFO_CHANGE object:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:USER_DETAIL_CHANGE object:nil userInfo:message];
                 [self.navigationController popViewControllerAnimated:YES];
             }else if([status intValue] >= 600){
                 NSString *message = [dic objectForKey:@"message"];

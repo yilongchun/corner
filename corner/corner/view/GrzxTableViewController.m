@@ -32,7 +32,7 @@
     UIImagePickerController *imagePicker1;//照相机
     UIImagePickerController *imagePicker2;//照片选择
     
-    NSDictionary *userinfo;//用户信息
+    NSMutableDictionary *userinfo;//用户信息
     NSString *avatar_url;//用户头像图片链接
     
     UIImageView *userImage;//用户头像
@@ -76,6 +76,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(userDetailChange:)
+                                                 name:USER_DETAIL_CHANGE
+                                               object:nil];
     
     [self initView];//初始化弹出选择控件
     [self initPickerData];//初始化选择数据
@@ -219,7 +224,7 @@
         }else{
             NSNumber *status = [dic objectForKey:@"status"];
             if ([status intValue] == 200) {
-                userinfo = [[dic objectForKey:@"message"] cleanNull];
+                userinfo = [NSMutableDictionary dictionaryWithDictionary:[[dic objectForKey:@"message"] cleanNull] ];
                 avatar_url = [userinfo objectForKey:@"avatar_url"];
                 
                 //用户的邀约
@@ -1422,7 +1427,7 @@
                     NichengUpdateViewController *vc = [[NichengUpdateViewController alloc] init];
                     vc.title = @"修改昵称";
                     NSString *nickname = [userinfo objectForKey:@"nickname"];
-                    vc.nicknameTextField.text = nickname;
+                    vc.nickname = nickname;
                     [self.navigationController pushViewController:vc animated:YES];
                 }
                     break;
@@ -1430,6 +1435,8 @@
                 {
                     ZiwojieshaoViewController *vc = [[ZiwojieshaoViewController alloc] init];
                     vc.title = @"自我介绍";
+                    NSString *aboutme = [userinfo objectForKey:@"aboutme"];
+                    vc.jieshao = aboutme;
                     [self.navigationController pushViewController:vc animated:YES];
                 }
                     break;
@@ -1774,8 +1781,8 @@
         }else{
             NSNumber *status = [dic objectForKey:@"status"];
             if ([status intValue] == 200) {
-                
-                
+                NSDictionary *message = [[dic objectForKey:@"message"] cleanNull];
+                [[NSNotificationCenter defaultCenter] postNotificationName:USER_DETAIL_CHANGE object:nil userInfo:message];
             }else if([status intValue] >= 600){
                 NSString *message = [dic objectForKey:@"message"];
                 [self showHint:message];
@@ -1786,5 +1793,31 @@
         NSLog(@"发生错误！%@",error);
         [self showHint:@"连接失败"];
     }];
+}
+
+/**
+ *  用户信息显示
+ */
+-(void)userDetailChange:(NSNotification *)notification{
+    
+    NSDictionary *userDetailDic = notification.userInfo;
+    
+    NSArray *keys;
+    int i, count;
+    id key, value;
+    
+    keys = [userDetailDic allKeys];
+    count = (int)[keys count];
+    for (i = 0; i < count; i++)
+    {
+        key = [keys objectAtIndex: i];
+        value = [userDetailDic objectForKey: key];
+        [userinfo setValue:value forKey:key];
+        NSLog (@"Key: %@ for value: %@", key, value);
+    }
+    
+    
+    NSIndexSet *indexset = [NSIndexSet indexSetWithIndex:3];
+    [self.tableView reloadSections:indexset withRowAnimation:UITableViewRowAnimationFade];
 }
 @end

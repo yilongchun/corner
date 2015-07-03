@@ -11,6 +11,6 @@
 @interface NichengUpdateViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITextField *nicknameTextField;
-
+@property (nonatomic, strong) NSString *nickname;
 
 @end
