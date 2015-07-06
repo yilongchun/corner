@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface XiangxueViewController : UIViewController
+@interface XiangxueViewController : UIViewController<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *xueTextField;
 @property (weak, nonatomic) IBOutlet UIScrollView *myscrollview;

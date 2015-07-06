@@ -17,6 +17,7 @@
     UIImage *grayImage;
     UIImage *yellowImage;
     NSMutableArray *selectedArr;
+    NSMutableArray *selectedBtnArr;
 }
 
 @end
@@ -27,7 +28,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    self.xueTextField.delegate = self;
+    
     selectedArr = [NSMutableArray array];
+    selectedBtnArr = [NSMutableArray array];
     
     if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -102,6 +106,7 @@
         
         if (self.type == 1) {
             if ([selectedArr indexOfObject:theme] != NSNotFound) {
+                [selectedBtnArr addObject:btn];
                 [btn setBackgroundImage:yellowImage forState:UIControlStateNormal];
                 [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             }else{
@@ -110,6 +115,7 @@
             }
         }else if (self.type == 2){
             if ([selectedArr indexOfObject:theme] != NSNotFound) {
+                [selectedBtnArr addObject:btn];
                 [btn setBackgroundImage:yellowImage forState:UIControlStateNormal];
                 [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             }else{
@@ -133,26 +139,14 @@
 }
 
 -(void)btnClick:(UIButton *)btn{
-//    if (oldBtn) {
-//        [oldBtn setBackgroundImage:grayImage forState:UIControlStateNormal];
-//        [oldBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-//    }
-//    if (oldBtn != btn) {
-//        oldBtn = btn;
-//    }
-//    
-//    [btn setBackgroundImage:yellowImage forState:UIControlStateNormal];
-//    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    
-    DLog(@"%@",selectedArr);
-    
     if ([selectedArr indexOfObject:btn.currentTitle] != NSNotFound) {
+        [selectedBtnArr removeObject:btn];
         [selectedArr removeObject:btn.currentTitle];
         [btn setBackgroundImage:grayImage forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     }else{
-        
         if ([selectedArr count] < 5) {
+            [selectedBtnArr addObject:btn];
             [selectedArr addObject:btn.currentTitle];
             [btn setBackgroundImage:yellowImage forState:UIControlStateNormal];
             [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -161,7 +155,6 @@
             return;
         }
     }
-    DLog(@"%@",selectedArr);
     NSString *value = [selectedArr componentsJoinedByString:@","];
     self.xueTextField.text = value;
 }
@@ -169,6 +162,17 @@
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     [_myscrollview setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, height)];
+}
+
+- (BOOL)textFieldShouldClear:(UITextField *)textField{
+    [selectedArr removeAllObjects];
+    [selectedBtnArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [obj setBackgroundImage:grayImage forState:UIControlStateNormal];
+        [obj setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+        
+    }];
+    [selectedBtnArr removeAllObjects];
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning {
