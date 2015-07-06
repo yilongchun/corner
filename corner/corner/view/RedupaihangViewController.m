@@ -275,7 +275,19 @@
         nickname = [userid stringValue];
     }
     cell.nameLabel.text = nickname;
-    cell.ageLabel.text = age;
+    
+    NSString *birthday = [info objectForKey:@"birthday"];
+    if ([birthday isEqualToString:@"1900-01-01"]) {
+        cell.ageLabel.text = @"-";
+    }else{
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        NSDate *date= [dateFormatter dateFromString:birthday];
+        NSInteger age = [NSDate ageWithDateOfBirth:date];
+        cell.ageLabel.text = [NSString stringWithFormat:@"%ld",(long)age];
+    }
+    
+    
     cell.zhiyeLabel.text = zhiye;
     if (![avatar_url isEqualToString:@""]) {
         [cell.userHeadImage setImageWithURL:[NSURL URLWithString:avatar_url] placeholderImage:[UIImage imageNamed:@"public_load_face"]];

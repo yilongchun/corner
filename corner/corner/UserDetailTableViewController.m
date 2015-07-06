@@ -552,6 +552,7 @@
         if (indexPath.row < 12) {
             UILabel *bottom = [[UILabel alloc] initWithFrame:CGRectMake(15, 49, [UIScreen mainScreen].bounds.size.width-15, 1)];
             bottom.backgroundColor = RGBACOLOR(229, 229, 229, 1);
+            bottom.tag = 999;
             [cell.contentView addSubview:bottom];
         }
         
@@ -561,7 +562,7 @@
         NSString *xuanshi = [userinfo objectForKey:@"xuanshi"];//美丽宣誓
         NSString *qinggan = [userinfo objectForKey:@"qinggan"];//感情状况
         NSString *diqu = [userinfo objectForKey:@"diqu"];//地区
-        NSString *age = [userinfo objectForKey:@"age"];//年龄
+//        NSString *age = [userinfo objectForKey:@"age"];//年龄
         NSString *zhiye = [userinfo objectForKey:@"zhiye"];//职业
         NSString *shouru = [userinfo objectForKey:@"shouru"];//收入
         NSString *shengao = [userinfo objectForKey:@"shengao"];//身高
@@ -596,8 +597,21 @@
                 cell.rightLabel.text = [diqu isEqualToString:@""] ? @"未填" : diqu;
                 break;
             case 6:
+            {
                 cell.leftLabel.text = @"年龄";
-                cell.rightLabel.text = [age isEqualToString:@""] ? @"未填" : age;
+                NSString *birthday = [userinfo objectForKey:@"birthday"];
+                if ([birthday isEqualToString:@"1900-01-01"]) {
+                    cell.rightLabel.text = @"未填";
+                }else{
+                    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+                    NSDate *date= [dateFormatter dateFromString:birthday];
+                    NSInteger age = [NSDate ageWithDateOfBirth:date];
+                    cell.rightLabel.text = [NSString stringWithFormat:@"%ld",(long)age];
+                }
+            }
+                
+                
                 break;
             case 7:
                 cell.leftLabel.text = @"职业";
@@ -622,6 +636,15 @@
             case 12:
                 cell.leftLabel.text = @"对性的看法";
                 cell.rightLabel.text = [xing isEqualToString:@""] ? @"未填" : xing;
+                [cell.contentView.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                    if ([obj isKindOfClass:[UILabel class]]) {
+                        UILabel *label = (UILabel *)obj;
+                        if (label.tag == 999) {
+                            [label setHidden:YES];
+                            *stop = YES;
+                        }
+                    }
+                }];
                 break;
             default:
                 break;
@@ -726,8 +749,8 @@
                     }
                     
                     NSNumber *sex = [userinfo objectForKey:@"sex"];
-                    NSString *age = [userinfo objectForKey:@"age"];
-                    vc.age = age;
+                    NSString *birthday = [userinfo objectForKey:@"birthday"];
+                    vc.birthday = birthday;
                     vc.sexnum = sex;
                     vc.avatar_url = avatar_url;
                     vc.nickname = nickname;

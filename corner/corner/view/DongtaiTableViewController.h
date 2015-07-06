@@ -14,6 +14,6 @@
 @property(nonatomic, strong) NSString *avatar_url;
 @property(nonatomic, strong) NSString *nickname;
 @property(nonatomic, strong) NSNumber *sexnum;
-@property(nonatomic, strong) NSString *age;
+@property(nonatomic, strong) NSString *birthday;
 
 @end

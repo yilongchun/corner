@@ -137,6 +137,7 @@
     #import "NSDictionary+Category.h"
     #import "UIViewController+ValidaeUserToken.h"
     #import <LeanChatLib/LeanChatLib.h>
+    #import "NSDate+Addition.h"
 #endif
 
 #ifdef DEBUG

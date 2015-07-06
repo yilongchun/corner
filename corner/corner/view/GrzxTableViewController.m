@@ -1216,7 +1216,7 @@
         NSString *xuanshi = [userinfo objectForKey:@"xuanshi"];//美丽宣誓
         NSString *qinggan = [userinfo objectForKey:@"qinggan"];//感情状况
         NSString *diqu = [userinfo objectForKey:@"diqu"];//地区
-        NSString *age = [userinfo objectForKey:@"age"];//年龄
+//        NSString *age = [userinfo objectForKey:@"age"];//年龄
         NSString *zhiye = [userinfo objectForKey:@"zhiye"];//职业
         NSString *shouru = [userinfo objectForKey:@"shouru"];//收入
         NSString *shengao = [userinfo objectForKey:@"shengao"];//身高
@@ -1236,6 +1236,7 @@
         if (indexPath.row < 12) {
             UILabel *bottom = [[UILabel alloc] initWithFrame:CGRectMake(15, 49, [UIScreen mainScreen].bounds.size.width-15, 1)];
             bottom.backgroundColor = RGBACOLOR(229, 229, 229, 1);
+            bottom.tag = 999;
             [cell.contentView addSubview:bottom];
         }
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -1312,8 +1313,20 @@
                 cell.detailTextLabel.text = [aiqing isEqualToString:@""] ? @"未填" : aiqing;
                 break;
             case 12:
+            {
                 cell.textLabel.text = @"对性的看法";
                 cell.detailTextLabel.text = [xing isEqualToString:@""] ? @"未填" : xing;
+                [cell.contentView.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                    if ([obj isKindOfClass:[UILabel class]]) {
+                        UILabel *label = (UILabel *)obj;
+                        if (label.tag == 999) {
+                            [label setHidden:YES];
+                            *stop = YES;
+                        }
+                    }
+                }];
+            }
+                
                 break;
             default:
                 break;

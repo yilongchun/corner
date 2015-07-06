@@ -143,7 +143,7 @@ static NSString * const reuseIdentifier = @"ILikeCollectionViewCell";
     NSString *zhiye = [info objectForKey:@"zhiye"];
     NSString *shengao = [info objectForKey:@"shengao"];
     NSString *tizhong = [info objectForKey:@"tizhong"];
-    NSString *age = [info objectForKey:@"age"];
+//    NSString *age = [info objectForKey:@"age"];
     
     switch ([sex intValue]) {
         case 0:
@@ -155,7 +155,19 @@ static NSString * const reuseIdentifier = @"ILikeCollectionViewCell";
         default:
             break;
     }
-    cell.ageLabel.text = age;
+    
+    NSString *birthday = [info objectForKey:@"birthday"];
+    if ([birthday isEqualToString:@"1900-01-01"]) {
+        
+    }else{
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        NSDate *date= [dateFormatter dateFromString:birthday];
+        NSInteger age = [NSDate ageWithDateOfBirth:date];
+        cell.ageLabel.text = [NSString stringWithFormat:@"%ld",(long)age];
+    }
+    
+    
     cell.addressLabel.text = address;
     
     NSMutableString *desc = [NSMutableString string];

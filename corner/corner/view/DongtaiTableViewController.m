@@ -251,13 +251,16 @@
                 default:
                     break;
             }
-            if ([_age isEqualToString:@""]) {
+            
+            if ([_birthday isEqualToString:@"1900-01-01"]) {
                 [cell.sexImage setHidden:YES];
             }else{
-                cell.ageLabel.text = _age;
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+                NSDate *date= [dateFormatter dateFromString:_birthday];
+                NSInteger age = [NSDate ageWithDateOfBirth:date];
+                cell.ageLabel.text = [NSString stringWithFormat:@"%ld",(long)age];
             }
-            
-            
             return cell;
         }
         
