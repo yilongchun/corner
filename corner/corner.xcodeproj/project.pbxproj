@@ -224,6 +224,15 @@
 		E465C47B1B33BA180084CE29 /* YaoyueDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E465C4791B33BA180084CE29 /* YaoyueDetailViewController.m */; };
 		E465C47C1B33BA180084CE29 /* YaoyueDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E465C47A1B33BA180084CE29 /* YaoyueDetailViewController.xib */; };
 		E46928421B3AA3550094CA7A /* TongchengyaoyueTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E46928411B3AA3550094CA7A /* TongchengyaoyueTableViewCell.xib */; };
+		E46E8DD61B4666DB006CAE06 /* ChooseZhiyeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E46E8DD41B4666DB006CAE06 /* ChooseZhiyeViewController.m */; };
+		E46E8DD71B4666DB006CAE06 /* ChooseZhiyeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E46E8DD51B4666DB006CAE06 /* ChooseZhiyeViewController.xib */; };
+		E46E8DDB1B466EE6006CAE06 /* ChooseAiqingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E46E8DD91B466EE6006CAE06 /* ChooseAiqingViewController.m */; };
+		E46E8DDC1B466EE6006CAE06 /* ChooseAiqingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E46E8DDA1B466EE6006CAE06 /* ChooseAiqingViewController.xib */; };
+		E46E8DDF1B46707E006CAE06 /* UIViewController+updateUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E46E8DDE1B46707E006CAE06 /* UIViewController+updateUserInfo.m */; };
+		E46E8DE31B4677EB006CAE06 /* ChooseXingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E46E8DE11B4677EB006CAE06 /* ChooseXingViewController.m */; };
+		E46E8DE41B4677EB006CAE06 /* ChooseXingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E46E8DE21B4677EB006CAE06 /* ChooseXingViewController.xib */; };
+		E46E8DE81B467D7D006CAE06 /* XiangxueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E46E8DE61B467D7D006CAE06 /* XiangxueViewController.m */; };
+		E46E8DE91B467D7D006CAE06 /* XiangxueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E46E8DE71B467D7D006CAE06 /* XiangxueViewController.xib */; };
 		E4D3C3941B411BE000ED9652 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4D3C3931B411BE000ED9652 /* TencentOpenAPI.framework */; };
 		E4D3C3961B411C2F00ED9652 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E4D3C3951B411C2F00ED9652 /* libiconv.dylib */; };
 		E4D3C3981B411C4900ED9652 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4D3C3971B411C4900ED9652 /* SystemConfiguration.framework */; };
@@ -684,6 +693,20 @@
 		E465C4791B33BA180084CE29 /* YaoyueDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YaoyueDetailViewController.m; sourceTree = "<group>"; };
 		E465C47A1B33BA180084CE29 /* YaoyueDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YaoyueDetailViewController.xib; sourceTree = "<group>"; };
 		E46928411B3AA3550094CA7A /* TongchengyaoyueTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TongchengyaoyueTableViewCell.xib; sourceTree = "<group>"; };
+		E46E8DD31B4666DB006CAE06 /* ChooseZhiyeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseZhiyeViewController.h; sourceTree = "<group>"; };
+		E46E8DD41B4666DB006CAE06 /* ChooseZhiyeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseZhiyeViewController.m; sourceTree = "<group>"; };
+		E46E8DD51B4666DB006CAE06 /* ChooseZhiyeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseZhiyeViewController.xib; sourceTree = "<group>"; };
+		E46E8DD81B466EE6006CAE06 /* ChooseAiqingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseAiqingViewController.h; sourceTree = "<group>"; };
+		E46E8DD91B466EE6006CAE06 /* ChooseAiqingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseAiqingViewController.m; sourceTree = "<group>"; };
+		E46E8DDA1B466EE6006CAE06 /* ChooseAiqingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseAiqingViewController.xib; sourceTree = "<group>"; };
+		E46E8DDD1B46707E006CAE06 /* UIViewController+updateUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+updateUserInfo.h"; sourceTree = "<group>"; };
+		E46E8DDE1B46707E006CAE06 /* UIViewController+updateUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+updateUserInfo.m"; sourceTree = "<group>"; };
+		E46E8DE01B4677EB006CAE06 /* ChooseXingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseXingViewController.h; sourceTree = "<group>"; };
+		E46E8DE11B4677EB006CAE06 /* ChooseXingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseXingViewController.m; sourceTree = "<group>"; };
+		E46E8DE21B4677EB006CAE06 /* ChooseXingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseXingViewController.xib; sourceTree = "<group>"; };
+		E46E8DE51B467D7D006CAE06 /* XiangxueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XiangxueViewController.h; sourceTree = "<group>"; };
+		E46E8DE61B467D7D006CAE06 /* XiangxueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XiangxueViewController.m; sourceTree = "<group>"; };
+		E46E8DE71B467D7D006CAE06 /* XiangxueViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XiangxueViewController.xib; sourceTree = "<group>"; };
 		E4D3C3931B411BE000ED9652 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TencentOpenAPI.framework; path = corner/TencentOpenAPI.framework; sourceTree = SOURCE_ROOT; };
 		E4D3C3951B411C2F00ED9652 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		E4D3C3971B411C4900ED9652 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -1269,6 +1292,8 @@
 				E446F1711B325F240060E9D7 /* UIViewController+ValidaeUserToken.m */,
 				E446F1721B325F240060E9D7 /* UIViewController+Visible.h */,
 				E446F1731B325F240060E9D7 /* UIViewController+Visible.m */,
+				E46E8DDD1B46707E006CAE06 /* UIViewController+updateUserInfo.h */,
+				E46E8DDE1B46707E006CAE06 /* UIViewController+updateUserInfo.m */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -1541,6 +1566,18 @@
 				E4DBFAF61B4529A5002004BC /* XuanshiViewController.h */,
 				E4DBFAF71B4529A5002004BC /* XuanshiViewController.m */,
 				E4DBFAF81B4529A5002004BC /* XuanshiViewController.xib */,
+				E46E8DD31B4666DB006CAE06 /* ChooseZhiyeViewController.h */,
+				E46E8DD41B4666DB006CAE06 /* ChooseZhiyeViewController.m */,
+				E46E8DD51B4666DB006CAE06 /* ChooseZhiyeViewController.xib */,
+				E46E8DD81B466EE6006CAE06 /* ChooseAiqingViewController.h */,
+				E46E8DD91B466EE6006CAE06 /* ChooseAiqingViewController.m */,
+				E46E8DDA1B466EE6006CAE06 /* ChooseAiqingViewController.xib */,
+				E46E8DE01B4677EB006CAE06 /* ChooseXingViewController.h */,
+				E46E8DE11B4677EB006CAE06 /* ChooseXingViewController.m */,
+				E46E8DE21B4677EB006CAE06 /* ChooseXingViewController.xib */,
+				E46E8DE51B467D7D006CAE06 /* XiangxueViewController.h */,
+				E46E8DE61B467D7D006CAE06 /* XiangxueViewController.m */,
+				E46E8DE71B467D7D006CAE06 /* XiangxueViewController.xib */,
 				E446F2271B325F240060E9D7 /* GrzxTableViewCell.h */,
 				E446F2281B325F240060E9D7 /* GrzxTableViewCell.m */,
 				E446F2291B325F240060E9D7 /* GrzxTableViewCell.xib */,
@@ -1843,13 +1880,16 @@
 				E44D47F71B325DA40064404B /* Main.storyboard in Resources */,
 				E446F2601B325F240060E9D7 /* NSDateTimeAgo.bundle in Resources */,
 				E446F2541B325F240060E9D7 /* AMap.bundle in Resources */,
+				E46E8DE41B4677EB006CAE06 /* ChooseXingViewController.xib in Resources */,
 				E446F2E81B325F240060E9D7 /* sr_refresh@2X.png in Resources */,
 				E4DBFAEB1B44DF1F002004BC /* Address.plist in Resources */,
 				E4F59DF01B425F3900A6F002 /* WodeyaoyueTableViewCell2.xib in Resources */,
 				E446F2F41B325F240060E9D7 /* UserDetailTableViewCell5.xib in Resources */,
+				E46E8DE91B467D7D006CAE06 /* XiangxueViewController.xib in Resources */,
 				E4DBFAF01B4517E3002004BC /* NichengUpdateViewController.xib in Resources */,
 				E446F3021B325F240060E9D7 /* GrzxTableViewCell.xib in Resources */,
 				E46928421B3AA3550094CA7A /* TongchengyaoyueTableViewCell.xib in Resources */,
+				E46E8DDC1B466EE6006CAE06 /* ChooseAiqingViewController.xib in Resources */,
 				E446F30E1B325F240060E9D7 /* Localizable.strings in Resources */,
 				E44D47F91B325DA40064404B /* Images.xcassets in Resources */,
 				E4DBFAF51B452032002004BC /* ZiwojieshaoViewController.xib in Resources */,
@@ -1857,6 +1897,7 @@
 				E446F2EE1B325F240060E9D7 /* UserDetailTableViewCell1.xib in Resources */,
 				E4F59DEB1B42437200A6F002 /* WodeyaoyueTableViewCell.xib in Resources */,
 				E446F3001B325F240060E9D7 /* FeedbackViewController.xib in Resources */,
+				E46E8DD71B4666DB006CAE06 /* ChooseZhiyeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1941,6 +1982,7 @@
 				E446F2801B325F240060E9D7 /* UIBezierPath+BasicShapes.m in Sources */,
 				E446F2D71B325F240060E9D7 /* MKAnnotationView+WebCache.m in Sources */,
 				E446F2B71B325F240060E9D7 /* UIWindow+Hierarchy.m in Sources */,
+				E46E8DDF1B46707E006CAE06 /* UIViewController+updateUserInfo.m in Sources */,
 				E446F28D1B325F240060E9D7 /* UIImage+animatedGIF.m in Sources */,
 				E446F2871B325F240060E9D7 /* UIColor+HEX.m in Sources */,
 				E446F2971B325F240060E9D7 /* UINavigationBar+Awesome.m in Sources */,
@@ -1957,6 +1999,7 @@
 				E4F59DEA1B42437200A6F002 /* WodeyaoyueTableViewCell.m in Sources */,
 				E446F26E1B325F240060E9D7 /* NSObject+AutoCoding.m in Sources */,
 				E446F2821B325F240060E9D7 /* UIBezierPath+Symbol.m in Sources */,
+				E46E8DE81B467D7D006CAE06 /* XiangxueViewController.m in Sources */,
 				E446F3081B325F240060E9D7 /* RedupaihangViewController.m in Sources */,
 				E446F2651B325F240060E9D7 /* NSDictionary+SafeAccess.m in Sources */,
 				E446F2CB1B325F240060E9D7 /* MBProgressHUD.m in Sources */,
@@ -2011,6 +2054,7 @@
 				E446F2B31B325F240060E9D7 /* UIWebView+Canvas.m in Sources */,
 				E446F2581B325F240060E9D7 /* NSArray+Block.m in Sources */,
 				E446F2991B325F240060E9D7 /* UINavigationController+KeyboardFix.m in Sources */,
+				E46E8DE31B4677EB006CAE06 /* ChooseXingViewController.m in Sources */,
 				E446F2611B325F240060E9D7 /* NSDateFormatter+Make.m in Sources */,
 				E446F26A1B325F240060E9D7 /* NSManagedObjectContext+FetchRequestsConstructors.m in Sources */,
 				E446F2F11B325F240060E9D7 /* UserDetailTableViewCell3.m in Sources */,
@@ -2054,6 +2098,7 @@
 				E446F2FF1B325F240060E9D7 /* FeedbackViewController.m in Sources */,
 				E446F2BD1B325F240060E9D7 /* IQKeyboardManager.m in Sources */,
 				E4DBFAF41B452032002004BC /* ZiwojieshaoViewController.m in Sources */,
+				E46E8DD61B4666DB006CAE06 /* ChooseZhiyeViewController.m in Sources */,
 				E446F2791B325F240060E9D7 /* NSString+UrlEncode.m in Sources */,
 				E446F2761B325F240060E9D7 /* NSString+HXAddtions.m in Sources */,
 				E446F2DD1B325F240060E9D7 /* SDWebImageDownloaderOperation.m in Sources */,
@@ -2073,6 +2118,7 @@
 				E446F28F1B325F240060E9D7 /* UIImage+Color.m in Sources */,
 				E446F2AA1B325F240060E9D7 /* UIView+Screenshot.m in Sources */,
 				E446F2C71B325F240060E9D7 /* LoginViewController.m in Sources */,
+				E46E8DDB1B466EE6006CAE06 /* ChooseAiqingViewController.m in Sources */,
 				E446F26C1B325F240060E9D7 /* NSObject+AddProperty.m in Sources */,
 				E446F2531B325F240060E9D7 /* UIWebView+AFNetworking.m in Sources */,
 				E446F2B51B325F240060E9D7 /* UIWebView+Load.m in Sources */,

@@ -22,7 +22,11 @@
 #import "NichengUpdateViewController.h"
 #import "ZiwojieshaoViewController.h"
 #import "XuanshiViewController.h"
-
+#import "ChooseZhiyeViewController.h"
+#import "ChooseAiqingViewController.h"
+#import "UIViewController+updateUserInfo.h"
+#import "ChooseXingViewController.h"
+#import "XiangxueViewController.h"
 //#import "MLPhotoBrowserAssets.h"
 //#import "MLPhotoBrowserViewController.h"
 //#import "UIButton+WebCache.h"
@@ -1472,7 +1476,10 @@
                     break;
                 case 7://职业
                 {
-                    
+                    ChooseZhiyeViewController *vc = [[ChooseZhiyeViewController alloc] init];
+                    NSString *zhiye = [userinfo objectForKey:@"zhiye"];
+                    vc.zhiye = zhiye;
+                    [self.navigationController pushViewController:vc animated:YES];
                 }
                     break;
                 case 8://收入 需要actionsheet
@@ -1495,12 +1502,18 @@
                     break;
                 case 11://对爱情的看法
                 {
-                    
+                    ChooseAiqingViewController *vc = [[ChooseAiqingViewController alloc] init];
+                    NSString *aiqing = [userinfo objectForKey:@"aiqing"];
+                    vc.aiqing = aiqing;
+                    [self.navigationController pushViewController:vc animated:YES];
                 }
                     break;
                 case 12://对性的看法
                 {
-                    
+                    ChooseXingViewController *vc = [[ChooseXingViewController alloc] init];
+                    NSString *xing = [userinfo objectForKey:@"xing"];
+                    vc.xing = xing;
+                    [self.navigationController pushViewController:vc animated:YES];
                 }
                     break;
                 default:
@@ -1513,12 +1526,22 @@
             switch (indexPath.row) {
                 case 0://想学
                 {
-                    
+                    XiangxueViewController *vc = [[XiangxueViewController alloc] init];
+                    NSString *xue = [userinfo objectForKey:@"xue"];
+                    vc.xue = xue;
+                    vc.type = 1;
+                    vc.title = @"想学的技能";
+                    [self.navigationController pushViewController:vc animated:YES];
                 }
                     break;
                 case 1://擅长
                 {
-                    
+                    XiangxueViewController *vc = [[XiangxueViewController alloc] init];
+                    NSString *chang = [userinfo objectForKey:@"chang"];
+                    vc.shanchang = chang;
+                    vc.type = 2;
+                    vc.title = @"擅长的技能";
+                    [self.navigationController pushViewController:vc animated:YES];
                 }
                     break;
                 case 2://最满意部位
@@ -1852,50 +1875,7 @@
     }
     [self hideMyPicker];
 }
-/**
- *  修改用户信息
- *
- *  @param attr  属性
- *  @param value 值
- */
--(void)updateUserInfo:(NSString *)attr value:(NSString *)value{
-    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    NSString *userid = [UD objectForKey:USER_ID];
-    NSString *token = [UD objectForKey:[NSString stringWithFormat:@"%@%@",USER_TOKEN_ID,userid]];
-    [parameters setValue:token forKey:@"token"];
-    [parameters setValue:attr forKey:@"attr"];
-    [parameters setValue:value forKey:@"value"];
-    
-    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,USER_SET_URL];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
-    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", operation.responseString);
-        
-        
-        NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
-        NSError *error;
-        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
-        if (dic == nil) {
-            NSLog(@"json parse failed \r\n");
-        }else{
-            NSNumber *status = [dic objectForKey:@"status"];
-            if ([status intValue] == 200) {
-                NSDictionary *message = [[dic objectForKey:@"message"] cleanNull];
-                [[NSNotificationCenter defaultCenter] postNotificationName:USER_DETAIL_CHANGE object:nil userInfo:message];
-            }else if([status intValue] >= 600){
-                NSString *message = [dic objectForKey:@"message"];
-                [self showHint:message];
-                [self validateUserToken:[status intValue]];
-            }
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"发生错误！%@",error);
-        [self showHint:@"连接失败"];
-    }];
-}
+
 
 /**
  *  用户信息显示
@@ -1918,8 +1898,9 @@
         NSLog (@"Key: %@ for value: %@", key, value);
     }
     
-    
-    NSIndexSet *indexset = [NSIndexSet indexSetWithIndex:3];
-    [self.tableView reloadSections:indexset withRowAnimation:UITableViewRowAnimationFade];
+    NSMutableIndexSet *idxSet = [[NSMutableIndexSet alloc] init];
+    [idxSet addIndex:3];
+    [idxSet addIndex:4];
+    [self.tableView reloadSections:idxSet withRowAnimation:UITableViewRowAnimationFade];
 }
 @end

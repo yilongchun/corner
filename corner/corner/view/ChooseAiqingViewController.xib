@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChooseAiqingViewController">
+            <connections>
+                <outlet property="aiqingTextView" destination="xPk-YP-c2M" id="u3m-Bu-mqL"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xPk-YP-c2M">
+                    <rect key="frame" x="0.0" y="10" width="320" height="150"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="150" id="xXd-rP-dfH"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="说说你对爱情的看法" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qlH-1v-bvU">
+                    <rect key="frame" x="106" y="170" width="108" height="15"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cR5-kI-EdB">
+                    <rect key="frame" x="10" y="195" width="300" height="30"/>
+                    <state key="normal" title="经历许多，现在只想简简单单，相爱到老">
+                        <color key="titleColor" red="0.5490196078431373" green="0.6705882352941176" blue="0.85490196078431369" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="click1:" destination="-1" eventType="touchUpInside" id="c6p-Uf-lgQ"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k9j-Ii-WXr">
+                    <rect key="frame" x="10" y="235" width="300" height="30"/>
+                    <state key="normal" title="向往忠贞不渝的爱情，但现实太残酷">
+                        <color key="titleColor" red="0.58039215686274503" green="0.78431372549019607" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="click2:" destination="-1" eventType="touchUpInside" id="4pf-eK-dTf"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sEU-ne-b0g">
+                    <rect key="frame" x="10" y="275" width="300" height="30"/>
+                    <state key="normal" title="哪怕王菲和李亚鹏都分手了，我仍相信爱情">
+                        <color key="titleColor" red="0.9137254901960784" green="0.56862745098039214" blue="0.50980392156862742" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="click3:" destination="-1" eventType="touchUpInside" id="bAH-TF-Okh"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="DfU-W3-g4m">
+                    <rect key="frame" x="10" y="315" width="300" height="30"/>
+                    <state key="normal" title="有时麻木得已经对感情不抱期望了，但还是期待那可能出现的美好未来">
+                        <color key="titleColor" red="0.85098039215686272" green="0.58431372549019611" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="click4:" destination="-1" eventType="touchUpInside" id="pxc-Sa-1Nk"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="centerX" secondItem="qlH-1v-bvU" secondAttribute="centerX" id="6RE-kd-jJj"/>
+                <constraint firstAttribute="trailing" secondItem="k9j-Ii-WXr" secondAttribute="trailing" constant="10" id="A1j-SI-Cbc"/>
+                <constraint firstItem="qlH-1v-bvU" firstAttribute="top" secondItem="xPk-YP-c2M" secondAttribute="bottom" constant="10" id="Qfe-NC-bLw"/>
+                <constraint firstAttribute="trailing" secondItem="DfU-W3-g4m" secondAttribute="trailing" constant="10" id="Tgt-Ly-SzC"/>
+                <constraint firstItem="DfU-W3-g4m" firstAttribute="top" secondItem="sEU-ne-b0g" secondAttribute="bottom" constant="10" id="Xkh-8r-KXI"/>
+                <constraint firstItem="xPk-YP-c2M" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="cF0-eK-LVD"/>
+                <constraint firstItem="sEU-ne-b0g" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="fEe-p7-bD9"/>
+                <constraint firstItem="sEU-ne-b0g" firstAttribute="top" secondItem="k9j-Ii-WXr" secondAttribute="bottom" constant="10" id="gRy-Re-eMu"/>
+                <constraint firstItem="xPk-YP-c2M" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="hZN-IX-mHN"/>
+                <constraint firstAttribute="trailing" secondItem="cR5-kI-EdB" secondAttribute="trailing" constant="10" id="mDP-cT-Q53"/>
+                <constraint firstItem="k9j-Ii-WXr" firstAttribute="top" secondItem="cR5-kI-EdB" secondAttribute="bottom" constant="10" id="o2b-p1-5d6"/>
+                <constraint firstAttribute="trailing" secondItem="xPk-YP-c2M" secondAttribute="trailing" id="oFx-Lq-NUR"/>
+                <constraint firstItem="cR5-kI-EdB" firstAttribute="top" secondItem="qlH-1v-bvU" secondAttribute="bottom" constant="10" id="qXX-ay-8pa"/>
+                <constraint firstItem="DfU-W3-g4m" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="rQV-XY-REC"/>
+                <constraint firstItem="k9j-Ii-WXr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="sQL-nX-EW4"/>
+                <constraint firstItem="cR5-kI-EdB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="svM-vq-Ir0"/>
+                <constraint firstAttribute="trailing" secondItem="sEU-ne-b0g" secondAttribute="trailing" constant="10" id="x3S-7b-udr"/>
+            </constraints>
+            <point key="canvasLocation" x="249" y="287"/>
+        </view>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
