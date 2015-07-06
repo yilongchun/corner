@@ -216,6 +216,8 @@
 		E446F31D1B3294E00060E9D7 /* CDUserFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = E446F31B1B3294E00060E9D7 /* CDUserFactory.m */; };
 		E446F3241B32968B0060E9D7 /* LCEChatListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E446F31F1B32968B0060E9D7 /* LCEChatListVC.m */; };
 		E446F3251B32968B0060E9D7 /* LCEChatRoomVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E446F3211B32968B0060E9D7 /* LCEChatRoomVC.m */; };
+		E44BE9CA1B4A0F3300D35DE8 /* MyLovePartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E44BE9C81B4A0F3300D35DE8 /* MyLovePartViewController.m */; };
+		E44BE9CB1B4A0F3300D35DE8 /* MyLovePartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E44BE9C91B4A0F3300D35DE8 /* MyLovePartViewController.xib */; };
 		E44D47EE1B325DA40064404B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E44D47ED1B325DA40064404B /* main.m */; };
 		E44D47F11B325DA40064404B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E44D47F01B325DA40064404B /* AppDelegate.m */; };
 		E44D47F71B325DA40064404B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E44D47F51B325DA40064404B /* Main.storyboard */; };
@@ -679,6 +681,9 @@
 		E446F31F1B32968B0060E9D7 /* LCEChatListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCEChatListVC.m; sourceTree = "<group>"; };
 		E446F3201B32968B0060E9D7 /* LCEChatRoomVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCEChatRoomVC.h; sourceTree = "<group>"; };
 		E446F3211B32968B0060E9D7 /* LCEChatRoomVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCEChatRoomVC.m; sourceTree = "<group>"; };
+		E44BE9C71B4A0F3300D35DE8 /* MyLovePartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLovePartViewController.h; sourceTree = "<group>"; };
+		E44BE9C81B4A0F3300D35DE8 /* MyLovePartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLovePartViewController.m; sourceTree = "<group>"; };
+		E44BE9C91B4A0F3300D35DE8 /* MyLovePartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyLovePartViewController.xib; sourceTree = "<group>"; };
 		E44D47E81B325DA40064404B /* corner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = corner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E44D47EC1B325DA40064404B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E44D47ED1B325DA40064404B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1578,6 +1583,9 @@
 				E46E8DE51B467D7D006CAE06 /* XiangxueViewController.h */,
 				E46E8DE61B467D7D006CAE06 /* XiangxueViewController.m */,
 				E46E8DE71B467D7D006CAE06 /* XiangxueViewController.xib */,
+				E44BE9C71B4A0F3300D35DE8 /* MyLovePartViewController.h */,
+				E44BE9C81B4A0F3300D35DE8 /* MyLovePartViewController.m */,
+				E44BE9C91B4A0F3300D35DE8 /* MyLovePartViewController.xib */,
 				E446F2271B325F240060E9D7 /* GrzxTableViewCell.h */,
 				E446F2281B325F240060E9D7 /* GrzxTableViewCell.m */,
 				E446F2291B325F240060E9D7 /* GrzxTableViewCell.xib */,
@@ -1894,6 +1902,7 @@
 				E44D47F91B325DA40064404B /* Images.xcassets in Resources */,
 				E4DBFAF51B452032002004BC /* ZiwojieshaoViewController.xib in Resources */,
 				E446F2C51B325F240060E9D7 /* IQKeyboardManager.bundle in Resources */,
+				E44BE9CB1B4A0F3300D35DE8 /* MyLovePartViewController.xib in Resources */,
 				E446F2EE1B325F240060E9D7 /* UserDetailTableViewCell1.xib in Resources */,
 				E4F59DEB1B42437200A6F002 /* WodeyaoyueTableViewCell.xib in Resources */,
 				E446F3001B325F240060E9D7 /* FeedbackViewController.xib in Resources */,
@@ -1953,6 +1962,7 @@
 				E446F2FC1B325F240060E9D7 /* DongtaiTableViewController.m in Sources */,
 				E446F2C01B325F240060E9D7 /* IQTextView.m in Sources */,
 				E446F2751B325F240060E9D7 /* NSString+Hash.m in Sources */,
+				E44BE9CA1B4A0F3300D35DE8 /* MyLovePartViewController.m in Sources */,
 				E446F2D41B325F240060E9D7 /* SDBrowserImageView.m in Sources */,
 				E446F2721B325F240060E9D7 /* NSSet+Block.m in Sources */,
 				E446F2A31B325F240060E9D7 /* UITextField+Blocks.m in Sources */,

@@ -27,6 +27,7 @@
 #import "UIViewController+updateUserInfo.h"
 #import "ChooseXingViewController.h"
 #import "XiangxueViewController.h"
+#import "MyLovePartViewController.h"
 //#import "MLPhotoBrowserAssets.h"
 //#import "MLPhotoBrowserViewController.h"
 //#import "UIButton+WebCache.h"
@@ -1546,7 +1547,11 @@
                     break;
                 case 2://最满意部位
                 {
-                    
+                    MyLovePartViewController *vc = [[MyLovePartViewController alloc] init];
+                    NSString *manyi = [userinfo objectForKey:@"manyi"];
+                    vc.part = manyi;
+                    vc.title = @"最满意的部位";
+                    [self.navigationController pushViewController:vc animated:YES];
                 }
                     break;
                 default:
