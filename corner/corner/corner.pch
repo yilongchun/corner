@@ -15,11 +15,14 @@
 #define HOST @"http://corner.songguokeji.com"
 
 #define GAODE_API_KEY @"ed58ad8bba7f735f54ddbeb44472a67d"
-
+//leancloud
 #define LEANCLOUD_APP_ID  @"hkvqbh84v4aeta0pgay00qwws1bejf0g6xx7g2i2guoeji36"
 #define LEANCLOUD_APP_KEY @"ob1p5yatuw3do7jkuf9bqfpl1r4ohbe1lu4ioq2u21xzv9od"
-
+//QQ登录
 #define QQ_APP_ID @"1104669365"
+//微博登录
+#define kWeiboAppKay @"3487211925"
+#define kWeiboRedirectUrl @"http://corner.songguokeji.com:8000/callback.php"
 
 /*user*/
 //登陆
@@ -103,6 +106,7 @@
 #define USER_INFO_CHANGE @"USER_INFO_CHANGE"
 #define USER_DETAIL_CHANGE @"USER_DETAIL_CHANGE"
 #define USER_LOGIN_CHANGE @"USER_LOGIN_CHANGE"
+#define WEIBO_LOGIN_SUCCESSED @"weiboLoginSuccessed"
 
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 //内存管理的安全释放对象

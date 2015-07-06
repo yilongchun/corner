@@ -18,6 +18,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(weiboLoginSuccessed:)
+                                                 name:WEIBO_LOGIN_SUCCESSED
+                                               object:nil];
+    
     UIImage *img = [[UIImage imageNamed:@"star_btn_v1"] stretchableImageWithLeftCapWidth:25 topCapHeight:0];
     [self.wxBtn setBackgroundImage:img forState:UIControlStateNormal];
     [self.wbBtn setBackgroundImage:img forState:UIControlStateNormal];
@@ -100,6 +105,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+/**
+ *  第三方登录
+ *
+ *  @param provider 登录平台
+ *  @param uid      uid
+ *  @param token    token
+ */
 - (void)login:(NSString *)provider uid:(NSString *)uid token:(NSString *)token{
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
@@ -167,11 +179,31 @@
     
 }
 
+#pragma mark - 微信登录
+
 - (IBAction)wxlogin:(id)sender{
     
 }
+
+#pragma mark - 微博登录
+
 - (IBAction)wblogin:(id)sender{
+    WBAuthorizeRequest *request = [WBAuthorizeRequest request];
+    request.redirectURI = kWeiboRedirectUrl;
+    request.scope = @"all";
+//    request.userInfo = @{@"SSO_From": @"SendMessageToWeiboViewController",
+//                         @"Other_Info_1": [NSNumber numberWithInt:123],
+//                         @"Other_Info_2": @[@"obj1", @"obj2"],
+//                         @"Other_Info_3": @{@"key1": @"obj1", @"key2": @"obj2"}};
+    [WeiboSDK sendRequest:request];
+}
+
+-(void)weiboLoginSuccessed:(NSNotification *)noti{
+    DLog(@"weiboLoginSuccessed\n%@",noti.userInfo);
     
+    NSString *openId = [noti.userInfo objectForKey:@"uid"];
+    NSString *token = [noti.userInfo objectForKey:@"access_token"];
+    [self login:@"weibo" uid:openId token:token];
 }
 
 #pragma mark - QQ登录

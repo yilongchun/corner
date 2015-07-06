@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 //QQ登录
 #import <TencentOpenAPI/TencentOAuth.h>
+//微博登录
+#import "WeiboSDK.h"
 @interface PreLoginViewController : UIViewController<TencentSessionDelegate>{
 
 //@interface PreLoginViewController : UIViewController{
