@@ -11,7 +11,10 @@
 #import <TencentOpenAPI/TencentOAuth.h>
 //微博登录
 #import "WeiboSDK.h"
-@interface PreLoginViewController : UIViewController<TencentSessionDelegate>{
+//微信登录
+#import "WXApi.h"
+
+@interface PreLoginViewController : UIViewController<TencentSessionDelegate,WXApiDelegate>{
 
 //@interface PreLoginViewController : UIViewController{
     //QQ登录
@@ -27,4 +30,6 @@
 - (IBAction)wxlogin:(id)sender;
 - (IBAction)wblogin:(id)sender;
 - (IBAction)qqlogin:(id)sender;
+
+
 @end

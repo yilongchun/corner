@@ -22,6 +22,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    //向微信注册
+    
+    BOOL wxFlag = [WXApi registerApp:kWeixinAppId];
+    DLog(@"%d",wxFlag);
     
     //微博登录
     [WeiboSDK enableDebugMode:YES];
@@ -33,6 +37,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(userLoginChange)
                                                  name:USER_LOGIN_CHANGE
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(sendAuthRequest:)
+                                                 name:@"weixin_login"
                                                object:nil];
     
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
@@ -63,9 +72,9 @@
     
     NSString *storyboardId = isLoggedIn ? @"RootViewController" : @"loginnav";
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *initViewController = [storyboard instantiateViewControllerWithIdentifier:storyboardId];
+    self.viewController = [storyboard instantiateViewControllerWithIdentifier:storyboardId];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = initViewController;
+    self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     
     
@@ -115,14 +124,145 @@
     
 }
 
-#pragma mark - QQ登录 微博登录
+#pragma mark - 微信登录
+
+//授权后回调 WXApiDelegate
+
+
+-(void) onReq:(BaseReq*)req{
+    if([req isKindOfClass:[GetMessageFromWXReq class]])
+    {
+        GetMessageFromWXReq *temp = (GetMessageFromWXReq *)req;
+        
+        // 微信请求App提供内容， 需要app提供内容后使用sendRsp返回
+        NSString *strTitle = [NSString stringWithFormat:@"微信请求App提供内容"];
+        NSString *strMsg = [NSString stringWithFormat:@"openID: %@", temp.openID];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        alert.tag = 1000;
+        [alert show];
+    }
+    else if([req isKindOfClass:[ShowMessageFromWXReq class]])
+    {
+        ShowMessageFromWXReq* temp = (ShowMessageFromWXReq*)req;
+        WXMediaMessage *msg = temp.message;
+        
+        //显示微信传过来的内容
+        WXAppExtendObject *obj = msg.mediaObject;
+        
+        NSString *strTitle = [NSString stringWithFormat:@"微信请求App显示内容"];
+        NSString *strMsg = [NSString stringWithFormat:@"openID: %@, 标题：%@ \n内容：%@ \n附带信息：%@ \n缩略图:%u bytes\n附加消息:%@\n", temp.openID, msg.title, msg.description, obj.extInfo, msg.thumbData.length, msg.messageExt];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else if([req isKindOfClass:[LaunchFromWXReq class]])
+    {
+        LaunchFromWXReq *temp = (LaunchFromWXReq *)req;
+        WXMediaMessage *msg = temp.message;
+        
+        //从微信启动App
+        NSString *strTitle = [NSString stringWithFormat:@"从微信启动"];
+        NSString *strMsg = [NSString stringWithFormat:@"openID: %@, messageExt:%@", temp.openID, msg.messageExt];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+}
+
+-(void) onResp:(BaseResp*)resp{
+    if([resp isKindOfClass:[SendMessageToWXResp class]])
+    {
+        NSString *strTitle = [NSString stringWithFormat:@"发送媒体消息结果"];
+        NSString *strMsg = [NSString stringWithFormat:@"errcode:%d", resp.errCode];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else if([resp isKindOfClass:[SendAuthResp class]])
+    {
+        SendAuthResp *temp = (SendAuthResp*)resp;
+        
+        switch (temp.errCode) {
+            case 0:
+            {
+                NSString *code = temp.code;
+                [self getAccess_token:code];
+                
+                
+            }
+                break;
+            case -4:
+                
+                break;
+            case 2:
+                
+                break;
+            default:
+                break;
+        }
+        
+        
+        
+//        NSString *strTitle = [NSString stringWithFormat:@"Auth结果"];
+//        NSString *strMsg = [NSString stringWithFormat:@"code:%@,state:%@,errcode:%d", temp.code, temp.state, temp.errCode];
+//        
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        [alert show];
+    }
+    else if ([resp isKindOfClass:[AddCardToWXCardPackageResp class]])
+    {
+        AddCardToWXCardPackageResp* temp = (AddCardToWXCardPackageResp*)resp;
+        NSMutableString* cardStr = [[NSMutableString alloc] init];
+        for (WXCardItem* cardItem in temp.cardAry) {
+            [cardStr appendString:[NSString stringWithFormat:@"cardid:%@ cardext:%@ cardstate:%lu\n",cardItem.cardId,cardItem.extMsg,cardItem.cardState]];
+        }
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"add card resp" message:cardStr delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+}
+
+-(void)getAccess_token:(NSString *)wxCode
+{
+    NSString *url =[NSString stringWithFormat:@"https://api.weixin.qq.com/sns/oauth2/access_token?appid=%@&secret=%@&code=%@&grant_type=authorization_code",kWeixinAppId,kWeixinAppSecret,wxCode];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSURL *zoneUrl = [NSURL URLWithString:url];
+        NSString *zoneStr = [NSString stringWithContentsOfURL:zoneUrl encoding:NSUTF8StringEncoding error:nil];
+        NSData *data = [zoneStr dataUsingEncoding:NSUTF8StringEncoding];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (data) {
+                NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+//                NSString *access_token = [dic objectForKey:@"access_token"];
+//                NSString *openid = [dic objectForKey:@"openid"];
+                [[NSNotificationCenter defaultCenter] postNotificationName:WEIXIN_LOGIN_SUCCESSED object:nil userInfo:dic];
+            }
+        });
+    });
+}
+
+
+
+- (void)sendAuthRequest:(NSNotification *)noti
+{
+    SendAuthReq* req = [[SendAuthReq alloc] init];
+    req.scope = @"snsapi_message,snsapi_userinfo,snsapi_friend,snsapi_contact"; // @"post_timeline,sns"
+//    req.state = @"xxx";
+//    req.openID = @"0c806938e2413ce73eef92cc3";
+    
+    UIViewController *vc = [noti.userInfo objectForKey:@"viewcontroller"];
+    
+    [WXApi sendAuthReq:req viewController:vc delegate:self];
+}
+
+#pragma mark - QQ登录 微博登录 微信登录
 //QQ登录
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
-    return [TencentOAuth HandleOpenURL:url] || [WeiboSDK handleOpenURL:url delegate:self];;
+    return [TencentOAuth HandleOpenURL:url] || [WeiboSDK handleOpenURL:url delegate:self] || [WXApi handleOpenURL:url delegate:self];
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
-    return [TencentOAuth HandleOpenURL:url] || [WeiboSDK handleOpenURL:url delegate:self ];
+    return [TencentOAuth HandleOpenURL:url] || [WeiboSDK handleOpenURL:url delegate:self] || [WXApi handleOpenURL:url delegate:self];
 }
 
 #pragma mark - 微博登录 代理

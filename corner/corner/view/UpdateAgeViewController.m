@@ -15,6 +15,7 @@
 @end
 
 @implementation UpdateAgeViewController
+@synthesize birthday;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -23,7 +24,7 @@
     UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStyleDone target:self action:@selector(done)];
     self.navigationItem.rightBarButtonItem = done;
     
-    if (self.birthday != nil && [self.birthday isEqualToString:@"1900-01-01"]) {
+    if (birthday == nil || [birthday isEqualToString:@""] || (birthday != nil && [birthday isEqualToString:@"1900-01-01"])) {
         self.ageLabel.text = @"未填";
     }else{
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

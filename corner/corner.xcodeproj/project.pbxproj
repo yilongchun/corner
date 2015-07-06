@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		52C808A3D41D3545DB12D522 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B82A8F5DCFB44C8AAE87EE3F /* libPods.a */; };
+		E413E0551B4A681F00784187 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E413E0511B4A681F00784187 /* libWeChatSDK.a */; };
+		E413E0561B4A681F00784187 /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = E413E0521B4A681F00784187 /* read_me.txt */; };
 		E446F2431B325F240060E9D7 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E446F0741B325F230060E9D7 /* AFHTTPRequestOperation.m */; };
 		E446F2441B325F240060E9D7 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E446F0761B325F230060E9D7 /* AFHTTPRequestOperationManager.m */; };
 		E446F2451B325F240060E9D7 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E446F0781B325F230060E9D7 /* AFHTTPSessionManager.m */; };
@@ -279,6 +281,10 @@
 		17658371F7363BD5E5367C51 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B82A8F5DCFB44C8AAE87EE3F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0B93E7C399943FCCF09B2AF /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		E413E0511B4A681F00784187 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		E413E0521B4A681F00784187 /* read_me.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = read_me.txt; sourceTree = "<group>"; };
+		E413E0531B4A681F00784187 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		E413E0541B4A681F00784187 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		E446F0731B325F230060E9D7 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		E446F0741B325F230060E9D7 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		E446F0751B325F230060E9D7 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -773,6 +779,7 @@
 			files = (
 				E44BE9E41B4A590800D35DE8 /* CoreText.framework in Frameworks */,
 				E44BE9E21B4A58F000D35DE8 /* ImageIO.framework in Frameworks */,
+				E413E0551B4A681F00784187 /* libWeChatSDK.a in Frameworks */,
 				E44BE9E01B4A58E600D35DE8 /* QuartzCore.framework in Frameworks */,
 				E4D3C3A01B411C9700ED9652 /* libstdc++.dylib in Frameworks */,
 				E4D3C39E1B411C8400ED9652 /* CoreTelephony.framework in Frameworks */,
@@ -808,6 +815,17 @@
 				D0B93E7C399943FCCF09B2AF /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		E413E0501B4A681F00784187 /* WeChatSDK */ = {
+			isa = PBXGroup;
+			children = (
+				E413E0511B4A681F00784187 /* libWeChatSDK.a */,
+				E413E0521B4A681F00784187 /* read_me.txt */,
+				E413E0531B4A681F00784187 /* WXApi.h */,
+				E413E0541B4A681F00784187 /* WXApiObject.h */,
+			);
+			path = WeChatSDK;
 			sourceTree = "<group>";
 		};
 		E446F0721B325F230060E9D7 /* AFNetworking */ = {
@@ -1802,6 +1820,7 @@
 				E446F3171B3294D10060E9D7 /* leanChat */,
 				E446F2111B325F240060E9D7 /* view */,
 				E44BE9D11B4A589A00D35DE8 /* libWeiboSDK */,
+				E413E0501B4A681F00784187 /* WeChatSDK */,
 				E446F0721B325F230060E9D7 /* AFNetworking */,
 				E446F09F1B325F230060E9D7 /* Category */,
 				E446F1851B325F240060E9D7 /* DOPDropDownMenu */,
@@ -1943,6 +1962,7 @@
 				E446F2541B325F240060E9D7 /* AMap.bundle in Resources */,
 				E46E8DE41B4677EB006CAE06 /* ChooseXingViewController.xib in Resources */,
 				E446F2E81B325F240060E9D7 /* sr_refresh@2X.png in Resources */,
+				E413E0561B4A681F00784187 /* read_me.txt in Resources */,
 				E4DBFAEB1B44DF1F002004BC /* Address.plist in Resources */,
 				E4F59DF01B425F3900A6F002 /* WodeyaoyueTableViewCell2.xib in Resources */,
 				E446F2F41B325F240060E9D7 /* UserDetailTableViewCell5.xib in Resources */,
@@ -2358,6 +2378,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/corner/libWeiboSDK",
+					"$(PROJECT_DIR)/corner/WeChatSDK",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -2432,6 +2453,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/corner/libWeiboSDK",
+					"$(PROJECT_DIR)/corner/WeChatSDK",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",

@@ -23,6 +23,9 @@
 //微博登录
 #define kWeiboAppKay @"3487211925"
 #define kWeiboRedirectUrl @"http://corner.songguokeji.com:8000/callback.php"
+//微信登录
+#define kWeixinAppId @"wxd96d1f7d05fe7b81"
+#define kWeixinAppSecret @"34b37037fb862d1acf9f813c63232bd7"
 
 /*user*/
 //登陆
@@ -107,6 +110,7 @@
 #define USER_DETAIL_CHANGE @"USER_DETAIL_CHANGE"
 #define USER_LOGIN_CHANGE @"USER_LOGIN_CHANGE"
 #define WEIBO_LOGIN_SUCCESSED @"weiboLoginSuccessed"
+#define WEIXIN_LOGIN_SUCCESSED @"weixinLoginSuccessed"
 
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 //内存管理的安全释放对象

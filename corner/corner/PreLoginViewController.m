@@ -22,6 +22,14 @@
                                              selector:@selector(weiboLoginSuccessed:)
                                                  name:WEIBO_LOGIN_SUCCESSED
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(weixinLoginSuccessed:)
+                                                 name:WEIXIN_LOGIN_SUCCESSED
+                                               object:nil];
+//    if (![WXApi isWXAppInstalled]) {
+//        [self.wxBtn setHidden:YES];
+//    }
+    
     
     UIImage *img = [[UIImage imageNamed:@"star_btn_v1"] stretchableImageWithLeftCapWidth:25 topCapHeight:0];
     [self.wxBtn setBackgroundImage:img forState:UIControlStateNormal];
@@ -182,7 +190,16 @@
 #pragma mark - 微信登录
 
 - (IBAction)wxlogin:(id)sender{
+    NSDictionary *userinfo = [NSDictionary dictionaryWithObjectsAndKeys:self,@"viewcontroller", nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"weixin_login" object:nil userInfo:userinfo];
+}
+
+-(void)weixinLoginSuccessed:(NSNotification *)noti{
+    DLog(@"weixinLoginSuccessed\n%@",noti.userInfo);
     
+    NSString *openId = [noti.userInfo objectForKey:@"openid"];
+    NSString *token = [noti.userInfo objectForKey:@"access_token"];
+    [self login:@"weixin" uid:openId token:token];
 }
 
 #pragma mark - 微博登录

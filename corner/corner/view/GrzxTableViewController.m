@@ -1281,7 +1281,7 @@
                 cell.textLabel.text = @"年龄";
                 
                 NSString *birthday = [userinfo objectForKey:@"birthday"];
-                if (birthday != nil && [birthday isEqualToString:@"1900-01-01"]) {
+                if (birthday == nil || [birthday isEqualToString:@""] || (birthday != nil && [birthday isEqualToString:@"1900-01-01"])) {
                     cell.detailTextLabel.text = @"未填";
                 }else{
                     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
