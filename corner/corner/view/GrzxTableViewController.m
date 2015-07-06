@@ -28,6 +28,8 @@
 #import "ChooseXingViewController.h"
 #import "XiangxueViewController.h"
 #import "MyLovePartViewController.h"
+#import "UpdateAgeViewController.h"
+#import "NSDate+Addition.h"
 //#import "MLPhotoBrowserAssets.h"
 //#import "MLPhotoBrowserViewController.h"
 //#import "UIButton+WebCache.h"
@@ -1274,8 +1276,20 @@
                 }
                 break;
             case 6:
+            {
                 cell.textLabel.text = @"年龄";
-                cell.detailTextLabel.text = [age isEqualToString:@""] ? @"未填" : age;
+                
+                NSString *birthday = [userinfo objectForKey:@"birthday"];
+                if (birthday != nil && [birthday isEqualToString:@"1900-01-01"]) {
+                    cell.detailTextLabel.text = @"未填";
+                }else{
+                    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+                    NSDate *date= [dateFormatter dateFromString:birthday];
+                    NSInteger age = [NSDate ageWithDateOfBirth:date];
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld",(long)age];
+                }
+            }
                 break;
             case 7:
                 cell.textLabel.text = @"职业";
@@ -1472,7 +1486,11 @@
                     break;
                 case 6://年龄 进入下个界面
                 {
-                    
+                    UpdateAgeViewController *vc = [[UpdateAgeViewController alloc] init];
+                    NSString *birthday = [userinfo objectForKey:@"birthday"];
+                    vc.title = @"修改年龄";
+                    vc.birthday = birthday;
+                    [self.navigationController pushViewController:vc animated:YES];
                 }
                     break;
                 case 7://职业

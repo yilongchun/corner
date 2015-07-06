@@ -14,4 +14,6 @@
 + (NSDate *)dateWithYear:(NSInteger)year month:(NSUInteger)month day:(NSUInteger)day;
 
 - (NSString *)dateWithFormat:(NSString *)format;
+
++ (NSInteger)ageWithDateOfBirth:(NSDate *)date;
 @end

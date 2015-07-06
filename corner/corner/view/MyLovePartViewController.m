@@ -56,11 +56,6 @@
         default:
             break;
     }
-    
-    
-    
-    
-    
     UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithTitle:@"确认" style:UIBarButtonItemStyleDone target:self action:@selector(done)];
     self.navigationItem.rightBarButtonItem = done;
     

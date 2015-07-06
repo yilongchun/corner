@@ -218,6 +218,8 @@
 		E446F3251B32968B0060E9D7 /* LCEChatRoomVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E446F3211B32968B0060E9D7 /* LCEChatRoomVC.m */; };
 		E44BE9CA1B4A0F3300D35DE8 /* MyLovePartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E44BE9C81B4A0F3300D35DE8 /* MyLovePartViewController.m */; };
 		E44BE9CB1B4A0F3300D35DE8 /* MyLovePartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E44BE9C91B4A0F3300D35DE8 /* MyLovePartViewController.xib */; };
+		E44BE9CF1B4A181000D35DE8 /* UpdateAgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E44BE9CD1B4A181000D35DE8 /* UpdateAgeViewController.m */; };
+		E44BE9D01B4A181000D35DE8 /* UpdateAgeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E44BE9CE1B4A181000D35DE8 /* UpdateAgeViewController.xib */; };
 		E44D47EE1B325DA40064404B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E44D47ED1B325DA40064404B /* main.m */; };
 		E44D47F11B325DA40064404B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E44D47F01B325DA40064404B /* AppDelegate.m */; };
 		E44D47F71B325DA40064404B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E44D47F51B325DA40064404B /* Main.storyboard */; };
@@ -684,6 +686,9 @@
 		E44BE9C71B4A0F3300D35DE8 /* MyLovePartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLovePartViewController.h; sourceTree = "<group>"; };
 		E44BE9C81B4A0F3300D35DE8 /* MyLovePartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLovePartViewController.m; sourceTree = "<group>"; };
 		E44BE9C91B4A0F3300D35DE8 /* MyLovePartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyLovePartViewController.xib; sourceTree = "<group>"; };
+		E44BE9CC1B4A181000D35DE8 /* UpdateAgeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateAgeViewController.h; sourceTree = "<group>"; };
+		E44BE9CD1B4A181000D35DE8 /* UpdateAgeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateAgeViewController.m; sourceTree = "<group>"; };
+		E44BE9CE1B4A181000D35DE8 /* UpdateAgeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdateAgeViewController.xib; sourceTree = "<group>"; };
 		E44D47E81B325DA40064404B /* corner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = corner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E44D47EC1B325DA40064404B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E44D47ED1B325DA40064404B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1571,6 +1576,9 @@
 				E4DBFAF61B4529A5002004BC /* XuanshiViewController.h */,
 				E4DBFAF71B4529A5002004BC /* XuanshiViewController.m */,
 				E4DBFAF81B4529A5002004BC /* XuanshiViewController.xib */,
+				E44BE9CC1B4A181000D35DE8 /* UpdateAgeViewController.h */,
+				E44BE9CD1B4A181000D35DE8 /* UpdateAgeViewController.m */,
+				E44BE9CE1B4A181000D35DE8 /* UpdateAgeViewController.xib */,
 				E46E8DD31B4666DB006CAE06 /* ChooseZhiyeViewController.h */,
 				E46E8DD41B4666DB006CAE06 /* ChooseZhiyeViewController.m */,
 				E46E8DD51B4666DB006CAE06 /* ChooseZhiyeViewController.xib */,
@@ -1894,6 +1902,7 @@
 				E4F59DF01B425F3900A6F002 /* WodeyaoyueTableViewCell2.xib in Resources */,
 				E446F2F41B325F240060E9D7 /* UserDetailTableViewCell5.xib in Resources */,
 				E46E8DE91B467D7D006CAE06 /* XiangxueViewController.xib in Resources */,
+				E44BE9D01B4A181000D35DE8 /* UpdateAgeViewController.xib in Resources */,
 				E4DBFAF01B4517E3002004BC /* NichengUpdateViewController.xib in Resources */,
 				E446F3021B325F240060E9D7 /* GrzxTableViewCell.xib in Resources */,
 				E46928421B3AA3550094CA7A /* TongchengyaoyueTableViewCell.xib in Resources */,
@@ -2120,6 +2129,7 @@
 				E446F2AC1B325F240060E9D7 /* UIViewController+DismissKeyboard.m in Sources */,
 				E446F26F1B325F240060E9D7 /* NSObject+Blocks.m in Sources */,
 				E446F2FB1B325F240060E9D7 /* DongtaiTableViewCellOther.m in Sources */,
+				E44BE9CF1B4A181000D35DE8 /* UpdateAgeViewController.m in Sources */,
 				E446F2DE1B325F240060E9D7 /* SDWebImageManager.m in Sources */,
 				E4DBFAE91B44D477002004BC /* UIView+RGSize.m in Sources */,
 				E446F2B81B325F240060E9D7 /* DOPDropDownMenu.m in Sources */,

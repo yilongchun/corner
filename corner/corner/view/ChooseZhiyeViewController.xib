@@ -21,7 +21,7 @@
                     <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                     <subviews>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="选择下面或自填" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="ffE-Wo-SaH">
-                            <rect key="frame" x="1" y="10" width="320" height="50"/>
+                            <rect key="frame" x="1" y="10" width="318" height="50"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="jF3-ic-yBI"/>
@@ -34,7 +34,7 @@
                     <constraints>
                         <constraint firstItem="ffE-Wo-SaH" firstAttribute="leading" secondItem="FKe-6G-a7C" secondAttribute="leading" constant="1" id="EaM-Wj-ZlR"/>
                         <constraint firstAttribute="bottom" secondItem="ffE-Wo-SaH" secondAttribute="bottom" constant="10" id="FR9-oq-ep0"/>
-                        <constraint firstAttribute="width" secondItem="ffE-Wo-SaH" secondAttribute="width" id="TJW-ZN-93t"/>
+                        <constraint firstAttribute="width" secondItem="ffE-Wo-SaH" secondAttribute="width" constant="2" id="TJW-ZN-93t"/>
                         <constraint firstItem="ffE-Wo-SaH" firstAttribute="top" secondItem="FKe-6G-a7C" secondAttribute="top" constant="10" id="uVH-eN-LaY"/>
                         <constraint firstAttribute="trailing" secondItem="ffE-Wo-SaH" secondAttribute="trailing" constant="1" id="wOo-cj-u4G"/>
                     </constraints>
