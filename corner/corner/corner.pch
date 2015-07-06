@@ -24,6 +24,8 @@
 /*user*/
 //登陆
 #define USER_LOGIN_URL @"/user/login"
+//第三方登陆
+#define USER_AUTH_URL @"/user/auth"
 //注册
 #define USER_REGISTER_URL @"/user/register"
 //附近的人列表

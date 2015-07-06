@@ -11,7 +11,8 @@
 #import <AVOSCloud/AVOSCloud.h>
 #import "CDUserFactory.h"
 
-//#import "TencentOpenAPI/TencentOAuth.h"
+//QQ登录
+#import "TencentOpenAPI/TencentOAuth.h"
 
 @interface AppDelegate ()
 
@@ -89,13 +90,6 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-//- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
-//    return [TencentOAuth HandleOpenURL:url];
-//}
-//
-//- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
-//    return [TencentOAuth HandleOpenURL:url];
-//}
 
 /**
  *  退出登录
@@ -105,7 +99,7 @@
     [UD removeObjectForKey:@"isLogin"];//移除登录状态
     [UD removeObjectForKey:USER_ID];//移除用户ID
     [UD removeObjectForKey:[NSString stringWithFormat:@"%@%@",USER_TOKEN_ID,USER_ID]];//移除token
-    //退出会话
+    //退出聊天
     [[CDIM sharedInstance] closeWithCallback:^(BOOL succeeded, NSError *error) {
         DLog(@"%@",error);
     }];
@@ -115,6 +109,16 @@
     UIViewController *initViewController = [storyboard instantiateViewControllerWithIdentifier:storyboardId];
     self.window.rootViewController = initViewController;
     
+}
+
+#pragma mark - QQ登录
+//QQ登录
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+    return [TencentOAuth HandleOpenURL:url];
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
+    return [TencentOAuth HandleOpenURL:url];
 }
 
 @end
