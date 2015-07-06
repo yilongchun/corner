@@ -46,7 +46,20 @@
     grayImage = [UIImage imageNamed:@"btn_gray"];
     grayImage = [grayImage stretchableImageWithLeftCapWidth:floorf(grayImage.size.width/2) topCapHeight:0];
     
-    array = @[@"笑容",@"鼻梁",@"眼睛",@"酒窝",@"腹肌",@"络腮胡",@"腰肌",@"胸肌",@"富有财气的大鼻子",@"傻笑",@"磁性声音",@"只懂赚钱男",@"黝黑的皮肤"];
+    switch ([_sexnum intValue]) {
+        case 0:
+            array = @[@"笑容",@"鼻梁",@"眼睛",@"酒窝",@"腹肌",@"络腮胡",@"腰肌",@"胸肌",@"富有财气的大鼻子",@"傻笑",@"磁性声音",@"只懂赚钱男",@"黝黑的皮肤"];
+            break;
+        case 1:
+            array = @[@"美臀",@"美胸",@"美腿",@"香肩",@"小蛮腰",@"性感双唇",@"芊芊玉手",@"锁骨",@"酒窝"];
+            break;
+        default:
+            break;
+    }
+    
+    
+    
+    
     
     UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithTitle:@"确认" style:UIBarButtonItemStyleDone target:self action:@selector(done)];
     self.navigationItem.rightBarButtonItem = done;

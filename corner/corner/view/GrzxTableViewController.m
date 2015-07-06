@@ -1549,7 +1549,9 @@
                 {
                     MyLovePartViewController *vc = [[MyLovePartViewController alloc] init];
                     NSString *manyi = [userinfo objectForKey:@"manyi"];
+                    NSNumber *sexnum = [userinfo objectForKey:@"sex"];
                     vc.part = manyi;
+                    vc.sexnum = sexnum;
                     vc.title = @"最满意的部位";
                     [self.navigationController pushViewController:vc animated:YES];
                 }

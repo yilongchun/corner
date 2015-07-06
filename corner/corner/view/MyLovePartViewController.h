@@ -12,5 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UIScrollView *myscrollview;
 @property (nonatomic, strong) NSString *part;
+@property (nonatomic, strong) NSNumber *sexnum;
 
 @end
