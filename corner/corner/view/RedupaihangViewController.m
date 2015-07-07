@@ -9,7 +9,7 @@
 #import "RedupaihangViewController.h"
 #import "PaihangTableViewCell.h"
 #import <QuartzCore/QuartzCore.h>
-
+#import "UserDetailTableViewController.h"
 #define cellIdentifier @"paihangcell"
 
 #import "SVPullToRefresh.h"
@@ -228,7 +228,7 @@
     NSNumber *userid = [info objectForKey:@"id"];
     NSString *nickname = [info objectForKey:@"nickname"];
     NSNumber *sexnum = [info objectForKey:@"sex"];
-    NSString *age = [info objectForKey:@"age"];
+//    NSString *age = [info objectForKey:@"age"];
     NSString *zhiye = [info objectForKey:@"zhiye"];
     NSString *avatar_url = [info objectForKey:@"avatar_url"];
     if (indexPath.row < 3) {
@@ -270,7 +270,7 @@
     }else{
         cell.leftTopView.backgroundColor = NORMAL_COLOR;
     }
-    cell.sortLabel.text = [NSString stringWithFormat:@"%ld",indexPath.row + 1];
+    cell.sortLabel.text = [NSString stringWithFormat:@"%d",(int)(indexPath.row + 1)];
     if ([nickname isEqualToString:@""]) {
         nickname = [userid stringValue];
     }
@@ -305,6 +305,15 @@
             break;
     }
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSDictionary *userinfo = [[dataSource objectAtIndex:indexPath.row] cleanNull];
+    NSString *nickname = [userinfo objectForKey:@"nickname"];
+    UserDetailTableViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"UserDetailTableViewController"];
+    vc.title = nickname;
+    vc.userinfo = userinfo;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{

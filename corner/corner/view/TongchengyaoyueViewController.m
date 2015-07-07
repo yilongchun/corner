@@ -9,6 +9,7 @@
 #import "TongchengyaoyueViewController.h"
 #import "TongchengyaoyueTableViewCell.h"
 #import "SVPullToRefresh.h"
+#import "YaoyueDetailViewController.h"
 
 @implementation TongchengyaoyueViewController{
     int page;//分页设置
@@ -209,6 +210,15 @@ static NSString * const reuseIdentifier = @"MyCollectionViewCell";
     
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    YaoyueDetailViewController *vc = [[YaoyueDetailViewController alloc] init];
+    vc.title = @"邀约";
+    vc.activityDic = [[dataSource objectAtIndex:indexPath.row] cleanNull];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+
 
 /*
 #pragma mark - Navigation

@@ -53,10 +53,20 @@
     
     if (self.type == 1) {
         self.xueTextField.text = self.xue;
-        selectedArr = [NSMutableArray arrayWithArray:[self.xue componentsSeparatedByString:@","]];
+        if (![self.xue isEqualToString:@""]) {
+            selectedArr = [NSMutableArray arrayWithArray:[self.xue componentsSeparatedByString:@","]];
+        }else{
+            selectedArr = [NSMutableArray array];
+        }
+        
     }else if (self.type == 2){
         self.xueTextField.text = self.shanchang;
-        selectedArr = [NSMutableArray arrayWithArray:[self.shanchang componentsSeparatedByString:@","]];
+        if (![self.shanchang isEqualToString:@""]) {
+            selectedArr = [NSMutableArray arrayWithArray:[self.shanchang componentsSeparatedByString:@","]];
+        }else{
+            selectedArr = [NSMutableArray array];
+        }
+        
     }
     
     

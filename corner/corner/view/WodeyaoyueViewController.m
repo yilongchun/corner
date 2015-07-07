@@ -10,6 +10,7 @@
 #import "WodeyaoyueTableViewCell.h"
 #import "WodeyaoyueTableViewCell2.h"
 #import "SVPullToRefresh.h"
+#import "YaoyueDetailViewController.h"
 
 @interface WodeyaoyueViewController ()<UITableViewDelegate,UITableViewDataSource>{
     UITableView *tableview1;
@@ -201,6 +202,22 @@
         
         return cell;
     }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    YaoyueDetailViewController *vc = [[YaoyueDetailViewController alloc] init];
+    vc.title = @"邀约";
+    switch (self.segmentControl.selectedSegmentIndex) {
+        case 0:
+            vc.activityDic = [[dataSource1 objectAtIndex:indexPath.row] cleanNull];
+            [self.navigationController pushViewController:vc animated:YES];
+            break;
+        case 1:
+            vc.activityDic = [[dataSource2 objectAtIndex:indexPath.row] cleanNull];
+            break;
+    }
+    
 }
 
 

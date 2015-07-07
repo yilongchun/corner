@@ -313,68 +313,64 @@
     [cell.gongkaiBtn setFrame:resetRect];
     [cell.yinsiBtn setFrame:resetRect];
     
-    for (int i = 0; i < [photo1 count]; i++) {
-        UIImageView *img = [[UIImageView alloc] initWithFrame:cell.gongkaiBtn.frame];
-        img.contentMode = UIViewContentModeScaleToFill;
-//        img.layer.cornerRadius = 5.0;
-//        img.layer.masksToBounds = YES;
-        [img setImageWithURL:[NSURL URLWithString:[[photo1 objectAtIndex:i] objectForKey:@"url"]]];
-        img.tag = i;
-        img.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageClick:)];
-        [img addGestureRecognizer:tap];
-        [cell.view1 addSubview:img];
-        
+    if ([photo1 count] == 0) {
         CGRect rect = cell.gongkaiBtn.frame;
-        
-        if (i !=0 && (i+1) % 4 == 0) {//应该换行
-            rect.origin.x = 0;
-            rect.origin.y = (i / 3) * (rect.size.height + 2);
-            cell.leadingConstraint.constant = rect.origin.x;
-            cell.topConstraint.constant = rect.origin.y;
-            
-            cell.view1HeightConstraint.constant = rect.origin.y + rect.size.height + 2;
-        }else{
-            rect.origin.x = cell.gongkaiBtn.frame.size.width + cell.gongkaiBtn.frame.origin.x + 2;
-            cell.leadingConstraint.constant = rect.origin.x;
-            cell.view1HeightConstraint.constant = rect.origin.y + rect.size.height;
+        cell.view1HeightConstraint.constant = rect.origin.y + rect.size.height;
+    }else{
+        for (int i = 0; i < [photo1 count]; i++) {
+            UIImageView *img = [[UIImageView alloc] initWithFrame:cell.gongkaiBtn.frame];
+            img.contentMode = UIViewContentModeScaleToFill;
+            [img setImageWithURL:[NSURL URLWithString:[[photo1 objectAtIndex:i] objectForKey:@"url"]]];
+            img.tag = i;
+            img.userInteractionEnabled = YES;
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageClick:)];
+            [img addGestureRecognizer:tap];
+            [cell.view1 addSubview:img];
+            CGRect rect = cell.gongkaiBtn.frame;
+            if (i !=0 && (i+1) % 4 == 0) {//应该换行
+                rect.origin.x = 0;
+                rect.origin.y = (i / 3) * (rect.size.height + 2);
+                cell.leadingConstraint.constant = rect.origin.x;
+                cell.topConstraint.constant = rect.origin.y;
+                
+                cell.view1HeightConstraint.constant = rect.origin.y + rect.size.height + 2;
+            }else{
+                rect.origin.x = cell.gongkaiBtn.frame.size.width + cell.gongkaiBtn.frame.origin.x + 2;
+                cell.leadingConstraint.constant = rect.origin.x;
+                cell.view1HeightConstraint.constant = rect.origin.y + rect.size.height;
+            }
+            [cell.gongkaiBtn setFrame:rect];
         }
-        
-        [cell.gongkaiBtn setFrame:rect];
-        
-        
-    }
-    for (int i = 0; i < [photo2 count]; i++) {
-        
-        UIImageView *img = [[UIImageView alloc] initWithFrame:cell.yinsiBtn.frame];
-        img.contentMode = UIViewContentModeScaleToFill;
-//        img.layer.cornerRadius = 5.0;
-//        img.layer.masksToBounds = YES;
-        [img setImageWithURL:[NSURL URLWithString:[[photo2 objectAtIndex:i] objectForKey:@"url"]]];
-        img.tag = i;
-        img.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageClick:)];
-        [img addGestureRecognizer:tap];
-        [cell.view2 addSubview:img];
-        
-        CGRect rect = cell.yinsiBtn.frame;
-        if (i !=0 && (i+1) % 4 == 0) {//应该换行
-            rect.origin.x = 0;
-            rect.origin.y = (i / 3) * (rect.size.height + 2);
-            cell.leadingConstraint2.constant = rect.origin.x;
-            cell.topConstraint2.constant = rect.origin.y;
-            
-            cell.view2HeightConstraint.constant = rect.origin.y + rect.size.height + 2;
-        }else{
-            rect.origin.x = cell.yinsiBtn.frame.size.width + cell.yinsiBtn.frame.origin.x + 2;
-            cell.leadingConstraint2.constant = rect.origin.x;
-            cell.view2HeightConstraint.constant = rect.origin.y + rect.size.height;
-        }
-        [cell.yinsiBtn setFrame:rect];
     }
     
-
-
+    if ([photo2 count] == 0) {
+        CGRect rect = cell.yinsiBtn.frame;
+        cell.view2HeightConstraint.constant = rect.origin.y + rect.size.height;
+    }else{
+        for (int i = 0; i < [photo2 count]; i++) {
+            UIImageView *img = [[UIImageView alloc] initWithFrame:cell.yinsiBtn.frame];
+            img.contentMode = UIViewContentModeScaleToFill;
+            [img setImageWithURL:[NSURL URLWithString:[[photo2 objectAtIndex:i] objectForKey:@"url"]]];
+            img.tag = i;
+            img.userInteractionEnabled = YES;
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageClick:)];
+            [img addGestureRecognizer:tap];
+            [cell.view2 addSubview:img];
+            CGRect rect = cell.yinsiBtn.frame;
+            if (i !=0 && (i+1) % 4 == 0) {//应该换行
+                rect.origin.x = 0;
+                rect.origin.y = (i / 3) * (rect.size.height + 2);
+                cell.leadingConstraint2.constant = rect.origin.x;
+                cell.topConstraint2.constant = rect.origin.y;
+                cell.view2HeightConstraint.constant = rect.origin.y + rect.size.height + 2;
+            }else{
+                rect.origin.x = cell.yinsiBtn.frame.size.width + cell.yinsiBtn.frame.origin.x + 2;
+                cell.leadingConstraint2.constant = rect.origin.x;
+                cell.view2HeightConstraint.constant = rect.origin.y + rect.size.height;
+            }
+            [cell.yinsiBtn setFrame:rect];
+        }
+    }
 }
 
 -(void)leftMenu{

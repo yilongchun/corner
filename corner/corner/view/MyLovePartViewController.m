@@ -58,8 +58,12 @@
     }
     UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithTitle:@"确认" style:UIBarButtonItemStyleDone target:self action:@selector(done)];
     self.navigationItem.rightBarButtonItem = done;
+    if (![self.part isEqualToString:@""]) {
+        selectedArr = [NSMutableArray arrayWithArray:[self.part componentsSeparatedByString:@","]];
+    }else{
+        selectedArr = [NSMutableArray array];
+    }
     
-    selectedArr = [NSMutableArray arrayWithArray:[self.part componentsSeparatedByString:@","]];
     
     [self addBtn];
 }

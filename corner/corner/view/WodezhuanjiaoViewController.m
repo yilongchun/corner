@@ -10,6 +10,7 @@
 #import "SVPullToRefresh.h"
 #import "WodezhuanjiaoTableViewCell.h"
 #import "FabudongtaiViewController.h"
+#import "NSDate+Extension.h"
 
 @implementation WodezhuanjiaoViewController{
     NSMutableArray *dataSource;
@@ -241,6 +242,16 @@
     NSString *post_body = [info objectForKey:@"post_body"];
 //    NSNumber *status = [info objectForKey:@"status"];
     NSNumber *user_id = [info objectForKey:@"user_id"];
+    
+    NSString *created_at = [info objectForKey:@"created_at"];
+    
+    if (![created_at isEqualToString:@""]) {
+        NSString *timeInfoWithDateString = [NSDate timeInfoWithDateString:created_at];
+        cell.dateLabel.text = timeInfoWithDateString;
+    }else{
+        [cell.dateLabel setHidden:YES];
+    }
+   
     
     NSString *avatar_url = [NSString stringWithFormat:@"%@-small",pic_url];//头像
     
