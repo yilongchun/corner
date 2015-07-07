@@ -1040,9 +1040,174 @@
         
         
     }else if (indexPath.section == 3){
-        return 50;
+        
+        CGFloat width = [UIScreen mainScreen].bounds.size.width - 15 - 10 - 33;
+        
+        switch (indexPath.row) {
+            case 2:
+            {
+                NSString *aboutme = [userinfo objectForKey:@"aboutme"];
+                aboutme =  [aboutme isEqualToString:@""] ? @"未填" : aboutme;
+                
+                UIFont *font = [UIFont systemFontOfSize:13];
+                CGSize leftTextSize;
+                CGSize textSize;
+                if ([NSString instancesRespondToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+                    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+                    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+                    NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
+                    NSStringDrawingOptions options = NSStringDrawingUsesLineFragmentOrigin;
+                    
+                    leftTextSize = [@"对爱情的看法" boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT)
+                                                           options:options
+                                                        attributes:attributes
+                                                           context:nil].size;
+                    textSize = [aboutme boundingRectWithSize:CGSizeMake(width - leftTextSize.width, MAXFLOAT)
+                                                    options:options
+                                                 attributes:attributes
+                                                    context:nil].size;
+                }
+                if (textSize.height + 17 +17 > 50) {
+                    return textSize.height + 17 + 17;
+                }else{
+                    return 50;
+                }
+            }
+                break;
+            case 11:
+            {
+                NSString *aiqing = [userinfo objectForKey:@"aiqing"];//对爱情的想法
+                aiqing =  [aiqing isEqualToString:@""] ? @"未填" : aiqing;
+                
+                UIFont *font = [UIFont systemFontOfSize:13];
+                CGSize leftTextSize;
+                CGSize textSize;
+                if ([NSString instancesRespondToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+                    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+                    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+                    NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
+                    NSStringDrawingOptions options = NSStringDrawingUsesLineFragmentOrigin;
+                    
+                    leftTextSize = [@"对爱情的看法" boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT)
+                                                           options:options
+                                                        attributes:attributes
+                                                           context:nil].size;
+                    textSize = [aiqing boundingRectWithSize:CGSizeMake(width - leftTextSize.width, MAXFLOAT)
+                                                         options:options
+                                                      attributes:attributes
+                                                         context:nil].size;
+                }
+                if (textSize.height + 17 +17 > 50) {
+                    return textSize.height + 17 + 17;
+                }else{
+                    return 50;
+                }
+            }
+                break;
+                
+            default:
+                return 50;
+                break;
+        }
+    
+        
     }else if (indexPath.section == 4){
-        return 50;
+        CGFloat width = [UIScreen mainScreen].bounds.size.width - 15 - 10 - 33;
+        switch (indexPath.row) {
+            case 0:
+            {
+                NSString *xue = [userinfo objectForKey:@"xue"];
+                xue =  [xue isEqualToString:@""] ? @"未填" : xue;
+                
+                UIFont *font = [UIFont systemFontOfSize:13];
+                CGSize leftTextSize;
+                CGSize textSize;
+                if ([NSString instancesRespondToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+                    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+                    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+                    NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
+                    NSStringDrawingOptions options = NSStringDrawingUsesLineFragmentOrigin;
+                    
+                    leftTextSize = [@"想学" boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT)
+                                                           options:options
+                                                        attributes:attributes
+                                                           context:nil].size;
+                    textSize = [xue boundingRectWithSize:CGSizeMake(width - leftTextSize.width, MAXFLOAT)
+                                                    options:options
+                                                 attributes:attributes
+                                                    context:nil].size;
+                }
+                if (textSize.height + 17 +17 > 50) {
+                    return textSize.height + 17 + 17;
+                }else{
+                    return 50;
+                }
+            }
+                break;
+            case 1:
+            {
+                NSString *chang = [userinfo objectForKey:@"chang"];
+                chang =  [chang isEqualToString:@""] ? @"未填" : chang;
+                
+                UIFont *font = [UIFont systemFontOfSize:13];
+                CGSize leftTextSize;
+                CGSize textSize;
+                if ([NSString instancesRespondToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+                    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+                    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+                    NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
+                    NSStringDrawingOptions options = NSStringDrawingUsesLineFragmentOrigin;
+                    
+                    leftTextSize = [@"擅长" boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT)
+                                                       options:options
+                                                    attributes:attributes
+                                                       context:nil].size;
+                    textSize = [chang boundingRectWithSize:CGSizeMake(width - leftTextSize.width, MAXFLOAT)
+                                                 options:options
+                                              attributes:attributes
+                                                 context:nil].size;
+                }
+                if (textSize.height + 17 +17 > 50) {
+                    return textSize.height + 17 + 17;
+                }else{
+                    return 50;
+                }
+            }
+                break;
+            case 2:
+            {
+                NSString *manyi = [userinfo objectForKey:@"manyi"];
+                manyi =  [manyi isEqualToString:@""] ? @"未填" : manyi;
+                
+                UIFont *font = [UIFont systemFontOfSize:13];
+                CGSize leftTextSize;
+                CGSize textSize;
+                if ([NSString instancesRespondToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+                    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+                    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+                    NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
+                    NSStringDrawingOptions options = NSStringDrawingUsesLineFragmentOrigin;
+                    
+                    leftTextSize = [@"最满意部位" boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT)
+                                                       options:options
+                                                    attributes:attributes
+                                                       context:nil].size;
+                    textSize = [manyi boundingRectWithSize:CGSizeMake(width - leftTextSize.width, MAXFLOAT)
+                                                   options:options
+                                                attributes:attributes
+                                                   context:nil].size;
+                }
+                if (textSize.height + 17 +17 > 50) {
+                    return textSize.height + 17 + 17;
+                }else{
+                    return 50;
+                }
+            }
+                break;
+            default:
+                return 50;
+                break;
+        }
     }
     return 0;
 }
@@ -1164,13 +1329,7 @@
             UserDetailTableViewCell3 *cell = [tableView dequeueReusableCellWithIdentifier:@"userdetailcell3"];
             if (cell == nil) {
                 cell = [[[NSBundle mainBundle] loadNibNamed:@"UserDetailTableViewCell3" owner:self options:nil] lastObject];
-                
-//                cell.btn.layer.borderColor = RGBACOLOR(90, 175, 235, 1).CGColor;
-//                cell.btn.layer.borderWidth = 1.0;
-//                cell.btn.layer.cornerRadius = 17.0;
-//                cell.btn.layer.masksToBounds = YES;
                 [cell.btn setHidden:YES];
-                //            DLog(@"cell3 init");
             }
             
             NSDictionary *activity = [[activities objectAtIndex:indexPath.row] cleanNull];
@@ -1216,7 +1375,6 @@
         NSString *xuanshi = [userinfo objectForKey:@"xuanshi"];//美丽宣誓
         NSString *qinggan = [userinfo objectForKey:@"qinggan"];//感情状况
         NSString *diqu = [userinfo objectForKey:@"diqu"];//地区
-//        NSString *age = [userinfo objectForKey:@"age"];//年龄
         NSString *zhiye = [userinfo objectForKey:@"zhiye"];//职业
         NSString *shouru = [userinfo objectForKey:@"shouru"];//收入
         NSString *shengao = [userinfo objectForKey:@"shengao"];//身高
@@ -1233,12 +1391,7 @@
         }
         
         
-        if (indexPath.row < 12) {
-            UILabel *bottom = [[UILabel alloc] initWithFrame:CGRectMake(15, 49, [UIScreen mainScreen].bounds.size.width-15, 1)];
-            bottom.backgroundColor = RGBACOLOR(229, 229, 229, 1);
-            bottom.tag = 999;
-            [cell.contentView addSubview:bottom];
-        }
+        
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
         switch (indexPath.row) {
@@ -1253,8 +1406,52 @@
                 break;
             case 2:
             {
-                cell.textLabel.text = @"自我介绍";
-                cell.detailTextLabel.text = [aboutme isEqualToString:@""] ? @"未填" : aboutme;
+                UserDetailTableViewCell5 *cell5 = [tableView dequeueReusableCellWithIdentifier:@"userdetailcell5"];
+                if (cell5 == nil) {
+                    cell5 = [[[NSBundle mainBundle] loadNibNamed:@"UserDetailTableViewCell5" owner:self options:nil] lastObject];
+                }
+                cell5.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                cell5.leftLabel.text = @"自我介绍";
+                cell5.rightLabel.text = [aboutme isEqualToString:@""] ? @"未填" : aboutme;
+                cell5.rightLabel.textAlignment = NSTextAlignmentLeft;
+                cell5.rightLabel.numberOfLines = 0;
+                CGFloat width = [UIScreen mainScreen].bounds.size.width - 15 - 10 - 33;
+                UIFont *font = [UIFont systemFontOfSize:13];
+                CGSize leftTextSize;
+                CGSize textSize;
+                if ([NSString instancesRespondToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+                    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+                    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+                    NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
+                    NSStringDrawingOptions options = NSStringDrawingUsesLineFragmentOrigin;
+                    leftTextSize = [cell5.leftLabel.text boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT)
+                                                                      options:options
+                                                                   attributes:attributes
+                                                                      context:nil].size;
+                    textSize = [cell5.rightLabel.text boundingRectWithSize:CGSizeMake(width - leftTextSize.width, MAXFLOAT)
+                                                                   options:options
+                                                                attributes:attributes
+                                                                   context:nil].size;
+                }
+                CGFloat height;
+                if (textSize.height + 17 +17 > 50) {
+                    height = textSize.height + 17 + 17;
+                }else{
+                    height = 50;
+                }
+                [cell5.contentView.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                    if ([obj isKindOfClass:[UILabel class]]) {
+                        UILabel *label = (UILabel *)obj;
+                        if (label.tag == 999) {
+                            [label removeFromSuperview];
+                        }
+                    }
+                }];
+                UILabel *bottom = [[UILabel alloc] initWithFrame:CGRectMake(15, height-1, [UIScreen mainScreen].bounds.size.width-15, 1)];
+                bottom.backgroundColor = RGBACOLOR(229, 229, 229, 1);
+                bottom.tag = 999;
+                [cell5.contentView addSubview:bottom];
+                return cell5;
             }
                 
                 break;
@@ -1309,43 +1506,77 @@
                 cell.detailTextLabel.text = [tizhong isEqualToString:@""] ? @"未填" : tizhong;
                 break;
             case 11:
-                cell.textLabel.text = @"对爱情的看法";
-                cell.detailTextLabel.text = [aiqing isEqualToString:@""] ? @"未填" : aiqing;
+            {
+                
+                UserDetailTableViewCell5 *cell5 = [tableView dequeueReusableCellWithIdentifier:@"userdetailcell6"];
+                if (cell5 == nil) {
+                    cell5 = [[[NSBundle mainBundle] loadNibNamed:@"UserDetailTableViewCell5" owner:self options:nil] lastObject];
+                }
+                cell5.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                cell5.leftLabel.text = @"对爱情的看法";
+                cell5.rightLabel.text = [aiqing isEqualToString:@""] ? @"未填" : aiqing;
+                cell5.rightLabel.textAlignment = NSTextAlignmentLeft;
+                cell5.rightLabel.numberOfLines = 0;
+                CGFloat width = [UIScreen mainScreen].bounds.size.width - 15 - 10 - 33;
+                UIFont *font = [UIFont systemFontOfSize:13];
+                CGSize leftTextSize;
+                CGSize textSize;
+                if ([NSString instancesRespondToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+                    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+                    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+                    NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
+                    NSStringDrawingOptions options = NSStringDrawingUsesLineFragmentOrigin;
+                    leftTextSize = [cell5.leftLabel.text boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT)
+                                                           options:options
+                                                        attributes:attributes
+                                                           context:nil].size;
+                    textSize = [cell5.rightLabel.text boundingRectWithSize:CGSizeMake(width - leftTextSize.width, MAXFLOAT)
+                                                    options:options
+                                                 attributes:attributes
+                                                    context:nil].size;
+                }
+                CGFloat height;
+                if (textSize.height + 17 +17 > 50) {
+                    height = textSize.height + 17 + 17;
+                }else{
+                    height = 50;
+                }
+                UILabel *bottom = [[UILabel alloc] initWithFrame:CGRectMake(15, height-1, [UIScreen mainScreen].bounds.size.width-15, 1)];
+                bottom.backgroundColor = RGBACOLOR(229, 229, 229, 1);
+                bottom.tag = 999;
+                [cell5.contentView addSubview:bottom];
+                return cell5;
+            }
                 break;
             case 12:
             {
                 cell.textLabel.text = @"对性的看法";
                 cell.detailTextLabel.text = [xing isEqualToString:@""] ? @"未填" : xing;
-                [cell.contentView.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                    if ([obj isKindOfClass:[UILabel class]]) {
-                        UILabel *label = (UILabel *)obj;
-                        if (label.tag == 999) {
-                            [label setHidden:YES];
-                            *stop = YES;
-                        }
-                    }
-                }];
+                
             }
                 
                 break;
             default:
                 break;
         }
+        if (indexPath.row < 12) {
+            [cell.contentView.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                if ([obj isKindOfClass:[UILabel class]]) {
+                    UILabel *label = (UILabel *)obj;
+                    if (label.tag == 999) {
+                        [label removeFromSuperview];
+                    }
+                }
+            }];
+            UILabel *bottom = [[UILabel alloc] initWithFrame:CGRectMake(15, 49, [UIScreen mainScreen].bounds.size.width-15, 1)];
+            bottom.backgroundColor = RGBACOLOR(229, 229, 229, 1);
+            bottom.tag = 999;
+            [cell.contentView addSubview:bottom];
+        }
         return cell;
     }
     else if (indexPath.section == 4){
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell4"];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell4"];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.textLabel.font = [UIFont systemFontOfSize:13];
-            cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
-        }
-        if (indexPath.row < 2) {
-            UILabel *bottom = [[UILabel alloc] initWithFrame:CGRectMake(15, 49, [UIScreen mainScreen].bounds.size.width-15, 1)];
-            bottom.backgroundColor = RGBACOLOR(229, 229, 229, 1);
-            [cell.contentView addSubview:bottom];
-        }
+        
         
         NSString *xue = [userinfo objectForKey:@"xue"];//想学
         NSString *chang = [userinfo objectForKey:@"chang"];//擅长
@@ -1353,29 +1584,111 @@
         
         switch (indexPath.row) {
             case 0:
-                cell.textLabel.text = @"想学";
-                cell.detailTextLabel.text = [xue isEqualToString:@""] ? @"未填" : xue;
+            {
+                UserDetailTableViewCell5 *cell5 = [tableView dequeueReusableCellWithIdentifier:@"userdetailcell7"];
+                if (cell5 == nil) {
+                    cell5 = [[[NSBundle mainBundle] loadNibNamed:@"UserDetailTableViewCell5" owner:self options:nil] lastObject];
+                }
+                cell5.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                cell5.leftLabel.text = @"想学";
+                cell5.rightLabel.text = [xue isEqualToString:@""] ? @"未填" : xue;
+                cell5.rightLabel.textAlignment = NSTextAlignmentLeft;
+                cell5.rightLabel.numberOfLines = 0;
+                CGFloat width = [UIScreen mainScreen].bounds.size.width - 15 - 10 - 33;
+                UIFont *font = [UIFont systemFontOfSize:13];
+                CGSize leftTextSize;
+                CGSize textSize;
+                if ([NSString instancesRespondToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+                    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+                    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+                    NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
+                    NSStringDrawingOptions options = NSStringDrawingUsesLineFragmentOrigin;
+                    leftTextSize = [cell5.leftLabel.text boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT)
+                                                                      options:options
+                                                                   attributes:attributes
+                                                                      context:nil].size;
+                    textSize = [cell5.rightLabel.text boundingRectWithSize:CGSizeMake(width - leftTextSize.width, MAXFLOAT)
+                                                                   options:options
+                                                                attributes:attributes
+                                                                   context:nil].size;
+                }
+                CGFloat height;
+                if (textSize.height + 17 +17 > 50) {
+                    height = textSize.height + 17 + 17;
+                }else{
+                    height = 50;
+                }
+                UILabel *bottom = [[UILabel alloc] initWithFrame:CGRectMake(15, height-1, [UIScreen mainScreen].bounds.size.width-15, 1)];
+                bottom.backgroundColor = RGBACOLOR(229, 229, 229, 1);
+                bottom.tag = 999;
+                [cell5.contentView addSubview:bottom];
+                return cell5;
+            }
                 break;
             case 1:
-                cell.textLabel.text = @"擅长";
-                cell.detailTextLabel.text = [chang isEqualToString:@""] ? @"未填" : chang;
+            {
+                UserDetailTableViewCell5 *cell5 = [tableView dequeueReusableCellWithIdentifier:@"userdetailcell8"];
+                if (cell5 == nil) {
+                    cell5 = [[[NSBundle mainBundle] loadNibNamed:@"UserDetailTableViewCell5" owner:self options:nil] lastObject];
+                }
+                cell5.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                cell5.leftLabel.text = @"擅长";
+                cell5.rightLabel.text = [chang isEqualToString:@""] ? @"未填" : chang;
+                cell5.rightLabel.textAlignment = NSTextAlignmentLeft;
+                cell5.rightLabel.numberOfLines = 0;
+                
+                CGFloat width = [UIScreen mainScreen].bounds.size.width - 15 - 10 - 33;
+                UIFont *font = [UIFont systemFontOfSize:13];
+                CGSize leftTextSize;
+                CGSize textSize;
+                if ([NSString instancesRespondToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+                    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+                    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+                    NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
+                    NSStringDrawingOptions options = NSStringDrawingUsesLineFragmentOrigin;
+                    leftTextSize = [cell5.leftLabel.text boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT)
+                                                                      options:options
+                                                                   attributes:attributes
+                                                                      context:nil].size;
+                    textSize = [cell5.rightLabel.text boundingRectWithSize:CGSizeMake(width - leftTextSize.width, MAXFLOAT)
+                                                                   options:options
+                                                                attributes:attributes
+                                                                   context:nil].size;
+                }
+                CGFloat height;
+                if (textSize.height + 17 +17 > 50) {
+                    height = textSize.height + 17 + 17;
+                }else{
+                    height = 50;
+                }
+                UILabel *bottom = [[UILabel alloc] initWithFrame:CGRectMake(15, height-1, [UIScreen mainScreen].bounds.size.width-15, 1)];
+                bottom.backgroundColor = RGBACOLOR(229, 229, 229, 1);
+                bottom.tag = 999;
+                [cell5.contentView addSubview:bottom];
+                return cell5;
+            }
                 break;
             case 2:
-                cell.textLabel.text = @"最满意部位";
-                cell.detailTextLabel.text = [manyi isEqualToString:@""] ? @"未填" : manyi;
+            {
+                UserDetailTableViewCell5 *cell5 = [tableView dequeueReusableCellWithIdentifier:@"userdetailcell9"];
+                if (cell5 == nil) {
+                    cell5 = [[[NSBundle mainBundle] loadNibNamed:@"UserDetailTableViewCell5" owner:self options:nil] lastObject];
+                }
+                cell5.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                cell5.leftLabel.text = @"最满意部位";
+                cell5.rightLabel.text = [manyi isEqualToString:@""] ? @"未填" : manyi;
+                cell5.rightLabel.textAlignment = NSTextAlignmentLeft;
+                cell5.rightLabel.numberOfLines = 0;
+                
+                return cell5;
+            }
                 break;
             default:
                 break;
         }
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        return cell;
-        
+        return nil;
     }else{
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"testcell"];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"testcell"];
-        }
-        return cell;
+        return nil;
     }
     return nil;
 }
@@ -1435,7 +1748,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+
     switch (indexPath.section) {
         case 1://动态
         {

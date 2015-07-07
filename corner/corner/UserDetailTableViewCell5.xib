@@ -20,15 +20,16 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未填" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubh-lZ-AMM">
-                        <rect key="frame" x="279" y="17" width="26" height="16"/>
+                    <label opaque="NO" contentMode="left" verticalHuggingPriority="251" text="未填" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubh-lZ-AMM">
+                        <rect key="frame" x="51" y="17" width="269" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="ubh-lZ-AMM" secondAttribute="trailing" constant="15" id="0Kk-De-ESP"/>
+                    <constraint firstAttribute="trailing" secondItem="ubh-lZ-AMM" secondAttribute="trailing" id="0Kk-De-ESP"/>
+                    <constraint firstItem="ubh-lZ-AMM" firstAttribute="leading" secondItem="Hde-la-AZU" secondAttribute="trailing" constant="10" id="ECU-3f-VAz"/>
                     <constraint firstAttribute="centerY" secondItem="Hde-la-AZU" secondAttribute="centerY" id="ShL-xu-nZx"/>
                     <constraint firstItem="Hde-la-AZU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="UTi-AB-hs6"/>
                     <constraint firstAttribute="centerY" secondItem="ubh-lZ-AMM" secondAttribute="centerY" id="vWg-V1-OBG"/>
@@ -38,6 +39,7 @@
                 <outlet property="leftLabel" destination="Hde-la-AZU" id="n1u-5W-mvi"/>
                 <outlet property="rightLabel" destination="ubh-lZ-AMM" id="RTb-gM-Uw9"/>
             </connections>
+            <point key="canvasLocation" x="140" y="152"/>
         </tableViewCell>
     </objects>
 </document>

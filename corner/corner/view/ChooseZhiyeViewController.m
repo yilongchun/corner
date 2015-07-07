@@ -97,8 +97,8 @@
             
         }
         
-        if (textSize.width < 60) {
-            textSize.width = 60;
+        if (textSize.width < 80) {
+            textSize.width = 80;
         }
         textSize.width += 20;
         
