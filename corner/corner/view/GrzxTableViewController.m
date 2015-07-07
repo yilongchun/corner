@@ -928,25 +928,19 @@
         CGFloat width = ([UIScreen mainScreen].bounds.size.width - 20 - 8) / 4;
         CGFloat height1;
         CGFloat height2;
-        
         CGFloat imgHeight = [UIScreen mainScreen].bounds.size.width - 20;
         CGFloat jiange = 32;
-        
         CGFloat totalHeight = imgHeight + jiange + jiange + 20;
-        
-        
         if ((photo1.count + 1) % 4 == 0) {
             height1 = ((photo1.count + 1) / 4) * (width + ((photo1.count + 1) / 4 -1) * 2);
         }else{
             height1 = (((photo1.count + 1) / 4) + 1) * (width + ((photo1.count + 1) / 4) * 2);
         }
-        
         if ((photo2.count + 1) % 4 == 0) {
             height2 = ((photo2.count + 1) / 4) * (width + ((photo2.count + 1) / 4 -1) * 2);
         }else{
             height2 = (((photo2.count + 1) / 4) + 1) * (width + ((photo2.count + 1) / 4) * 2);
         }
-        
         return totalHeight + height1 + height2;
     }else if (indexPath.section == 1){//动态计算高度
         
@@ -988,9 +982,7 @@
             return 14 + height + 8;
         }
     }else if (indexPath.section == 2){//邀约计算高度
-        
         NSArray *activities = [userinfo objectForKey:@"activities"];
-        
         if ([activities count] == 0) {
             return 167;
         }else{
@@ -1037,18 +1029,13 @@
             
             return 10 + height + 10 + 34 + 10;
         }
-        
-        
-    }else if (indexPath.section == 3){
-        
+    }else if (indexPath.section == 3){//个人信息
         CGFloat width = [UIScreen mainScreen].bounds.size.width - 15 - 10 - 33;
-        
         switch (indexPath.row) {
             case 2:
             {
                 NSString *aboutme = [userinfo objectForKey:@"aboutme"];
                 aboutme =  [aboutme isEqualToString:@""] ? @"未填" : aboutme;
-                
                 UIFont *font = [UIFont systemFontOfSize:13];
                 CGSize leftTextSize;
                 CGSize textSize;
@@ -1109,8 +1096,6 @@
                 return 50;
                 break;
         }
-    
-        
     }else if (indexPath.section == 4){
         CGFloat width = [UIScreen mainScreen].bounds.size.width - 15 - 10 - 33;
         switch (indexPath.row) {
@@ -1248,11 +1233,6 @@
             GrzxTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GrzxTableViewCell"];
             if (cell == nil) {
                 cell = [[[NSBundle mainBundle] loadNibNamed:@"GrzxTableViewCell" owner:self options:nil] lastObject];
-//                UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width-20, 60) byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(5, 5)];
-//                CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-//                maskLayer.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width-20, 60);
-//                maskLayer.path = maskPath.CGPath;
-//                cell.userImageBottom.layer.mask = maskLayer;
                 
                 UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(uploadUserImagePrefix)];
                 [cell.userImage addGestureRecognizer:tap];
@@ -1413,7 +1393,7 @@
                 cell5.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 cell5.leftLabel.text = @"自我介绍";
                 cell5.rightLabel.text = [aboutme isEqualToString:@""] ? @"未填" : aboutme;
-                cell5.rightLabel.textAlignment = NSTextAlignmentLeft;
+                cell5.rightLabel.textAlignment = [aboutme isEqualToString:@""] ? NSTextAlignmentRight : NSTextAlignmentLeft;
                 cell5.rightLabel.numberOfLines = 0;
                 CGFloat width = [UIScreen mainScreen].bounds.size.width - 15 - 10 - 33;
                 UIFont *font = [UIFont systemFontOfSize:13];
@@ -1515,7 +1495,7 @@
                 cell5.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 cell5.leftLabel.text = @"对爱情的看法";
                 cell5.rightLabel.text = [aiqing isEqualToString:@""] ? @"未填" : aiqing;
-                cell5.rightLabel.textAlignment = NSTextAlignmentLeft;
+                cell5.rightLabel.textAlignment = [aiqing isEqualToString:@""] ? NSTextAlignmentRight : NSTextAlignmentLeft;
                 cell5.rightLabel.numberOfLines = 0;
                 CGFloat width = [UIScreen mainScreen].bounds.size.width - 15 - 10 - 33;
                 UIFont *font = [UIFont systemFontOfSize:13];
@@ -1592,7 +1572,7 @@
                 cell5.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 cell5.leftLabel.text = @"想学";
                 cell5.rightLabel.text = [xue isEqualToString:@""] ? @"未填" : xue;
-                cell5.rightLabel.textAlignment = NSTextAlignmentLeft;
+                cell5.rightLabel.textAlignment = [xue isEqualToString:@""] ? NSTextAlignmentRight : NSTextAlignmentLeft;
                 cell5.rightLabel.numberOfLines = 0;
                 CGFloat width = [UIScreen mainScreen].bounds.size.width - 15 - 10 - 33;
                 UIFont *font = [UIFont systemFontOfSize:13];
@@ -1634,7 +1614,7 @@
                 cell5.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 cell5.leftLabel.text = @"擅长";
                 cell5.rightLabel.text = [chang isEqualToString:@""] ? @"未填" : chang;
-                cell5.rightLabel.textAlignment = NSTextAlignmentLeft;
+                cell5.rightLabel.textAlignment = [chang isEqualToString:@""] ? NSTextAlignmentRight : NSTextAlignmentLeft;
                 cell5.rightLabel.numberOfLines = 0;
                 
                 CGFloat width = [UIScreen mainScreen].bounds.size.width - 15 - 10 - 33;
@@ -1677,7 +1657,7 @@
                 cell5.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 cell5.leftLabel.text = @"最满意部位";
                 cell5.rightLabel.text = [manyi isEqualToString:@""] ? @"未填" : manyi;
-                cell5.rightLabel.textAlignment = NSTextAlignmentLeft;
+                cell5.rightLabel.textAlignment = [manyi isEqualToString:@""] ? NSTextAlignmentRight : NSTextAlignmentLeft;
                 cell5.rightLabel.numberOfLines = 0;
                 
                 return cell5;

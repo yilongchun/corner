@@ -166,21 +166,20 @@ static NSString * const reuseIdentifier = @"ILikeCollectionViewCell";
         NSInteger age = [NSDate ageWithDateOfBirth:date];
         cell.ageLabel.text = [NSString stringWithFormat:@"%ld",(long)age];
     }
-    
-    
     cell.addressLabel.text = address;
     
-    NSMutableString *desc = [NSMutableString string];
+    NSMutableArray *arr = [NSMutableArray array];
     if (![zhiye isEqualToString:@""]) {
-        [desc appendFormat:@"%@,",zhiye];
+        [arr addObject:zhiye];
     }
     if (![shengao isEqualToString:@""]) {
-        [desc appendFormat:@"%@cm,",shengao];
+        [arr addObject:shengao];
     }
     if (![tizhong isEqualToString:@""]) {
-        [desc appendFormat:@"%@kg,",tizhong];
+        [arr addObject:tizhong];
     }
-    cell.descLabel.text = desc;
+    NSString *str = [arr componentsJoinedByString:@","];
+    cell.descLabel.text = str;
     
     return cell;
 }

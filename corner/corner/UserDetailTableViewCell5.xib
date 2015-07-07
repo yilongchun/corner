@@ -38,6 +38,7 @@
             <connections>
                 <outlet property="leftLabel" destination="Hde-la-AZU" id="n1u-5W-mvi"/>
                 <outlet property="rightLabel" destination="ubh-lZ-AMM" id="RTb-gM-Uw9"/>
+                <outlet property="rightLayoutCons" destination="0Kk-De-ESP" id="Gqt-WR-tge"/>
             </connections>
             <point key="canvasLocation" x="140" y="152"/>
         </tableViewCell>
