@@ -17,6 +17,7 @@
  *  @param value 值
  */
 -(void)updateUserInfo:(NSString *)attr value:(NSString *)value{
+    [self showHudInView:self.view hint:@"加载中"];
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     NSString *userid = [UD objectForKey:USER_ID];
     NSString *token = [UD objectForKey:[NSString stringWithFormat:@"%@%@",USER_TOKEN_ID,userid]];
@@ -31,7 +32,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", operation.responseString);
-        
+        [self hideHud];
         
         NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
         NSError *error;
@@ -51,6 +52,7 @@
             }
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self hideHud];
         NSLog(@"发生错误！%@",error);
         [self showHint:@"连接失败"];
     }];

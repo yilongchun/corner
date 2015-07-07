@@ -761,7 +761,7 @@
                     paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
                     NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
                     NSStringDrawingOptions options = NSStringDrawingUsesLineFragmentOrigin;
-                    leftTextSize = [cell5.leftLabel.text boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT)
+                    leftTextSize = [cell5.leftLabel.text boundingRectWithSize:CGSizeMake(MAXFLOAT, 16)
                                                                       options:options
                                                                    attributes:attributes
                                                                       context:nil].size;
@@ -858,7 +858,7 @@
                     paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
                     NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
                     NSStringDrawingOptions options = NSStringDrawingUsesLineFragmentOrigin;
-                    leftTextSize = [cell5.leftLabel.text boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT)
+                    leftTextSize = [cell5.leftLabel.text boundingRectWithSize:CGSizeMake(MAXFLOAT, 16)
                                                                       options:options
                                                                    attributes:attributes
                                                                       context:nil].size;
@@ -925,7 +925,7 @@
                     paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
                     NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
                     NSStringDrawingOptions options = NSStringDrawingUsesLineFragmentOrigin;
-                    leftTextSize = [cell5.leftLabel.text boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT)
+                    leftTextSize = [cell5.leftLabel.text boundingRectWithSize:CGSizeMake(MAXFLOAT, 16)
                                                                       options:options
                                                                    attributes:attributes
                                                                       context:nil].size;
@@ -968,7 +968,7 @@
                     paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
                     NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
                     NSStringDrawingOptions options = NSStringDrawingUsesLineFragmentOrigin;
-                    leftTextSize = [cell5.leftLabel.text boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT)
+                    leftTextSize = [cell5.leftLabel.text boundingRectWithSize:CGSizeMake(MAXFLOAT, 16)
                                                                       options:options
                                                                    attributes:attributes
                                                                       context:nil].size;
