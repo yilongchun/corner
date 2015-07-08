@@ -146,6 +146,12 @@
             if ([status intValue] == 200) {
                 
                 NSDictionary *message = [[dic objectForKey:@"message"] cleanNull];
+                
+                NSNumber *ret = [message objectForKey:@"ret"];
+                if ([ret intValue] == -1) {
+                    [self showHint:[message objectForKey:@"msg"]];
+                    return;
+                }
                 //                NSString *perishable_token = [message objectForKey:@"perishable_token"];
                 NSString *single_access_token = [message objectForKey:@"single_access_token"];
                 NSNumber *userid = [message objectForKey:@"id"];
