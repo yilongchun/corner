@@ -29,7 +29,7 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pub_10" translatesAutoresizingMaskIntoConstraints="NO" id="3Aw-Wa-7H4">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="pub_10" translatesAutoresizingMaskIntoConstraints="NO" id="3Aw-Wa-7H4">
                         <rect key="frame" x="297" y="42" width="8" height="13"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o7C-JH-omW">
@@ -82,6 +82,7 @@
                 <outlet property="address" destination="A8z-82-KlL" id="9Q3-p3-KJf"/>
                 <outlet property="backgroundImageView" destination="IdQ-ng-neF" id="XC2-Ip-wRZ"/>
                 <outlet property="date" destination="p74-v2-Oa4" id="Z16-SN-hD9"/>
+                <outlet property="numsLabel" destination="dQx-Mv-UIZ" id="Z3j-YO-ilz"/>
                 <outlet property="title" destination="WYn-CZ-YeB" id="cEg-p5-kxz"/>
             </connections>
             <point key="canvasLocation" x="247" y="304"/>

@@ -565,7 +565,7 @@
  *  默认图片和按钮隐藏
  */
 -(void)imageAndBtnHidden{
-    if (avatar_url == nil) {
+    if (avatar_url == nil || [avatar_url isEqualToString:@""]) {
         userImageCenter.hidden = NO;
         userImageBtn.hidden = NO;
     }else{
@@ -1740,6 +1740,7 @@
         {
             NSArray *activities = [userinfo objectForKey:@"activities"];
             if ([activities count] == 0) {
+                [self fabuyaoyue];
             }else{
                 WodeyaoyueViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WodeyaoyueViewController"];
                 [self.navigationController pushViewController:vc animated:YES];

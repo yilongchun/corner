@@ -37,6 +37,11 @@
         self.extendedLayoutIncludesOpaqueBars = YES;
     }
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loadData)
+                                                 name:@"refreshWodeyaoyue"
+                                               object:nil];
+    
     tableview1 = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 64)];
     tableview1.delegate = self;
     tableview1.dataSource = self;

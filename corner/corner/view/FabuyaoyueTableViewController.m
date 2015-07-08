@@ -439,46 +439,47 @@
 //            [currencyPicker selectedRowInComponent:typeSelectedIndexPath.row];
         }
     }else if (indexPath.section == 1){
-        if (indexPath.row == 0) {//时间
-            
-            pickerType = 0;
-            
-            if (selectedIndexPath == nil) {
-                selectedIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-            }
-            if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_7_1){
-                [self alertWithPicer:currencyPicker title:@""];
-            }else{
-                actionSheet = [[UIActionSheet alloc] initWithTitle:@"\n\n\n\n\n\n\n\n\n\n\n\n\n"
-                                                          delegate:self
-                                                 cancelButtonTitle:nil
-                                            destructiveButtonTitle:nil
-                                                 otherButtonTitles:nil, nil];
-                actionSheet.tag = 1;
-                toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(8, 0, self.view.frame.size.width-16, 44)];
-                toolbar.barStyle = UIBarStyleDefault;
-                //                [toolbar sizeToFit];
-                //                toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-                NSMutableArray *barItems = [[NSMutableArray alloc] init];
-                
-                UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(PickerCancelClick)];
-                [barItems addObject:cancelBtn];
-                
-                UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-                [barItems addObject:flexSpace];
-                
-                UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(PickerDoneClick)];
-                [barItems addObject:doneBtn];
-                [toolbar setItems:barItems animated:YES];
-                //    [toolbar sizeToFit];
-                [actionSheet addSubview:toolbar];
-                
-                [actionSheet addSubview:currencyPicker];
-                
-                [actionSheet showInView:self.view];
-            }
-//            [currencyPicker selectedRowInComponent:selectedIndexPath.row];
-        }else if (indexPath.row == 1){//位置
+//        if (indexPath.row == 0) {//时间
+//            
+//            pickerType = 0;
+//            
+//            if (selectedIndexPath == nil) {
+//                selectedIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+//            }
+//            if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_7_1){
+//                [self alertWithPicer:currencyPicker title:@""];
+//            }else{
+//                actionSheet = [[UIActionSheet alloc] initWithTitle:@"\n\n\n\n\n\n\n\n\n\n\n\n\n"
+//                                                          delegate:self
+//                                                 cancelButtonTitle:nil
+//                                            destructiveButtonTitle:nil
+//                                                 otherButtonTitles:nil, nil];
+//                actionSheet.tag = 1;
+//                toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(8, 0, self.view.frame.size.width-16, 44)];
+//                toolbar.barStyle = UIBarStyleDefault;
+//                //                [toolbar sizeToFit];
+//                //                toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+//                NSMutableArray *barItems = [[NSMutableArray alloc] init];
+//                
+//                UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(PickerCancelClick)];
+//                [barItems addObject:cancelBtn];
+//                
+//                UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+//                [barItems addObject:flexSpace];
+//                
+//                UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(PickerDoneClick)];
+//                [barItems addObject:doneBtn];
+//                [toolbar setItems:barItems animated:YES];
+//                //    [toolbar sizeToFit];
+//                [actionSheet addSubview:toolbar];
+//                
+//                [actionSheet addSubview:currencyPicker];
+//                
+//                [actionSheet showInView:self.view];
+//            }
+////            [currencyPicker selectedRowInComponent:selectedIndexPath.row];
+//        }
+        if (indexPath.row == 0){//位置
             ChooseLocationViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ChooseLocationViewController"];
             [self.navigationController pushViewController:vc animated:YES];
         }

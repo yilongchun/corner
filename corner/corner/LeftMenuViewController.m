@@ -95,6 +95,7 @@
         self.nicknameLabel.text = nickname;
     }
     [self.userimage setImageWithURL:[NSURL URLWithString:avatar_url]];
+//    [self.nicknameLabel sizeToFit];
 }
 
 - (void)didReceiveMemoryWarning {

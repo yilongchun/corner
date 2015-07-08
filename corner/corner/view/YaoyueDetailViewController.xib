@@ -8,9 +8,15 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YaoyueDetailViewController">
             <connections>
                 <outlet property="addressLabel" destination="gaD-H2-Ssm" id="9MK-If-SbO"/>
+                <outlet property="caredNumsLabel" destination="scw-zz-2nx" id="meh-Lw-B91"/>
+                <outlet property="caredNumsView" destination="hiW-mR-7iX" id="yit-Xw-XMn"/>
                 <outlet property="descLabel" destination="qCn-9y-MZn" id="dp0-3Q-8JK"/>
+                <outlet property="enjoyBtn" destination="PAa-UP-6Hy" id="XrV-yM-qWb"/>
+                <outlet property="enjoyBtnHeight" destination="JEV-FF-1vd" id="36u-er-dBI"/>
                 <outlet property="lengthLabel" destination="91Y-Zn-e4B" id="bCc-gj-ScM"/>
+                <outlet property="myscrollview" destination="DyY-EA-uuT" id="cKg-hw-Q5a"/>
                 <outlet property="nameLabel" destination="9wS-PF-HHA" id="0Zt-Vb-Dqe"/>
+                <outlet property="tipsLabel" destination="KyW-72-NI0" id="qRv-tE-8TT"/>
                 <outlet property="typeLabel" destination="v09-l4-Bdr" id="YlU-yA-zpc"/>
                 <outlet property="userImage" destination="Tkl-i0-me0" id="h4y-eT-jTM"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -107,9 +113,42 @@
                                 <action selector="enjoy:" destination="-1" eventType="touchUpInside" id="Tl8-E8-5S0"/>
                             </connections>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="以下信息仅自己可见" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KyW-72-NI0">
+                            <rect key="frame" x="15" y="290" width="117" height="16"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hiW-mR-7iX">
+                            <rect key="frame" x="1" y="314" width="318" height="35"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="报名人数" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kpr-wO-bCL">
+                                    <rect key="frame" x="15" y="14" width="52" height="16"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(共计0人)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scw-zz-2nx">
+                                    <rect key="frame" x="72" y="15" width="50" height="15"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="kpr-wO-bCL" secondAttribute="bottom" constant="5" id="EQj-kN-dyA"/>
+                                <constraint firstItem="scw-zz-2nx" firstAttribute="leading" secondItem="kpr-wO-bCL" secondAttribute="trailing" constant="5" id="Mrd-yW-Ies"/>
+                                <constraint firstAttribute="height" constant="35" id="NNA-lz-m0i"/>
+                                <constraint firstAttribute="bottom" secondItem="scw-zz-2nx" secondAttribute="bottom" constant="5" id="SKL-0H-z5Y"/>
+                                <constraint firstItem="kpr-wO-bCL" firstAttribute="leading" secondItem="hiW-mR-7iX" secondAttribute="leading" constant="15" id="kLD-KJ-Cxa"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstItem="hiW-mR-7iX" firstAttribute="width" secondItem="DyY-EA-uuT" secondAttribute="width" constant="-2" id="2Fd-r4-MGl"/>
+                        <constraint firstItem="hiW-mR-7iX" firstAttribute="top" secondItem="KyW-72-NI0" secondAttribute="bottom" constant="8" id="2fQ-8B-NwQ"/>
                         <constraint firstItem="DX1-pP-zpx" firstAttribute="leading" secondItem="DyY-EA-uuT" secondAttribute="leading" constant="1" id="3Cf-wb-fIc"/>
                         <constraint firstItem="DX1-pP-zpx" firstAttribute="top" secondItem="Tkl-i0-me0" secondAttribute="bottom" constant="15" id="89t-LI-K5V"/>
                         <constraint firstItem="PAa-UP-6Hy" firstAttribute="top" secondItem="UNz-dn-Aep" secondAttribute="bottom" constant="15" id="8qf-eH-Zku"/>
@@ -122,6 +161,9 @@
                         <constraint firstItem="Tkl-i0-me0" firstAttribute="top" secondItem="DyY-EA-uuT" secondAttribute="top" constant="15" id="Xqy-co-eiQ"/>
                         <constraint firstItem="9wS-PF-HHA" firstAttribute="top" secondItem="DyY-EA-uuT" secondAttribute="top" constant="21" id="YJ7-fE-hPq"/>
                         <constraint firstItem="9wS-PF-HHA" firstAttribute="leading" secondItem="Tkl-i0-me0" secondAttribute="trailing" constant="8" id="Zbs-Gp-9l7"/>
+                        <constraint firstItem="KyW-72-NI0" firstAttribute="top" secondItem="PAa-UP-6Hy" secondAttribute="bottom" constant="8" id="fe9-3g-Cgz"/>
+                        <constraint firstItem="KyW-72-NI0" firstAttribute="leading" secondItem="DyY-EA-uuT" secondAttribute="leading" constant="15" id="gnc-Fi-fYL"/>
+                        <constraint firstItem="hiW-mR-7iX" firstAttribute="leading" secondItem="DyY-EA-uuT" secondAttribute="leading" constant="1" id="nY8-hY-yaq"/>
                         <constraint firstItem="91Y-Zn-e4B" firstAttribute="trailing" secondItem="DX1-pP-zpx" secondAttribute="trailing" constant="-15" id="oAN-SF-wEJ"/>
                         <constraint firstItem="PAa-UP-6Hy" firstAttribute="leading" secondItem="DyY-EA-uuT" secondAttribute="leading" constant="15" id="pCY-Mc-x65"/>
                         <constraint firstItem="UNz-dn-Aep" firstAttribute="leading" secondItem="DyY-EA-uuT" secondAttribute="leading" constant="1" id="qSe-kL-3kB"/>
