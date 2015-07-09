@@ -209,13 +209,10 @@
 }
 
 -(void)loadData{
-    
-    
-    
     NSString *userid = [UD objectForKey:USER_ID];
-    
+    NSString *token = [UD objectForKey:[NSString stringWithFormat:@"%@%@",USER_TOKEN_ID,userid]];
 //    [self showHudInView:self.view hint:@"加载中"];
-    NSString *urlString = [NSString stringWithFormat:@"%@%@/%@",HOST,USER_DETAIL_URL,userid];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/%@?token=%@",HOST,USER_DETAIL_URL,userid,token];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
