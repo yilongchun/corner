@@ -7,7 +7,7 @@
 //
 
 #import "PreLoginViewController.h"
-
+#import "NSDictionary+JSONString.h"
 @interface PreLoginViewController ()
 
 @end
@@ -124,7 +124,7 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setObject:provider forKey:@"provider"];
     [parameters setObject:uid forKey:@"uid"];
-    [parameters setObject:token forKey:@"token"];
+    [parameters setObject:token forKey:@"access_token"];
     
     [self showHudInView:self.view hint:@"加载中"];
     NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,USER_AUTH_URL];
@@ -162,9 +162,7 @@
                     }];
                     [self performSelector:@selector(toMainView) withObject:nil afterDelay:0.5];
                 }else{
-                    if ([message objectForKey:@"msg"] != nil) {
-                        [self showHint:[message objectForKey:@"msg"]];
-                    }
+                    [self showHint:[message JSONString]];
                 }
                 
             }else if([status intValue] >= 600){

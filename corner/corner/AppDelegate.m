@@ -233,9 +233,62 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             if (data) {
                 NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+                
+                
+                [self checkAccessToken:dic];
 //                NSString *access_token = [dic objectForKey:@"access_token"];
 //                NSString *openid = [dic objectForKey:@"openid"];
-                [[NSNotificationCenter defaultCenter] postNotificationName:WEIXIN_LOGIN_SUCCESSED object:nil userInfo:dic];
+//                [[NSNotificationCenter defaultCenter] postNotificationName:WEIXIN_LOGIN_SUCCESSED object:nil userInfo:dic];
+            }
+        });
+    });
+}
+//校验token是否有效
+-(void)checkAccessToken:(NSDictionary *)tokeninfo{
+    NSString *access_token = [tokeninfo objectForKey:@"access_token"];
+    NSString *openid = [tokeninfo objectForKey:@"openid"];
+    NSString *refresh_token = [tokeninfo objectForKey:@"refresh_token"];
+    NSString *url =[NSString stringWithFormat:@"https://api.weixin.qq.com/sns/auth?access_token=%@&openid=%@",access_token,openid];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSURL *zoneUrl = [NSURL URLWithString:url];
+        NSString *zoneStr = [NSString stringWithContentsOfURL:zoneUrl encoding:NSUTF8StringEncoding error:nil];
+        NSData *data = [zoneStr dataUsingEncoding:NSUTF8StringEncoding];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (data) {
+                NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+                DLog(@"%@",dic);
+                if ([[dic objectForKey:@"errcode"] intValue] == 0) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:WEIXIN_LOGIN_SUCCESSED object:nil userInfo:tokeninfo];
+                }else{
+                    [self refreshToken:refresh_token];
+                }
+                
+                //                NSString *access_token = [dic objectForKey:@"access_token"];
+                //                NSString *openid = [dic objectForKey:@"openid"];
+//                [[NSNotificationCenter defaultCenter] postNotificationName:WEIXIN_LOGIN_SUCCESSED object:nil userInfo:dic];
+            }
+        });
+    });
+}
+//刷新token
+-(void)refreshToken:(NSString *)refreshToken{
+    NSString *url =[NSString stringWithFormat:@"https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=%@&grant_type=refresh_token&refresh_token=%@",kWeixinAppId,refreshToken];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSURL *zoneUrl = [NSURL URLWithString:url];
+        NSString *zoneStr = [NSString stringWithContentsOfURL:zoneUrl encoding:NSUTF8StringEncoding error:nil];
+        NSData *data = [zoneStr dataUsingEncoding:NSUTF8StringEncoding];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (data) {
+                NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+                DLog(@"%@",dic);
+                if ([[dic objectForKey:@"errcode"] intValue] == 0) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:WEIXIN_LOGIN_SUCCESSED object:nil userInfo:dic];
+                }
+                
+                //                NSString *access_token = [dic objectForKey:@"access_token"];
+                //                NSString *openid = [dic objectForKey:@"openid"];
+                //                [[NSNotificationCenter defaultCenter] postNotificationName:WEIXIN_LOGIN_SUCCESSED object:nil userInfo:dic];
             }
         });
     });
