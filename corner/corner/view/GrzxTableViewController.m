@@ -102,7 +102,7 @@
     self.navigationItem.rightBarButtonItem = item2;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(loadData)
+                                             selector:@selector(loadData:)
                                                  name:@"loadYaoyue"
                                                object:nil];
     
@@ -204,11 +204,11 @@
     int64_t delayInSeconds = 0.5;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [self loadData];
+        [self loadData:YES];
     });
 }
 
--(void)loadData{
+-(void)loadData:(BOOL)refreshAll{
     NSString *userid = [UD objectForKey:USER_ID];
     NSString *token = [UD objectForKey:[NSString stringWithFormat:@"%@%@",USER_TOKEN_ID,userid]];
 //    [self showHudInView:self.view hint:@"加载中"];
@@ -219,7 +219,10 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
     [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", operation.responseString);
-        [self.tableView.pullToRefreshView stopAnimating];
+        rectFlag = NO;
+        if (refreshAll) {
+            [self.tableView.pullToRefreshView stopAnimating];
+        }
         NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
         NSError *error;
         NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
@@ -258,14 +261,17 @@
                     }
                 }
                 
-                [self imageAndBtnHidden];
-                [self.tableView reloadData];
+//                [self imageAndBtnHidden];
                 
-                //设置第一行的公开图片和隐私图片
-                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-                GrzxTableViewCell *cell = (GrzxTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-                [self addPicture:cell];
+                if (refreshAll) {
+                    [self.tableView reloadData];
+                }else{
+                    NSMutableIndexSet *idxSet = [[NSMutableIndexSet alloc] init];
+                    [idxSet addIndex:0];
+                    [self.tableView reloadSections:idxSet withRowAnimation:UITableViewRowAnimationNone];
+                }
                 
+                [self addPicture];
                 
             }else if([status intValue] >= 600){
                 NSString *message = [dic objectForKey:@"message"];
@@ -284,7 +290,10 @@
 /**
  *  添加公开图片和隐私图片
  */
--(void)addPicture:(GrzxTableViewCell *)cell{
+-(void)addPicture{
+    //设置第一行的公开图片和隐私图片
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    GrzxTableViewCell *cell = (GrzxTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
     
     //一个cell刷新
 //    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:0 inSection:0];
@@ -304,6 +313,8 @@
     }];
     if (rectFlag == NO) {
         resetRect = cell.gongkaiBtn.frame;
+        resetRect.origin.x = 0;
+        resetRect.origin.y = 0;
         rectFlag = YES;
     }
     
@@ -312,6 +323,8 @@
     
     if ([photo1 count] == 0) {
         CGRect rect = cell.gongkaiBtn.frame;
+        cell.leadingConstraint.constant = rect.origin.x;
+        cell.topConstraint.constant = rect.origin.y;
         cell.view1HeightConstraint.constant = rect.origin.y + rect.size.height;
     }else{
         for (int i = 0; i < [photo1 count]; i++) {
@@ -327,21 +340,21 @@
             if (i !=0 && (i+1) % 4 == 0) {//应该换行
                 rect.origin.x = 0;
                 rect.origin.y = (i / 3) * (rect.size.height + 2);
-                cell.leadingConstraint.constant = rect.origin.x;
-                cell.topConstraint.constant = rect.origin.y;
-                
                 cell.view1HeightConstraint.constant = rect.origin.y + rect.size.height + 2;
             }else{
                 rect.origin.x = cell.gongkaiBtn.frame.size.width + cell.gongkaiBtn.frame.origin.x + 2;
-                cell.leadingConstraint.constant = rect.origin.x;
                 cell.view1HeightConstraint.constant = rect.origin.y + rect.size.height;
             }
+            cell.leadingConstraint.constant = rect.origin.x;
+            cell.topConstraint.constant = rect.origin.y;
             [cell.gongkaiBtn setFrame:rect];
         }
     }
     
     if ([photo2 count] == 0) {
         CGRect rect = cell.yinsiBtn.frame;
+        cell.leadingConstraint2.constant = rect.origin.x;
+        cell.topConstraint2.constant = rect.origin.y;
         cell.view2HeightConstraint.constant = rect.origin.y + rect.size.height;
     }else{
         for (int i = 0; i < [photo2 count]; i++) {
@@ -363,11 +376,17 @@
             }else{
                 rect.origin.x = cell.yinsiBtn.frame.size.width + cell.yinsiBtn.frame.origin.x + 2;
                 cell.leadingConstraint2.constant = rect.origin.x;
+                cell.topConstraint2.constant = rect.origin.y;
                 cell.view2HeightConstraint.constant = rect.origin.y + rect.size.height;
             }
             [cell.yinsiBtn setFrame:rect];
         }
     }
+    
+    
+    
+    
+    
 }
 
 -(void)leftMenu{
@@ -490,14 +509,23 @@
                 switch (viewtype) {
                     case 1:
                     {
-                        int photoId = (int)[[photo1 objectAtIndex:currentImageIndex] objectForKey:@"id"];
-                        [self deleteImg:photoId];
+                        if (currentImageIndex < [photo1 count]) {
+                            NSNumber *photoId = [[photo1 objectAtIndex:currentImageIndex] objectForKey:@"id"];
+                            [self deleteImg:photoId];
+                        }else{
+                            DLog(@"photo1数组越界 currentImageIndex:%d",currentImageIndex);
+                        }
+                        
                     }
                         break;
                     case 2:
                     {
-                        int photoId = (int)[[photo2 objectAtIndex:currentImageIndex] objectForKey:@"id"];
-                        [self deleteImg:photoId];
+                        if (currentImageIndex < [photo1 count]) {
+                            NSNumber *photoId = [[photo2 objectAtIndex:currentImageIndex] objectForKey:@"id"];
+                            [self deleteImg:photoId];
+                        }else{
+                            DLog(@"photo2数组越界 currentImageIndex:%d",currentImageIndex);
+                        }
                     }
                         break;
                     default:
@@ -561,15 +589,15 @@
 /**
  *  默认图片和按钮隐藏
  */
--(void)imageAndBtnHidden{
-    if (avatar_url == nil || [avatar_url isEqualToString:@""]) {
-        userImageCenter.hidden = NO;
-        userImageBtn.hidden = NO;
-    }else{
-        userImageCenter.hidden = YES;
-        userImageBtn.hidden = YES;
-    }
-}
+//-(void)imageAndBtnHidden{
+//    if (avatar_url == nil || [avatar_url isEqualToString:@""]) {
+//        userImageCenter.hidden = NO;
+//        userImageBtn.hidden = NO;
+//    }else{
+//        userImageCenter.hidden = YES;
+//        userImageBtn.hidden = YES;
+//    }
+//}
 
 #pragma mark - UINavigationControllerDelegate
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
@@ -697,8 +725,15 @@
             if ([status intValue] == 200) {
                 NSDictionary *message = [[dic objectForKey:@"message"] cleanNull];
                 [UD setObject:message forKey:LOGINED_USER];
-                [userImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,key]]];
-                [self imageAndBtnHidden];
+                
+                
+                GrzxTableViewCell *cell = (GrzxTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+                cell.userImageCenter.hidden = YES;
+                cell.userImageBtn.hidden = YES;
+                [cell.userImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,key]]];
+                
+                
+//                [self imageAndBtnHidden];
                 [[NSNotificationCenter defaultCenter] postNotificationName:USER_INFO_CHANGE object:nil];
             }else if([status intValue] >= 600){
                 NSString *message = [dic objectForKey:@"message"];
@@ -747,7 +782,7 @@
         }else{
             NSNumber *status = [dic objectForKey:@"status"];
             if ([status intValue] == 200) {
-                [self loadData];
+                [self loadData:NO];
             }else if([status intValue] >= 600){
                 NSString *message = [dic objectForKey:@"message"];
                 [self hideHud];
@@ -790,11 +825,14 @@
  */
 - (void)imageClick:(UITapGestureRecognizer *)recognizer
 {
-    if (recognizer.view.superview == view1) {
+    
+    if (recognizer.view.superview.tag == 1) {
         viewtype = 1;
-    }else if(recognizer.view.superview == view2){
+    }else if(recognizer.view.superview.tag == 2){
         viewtype = 2;
     }
+    
+    DLog(@"%@\tviewtype:%d",recognizer.view.superview,viewtype);
     
     currentImageIndex = (int)recognizer.view.tag;
     //弹出提示 查看大图 删除
@@ -825,14 +863,23 @@
             switch (viewtype) {
                 case 1:
                 {
-                    int photoId = (int)[[photo1 objectAtIndex:currentImageIndex] objectForKey:@"id"];
-                    [self deleteImg:photoId];
+                    if (currentImageIndex < [photo1 count]) {
+                        NSNumber *photoId = [[photo1 objectAtIndex:currentImageIndex] objectForKey:@"id"];
+                        [self deleteImg:photoId];
+                    }else{
+                        DLog(@"photo1数组越界 currentImageIndex:%d",currentImageIndex);
+                    }
+                    
                 }
                     break;
                 case 2:
                 {
-                    int photoId = (int)[[photo2 objectAtIndex:currentImageIndex] objectForKey:@"id"];
-                    [self deleteImg:photoId];
+                    if (currentImageIndex < [photo2 count]) {
+                        NSNumber *photoId = [[photo2 objectAtIndex:currentImageIndex] objectForKey:@"id"];
+                        [self deleteImg:photoId];
+                    }else{
+                        DLog(@"photo2数组越界 currentImageIndex:%d",currentImageIndex);
+                    }
                 }
                     break;
                 default:
@@ -850,14 +897,15 @@
  *
  *  @param photoId 照片id
  */
--(void)deleteImg:(int)photoId{
+-(void)deleteImg:(NSNumber *)photoId{
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     NSString *userid = [UD objectForKey:USER_ID];
     NSString *token = [UD objectForKey:[NSString stringWithFormat:@"%@%@",USER_TOKEN_ID,userid]];
     [parameters setValue:token forKey:@"token"];
     [parameters setValue:@"DELETE" forKey:@"_METHOD"];
+    [parameters setValue:photoId forKey:@"photo_id"];
     [self showHudInView:self.view hint:@"删除中"];
-    NSString *urlString = [NSString stringWithFormat:@"%@%@%d",HOST,PHOTO_DELETE_URL,photoId];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%d",HOST,PHOTO_DELETE_URL,[photoId intValue]];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -873,7 +921,7 @@
         }else{
             NSNumber *status = [dic objectForKey:@"status"];
             if ([status intValue] == 200) {
-                [self loadData];
+                [self loadData:NO];
                 [self showHint:@"删除成功"];
             }else if([status intValue] >= 600){
                 NSString *message = [dic objectForKey:@"message"];
@@ -1230,9 +1278,11 @@
                 UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(uploadUserImagePrefix)];
                 [cell.userImage addGestureRecognizer:tap];
                 
-                userImage = cell.userImage;
-                userImageCenter = cell.userImageCenter;
-                userImageBtn = cell.userImageBtn;
+                
+                
+//                userImage = cell.userImage;
+//                userImageCenter = cell.userImageCenter;
+//                userImageBtn = cell.userImageBtn;
                 
                 [cell.gongkaiBtn addTarget:self action:@selector(gongkaiBtnClick:) forControlEvents:UIControlEventTouchUpInside];
                 [cell.yinsiBtn addTarget:self action:@selector(yinsiBtnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -1243,7 +1293,15 @@
                     view2 = cell.view2;
                 }
             }
-            [cell.userImage setImageWithURL:[NSURL URLWithString:avatar_url]];
+            
+            if (avatar_url == nil || [avatar_url isEqualToString:@""]) {
+                cell.userImageCenter.hidden = NO;
+                cell.userImageBtn.hidden = NO;
+            }else{
+                cell.userImageCenter.hidden = YES;
+                cell.userImageBtn.hidden = YES;
+                [cell.userImage setImageWithURL:[NSURL URLWithString:avatar_url]];
+            }
             return cell;
         }
     }else if (indexPath.section == 1){//动态
@@ -2226,6 +2284,6 @@
     NSMutableIndexSet *idxSet = [[NSMutableIndexSet alloc] init];
     [idxSet addIndex:3];
     [idxSet addIndex:4];
-    [self.tableView reloadSections:idxSet withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView reloadSections:idxSet withRowAnimation:UITableViewRowAnimationNone];
 }
 @end
