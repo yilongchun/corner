@@ -121,7 +121,6 @@
  *  @param token    token
  */
 - (void)login:(NSString *)provider uid:(NSString *)uid token:(NSString *)token{
-    
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setObject:provider forKey:@"provider"];
     [parameters setObject:uid forKey:@"uid"];
@@ -144,33 +143,29 @@
         }else{
             NSNumber *status = [dic objectForKey:@"status"];
             if ([status intValue] == 200) {
-                
                 NSDictionary *message = [[dic objectForKey:@"message"] cleanNull];
-                
-                NSNumber *ret = [message objectForKey:@"ret"];
-                if ([ret intValue] == -1) {
-                    [self showHint:[message objectForKey:@"msg"]];
-                    return;
-                }
-                //                NSString *perishable_token = [message objectForKey:@"perishable_token"];
-                NSString *single_access_token = [message objectForKey:@"single_access_token"];
-                NSNumber *userid = [message objectForKey:@"id"];
-                [UD setObject:message forKey:LOGINED_USER];
-                [UD setObject:[userid stringValue] forKey:USER_ID];
-                [UD setObject:single_access_token forKey:[NSString stringWithFormat:@"%@%@",USER_TOKEN_ID,[userid stringValue]]];
-                [UD setObject:[NSNumber numberWithInt:1] forKey:@"isLogin"];//设置登录
-                
-                CDIM* im=[CDIM sharedInstance];
-                [im openWithClientId:[userid stringValue] callback:^(BOOL succeeded, NSError *error) {
-                    if(error){
-                        DLog(@"%@",error);
-                    }else{
-                        DLog(@"leancloud 登录成功 ");
+                if ([message objectForKey:@"single_access_token"] != nil) {
+                    //                NSString *perishable_token = [message objectForKey:@"perishable_token"];
+                    NSString *single_access_token = [message objectForKey:@"single_access_token"];
+                    NSNumber *userid = [message objectForKey:@"id"];
+                    [UD setObject:message forKey:LOGINED_USER];
+                    [UD setObject:[userid stringValue] forKey:USER_ID];
+                    [UD setObject:single_access_token forKey:[NSString stringWithFormat:@"%@%@",USER_TOKEN_ID,[userid stringValue]]];
+                    [UD setObject:[NSNumber numberWithInt:1] forKey:@"isLogin"];//设置登录
+                    CDIM* im=[CDIM sharedInstance];
+                    [im openWithClientId:[userid stringValue] callback:^(BOOL succeeded, NSError *error) {
+                        if(error){
+                            DLog(@"%@",error);
+                        }else{
+                            DLog(@"leancloud 登录成功 ");
+                        }
+                    }];
+                    [self performSelector:@selector(toMainView) withObject:nil afterDelay:0.5];
+                }else{
+                    if ([message objectForKey:@"msg"] != nil) {
+                        [self showHint:[message objectForKey:@"msg"]];
                     }
-                }];
-                
-                
-                [self performSelector:@selector(toMainView) withObject:nil afterDelay:0.5];
+                }
                 
             }else if([status intValue] >= 600){
                 NSString *message = [dic objectForKey:@"message"];
