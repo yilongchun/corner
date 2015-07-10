@@ -174,6 +174,11 @@
     }else if(indexPath.row == 1){
         if (nc2 == nil) {
             nc2 = [[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"BoyixiaViewController"]];
+            nc2.navigationBar.barTintColor = [UIColor colorWithRed:0/255. green:0/255. blue:0/255. alpha:1];
+            nc2.navigationBar.tintColor = [UIColor whiteColor];
+            [nc2.navigationBar setTitleTextAttributes:
+             @{NSFontAttributeName:[UIFont boldSystemFontOfSize:17],
+               NSForegroundColorAttributeName:[UIColor whiteColor]}];
         }
         [self.sideMenuViewController setContentViewController:nc2 animated:YES];
     }else if(indexPath.row == 2){

@@ -22,5 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *label2;
 @property (weak, nonatomic) IBOutlet UILabel *msglabel;
 - (IBAction)action1:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *btn1;
 - (IBAction)action2:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *btn2;
 @end

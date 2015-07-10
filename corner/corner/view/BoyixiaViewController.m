@@ -8,6 +8,7 @@
 
 #import "BoyixiaViewController.h"
 #import "UIImageView+LBBlurredImage.h"
+#import "UserDetailTableViewController.h"
 
 @interface BoyixiaViewController ()
 
@@ -18,33 +19,126 @@
 @implementation BoyixiaViewController{
     CGRect rect;
     BOOL flag;//动画状态
-    UIView *tempView;
+    UIImageView *tempView;
+    NSString *oldImageUrl;
+    NSMutableDictionary *firstDic;
+    NSMutableDictionary *secondDic;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+//    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     
-    
-//    UIImage *image = [UIImage imageNamed:@"example"];
-//    [self setImage:image];
-    
-    
+    tempView = [[UIImageView alloc] initWithFrame:self.userimageview.frame];
+    tempView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                          action:@selector(toDetail)];
+    [tempView addGestureRecognizer:tap];
+    [self.view addSubview:tempView];
     
     [self.msglabel removeFromSuperview];
+    self.btn1.enabled = NO;
+    self.btn2.enabled = NO;
+    [self loadData:YES];
 }
 
--(void)setImage:(UIImage *)image{
-    [self.userimageview setImage:image];
-    [self.imageview setImageToBlur:image
-                        blurRadius:kLBBlurredImageDefaultBlurRadius
-                   completionBlock:^(){
-                       NSLog(@"The blurred image has been set");
-                       
-                   }];
+-(void)toDetail{
+    NSString *nickname = [firstDic objectForKey:@"nickname"];
+    UserDetailTableViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"UserDetailTableViewController"];
+    vc.title = nickname;
+    vc.userinfo = firstDic;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+//加载照片
+-(void)loadData:(BOOL)first{
     
+    
+    if (first) {
+        NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,USER_RANDOM_URL];
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+        [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+            NSError *error;
+            NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+            if (dic == nil) {
+                NSLog(@"json parse failed \r\n");
+            }else{
+                NSNumber *status = [dic objectForKey:@"status"];
+                if ([status intValue] == 200) {
+                    NSDictionary *message = [[dic objectForKey:@"message"] cleanNull];
+                    NSString *avatar_url = [message objectForKey:@"avatar_url"];
+                    [tempView setImageWithURL:[NSURL URLWithString:avatar_url]];
+                    firstDic = [NSMutableDictionary dictionaryWithDictionary:message];
+                }else if([status intValue] >= 600){
+                    NSString *message = [dic objectForKey:@"message"];
+                    [self showHint:message];
+                    [self validateUserToken:[status intValue]];
+                }
+            }
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"发生错误！%@",error);
+            [self showHint:@"连接失败"];
+        }];
+    }else{
+        tempView = [[UIImageView alloc] initWithFrame:self.userimageview.frame];
+        tempView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                              action:@selector(toDetail)];
+        [tempView addGestureRecognizer:tap];
+        [tempView setImageWithURL:[NSURL URLWithString:oldImageUrl]];
+        [self.view addSubview:tempView];
+    }
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,USER_RANDOM_URL];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        self.btn1.enabled = YES;
+        self.btn2.enabled = YES;
+        
+        NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+        NSError *error;
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if (dic == nil) {
+            NSLog(@"json parse failed \r\n");
+        }else{
+            NSNumber *status = [dic objectForKey:@"status"];
+            if ([status intValue] == 200) {
+                NSDictionary *message = [[dic objectForKey:@"message"] cleanNull];
+                NSString *avatar_url = [message objectForKey:@"avatar_url"];
+                [self.userimageview setImageWithURL:[NSURL URLWithString:avatar_url]];
+                if (first) {
+                    secondDic = [NSMutableDictionary dictionaryWithDictionary:message];
+                }else{
+                    firstDic = [NSMutableDictionary dictionaryWithDictionary:secondDic];
+                    secondDic = [NSMutableDictionary dictionaryWithDictionary:message];
+                }
+                
+                oldImageUrl = avatar_url;
+//                [self.imageview setImageToBlur:self.userimageview.image
+//                                    blurRadius:kLBBlurredImageDefaultBlurRadius
+//                               completionBlock:^(){
+//                                   NSLog(@"The blurred image has been set");
+//                                   
+//                               }];
+            }else if([status intValue] >= 600){
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
+                [self validateUserToken:[status intValue]];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"发生错误！%@",error);
+        [self showHint:@"连接失败"];
+    }];
 }
 
 -(void)viewDidLayoutSubviews{
@@ -73,7 +167,11 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -81,27 +179,12 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 - (IBAction)leftMenu:(id)sender {
     [self.sideMenuViewController presentLeftMenuViewController];
 }
 - (IBAction)action1:(id)sender {
-    
-    
-    tempView = [[UIView alloc] initWithFrame:self.userimageview.frame];
-    UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, tempView.frame.size.width, tempView.frame.size.height)];
-    image.image = self.userimageview.image;
-    [tempView addSubview:image];
-    [self.view addSubview:tempView];
+    self.btn1.enabled = NO;
+    self.btn2.enabled = NO;
     
     CGPoint finishPoint = CGPointMake(self.view.center.x-600, tempView.center.y);
     CABasicAnimation* rotationAnimation;
@@ -116,28 +199,22 @@
         tempView.center = finishPoint;
     } completion:^(BOOL finished) {
         [tempView removeFromSuperview];
+        [self loadData:NO];
     }];
 }
 
 - (IBAction)action2:(id)sender {
-    
-    tempView = [[UIView alloc] initWithFrame:self.userimageview.frame];
-    UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, tempView.frame.size.width, tempView.frame.size.height)];
-    image.image = self.userimageview.image;
-    [tempView addSubview:image];
-    [self.view addSubview:tempView];
-    
+    self.btn1.enabled = NO;
+    self.btn2.enabled = NO;
     
     UIImageView *kiss_lip1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"kiss_lip1"]];
     kiss_lip1.center = tempView.center;
     [tempView addSubview:kiss_lip1];
     kiss_lip1.transform = CGAffineTransformMakeScale(4.0, 4.0);
-    [UIView animateWithDuration:0.5f animations:^{
+    [UIView animateWithDuration:0.3f animations:^{
         kiss_lip1.transform = CGAffineTransformMakeScale(1.0, 1.0);
     } completion:^(BOOL finished) {
-        
         [self performSelector:@selector(rightAnimation) withObject:nil afterDelay:0.2];
-        
     }];
 }
 
@@ -150,11 +227,11 @@
     rotationAnimation.cumulative = YES;
     rotationAnimation.repeatCount = 1;
     [tempView.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
-    
     [UIView animateWithDuration:0.4f animations:^{
         tempView.center = finishPoint;
     } completion:^(BOOL finished) {
         [tempView removeFromSuperview];
+        [self loadData:NO];
     }];
 }
 @end

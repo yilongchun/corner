@@ -25,6 +25,11 @@ static NSString * const reuseIdentifier = @"ILikeCollectionViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loadData)
+                                                 name:@"refreshIlike"
+                                               object:nil];
+    
     type = 0;
     
     if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {

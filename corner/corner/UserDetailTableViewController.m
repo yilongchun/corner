@@ -19,7 +19,7 @@
 #import "SVPullToRefresh.h"
 
 @interface UserDetailTableViewController (){
-    NSDictionary *userinfo;
+    NSMutableDictionary *userinfo;
     
     UIView *view1;//公开照片 父视图
     NSMutableArray *photo1;//公开照片
@@ -35,6 +35,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     
     if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -105,7 +107,7 @@
         }else{
             NSNumber *status = [dic objectForKey:@"status"];
             if ([status intValue] == 200) {
-                userinfo = [[dic objectForKey:@"message"] cleanNull];
+                userinfo = [NSMutableDictionary dictionaryWithDictionary:[[dic objectForKey:@"message"] cleanNull]];
                 NSNumber *userid = [userinfo objectForKey:@"id"];
 //                NSString *name = [userinfo objectForKey:@"name"];
                 NSString *nickname = [userinfo objectForKey:@"nickname"];
@@ -591,6 +593,16 @@
 //                cell.userImageBottom.layer.mask = maskLayer;
                 view1 = cell.view1;
             }
+            
+            NSNumber *connected = [userinfo objectForKey:@"connected"];//是否关注 1 关注 0未关注
+            
+            if ([connected boolValue]) {//已关注
+                cell.likebtn.imageView.image = [UIImage imageNamed:@"like_love1_v1"];
+            }else{//未关注
+                cell.likebtn.imageView.image = [UIImage imageNamed:@"menu9_v1_2x"];
+            }
+            
+            
             NSString *avatar_url = [userinfo objectForKey:@"avatar_url"];//头像
             [cell.userImage setImageWithURL:[NSURL URLWithString:avatar_url]];
             return cell;
@@ -1125,7 +1137,16 @@
     [parameters setValue:user_b_id forKey:@"user_b_id"];
     
     [self showHudInView:self.view hint:@"加载中"];
-    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,CONSTACTS_CREATE_URL];
+    
+    NSNumber *connected = [userinfo objectForKey:@"connected"];//是否关注 1 关注 0未关注
+    NSString *urlString;
+    if ([connected boolValue]) {//已关注
+        urlString = [NSString stringWithFormat:@"%@%@",HOST,CONTACT_DESTROY_URL];
+    }else{
+        urlString = [NSString stringWithFormat:@"%@%@",HOST,CONSTACTS_CREATE_URL];
+        
+    }
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -1141,8 +1162,17 @@
         }else{
             NSNumber *status = [dic objectForKey:@"status"];
             if ([status intValue] == 200) {
-                [self showHintInCenter:@"关注成功!"];
-                //@"取消关注"
+                UserDetailTableViewCell1 *cell = (UserDetailTableViewCell1 *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+                if ([connected boolValue]) {//已关注 设置取消
+                    [userinfo setObject:[NSNumber numberWithBool:NO] forKey:@"connected"];
+                    cell.likebtn.imageView.image = [UIImage imageNamed:@"menu9_v1_2x"];
+                    [self showHintInCenter:@"取消关注!"];
+                }else{//未关注 添加关注
+                    [userinfo setObject:[NSNumber numberWithBool:YES] forKey:@"connected"];
+                    cell.likebtn.imageView.image = [UIImage imageNamed:@"like_love1_v1"];
+                    [self showHintInCenter:@"关注成功!"];
+                }
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshIlike" object:nil];
             }else if([status intValue] >= 600){
                 NSString *message = [dic objectForKey:@"message"];
                 [self showHint:message];
@@ -1175,49 +1205,5 @@
 -(void)showLatestTime{
     DLog(@"showLatestTime");
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

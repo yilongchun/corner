@@ -42,6 +42,8 @@
 #define USER_SET_URL @"/user/set"
 //添加好友
 #define CONSTACTS_CREATE_URL @"/contact/create"
+//取消关注
+#define CONTACT_DESTROY_URL @"/contact/destroy"
 //我喜欢的,喜欢我的,相互喜欢
 #define USER_CARE_URL @"/user/care"
 //头像上传
@@ -50,6 +52,9 @@
 #define USER_RATE_URL @"/user/rate"
 //屏蔽用户
 #define USER_BLACK_URL @"/user/black"
+
+//care一下
+#define USER_RANDOM_URL @"/user/random"
 
 /*activity*/
 //发布邀约

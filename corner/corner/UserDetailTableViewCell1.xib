@@ -66,7 +66,7 @@
                             <constraint firstAttribute="width" constant="70" id="H4i-y0-5mL"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <state key="normal" title=" 喜欢" image="like_love1_v1">
+                        <state key="normal" title=" 喜欢" image="menu9_v1_2x">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
@@ -76,8 +76,8 @@
                             <constraint firstAttribute="width" constant="70" id="0z7-Ci-3j9"/>
                             <constraint firstAttribute="height" constant="40" id="bEi-ZK-kfL"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <state key="normal" title=" 聊天" image="like_love1_v1">
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <state key="normal" title=" 聊天">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
@@ -117,6 +117,6 @@
     <resources>
         <image name="compose_pic_big_add" width="24" height="24"/>
         <image name="compose_pic_big_add_highlighted" width="24" height="24"/>
-        <image name="like_love1_v1" width="18" height="16"/>
+        <image name="menu9_v1_2x" width="22" height="22"/>
     </resources>
 </document>
