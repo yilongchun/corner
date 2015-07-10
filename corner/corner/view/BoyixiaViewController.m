@@ -82,7 +82,7 @@
             }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"发生错误！%@",error);
-            [self showHint:@"连接失败"];
+//            [self showHint:@"连接失败"];
         }];
     }else{
         tempView = [[UIImageView alloc] initWithFrame:self.userimageview.frame];
@@ -138,6 +138,8 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"发生错误！%@",error);
         [self showHint:@"连接失败"];
+        self.btn1.enabled = YES;
+        self.btn2.enabled = YES;
     }];
 }
 
@@ -204,6 +206,7 @@
 }
 
 - (IBAction)action2:(id)sender {
+    [self like];
     self.btn1.enabled = NO;
     self.btn2.enabled = NO;
     
@@ -232,6 +235,48 @@
     } completion:^(BOOL finished) {
         [tempView removeFromSuperview];
         [self loadData:NO];
+    }];
+}
+
+//喜欢
+-(void)like{
+    NSString *userid = [UD objectForKey:USER_ID];
+    NSString *token = [UD objectForKey:[NSString stringWithFormat:@"%@%@",USER_TOKEN_ID,userid]];
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:token forKey:@"token"];
+    [parameters setValue:[firstDic objectForKey:@"id"] forKey:@"user_b_id"];
+    
+    NSString *urlString = urlString = [NSString stringWithFormat:@"%@%@",HOST,CONSTACTS_CREATE_URL];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", operation.responseString);
+        [self hideHud];
+        NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+        NSError *error;
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if (dic == nil) {
+            NSLog(@"json parse failed \r\n");
+        }else{
+            NSNumber *status = [dic objectForKey:@"status"];
+            if ([status intValue] == 200) {
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshIlike" object:nil];
+            }else if([status intValue] >= 600){
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
+                [self validateUserToken:[status intValue]];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"发生错误！%@",error);
+        [self hideHud];
+        [self showHint:@"连接失败"];
+        
     }];
 }
 @end
