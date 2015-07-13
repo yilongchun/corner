@@ -40,7 +40,7 @@
                                                  name:USER_INFO_CHANGE
                                                object:nil];
     
-    titles = @[@"转角", @"care一下", @"同城邀约", @"快速约饭", @"call她", @"热度排行", @"我的转角", @"vip专区", @"设置"];
+    titles = @[@"转角", @"care一下", @"同城邀约", @"call她", @"热度排行", @"我的转角", @"vip专区", @"设置"];
     
     LCEChatListVC *chatListVC = [[LCEChatListVC alloc] init];
     chatnav = [[UINavigationController alloc] initWithRootViewController:chatListVC];
@@ -193,7 +193,7 @@
         
         
         [self.sideMenuViewController setContentViewController:nc3 animated:YES];
-    }else if(indexPath.row == 5){
+    }else if(indexPath.row == 4){
         if (nc5 == nil) {
             nc5 = [[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"RedupaihangViewController"]];
             nc5.navigationBar.barTintColor = [UIColor colorWithRed:0/255. green:0/255. blue:0/255. alpha:1];
@@ -203,7 +203,7 @@
                NSForegroundColorAttributeName:[UIColor whiteColor]}];
         }
         [self.sideMenuViewController setContentViewController:nc5 animated:YES];
-    }else if(indexPath.row == 6){
+    }else if(indexPath.row == 5){
         if (nc6 == nil) {
             nc6 = [[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"WodezhuanjiaoViewController"]];
             nc6.navigationBar.barTintColor = [UIColor colorWithRed:0/255. green:0/255. blue:0/255. alpha:1];
@@ -213,7 +213,7 @@
                NSForegroundColorAttributeName:[UIColor whiteColor]}];
         }
         [self.sideMenuViewController setContentViewController:nc6 animated:YES];
-    }else if(indexPath.row == 8){
+    }else if(indexPath.row == 7){
         if (nc8 == nil) {
             nc8 = [[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"SettingTableViewController"]];
             nc8.navigationBar.barTintColor = [UIColor colorWithRed:0/255. green:0/255. blue:0/255. alpha:1];

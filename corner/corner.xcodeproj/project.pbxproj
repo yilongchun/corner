@@ -260,6 +260,8 @@
 		E4DBFAF51B452032002004BC /* ZiwojieshaoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4DBFAF31B452032002004BC /* ZiwojieshaoViewController.xib */; };
 		E4DBFAF91B4529A5002004BC /* XuanshiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4DBFAF71B4529A5002004BC /* XuanshiViewController.m */; };
 		E4DBFAFA1B4529A5002004BC /* XuanshiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4DBFAF81B4529A5002004BC /* XuanshiViewController.xib */; };
+		E4E210E21B53524600940E90 /* GiveGiftTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E210E11B53524600940E90 /* GiveGiftTableViewController.m */; };
+		E4E210E51B5357D300940E90 /* LiwuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E210E41B5357D300940E90 /* LiwuTableViewCell.m */; };
 		E4F59DE11B423E2E00A6F002 /* WodeyaoyueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F59DE01B423E2E00A6F002 /* WodeyaoyueViewController.m */; };
 		E4F59DEA1B42437200A6F002 /* WodeyaoyueTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F59DE81B42437200A6F002 /* WodeyaoyueTableViewCell.m */; };
 		E4F59DEB1B42437200A6F002 /* WodeyaoyueTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4F59DE91B42437200A6F002 /* WodeyaoyueTableViewCell.xib */; };
@@ -762,6 +764,10 @@
 		E4DBFAF61B4529A5002004BC /* XuanshiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XuanshiViewController.h; sourceTree = "<group>"; };
 		E4DBFAF71B4529A5002004BC /* XuanshiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XuanshiViewController.m; sourceTree = "<group>"; };
 		E4DBFAF81B4529A5002004BC /* XuanshiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XuanshiViewController.xib; sourceTree = "<group>"; };
+		E4E210E01B53524600940E90 /* GiveGiftTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GiveGiftTableViewController.h; sourceTree = "<group>"; };
+		E4E210E11B53524600940E90 /* GiveGiftTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GiveGiftTableViewController.m; sourceTree = "<group>"; };
+		E4E210E31B5357D300940E90 /* LiwuTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiwuTableViewCell.h; sourceTree = "<group>"; };
+		E4E210E41B5357D300940E90 /* LiwuTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiwuTableViewCell.m; sourceTree = "<group>"; };
 		E4F59DDF1B423E2E00A6F002 /* WodeyaoyueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WodeyaoyueViewController.h; sourceTree = "<group>"; };
 		E4F59DE01B423E2E00A6F002 /* WodeyaoyueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WodeyaoyueViewController.m; sourceTree = "<group>"; };
 		E4F59DE71B42437200A6F002 /* WodeyaoyueTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WodeyaoyueTableViewCell.h; sourceTree = "<group>"; };
@@ -1815,6 +1821,10 @@
 				E446F20C1B325F240060E9D7 /* UserDetailTableViewCell5.h */,
 				E446F20D1B325F240060E9D7 /* UserDetailTableViewCell5.m */,
 				E446F20E1B325F240060E9D7 /* UserDetailTableViewCell5.xib */,
+				E4E210E01B53524600940E90 /* GiveGiftTableViewController.h */,
+				E4E210E11B53524600940E90 /* GiveGiftTableViewController.m */,
+				E4E210E31B5357D300940E90 /* LiwuTableViewCell.h */,
+				E4E210E41B5357D300940E90 /* LiwuTableViewCell.m */,
 				E44D47F51B325DA40064404B /* Main.storyboard */,
 				E44D47F81B325DA40064404B /* Images.xcassets */,
 				E446F3171B3294D10060E9D7 /* leanChat */,
@@ -2042,6 +2052,7 @@
 				E446F2721B325F240060E9D7 /* NSSet+Block.m in Sources */,
 				E446F2A31B325F240060E9D7 /* UITextField+Blocks.m in Sources */,
 				E4DBFAEF1B4517E3002004BC /* NichengUpdateViewController.m in Sources */,
+				E4E210E51B5357D300940E90 /* LiwuTableViewCell.m in Sources */,
 				E446F2DB1B325F240060E9D7 /* SDWebImageDecoder.m in Sources */,
 				E446F31C1B3294E00060E9D7 /* CDUser.m in Sources */,
 				E446F30A1B325F240060E9D7 /* TongchengyaoyueTableViewCell.m in Sources */,
@@ -2210,6 +2221,7 @@
 				E446F2B51B325F240060E9D7 /* UIWebView+Load.m in Sources */,
 				E446F2D31B325F240060E9D7 /* RootViewController.m in Sources */,
 				E446F2461B325F240060E9D7 /* AFNetworkReachabilityManager.m in Sources */,
+				E4E210E21B53524600940E90 /* GiveGiftTableViewController.m in Sources */,
 				E446F2CD1B325F240060E9D7 /* MyCollectionViewCell.m in Sources */,
 				E446F2EC1B325F240060E9D7 /* UIScrollView+SVPullToRefresh.m in Sources */,
 				E446F2831B325F240060E9D7 /* UIButton+Block.m in Sources */,

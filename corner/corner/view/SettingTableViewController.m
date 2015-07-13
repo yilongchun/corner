@@ -121,7 +121,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 0) {
-        if (indexPath.row == 0) {//帮助与反馈
+        if (indexPath.row == 1) {//帮助与反馈
             HelpAndFeedbackTableViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"HelpAndFeedbackTableViewController"];
             [self.navigationController pushViewController:vc animated:YES];
         }

@@ -55,6 +55,10 @@
 
 //care一下
 #define USER_RANDOM_URL @"/user/random"
+//礼物列表
+#define GIFT_LIST_URL @"/gift/list"
+//赠送礼物
+#define GIFT_GIVE_URL @"/gift/give"
 
 /*activity*/
 //发布邀约

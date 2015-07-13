@@ -17,6 +17,7 @@
 #import "DongtaiTableViewController.h"
 #import "LCEChatRoomVC.h"
 #import "SVPullToRefresh.h"
+#import "GiveGiftTableViewController.h"
 
 @interface UserDetailTableViewController (){
     NSMutableDictionary *userinfo;
@@ -368,7 +369,10 @@
             return 44 + height + 10 + 34 + 10;
         }
         
-    }else if (indexPath.section == 3){//个人信息
+    }else if (indexPath.section == 3){//礼物
+        return 167;
+    }
+    else if (indexPath.section == 4){//个人信息
         CGFloat width = [UIScreen mainScreen].bounds.size.width - 15 - 10 - 15;
         switch (indexPath.row) {
             case 2:
@@ -435,7 +439,7 @@
                 return 50;
                 break;
         }
-    }else if (indexPath.section == 4){
+    }else if (indexPath.section == 5){
         CGFloat width = [UIScreen mainScreen].bounds.size.width - 15 - 10 - 15;
         switch (indexPath.row) {
             case 0:
@@ -538,7 +542,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 5;
+    return 6;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -557,9 +561,11 @@
         }else{
             return [activities count];
         }
-    }else if (section == 3){
+    }else if (section == 3){//礼物
+        return 1;
+    }else if (section == 4){//个人象形
         return 13;
-    }else if (section == 4){
+    }else if (section == 5){//个人喜好
         return 3;
     }else{
         return 1;
@@ -568,7 +574,7 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
+    if (indexPath.section == 0) {//头像
         if (indexPath.row == 0) {
             UserDetailTableViewCell1 *cell = [tableView dequeueReusableCellWithIdentifier:@"userdetailcell1"];
             if (cell == nil) {
@@ -705,7 +711,7 @@
             return cell;
         }
     }
-//    else if (indexPath.section == 3){
+    else if (indexPath.section == 3){//礼物
 //        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userdetailcell4"];
 //        if (cell == nil) {
 //            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"userdetailcell4"];
@@ -715,9 +721,10 @@
 //        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 //        cell.selectionStyle = UITableViewCellSelectionStyleNone;
 //        return cell;
-//        
-//    }
-    else if (indexPath.section == 3){
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"liwucell"];
+        return cell;
+    }
+    else if (indexPath.section == 4){
         UserDetailTableViewCell5 *cell = [tableView dequeueReusableCellWithIdentifier:@"userdetailcell5"];
         if (cell == nil) {
             cell = [[[NSBundle mainBundle] loadNibNamed:@"UserDetailTableViewCell5" owner:self options:nil] lastObject];
@@ -912,7 +919,7 @@
         }
         return cell;
     }
-    else if (indexPath.section == 4){
+    else if (indexPath.section == 5){
         
         NSString *xue = [userinfo objectForKey:@"xue"];
         NSString *chang = [userinfo objectForKey:@"chang"];
@@ -1029,7 +1036,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 0) {
         return 0.1;
-    }else if (section == 2){
+    }else if (section == 2 || section == 3){
         return 30;
     }else{
         return 5;
@@ -1037,9 +1044,9 @@
     
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    if (section == 1) {
+    if (section == 1 || section == 2) {
         return 10;
-    }else if(section < 4){
+    }else if(section < 5){
         return 5;
     }else{
         return 20;
@@ -1053,6 +1060,17 @@
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 15, 20, 10)];
         NSArray *activities = [userinfo objectForKey:@"activities"];
         label.text = [NSString stringWithFormat:@"邀约 (%lu)",(unsigned long)[activities count]];;
+        label.font = [UIFont systemFontOfSize:13];
+        [label sizeToFit];
+        [view addSubview:label];
+        return view;
+    }else if (section == 3) {
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 30)];
+        view.backgroundColor = [UIColor whiteColor];
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 15, 20, 10)];
+        NSArray *activities = [userinfo objectForKey:@"activities"];
+        label.text = [NSString stringWithFormat:@"礼物 (%lu)",(unsigned long)[activities count]];;
         label.font = [UIFont systemFontOfSize:13];
         [label sizeToFit];
         [view addSubview:label];
@@ -1116,6 +1134,14 @@
             }
             
             
+        }
+            break;
+        case 3://礼物
+        {
+            GiveGiftTableViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"GiveGiftTableViewController"];
+            NSNumber *receive_user_id = [userinfo objectForKey:@"id"];
+            vc.receive_user_id = receive_user_id;
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         default:

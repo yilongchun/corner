@@ -1084,6 +1084,21 @@
                         <sections>
                             <tableViewSection id="SuC-dA-orO">
                                 <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="kee-19-lAa" style="IBUITableViewCellStyleDefault" id="Av3-fW-QrU">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Av3-fW-QrU" id="pgO-MG-Tqo">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="我的账户" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kee-19-lAa">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="sO9-nt-sCg" style="IBUITableViewCellStyleDefault" id="gL4-7P-2fW">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gL4-7P-2fW" id="gzY-WU-4WO">
@@ -1461,6 +1476,31 @@
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="liwucell" rowHeight="167" id="Haf-tl-XtM">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Haf-tl-XtM" id="2vc-Z7-NbU">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ThA-0w-GY2">
+                                            <rect key="frame" x="40" y="123" width="240" height="34"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="34" id="bWW-n4-aEU"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <state key="normal" title="送礼得到她的青睐，无效退礼">
+                                                <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="ThA-0w-GY2" secondAttribute="bottom" constant="10" id="4lE-xp-0hi"/>
+                                        <constraint firstAttribute="trailing" secondItem="ThA-0w-GY2" secondAttribute="trailing" constant="40" id="NTV-65-RJE"/>
+                                        <constraint firstItem="ThA-0w-GY2" firstAttribute="leading" secondItem="2vc-Z7-NbU" secondAttribute="leading" constant="40" id="Q3a-CZ-81D"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                         </prototypes>
                         <sections/>
                         <connections>
@@ -1473,6 +1513,90 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Yj-bN-OrF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1766" y="256"/>
+        </scene>
+        <!--赠送礼物-->
+        <scene sceneID="MWT-1V-Gw5">
+            <objects>
+                <tableViewController storyboardIdentifier="GiveGiftTableViewController" title="赠送礼物" id="NjX-Jm-kKQ" customClass="GiveGiftTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="79" sectionHeaderHeight="22" sectionFooterHeight="22" id="yX1-tX-xsP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="liwucell" rowHeight="70" id="0Ze-Ae-iT6" customClass="LiwuTableViewCell">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0Ze-Ae-iT6" id="eGL-BH-7aK">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2rA-jM-Th6">
+                                            <rect key="frame" x="8" y="10" width="50" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="tjZ-qd-iMj"/>
+                                                <constraint firstAttribute="width" constant="50" id="uKw-FL-UC1"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="彩虹奶糖" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7eE-db-2m0">
+                                            <rect key="frame" x="68" y="10" width="64" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+50魅力" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gcq-Z4-jkT">
+                                            <rect key="frame" x="140" y="10" width="60" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="价格：100金币" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xdq-Kb-zke">
+                                            <rect key="frame" x="68" y="30" width="101" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTC-4e-A36">
+                                            <rect key="frame" x="255" y="20" width="50" height="29"/>
+                                            <color key="backgroundColor" red="0.54901960780000003" green="0.6705882353" blue="0.85490196080000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="yox-fe-kh9"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <state key="normal" title="赠送">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="yTC-4e-A36" secondAttribute="trailing" constant="15" id="0kh-rM-SaF"/>
+                                        <constraint firstAttribute="centerY" secondItem="2rA-jM-Th6" secondAttribute="centerY" id="4NJ-7z-EGO"/>
+                                        <constraint firstItem="2rA-jM-Th6" firstAttribute="top" secondItem="7eE-db-2m0" secondAttribute="top" id="4cK-bF-mpg"/>
+                                        <constraint firstItem="7eE-db-2m0" firstAttribute="leading" secondItem="2rA-jM-Th6" secondAttribute="trailing" constant="10" id="9m3-N3-Ydo"/>
+                                        <constraint firstItem="Gcq-Z4-jkT" firstAttribute="top" secondItem="7eE-db-2m0" secondAttribute="top" id="SoA-JD-RR9"/>
+                                        <constraint firstItem="Gcq-Z4-jkT" firstAttribute="leading" secondItem="7eE-db-2m0" secondAttribute="trailing" constant="8" id="Yzt-PP-alI"/>
+                                        <constraint firstItem="Xdq-Kb-zke" firstAttribute="top" secondItem="7eE-db-2m0" secondAttribute="bottom" id="be1-0O-cDw"/>
+                                        <constraint firstItem="2rA-jM-Th6" firstAttribute="leading" secondItem="eGL-BH-7aK" secondAttribute="leading" constant="8" id="cS5-fa-zW4"/>
+                                        <constraint firstItem="Xdq-Kb-zke" firstAttribute="leading" secondItem="2rA-jM-Th6" secondAttribute="trailing" constant="10" id="l80-of-XlH"/>
+                                        <constraint firstAttribute="centerY" secondItem="yTC-4e-A36" secondAttribute="centerY" id="xi8-tH-RsM"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="giftImage" destination="2rA-jM-Th6" id="uDh-7y-oeE"/>
+                                    <outlet property="giftLovers" destination="Gcq-Z4-jkT" id="dUC-Yd-PLC"/>
+                                    <outlet property="giftName" destination="7eE-db-2m0" id="o9V-dZ-NaL"/>
+                                    <outlet property="giftPrice" destination="Xdq-Kb-zke" id="mjc-Mb-0bY"/>
+                                    <outlet property="giveBtn" destination="yTC-4e-A36" id="KFe-eA-MOZ"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="NjX-Jm-kKQ" id="Dj7-2t-IqG"/>
+                            <outlet property="delegate" destination="NjX-Jm-kKQ" id="c82-OA-7KS"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VTO-AI-fwX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2148" y="256"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="exB-KR-cHR">
