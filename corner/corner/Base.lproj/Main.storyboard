@@ -1199,6 +1199,9 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="剩余金币：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="snV-rH-eiW">
                                             <rect key="frame" x="15" y="15" width="80" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="OWO-J9-rtW"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -1217,11 +1220,11 @@
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="svx-TC-eAb" secondAttribute="bottom" constant="15" id="55i-fQ-0p8"/>
                                         <constraint firstItem="snV-rH-eiW" firstAttribute="top" secondItem="Bsp-Y6-Fe4" secondAttribute="top" constant="15" id="7Mk-Vm-hOi"/>
                                         <constraint firstItem="Qil-uL-GBb" firstAttribute="leading" secondItem="snV-rH-eiW" secondAttribute="trailing" constant="5" id="OZv-t2-cs5"/>
                                         <constraint firstItem="Qil-uL-GBb" firstAttribute="top" secondItem="Bsp-Y6-Fe4" secondAttribute="top" constant="15" id="QrC-gM-zvl"/>
                                         <constraint firstItem="snV-rH-eiW" firstAttribute="leading" secondItem="Bsp-Y6-Fe4" secondAttribute="leading" constant="15" id="VqW-LO-G1k"/>
-                                        <constraint firstItem="svx-TC-eAb" firstAttribute="top" secondItem="Qil-uL-GBb" secondAttribute="bottom" constant="10" id="t8X-0z-6Cf"/>
                                         <constraint firstItem="svx-TC-eAb" firstAttribute="leading" secondItem="Bsp-Y6-Fe4" secondAttribute="leading" constant="15" id="uL1-QY-Pp7"/>
                                     </constraints>
                                 </tableViewCellContentView>

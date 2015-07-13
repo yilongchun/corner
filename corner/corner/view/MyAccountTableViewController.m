@@ -59,6 +59,37 @@
 
 -(void)loadData{
     
+    [dataSource removeAllObjects];
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setObject:@"1200金币" forKey:@"name"];
+    [dic setObject:[NSNumber numberWithInt:12] forKey:@"price"];
+    [dataSource addObject:dic];
+    NSMutableDictionary *dic2 = [NSMutableDictionary dictionary];
+    [dic2 setObject:@"3000金币" forKey:@"name"];
+    [dic2 setObject:[NSNumber numberWithInt:30] forKey:@"price"];
+    [dataSource addObject:dic2];
+    NSMutableDictionary *dic3 = [NSMutableDictionary dictionary];
+    [dic3 setObject:@"6000金币" forKey:@"name"];
+    [dic3 setObject:[NSNumber numberWithInt:60] forKey:@"price"];
+    [dataSource addObject:dic3];
+    NSMutableDictionary *dic4 = [NSMutableDictionary dictionary];
+    [dic4 setObject:@"10800金币" forKey:@"name"];
+    [dic4 setObject:[NSNumber numberWithInt:108] forKey:@"price"];
+    [dataSource addObject:dic4];
+    NSMutableDictionary *dic5 = [NSMutableDictionary dictionary];
+    [dic5 setObject:@"21800金币" forKey:@"name"];
+    [dic5 setObject:[NSNumber numberWithInt:218] forKey:@"price"];
+    [dataSource addObject:dic5];
+    NSMutableDictionary *dic6 = [NSMutableDictionary dictionary];
+    [dic6 setObject:@"51800金币" forKey:@"name"];
+    [dic6 setObject:[NSNumber numberWithInt:518] forKey:@"price"];
+    [dataSource addObject:dic6];
+    NSMutableDictionary *dic7 = [NSMutableDictionary dictionary];
+    [dic7 setObject:@"108000金币" forKey:@"name"];
+    [dic7 setObject:[NSNumber numberWithInt:1080] forKey:@"price"];
+    [dataSource addObject:dic7];
+    
     NSString *userid = [UD objectForKey:USER_ID];
     NSString *token = [UD objectForKey:[NSString stringWithFormat:@"%@%@",USER_TOKEN_ID,userid]];
     NSString *urlString = [NSString stringWithFormat:@"%@%@/%@?token=%@",HOST,USER_DETAIL_URL,userid,token];
@@ -80,36 +111,9 @@
                 userinfo = [NSMutableDictionary dictionaryWithDictionary:[[dic objectForKey:@"message"] cleanNull] ];
                 
                 
-                [dataSource removeAllObjects];
                 
-                NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-                [dic setObject:@"1200金币" forKey:@"name"];
-                [dic setObject:[NSNumber numberWithInt:12] forKey:@"price"];
-                [dataSource addObject:dic];
-                NSMutableDictionary *dic2 = [NSMutableDictionary dictionary];
-                [dic2 setObject:@"3000金币" forKey:@"name"];
-                [dic2 setObject:[NSNumber numberWithInt:30] forKey:@"price"];
-                [dataSource addObject:dic2];
-                NSMutableDictionary *dic3 = [NSMutableDictionary dictionary];
-                [dic3 setObject:@"6000金币" forKey:@"name"];
-                [dic3 setObject:[NSNumber numberWithInt:60] forKey:@"price"];
-                [dataSource addObject:dic3];
-                NSMutableDictionary *dic4 = [NSMutableDictionary dictionary];
-                [dic4 setObject:@"10800金币" forKey:@"name"];
-                [dic4 setObject:[NSNumber numberWithInt:108] forKey:@"price"];
-                [dataSource addObject:dic4];
-                NSMutableDictionary *dic5 = [NSMutableDictionary dictionary];
-                [dic5 setObject:@"21800金币" forKey:@"name"];
-                [dic5 setObject:[NSNumber numberWithInt:218] forKey:@"price"];
-                [dataSource addObject:dic5];
-                NSMutableDictionary *dic6 = [NSMutableDictionary dictionary];
-                [dic6 setObject:@"51800金币" forKey:@"name"];
-                [dic6 setObject:[NSNumber numberWithInt:518] forKey:@"price"];
-                [dataSource addObject:dic6];
-                NSMutableDictionary *dic7 = [NSMutableDictionary dictionary];
-                [dic7 setObject:@"108000金币" forKey:@"name"];
-                [dic7 setObject:[NSNumber numberWithInt:1080] forKey:@"price"];
-                [dataSource addObject:dic7];
+                
+                
                 
                 
                 [self.tableView reloadData];
