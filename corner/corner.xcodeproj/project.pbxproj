@@ -262,6 +262,24 @@
 		E4DBFAFA1B4529A5002004BC /* XuanshiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4DBFAF81B4529A5002004BC /* XuanshiViewController.xib */; };
 		E4E210E21B53524600940E90 /* GiveGiftTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E210E11B53524600940E90 /* GiveGiftTableViewController.m */; };
 		E4E210E51B5357D300940E90 /* LiwuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E210E41B5357D300940E90 /* LiwuTableViewCell.m */; };
+		E4E2111A1B5368D500940E90 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E4E210E81B5368D500940E90 /* AlipaySDK.bundle */; };
+		E4E2111B1B5368D600940E90 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4E210E91B5368D500940E90 /* AlipaySDK.framework */; };
+		E4E2111C1B5368D600940E90 /* BaiduWalletSDKBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E4E210EA1B5368D500940E90 /* BaiduWalletSDKBundle.bundle */; };
+		E4E2111D1B5368D600940E90 /* libBaiduWalletSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4E210EB1B5368D500940E90 /* libBaiduWalletSDK.a */; };
+		E4E2111E1B5368D600940E90 /* libUPPayPlugin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4E210EC1B5368D500940E90 /* libUPPayPlugin.a */; };
+		E4E2111F1B5368D600940E90 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4E210ED1B5368D500940E90 /* libWeChatSDK.a */; };
+		E4E211201B5368D600940E90 /* libASIHttpRequest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4E210F11B5368D500940E90 /* libASIHttpRequest.a */; };
+		E4E211211B5368D600940E90 /* libBaiduMobStatForSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4E210F41B5368D500940E90 /* libBaiduMobStatForSDK.a */; };
+		E4E211221B5368D600940E90 /* libTouchJSON.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4E210F51B5368D500940E90 /* libTouchJSON.a */; };
+		E4E211231B5368D600940E90 /* libJSONKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4E210F81B5368D500940E90 /* libJSONKit.a */; };
+		E4E211321B5368D600940E90 /* libpingpp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4E211171B5368D500940E90 /* libpingpp.a */; };
+		E4E211331B5368D600940E90 /* Pingpp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E4E211181B5368D500940E90 /* Pingpp.bundle */; };
+		E4E211351B53697300940E90 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4E211341B53697300940E90 /* CFNetwork.framework */; };
+		E4E211381B53821500940E90 /* MyAccountTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E211371B53821500940E90 /* MyAccountTableViewController.m */; };
+		E4E2113B1B5385B400940E90 /* MyAccountTableViewCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E2113A1B5385B400940E90 /* MyAccountTableViewCell1.m */; };
+		E4E2113E1B5385DA00940E90 /* MyAccountTableViewCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E2113D1B5385DA00940E90 /* MyAccountTableViewCell2.m */; };
+		E4E211421B538B3800940E90 /* PayTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E211401B538B3800940E90 /* PayTypeViewController.m */; };
+		E4E211431B538B3800940E90 /* PayTypeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4E211411B538B3800940E90 /* PayTypeViewController.xib */; };
 		E4F59DE11B423E2E00A6F002 /* WodeyaoyueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F59DE01B423E2E00A6F002 /* WodeyaoyueViewController.m */; };
 		E4F59DEA1B42437200A6F002 /* WodeyaoyueTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F59DE81B42437200A6F002 /* WodeyaoyueTableViewCell.m */; };
 		E4F59DEB1B42437200A6F002 /* WodeyaoyueTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4F59DE91B42437200A6F002 /* WodeyaoyueTableViewCell.xib */; };
@@ -768,6 +786,31 @@
 		E4E210E11B53524600940E90 /* GiveGiftTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GiveGiftTableViewController.m; sourceTree = "<group>"; };
 		E4E210E31B5357D300940E90 /* LiwuTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiwuTableViewCell.h; sourceTree = "<group>"; };
 		E4E210E41B5357D300940E90 /* LiwuTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiwuTableViewCell.m; sourceTree = "<group>"; };
+		E4E210E81B5368D500940E90 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
+		E4E210E91B5368D500940E90 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
+		E4E210EA1B5368D500940E90 /* BaiduWalletSDKBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BaiduWalletSDKBundle.bundle; sourceTree = "<group>"; };
+		E4E210EB1B5368D500940E90 /* libBaiduWalletSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBaiduWalletSDK.a; sourceTree = "<group>"; };
+		E4E210EC1B5368D500940E90 /* libUPPayPlugin.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUPPayPlugin.a; sourceTree = "<group>"; };
+		E4E210ED1B5368D500940E90 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		E4E210F01B5368D500940E90 /* ASIHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHttpRequest.h; sourceTree = "<group>"; };
+		E4E210F11B5368D500940E90 /* libASIHttpRequest.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libASIHttpRequest.a; sourceTree = "<group>"; };
+		E4E210F41B5368D500940E90 /* libBaiduMobStatForSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBaiduMobStatForSDK.a; sourceTree = "<group>"; };
+		E4E210F51B5368D500940E90 /* libTouchJSON.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTouchJSON.a; sourceTree = "<group>"; };
+		E4E210F71B5368D500940E90 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		E4E210F81B5368D500940E90 /* libJSONKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libJSONKit.a; sourceTree = "<group>"; };
+		E4E211171B5368D500940E90 /* libpingpp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libpingpp.a; sourceTree = "<group>"; };
+		E4E211181B5368D500940E90 /* Pingpp.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Pingpp.bundle; sourceTree = "<group>"; };
+		E4E211191B5368D500940E90 /* Pingpp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pingpp.h; sourceTree = "<group>"; };
+		E4E211341B53697300940E90 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		E4E211361B53821500940E90 /* MyAccountTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAccountTableViewController.h; sourceTree = "<group>"; };
+		E4E211371B53821500940E90 /* MyAccountTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAccountTableViewController.m; sourceTree = "<group>"; };
+		E4E211391B5385B400940E90 /* MyAccountTableViewCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAccountTableViewCell1.h; sourceTree = "<group>"; };
+		E4E2113A1B5385B400940E90 /* MyAccountTableViewCell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAccountTableViewCell1.m; sourceTree = "<group>"; };
+		E4E2113C1B5385DA00940E90 /* MyAccountTableViewCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAccountTableViewCell2.h; sourceTree = "<group>"; };
+		E4E2113D1B5385DA00940E90 /* MyAccountTableViewCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAccountTableViewCell2.m; sourceTree = "<group>"; };
+		E4E2113F1B538B3800940E90 /* PayTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayTypeViewController.h; sourceTree = "<group>"; };
+		E4E211401B538B3800940E90 /* PayTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayTypeViewController.m; sourceTree = "<group>"; };
+		E4E211411B538B3800940E90 /* PayTypeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayTypeViewController.xib; sourceTree = "<group>"; };
 		E4F59DDF1B423E2E00A6F002 /* WodeyaoyueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WodeyaoyueViewController.h; sourceTree = "<group>"; };
 		E4F59DE01B423E2E00A6F002 /* WodeyaoyueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WodeyaoyueViewController.m; sourceTree = "<group>"; };
 		E4F59DE71B42437200A6F002 /* WodeyaoyueTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WodeyaoyueTableViewCell.h; sourceTree = "<group>"; };
@@ -783,8 +826,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4E211351B53697300940E90 /* CFNetwork.framework in Frameworks */,
 				E44BE9E41B4A590800D35DE8 /* CoreText.framework in Frameworks */,
 				E44BE9E21B4A58F000D35DE8 /* ImageIO.framework in Frameworks */,
+				E4E2111B1B5368D600940E90 /* AlipaySDK.framework in Frameworks */,
 				E413E0551B4A681F00784187 /* libWeChatSDK.a in Frameworks */,
 				E44BE9E01B4A58E600D35DE8 /* QuartzCore.framework in Frameworks */,
 				E4D3C3A01B411C9700ED9652 /* libstdc++.dylib in Frameworks */,
@@ -792,13 +837,21 @@
 				E4D3C39C1B411C6E00ED9652 /* libsqlite3.dylib in Frameworks */,
 				E44BE9DD1B4A589A00D35DE8 /* libWeiboSDK.a in Frameworks */,
 				E4D3C39A1B411C5B00ED9652 /* CoreGraphics.framework in Frameworks */,
+				E4E2111E1B5368D600940E90 /* libUPPayPlugin.a in Frameworks */,
 				E4D3C3981B411C4900ED9652 /* SystemConfiguration.framework in Frameworks */,
 				E4D3C3961B411C2F00ED9652 /* libiconv.dylib in Frameworks */,
 				E446F3151B32604F0060E9D7 /* libz.dylib in Frameworks */,
 				E446F3131B3260400060E9D7 /* libstdc++.6.0.9.dylib in Frameworks */,
 				E446F3111B32602D0060E9D7 /* Security.framework in Frameworks */,
+				E4E211321B5368D600940E90 /* libpingpp.a in Frameworks */,
+				E4E2111F1B5368D600940E90 /* libWeChatSDK.a in Frameworks */,
+				E4E211201B5368D600940E90 /* libASIHttpRequest.a in Frameworks */,
 				E446F2C91B325F240060E9D7 /* MAMapKit.framework in Frameworks */,
 				E446F2551B325F240060E9D7 /* AMapSearchKit.framework in Frameworks */,
+				E4E211221B5368D600940E90 /* libTouchJSON.a in Frameworks */,
+				E4E2111D1B5368D600940E90 /* libBaiduWalletSDK.a in Frameworks */,
+				E4E211231B5368D600940E90 /* libJSONKit.a in Frameworks */,
+				E4E211211B5368D600940E90 /* libBaiduMobStatForSDK.a in Frameworks */,
 				E4D3C3941B411BE000ED9652 /* TencentOpenAPI.framework in Frameworks */,
 				52C808A3D41D3545DB12D522 /* libPods.a in Frameworks */,
 			);
@@ -1697,6 +1750,15 @@
 				E446F23F1B325F240060E9D7 /* WodezhuanjiaoViewController.m */,
 				E446F2361B325F240060E9D7 /* SettingTableViewController.h */,
 				E446F2371B325F240060E9D7 /* SettingTableViewController.m */,
+				E4E211361B53821500940E90 /* MyAccountTableViewController.h */,
+				E4E211371B53821500940E90 /* MyAccountTableViewController.m */,
+				E4E211391B5385B400940E90 /* MyAccountTableViewCell1.h */,
+				E4E2113A1B5385B400940E90 /* MyAccountTableViewCell1.m */,
+				E4E2113C1B5385DA00940E90 /* MyAccountTableViewCell2.h */,
+				E4E2113D1B5385DA00940E90 /* MyAccountTableViewCell2.m */,
+				E4E2113F1B538B3800940E90 /* PayTypeViewController.h */,
+				E4E211401B538B3800940E90 /* PayTypeViewController.m */,
+				E4E211411B538B3800940E90 /* PayTypeViewController.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1712,6 +1774,7 @@
 		E446F3161B3265730060E9D7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E4E211341B53697300940E90 /* CFNetwork.framework */,
 				E44BE9E31B4A590800D35DE8 /* CoreText.framework */,
 				E44BE9E11B4A58F000D35DE8 /* ImageIO.framework */,
 				E44BE9DF1B4A58E600D35DE8 /* QuartzCore.framework */,
@@ -1827,6 +1890,7 @@
 				E4E210E41B5357D300940E90 /* LiwuTableViewCell.m */,
 				E44D47F51B325DA40064404B /* Main.storyboard */,
 				E44D47F81B325DA40064404B /* Images.xcassets */,
+				E4E210E61B5368D500940E90 /* pingppSDK */,
 				E446F3171B3294D10060E9D7 /* leanChat */,
 				E446F2111B325F240060E9D7 /* view */,
 				E44BE9D11B4A589A00D35DE8 /* libWeiboSDK */,
@@ -1875,6 +1939,76 @@
 				E44D48061B325DA40064404B /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E4E210E61B5368D500940E90 /* pingppSDK */ = {
+			isa = PBXGroup;
+			children = (
+				E4E210E71B5368D500940E90 /* Channels */,
+				E4E210EE1B5368D500940E90 /* Dependencies */,
+				E4E211171B5368D500940E90 /* libpingpp.a */,
+				E4E211181B5368D500940E90 /* Pingpp.bundle */,
+				E4E211191B5368D500940E90 /* Pingpp.h */,
+			);
+			path = pingppSDK;
+			sourceTree = "<group>";
+		};
+		E4E210E71B5368D500940E90 /* Channels */ = {
+			isa = PBXGroup;
+			children = (
+				E4E210E81B5368D500940E90 /* AlipaySDK.bundle */,
+				E4E210E91B5368D500940E90 /* AlipaySDK.framework */,
+				E4E210EA1B5368D500940E90 /* BaiduWalletSDKBundle.bundle */,
+				E4E210EB1B5368D500940E90 /* libBaiduWalletSDK.a */,
+				E4E210EC1B5368D500940E90 /* libUPPayPlugin.a */,
+				E4E210ED1B5368D500940E90 /* libWeChatSDK.a */,
+			);
+			path = Channels;
+			sourceTree = "<group>";
+		};
+		E4E210EE1B5368D500940E90 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				E4E210EF1B5368D500940E90 /* ASIHttpRequest */,
+				E4E210F21B5368D500940E90 /* BaiduMobStat */,
+				E4E210F61B5368D500940E90 /* JSONKit */,
+			);
+			path = Dependencies;
+			sourceTree = "<group>";
+		};
+		E4E210EF1B5368D500940E90 /* ASIHttpRequest */ = {
+			isa = PBXGroup;
+			children = (
+				E4E210F01B5368D500940E90 /* ASIHttpRequest.h */,
+				E4E210F11B5368D500940E90 /* libASIHttpRequest.a */,
+			);
+			path = ASIHttpRequest;
+			sourceTree = "<group>";
+		};
+		E4E210F21B5368D500940E90 /* BaiduMobStat */ = {
+			isa = PBXGroup;
+			children = (
+				E4E210F31B5368D500940E90 /* BaiduMobStat */,
+				E4E210F51B5368D500940E90 /* libTouchJSON.a */,
+			);
+			path = BaiduMobStat;
+			sourceTree = "<group>";
+		};
+		E4E210F31B5368D500940E90 /* BaiduMobStat */ = {
+			isa = PBXGroup;
+			children = (
+				E4E210F41B5368D500940E90 /* libBaiduMobStatForSDK.a */,
+			);
+			path = BaiduMobStat;
+			sourceTree = "<group>";
+		};
+		E4E210F61B5368D500940E90 /* JSONKit */ = {
+			isa = PBXGroup;
+			children = (
+				E4E210F71B5368D500940E90 /* JSONKit.h */,
+				E4E210F81B5368D500940E90 /* libJSONKit.a */,
+			);
+			path = JSONKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1961,6 +2095,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4E211431B538B3800940E90 /* PayTypeViewController.xib in Resources */,
 				E4D3C3A21B411D1E00ED9652 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				E465C47C1B33BA180084CE29 /* YaoyueDetailViewController.xib in Resources */,
 				E446F2F01B325F240060E9D7 /* UserDetailTableViewCell2.xib in Resources */,
@@ -1981,13 +2116,16 @@
 				E4DBFAF01B4517E3002004BC /* NichengUpdateViewController.xib in Resources */,
 				E44BE9DE1B4A589A00D35DE8 /* WeiboSDK.bundle in Resources */,
 				E446F3021B325F240060E9D7 /* GrzxTableViewCell.xib in Resources */,
+				E4E2111C1B5368D600940E90 /* BaiduWalletSDKBundle.bundle in Resources */,
 				E46928421B3AA3550094CA7A /* TongchengyaoyueTableViewCell.xib in Resources */,
 				E46E8DDC1B466EE6006CAE06 /* ChooseAiqingViewController.xib in Resources */,
 				E446F30E1B325F240060E9D7 /* Localizable.strings in Resources */,
 				E44D47F91B325DA40064404B /* Images.xcassets in Resources */,
 				E4DBFAF51B452032002004BC /* ZiwojieshaoViewController.xib in Resources */,
 				E446F2C51B325F240060E9D7 /* IQKeyboardManager.bundle in Resources */,
+				E4E2111A1B5368D500940E90 /* AlipaySDK.bundle in Resources */,
 				E44BE9CB1B4A0F3300D35DE8 /* MyLovePartViewController.xib in Resources */,
+				E4E211331B5368D600940E90 /* Pingpp.bundle in Resources */,
 				E446F2EE1B325F240060E9D7 /* UserDetailTableViewCell1.xib in Resources */,
 				E4F59DEB1B42437200A6F002 /* WodeyaoyueTableViewCell.xib in Resources */,
 				E446F3001B325F240060E9D7 /* FeedbackViewController.xib in Resources */,
@@ -2047,6 +2185,7 @@
 				E446F2FC1B325F240060E9D7 /* DongtaiTableViewController.m in Sources */,
 				E446F2C01B325F240060E9D7 /* IQTextView.m in Sources */,
 				E446F2751B325F240060E9D7 /* NSString+Hash.m in Sources */,
+				E4E2113E1B5385DA00940E90 /* MyAccountTableViewCell2.m in Sources */,
 				E44BE9CA1B4A0F3300D35DE8 /* MyLovePartViewController.m in Sources */,
 				E446F2D41B325F240060E9D7 /* SDBrowserImageView.m in Sources */,
 				E446F2721B325F240060E9D7 /* NSSet+Block.m in Sources */,
@@ -2154,7 +2293,9 @@
 				E446F2611B325F240060E9D7 /* NSDateFormatter+Make.m in Sources */,
 				E446F26A1B325F240060E9D7 /* NSManagedObjectContext+FetchRequestsConstructors.m in Sources */,
 				E446F2F11B325F240060E9D7 /* UserDetailTableViewCell3.m in Sources */,
+				E4E211381B53821500940E90 /* MyAccountTableViewController.m in Sources */,
 				E446F28B1B325F240060E9D7 /* UIDevice+Hardware.m in Sources */,
+				E4E211421B538B3800940E90 /* PayTypeViewController.m in Sources */,
 				E446F28C1B325F240060E9D7 /* UIImage+Alpha.m in Sources */,
 				E446F25B1B325F240060E9D7 /* NSData+Encrypt.m in Sources */,
 				E446F2DF1B325F240060E9D7 /* SDWebImagePrefetcher.m in Sources */,
@@ -2184,6 +2325,7 @@
 				E446F2781B325F240060E9D7 /* NSString+Trims.m in Sources */,
 				E446F2501B325F240060E9D7 /* UIImageView+AFNetworking.m in Sources */,
 				E446F27C1B325F240060E9D7 /* NSTimer+Addition.m in Sources */,
+				E4E2113B1B5385B400940E90 /* MyAccountTableViewCell1.m in Sources */,
 				E446F2C21B325F240060E9D7 /* IQTitleBarButtonItem.m in Sources */,
 				E446F24F1B325F240060E9D7 /* UIButton+AFNetworking.m in Sources */,
 				E446F2E31B325F240060E9D7 /* UIImage+WebP.m in Sources */,
@@ -2382,6 +2524,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/corner",
+					"$(PROJECT_DIR)/corner/pingppSDK/Channels",
 				);
 				GCC_PREFIX_HEADER = corner/corner.pch;
 				INFOPLIST_FILE = corner/Info.plist;
@@ -2391,6 +2534,12 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/corner/libWeiboSDK",
 					"$(PROJECT_DIR)/corner/WeChatSDK",
+					"$(PROJECT_DIR)/corner/pingppSDK/Channels",
+					"$(PROJECT_DIR)/corner/pingppSDK/Dependencies/ASIHttpRequest",
+					"$(PROJECT_DIR)/corner/pingppSDK/Dependencies/BaiduMobStat/BaiduMobStat",
+					"$(PROJECT_DIR)/corner/pingppSDK/Dependencies/BaiduMobStat",
+					"$(PROJECT_DIR)/corner/pingppSDK/Dependencies/JSONKit",
+					"$(PROJECT_DIR)/corner/pingppSDK",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -2457,6 +2606,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/corner",
+					"$(PROJECT_DIR)/corner/pingppSDK/Channels",
 				);
 				GCC_PREFIX_HEADER = corner/corner.pch;
 				INFOPLIST_FILE = corner/Info.plist;
@@ -2466,6 +2616,12 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/corner/libWeiboSDK",
 					"$(PROJECT_DIR)/corner/WeChatSDK",
+					"$(PROJECT_DIR)/corner/pingppSDK/Channels",
+					"$(PROJECT_DIR)/corner/pingppSDK/Dependencies/ASIHttpRequest",
+					"$(PROJECT_DIR)/corner/pingppSDK/Dependencies/BaiduMobStat/BaiduMobStat",
+					"$(PROJECT_DIR)/corner/pingppSDK/Dependencies/BaiduMobStat",
+					"$(PROJECT_DIR)/corner/pingppSDK/Dependencies/JSONKit",
+					"$(PROJECT_DIR)/corner/pingppSDK",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",

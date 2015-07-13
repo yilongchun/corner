@@ -1183,6 +1183,103 @@
             </objects>
             <point key="canvasLocation" x="1830" y="2771"/>
         </scene>
+        <!--My Account Table View Controller-->
+        <scene sceneID="jU1-dV-JQA">
+            <objects>
+                <tableViewController storyboardIdentifier="MyAccountTableViewController" id="eGT-ib-Beg" customClass="MyAccountTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="juz-Rp-pg8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell1" rowHeight="77" id="bgG-GY-Jr9" customClass="MyAccountTableViewCell1">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bgG-GY-Jr9" id="Bsp-Y6-Fe4">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="剩余金币：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="snV-rH-eiW">
+                                            <rect key="frame" x="15" y="15" width="80" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qil-uL-GBb">
+                                            <rect key="frame" x="100" y="15" width="10" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="金币可用于升级VIP，电话私聊。" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="svx-TC-eAb">
+                                            <rect key="frame" x="15" y="45" width="190" height="16"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="snV-rH-eiW" firstAttribute="top" secondItem="Bsp-Y6-Fe4" secondAttribute="top" constant="15" id="7Mk-Vm-hOi"/>
+                                        <constraint firstItem="Qil-uL-GBb" firstAttribute="leading" secondItem="snV-rH-eiW" secondAttribute="trailing" constant="5" id="OZv-t2-cs5"/>
+                                        <constraint firstItem="Qil-uL-GBb" firstAttribute="top" secondItem="Bsp-Y6-Fe4" secondAttribute="top" constant="15" id="QrC-gM-zvl"/>
+                                        <constraint firstItem="snV-rH-eiW" firstAttribute="leading" secondItem="Bsp-Y6-Fe4" secondAttribute="leading" constant="15" id="VqW-LO-G1k"/>
+                                        <constraint firstItem="svx-TC-eAb" firstAttribute="top" secondItem="Qil-uL-GBb" secondAttribute="bottom" constant="10" id="t8X-0z-6Cf"/>
+                                        <constraint firstItem="svx-TC-eAb" firstAttribute="leading" secondItem="Bsp-Y6-Fe4" secondAttribute="leading" constant="15" id="uL1-QY-Pp7"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="coinsLabel" destination="Qil-uL-GBb" id="Pld-Q4-MOC"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell2" rowHeight="60" id="xgC-tu-T6A" customClass="MyAccountTableViewCell2">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xgC-tu-T6A" id="Bkd-Oa-tbu">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GvW-4u-ZMq">
+                                            <rect key="frame" x="15" y="5" width="50" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="Cbv-BL-BEk"/>
+                                                <constraint firstAttribute="width" constant="50" id="iW2-dL-jQj"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1200金币" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tfp-oQ-7nc">
+                                            <rect key="frame" x="73" y="20" width="69" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12元" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pks-UO-cZh">
+                                            <rect key="frame" x="273" y="21" width="32" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="tfp-oQ-7nc" firstAttribute="leading" secondItem="GvW-4u-ZMq" secondAttribute="trailing" constant="8" id="0gg-MO-E7d"/>
+                                        <constraint firstAttribute="trailing" secondItem="Pks-UO-cZh" secondAttribute="trailing" constant="15" id="3zj-Jh-GOX"/>
+                                        <constraint firstItem="GvW-4u-ZMq" firstAttribute="leading" secondItem="Bkd-Oa-tbu" secondAttribute="leading" constant="15" id="5YE-95-hN2"/>
+                                        <constraint firstAttribute="centerY" secondItem="GvW-4u-ZMq" secondAttribute="centerY" id="IiP-Nf-t1R"/>
+                                        <constraint firstAttribute="centerY" secondItem="tfp-oQ-7nc" secondAttribute="centerY" id="RXU-AZ-C07"/>
+                                        <constraint firstAttribute="centerY" secondItem="Pks-UO-cZh" secondAttribute="centerY" id="u6A-lf-IG3"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="label1" destination="tfp-oQ-7nc" id="Ifg-d7-QCR"/>
+                                    <outlet property="label2" destination="Pks-UO-cZh" id="W7l-C1-u1c"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="eGT-ib-Beg" id="qgE-v9-uWc"/>
+                            <outlet property="delegate" destination="eGT-ib-Beg" id="UtT-xj-76a"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mbj-hQ-YXC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2200" y="2773"/>
+        </scene>
         <!--同城邀约-->
         <scene sceneID="vgi-eT-K95">
             <objects>

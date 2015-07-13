@@ -59,6 +59,8 @@
 #define GIFT_LIST_URL @"/gift/list"
 //赠送礼物
 #define GIFT_GIVE_URL @"/gift/give"
+//用户充值金币
+#define RECHARGE_CREATE_URL @"/recharge/create"
 
 /*activity*/
 //发布邀约

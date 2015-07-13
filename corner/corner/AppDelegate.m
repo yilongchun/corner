@@ -10,7 +10,7 @@
 #import "IQKeyboardManager.h"
 #import <AVOSCloud/AVOSCloud.h>
 #import "CDUserFactory.h"
-
+#import "Pingpp.h"
 
 
 @interface AppDelegate ()
@@ -310,7 +310,22 @@
 #pragma mark - QQ登录 微博登录 微信登录
 //QQ登录
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+    
+    [Pingpp handleOpenURL:url withCompletion:^(NSString *result, PingppError *error) {
+        NSLog(@"result = %@, error : %@", result, error == nil ? @"nil" : [error getMsg]);
+        
+        int64_t delayInSeconds = 1.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:result,@"result", nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"paySuccess" object:nil userInfo:dic];
+        });
+        
+    }];
+    
     return [TencentOAuth HandleOpenURL:url] || [WeiboSDK handleOpenURL:url delegate:self] || [WXApi handleOpenURL:url delegate:self];
+    
+    
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
