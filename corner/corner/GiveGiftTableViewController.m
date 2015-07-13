@@ -208,7 +208,13 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.textLabel.font = [UIFont systemFontOfSize:15];
-        cell.textLabel.text = @"金币余额：0金币";
+        
+        NSDictionary *loginUser = [UD objectForKey:LOGINED_USER];
+        NSString *coins = [loginUser objectForKey:@"coins"];
+        if ([coins isEqualToString:@""]) {
+            coins = @"0";
+        }
+        cell.textLabel.text = [NSString stringWithFormat:@"金币余额：%@金币",coins];
         
         return cell;
     }else if (indexPath.row == 1) {
@@ -218,7 +224,7 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.textLabel.font = [UIFont systemFontOfSize:15];
-        cell.textLabel.text = @"给玻璃心送礼";
+        cell.textLabel.text = [NSString stringWithFormat:@"给 %@ 送礼",_receive_user_name];
         cell.imageView.image = [UIImage imageNamed:@"public_load_face"];
         return cell;
     }else{

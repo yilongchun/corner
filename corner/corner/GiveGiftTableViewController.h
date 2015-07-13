@@ -11,5 +11,6 @@
 @interface GiveGiftTableViewController : UITableViewController
 
 @property(nonatomic, strong) NSNumber *receive_user_id;
+@property(nonatomic, strong) NSString *receive_user_name;
 
 @end

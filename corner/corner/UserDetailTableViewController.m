@@ -1141,6 +1141,16 @@
             GiveGiftTableViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"GiveGiftTableViewController"];
             NSNumber *receive_user_id = [userinfo objectForKey:@"id"];
             vc.receive_user_id = receive_user_id;
+            
+            NSNumber *userid = [userinfo objectForKey:@"id"];
+            NSString *nickname = [userinfo objectForKey:@"nickname"];
+            NSString *receive_user_name;
+            if ([nickname isEqualToString:@""]) {
+                receive_user_name = [NSString stringWithFormat:@"%d",[userid intValue]];
+            }else{
+                receive_user_name = nickname;
+            }
+            vc.receive_user_name = receive_user_name;
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
