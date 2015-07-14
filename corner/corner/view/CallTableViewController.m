@@ -219,13 +219,36 @@
         }
         
         cell.nameLabel.text = name;
-//        [cell.callBtn setImage:[[UIImage imageNamed:@"restaurant_btn_bg2"] stretchableImageWithLeftCapWidth:17 topCapHeight:15] forState:UIControlStateNormal];
-//        [cell.callBtn setTitle:@"打给她" forState:UIControlStateNormal];
-        
         [cell.callBtn setBackgroundImage:[[UIImage imageNamed:@"restaurant_btn_bg2"] stretchableImageWithLeftCapWidth:17 topCapHeight:15] forState:UIControlStateNormal];
-        
+        cell.callBtn.tag = indexPath.row - 1;
+        [cell.callBtn addTarget:self action:@selector(call:) forControlEvents:UIControlEventTouchUpInside];
         return cell;
     }
+}
+
+-(void)call:(UIButton *)sender{
+    NSDictionary *info = [[dataSource objectAtIndex:sender.tag] cleanNull];
+    NSNumber *phone = [info objectForKey:@"phone"];
+    NSString *src = [[NSUserDefaults standardUserDefaults] stringForKey:@"SBFormattedPhoneNumber"];
+    NSString *dst = [phone stringValue];
+//    NSString *src = @"18671701215";
+//    NSString *dst = @"15872610102";
+    [self showHudInView:self.view hint:@"拨打中，请稍后"];
+    
+    NSString *url = [NSString stringWithFormat:@"http://42.121.87.117:8084/2013/interface/data/call.php?action=asyn_callout&verifymethod=pwd&loginid=867600310&loginpwd=defe12aad396f90e6b179c239de260d4&src=%@&dst=%@&ringback=1",src,dst];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", operation.responseString);
+        [self hideHud];
+        [self showHint:@"拨打成功，请稍后接听电话"];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self hideHud];
+        NSLog(@"发生错误！%@",error);
+        [self showHint:@"连接失败"];
+    }];
 }
 
 @end
