@@ -230,6 +230,10 @@
     NSDictionary *info = [[dataSource objectAtIndex:sender.tag] cleanNull];
     NSNumber *phone = [info objectForKey:@"phone"];
     NSString *src = [[NSUserDefaults standardUserDefaults] stringForKey:@"SBFormattedPhoneNumber"];
+    if (src == nil || (src != nil && [src isEqualToString:@""])) {
+        [self showHint:@"获取本机号码失败"];
+        return;
+    }
     NSString *dst = [phone stringValue];
 //    NSString *src = @"18671701215";
 //    NSString *dst = @"15872610102";

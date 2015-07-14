@@ -30,12 +30,7 @@
     
 //    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     
-    tempView = [[UIImageView alloc] initWithFrame:self.userimageview.frame];
-    tempView.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                          action:@selector(toDetail)];
-    [tempView addGestureRecognizer:tap];
-    [self.view addSubview:tempView];
+    
     
     [self.msglabel removeFromSuperview];
     self.btn1.enabled = NO;
@@ -169,6 +164,13 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    
+    tempView = [[UIImageView alloc] initWithFrame:self.userimageview.frame];
+    tempView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                          action:@selector(toDetail)];
+    [tempView addGestureRecognizer:tap];
+    [self.view addSubview:tempView];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
