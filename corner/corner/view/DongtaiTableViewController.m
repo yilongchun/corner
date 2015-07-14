@@ -56,8 +56,13 @@
         [weakSelf insertRowAtBottom];
     }];
     
+    UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.tableFooterView = v;
+    
     //初始化数据
     [self.tableView triggerPullToRefresh];
+    
+    
 }
 
 - (void)insertRowAtTop {

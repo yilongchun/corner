@@ -40,7 +40,8 @@
     [self.tableView addPullToRefreshWithActionHandler:^{
         [weakSelf insertRowAtTop];
     }];
-    
+    UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.tableFooterView = v;
     //初始化数据
     [self.tableView triggerPullToRefresh];
 }

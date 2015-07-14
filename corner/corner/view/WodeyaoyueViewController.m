@@ -64,8 +64,6 @@
         [weakSelf insertRowAtTop];
     }];
     
-    
-    
     //初始化数据
     [tableview1 triggerPullToRefresh];
 }

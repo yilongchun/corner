@@ -46,7 +46,8 @@ static NSString * const reuseIdentifier = @"MyCollectionViewCell";
     [self.mytableview addInfiniteScrollingWithActionHandler:^{
         [weakSelf insertRowAtBottom];
     }];
-    
+    UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
+    self.mytableview.tableFooterView = v;
     //初始化数据
     [self.mytableview triggerPullToRefresh];
     

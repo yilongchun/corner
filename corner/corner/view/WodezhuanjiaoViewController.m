@@ -90,7 +90,6 @@
     [self.mytableview addInfiniteScrollingWithActionHandler:^{
         [weakSelf insertRowAtBottom];
     }];
-    
     //初始化数据
     [self.mytableview triggerPullToRefresh];
 }

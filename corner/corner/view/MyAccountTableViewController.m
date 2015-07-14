@@ -44,7 +44,8 @@
     [self.tableView addPullToRefreshWithActionHandler:^{
         [weakSelf insertRowAtTop];
     }];
-    
+    UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.tableFooterView = v;
     //初始化数据
     [self.tableView triggerPullToRefresh];
 }
@@ -109,13 +110,6 @@
             NSNumber *status = [dic objectForKey:@"status"];
             if ([status intValue] == 200) {
                 userinfo = [NSMutableDictionary dictionaryWithDictionary:[[dic objectForKey:@"message"] cleanNull] ];
-                
-                
-                
-                
-                
-                
-                
                 [self.tableView reloadData];
             }else if([status intValue] >= 600){
                 NSString *message = [dic objectForKey:@"message"];

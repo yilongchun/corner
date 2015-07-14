@@ -22,6 +22,7 @@
     UINavigationController *nc1;
     UINavigationController *nc2;
     UINavigationController *nc3;
+    UINavigationController *nc4;
     UINavigationController *nc5;
     UINavigationController *nc6;
     UINavigationController *nc8;
@@ -193,6 +194,16 @@
         
         
         [self.sideMenuViewController setContentViewController:nc3 animated:YES];
+    }else if(indexPath.row == 3){
+        if (nc4 == nil) {
+            nc4 = [[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"CallTableViewController"]];
+            nc4.navigationBar.barTintColor = [UIColor colorWithRed:0/255. green:0/255. blue:0/255. alpha:1];
+            nc4.navigationBar.tintColor = [UIColor whiteColor];
+            [nc4.navigationBar setTitleTextAttributes:
+             @{NSFontAttributeName:[UIFont boldSystemFontOfSize:17],
+               NSForegroundColorAttributeName:[UIColor whiteColor]}];
+        }
+        [self.sideMenuViewController setContentViewController:nc4 animated:YES];
     }else if(indexPath.row == 4){
         if (nc5 == nil) {
             nc5 = [[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"RedupaihangViewController"]];

@@ -61,6 +61,8 @@
 #define GIFT_GIVE_URL @"/gift/give"
 //用户充值金币
 #define RECHARGE_CREATE_URL @"/recharge/create"
+//call她
+#define USER_PHONE_URL @"/user/phone"
 
 /*activity*/
 //发布邀约

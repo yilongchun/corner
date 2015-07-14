@@ -11,6 +11,8 @@
 		E413E0551B4A681F00784187 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E413E0511B4A681F00784187 /* libWeChatSDK.a */; };
 		E413E0561B4A681F00784187 /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = E413E0521B4A681F00784187 /* read_me.txt */; };
 		E43DAA691B549966008CF574 /* LiwuTableViewCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = E43DAA681B549966008CF574 /* LiwuTableViewCell2.m */; };
+		E43DAA6C1B54B1FC008CF574 /* CallTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E43DAA6B1B54B1FC008CF574 /* CallTableViewController.m */; };
+		E43DAA6F1B54B7F7008CF574 /* CallTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E43DAA6E1B54B7F7008CF574 /* CallTableViewCell.m */; };
 		E446F2431B325F240060E9D7 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E446F0741B325F230060E9D7 /* AFHTTPRequestOperation.m */; };
 		E446F2441B325F240060E9D7 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E446F0761B325F230060E9D7 /* AFHTTPRequestOperationManager.m */; };
 		E446F2451B325F240060E9D7 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E446F0781B325F230060E9D7 /* AFHTTPSessionManager.m */; };
@@ -308,6 +310,10 @@
 		E413E0541B4A681F00784187 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		E43DAA671B549966008CF574 /* LiwuTableViewCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiwuTableViewCell2.h; sourceTree = "<group>"; };
 		E43DAA681B549966008CF574 /* LiwuTableViewCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiwuTableViewCell2.m; sourceTree = "<group>"; };
+		E43DAA6A1B54B1FC008CF574 /* CallTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallTableViewController.h; sourceTree = "<group>"; };
+		E43DAA6B1B54B1FC008CF574 /* CallTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallTableViewController.m; sourceTree = "<group>"; };
+		E43DAA6D1B54B7F7008CF574 /* CallTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallTableViewCell.h; sourceTree = "<group>"; };
+		E43DAA6E1B54B7F7008CF574 /* CallTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallTableViewCell.m; sourceTree = "<group>"; };
 		E446F0731B325F230060E9D7 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		E446F0741B325F230060E9D7 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		E446F0751B325F230060E9D7 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -1762,6 +1768,10 @@
 				E4E2113F1B538B3800940E90 /* PayTypeViewController.h */,
 				E4E211401B538B3800940E90 /* PayTypeViewController.m */,
 				E4E211411B538B3800940E90 /* PayTypeViewController.xib */,
+				E43DAA6A1B54B1FC008CF574 /* CallTableViewController.h */,
+				E43DAA6B1B54B1FC008CF574 /* CallTableViewController.m */,
+				E43DAA6D1B54B7F7008CF574 /* CallTableViewCell.h */,
+				E43DAA6E1B54B7F7008CF574 /* CallTableViewCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -2360,6 +2370,7 @@
 				E446F2B81B325F240060E9D7 /* DOPDropDownMenu.m in Sources */,
 				E446F2521B325F240060E9D7 /* UIRefreshControl+AFNetworking.m in Sources */,
 				E446F2711B325F240060E9D7 /* NSObject+Runtime.m in Sources */,
+				E43DAA6C1B54B1FC008CF574 /* CallTableViewController.m in Sources */,
 				E446F28F1B325F240060E9D7 /* UIImage+Color.m in Sources */,
 				E446F2AA1B325F240060E9D7 /* UIView+Screenshot.m in Sources */,
 				E446F2C71B325F240060E9D7 /* LoginViewController.m in Sources */,
@@ -2374,6 +2385,7 @@
 				E446F2EC1B325F240060E9D7 /* UIScrollView+SVPullToRefresh.m in Sources */,
 				E446F2831B325F240060E9D7 /* UIButton+Block.m in Sources */,
 				E446F2941B325F240060E9D7 /* UIImage+RoundedCorner.m in Sources */,
+				E43DAA6F1B54B7F7008CF574 /* CallTableViewCell.m in Sources */,
 				E4F59DE11B423E2E00A6F002 /* WodeyaoyueViewController.m in Sources */,
 				E446F2A71B325F240060E9D7 /* UIView+Find.m in Sources */,
 				E446F2ED1B325F240060E9D7 /* UserDetailTableViewCell1.m in Sources */,
