@@ -9,6 +9,7 @@
 #import "GiveGiftTableViewController.h"
 #import "SVPullToRefresh.h"
 #import "LiwuTableViewCell.h"
+#import "LiwuTableViewCell2.h"
 
 @interface GiveGiftTableViewController ()
 
@@ -184,11 +185,11 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
-        return 50;
+        return 60;
     }else if (indexPath.row == 1){
         return 60;
     }
-    return 70;
+    return 80;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -218,14 +219,9 @@
         
         return cell;
     }else if (indexPath.row == 1) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"songlicell"];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"songlicell"];
-        }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.textLabel.font = [UIFont systemFontOfSize:15];
-        cell.textLabel.text = [NSString stringWithFormat:@"给 %@ 送礼",_receive_user_name];
-        cell.imageView.image = [UIImage imageNamed:@"public_load_face"];
+        LiwuTableViewCell2 *cell = [tableView dequeueReusableCellWithIdentifier:@"cell3"];
+        cell.userMsg.text = [NSString stringWithFormat:@"给 %@ 送礼",_receive_user_name];
+        cell.userImage.image = [UIImage imageNamed:@"public_load_face"];
         return cell;
     }else{
         LiwuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"liwucell" forIndexPath:indexPath];

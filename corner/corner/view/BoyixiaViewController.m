@@ -92,6 +92,7 @@
         [tempView addGestureRecognizer:tap];
         [tempView setImageWithURL:[NSURL URLWithString:oldImageUrl]];
         [self.view addSubview:tempView];
+        firstDic = [NSMutableDictionary dictionaryWithDictionary:secondDic];
     }
     
     NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,USER_RANDOM_URL];
@@ -118,7 +119,6 @@
                 if (first) {
                     secondDic = [NSMutableDictionary dictionaryWithDictionary:message];
                 }else{
-                    firstDic = [NSMutableDictionary dictionaryWithDictionary:secondDic];
                     secondDic = [NSMutableDictionary dictionaryWithDictionary:message];
                 }
                 
@@ -174,6 +174,12 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    self.btn1.enabled = YES;
+    self.btn2.enabled = YES;
 }
 
 - (void)didReceiveMemoryWarning {

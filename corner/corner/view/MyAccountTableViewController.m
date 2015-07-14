@@ -129,11 +129,6 @@
         [self showHint:@"连接失败"];
         
     }];
-    
-    
-    
-
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -146,9 +141,18 @@
     if (indexPath.section == 0) {
         return 77;
     }else if (indexPath.section == 1){
-        return 60;
+        return 70;
     }
     return 0;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section == 0) {
+        return 0.1;
+    }else{
+        return 0.1;
+    }
+    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
