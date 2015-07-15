@@ -41,6 +41,11 @@
                                                  name:USER_INFO_CHANGE
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(setUnRadCount)
+                                                 name:@"setUnRadCount"
+                                               object:nil];
+    
     titles = @[@"转角", @"care一下", @"同城邀约", @"call她", @"热度排行", @"我的转角", @"vip专区", @"设置"];
     
     LCEChatListVC *chatListVC = [[LCEChatListVC alloc] init];
@@ -50,6 +55,9 @@
     [chatnav.navigationBar setTitleTextAttributes:
      @{NSFontAttributeName:[UIFont boldSystemFontOfSize:17],
        NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    
+    
+    [self setUnRadCount];
     
     
     self.userimage.userInteractionEnabled = YES;
@@ -334,5 +342,18 @@
     [self.sideMenuViewController setContentViewController:ilikenc animated:YES];
     
     [self.sideMenuViewController hideMenuViewController];
+}
+
+
+/**
+ *  设置未读聊天数量
+ */
+-(void)setUnRadCount{
+    NSInteger totalUnreadCount = [[CDStorage storage] countUnread];
+    if (totalUnreadCount > 0) {
+        [self.unReadCountImageView setHidden:NO];
+    }else {
+        [self.unReadCountImageView setHidden:YES];
+    }
 }
 @end

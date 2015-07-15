@@ -19,4 +19,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *userimage;
 @property (weak, nonatomic) IBOutlet UILabel *nicknameLabel;
 
+@property (weak, nonatomic) IBOutlet UIImageView *unReadCountImageView;
+
 @end

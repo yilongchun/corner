@@ -89,12 +89,13 @@
 }
 
 - (void)setBadgeWithTotalUnreadCount:(NSInteger)totalUnreadCount {
-    if (totalUnreadCount > 0) {
-        self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld", (long)totalUnreadCount];
-    }
-    else {
-        self.tabBarItem.badgeValue = nil;
-    }
+//    if (totalUnreadCount > 0) {
+//        self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld", (long)totalUnreadCount];
+//    }
+//    else {
+//        self.tabBarItem.badgeValue = nil;
+//    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"setUnRadCount" object:nil];
 }
 
 - (void)rightBarButtonClicked:(id)sender {

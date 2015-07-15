@@ -2375,6 +2375,7 @@
                     <connections>
                         <outlet property="mytableview" destination="1Oc-m7-ID5" id="4rl-LE-eL4"/>
                         <outlet property="nicknameLabel" destination="PgB-tq-dNR" id="6UC-lQ-cDd"/>
+                        <outlet property="unReadCountImageView" destination="uJA-1l-59e" id="PhY-ML-5oK"/>
                         <outlet property="userimage" destination="m9X-mb-q63" id="ay7-uG-g58"/>
                     </connections>
                 </viewController>

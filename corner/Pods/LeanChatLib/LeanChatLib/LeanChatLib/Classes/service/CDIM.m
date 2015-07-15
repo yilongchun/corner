@@ -190,6 +190,7 @@ static CDIM *instance;
     [_storage insertRoomWithConvid:conv.conversationId];
     [_storage incrementUnreadWithConvid:conv.conversationId];
     [[NSNotificationCenter defaultCenter] postNotificationName:kCDNotificationMessageReceived object:msg];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"setUnRadCount" object:nil];
 }
 
 #pragma mark - AVIMClientDelegate
