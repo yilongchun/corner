@@ -14,10 +14,13 @@
 #import "CDIMConfig.h"
 
 static CDIM *instance;
+//两次提示的默认间隔
+static const CGFloat kDefaultPlaySoundInterval = 1.0;
 
 @interface CDIMConfig ()
 
 @property (nonatomic, readwrite) NSString *selfId;
+
 
 @end
 
@@ -28,6 +31,7 @@ static CDIM *instance;
 @property CDIMConfig *imConfig;
 
 @property (nonatomic, strong) NSMutableDictionary *cachedConvs;
+@property (strong, nonatomic) NSDate *lastPlaySoundDate;
 
 @end
 
@@ -222,6 +226,14 @@ static CDIM *instance;
 - (void)conversation:(AVIMConversation *)conversation didReceiveTypedMessage:(AVIMTypedMessage *)message {
     DLog();
     if (message.messageId) {
+        NSTimeInterval timeInterval = [[NSDate date]
+                                       timeIntervalSinceDate:self.lastPlaySoundDate];
+        if (self.lastPlaySoundDate == Nil || timeInterval >= kDefaultPlaySoundInterval) {
+            //保存最后一次响铃时间
+            AudioServicesPlaySystemSound(1007);
+        }
+        self.lastPlaySoundDate = [NSDate date];
+        
         [self receiveMsg:message conv:conversation];
     }
     else {

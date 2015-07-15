@@ -8,10 +8,15 @@
 
 #import "LeftMenuViewController.h"
 #import "LCEChatListVC.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 #define cellIdentifier @"leftMenuCell"
 
+
+
 @interface LeftMenuViewController ()
+
+
 
 @end
 
@@ -351,7 +356,12 @@
 -(void)setUnRadCount{
     NSInteger totalUnreadCount = [[CDStorage storage] countUnread];
     if (totalUnreadCount > 0) {
+        
         [self.unReadCountImageView setHidden:NO];
+        
+        
+        
+        
     }else {
         [self.unReadCountImageView setHidden:YES];
     }
