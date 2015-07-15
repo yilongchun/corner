@@ -32,6 +32,9 @@
 //    UIBarButtonItem *logoutItem = [[UIBarButtonItem alloc] initWithTitle:@"退出" style:UIBarButtonItemStylePlain target:self action:@selector(logout:)];
 //    self.navigationItem.rightBarButtonItems = @[logoutItem, addItem];
     
+    UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.tableFooterView = v;
+    
     UIImage *image = [[UIImage imageNamed:@"kiss_top1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStyleDone target:self action:@selector(leftMenu)];
     self.navigationItem.leftBarButtonItem = leftItem;
@@ -57,6 +60,28 @@
     [super didReceiveMemoryWarning];
 }
 
+-(void)viewDidLayoutSubviews
+{
+    if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self.tableView setSeparatorInset:UIEdgeInsetsMake(0,0,0,0)];
+    }
+    
+    if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+        [self.tableView setLayoutMargins:UIEdgeInsetsMake(0,0,0,0)];
+    }
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+}
+
 - (void)viewController:(UIViewController *)viewController didSelectConv:(AVIMConversation *)conv {
     LCEChatRoomVC *chatRoomVC = [[LCEChatRoomVC alloc] initWithConv:conv];
     chatRoomVC.hidesBottomBarWhenPushed = YES;
@@ -65,7 +90,7 @@
 
 - (void)setBadgeWithTotalUnreadCount:(NSInteger)totalUnreadCount {
     if (totalUnreadCount > 0) {
-        self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld", totalUnreadCount];
+        self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld", (long)totalUnreadCount];
     }
     else {
         self.tabBarItem.badgeValue = nil;
