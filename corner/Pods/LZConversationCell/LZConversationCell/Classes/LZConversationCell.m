@@ -9,7 +9,7 @@
 #import "LZConversationCell.h"
 #import <JSBadgeView/JSBadgeView.h>
 
-static CGFloat kLZImageSize = 35;
+static CGFloat kLZImageSize = 50;
 static CGFloat kLZVerticalSpacing = 8;
 static CGFloat kLZHorizontalSpacing = 10;
 static CGFloat kLZTimestampeLabelWidth = 100;
