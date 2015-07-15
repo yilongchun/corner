@@ -37,8 +37,6 @@
     }else{
         [self updateUserInfo:@"nickname" value:self.nicknameTextField.text];
     }
-    
-    
 }
 
 /**

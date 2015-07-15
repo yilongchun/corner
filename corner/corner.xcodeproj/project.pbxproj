@@ -235,6 +235,8 @@
 		E44D47F71B325DA40064404B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E44D47F51B325DA40064404B /* Main.storyboard */; };
 		E44D47F91B325DA40064404B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E44D47F81B325DA40064404B /* Images.xcassets */; };
 		E44D48081B325DA40064404B /* cornerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E44D48071B325DA40064404B /* cornerTests.m */; };
+		E45E02F81B55F08B00724211 /* PhoneUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E45E02F61B55F08B00724211 /* PhoneUpdateViewController.m */; };
+		E45E02F91B55F08B00724211 /* PhoneUpdateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E45E02F71B55F08B00724211 /* PhoneUpdateViewController.xib */; };
 		E465C47B1B33BA180084CE29 /* YaoyueDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E465C4791B33BA180084CE29 /* YaoyueDetailViewController.m */; };
 		E465C47C1B33BA180084CE29 /* YaoyueDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E465C47A1B33BA180084CE29 /* YaoyueDetailViewController.xib */; };
 		E46928421B3AA3550094CA7A /* TongchengyaoyueTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E46928411B3AA3550094CA7A /* TongchengyaoyueTableViewCell.xib */; };
@@ -753,6 +755,9 @@
 		E44D48011B325DA40064404B /* cornerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cornerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E44D48061B325DA40064404B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E44D48071B325DA40064404B /* cornerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = cornerTests.m; sourceTree = "<group>"; };
+		E45E02F51B55F08B00724211 /* PhoneUpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneUpdateViewController.h; sourceTree = "<group>"; };
+		E45E02F61B55F08B00724211 /* PhoneUpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneUpdateViewController.m; sourceTree = "<group>"; };
+		E45E02F71B55F08B00724211 /* PhoneUpdateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhoneUpdateViewController.xib; sourceTree = "<group>"; };
 		E465C4781B33BA180084CE29 /* YaoyueDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YaoyueDetailViewController.h; sourceTree = "<group>"; };
 		E465C4791B33BA180084CE29 /* YaoyueDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YaoyueDetailViewController.m; sourceTree = "<group>"; };
 		E465C47A1B33BA180084CE29 /* YaoyueDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YaoyueDetailViewController.xib; sourceTree = "<group>"; };
@@ -1676,6 +1681,9 @@
 			children = (
 				E446F22A1B325F240060E9D7 /* GrzxTableViewController.h */,
 				E446F22B1B325F240060E9D7 /* GrzxTableViewController.m */,
+				E45E02F51B55F08B00724211 /* PhoneUpdateViewController.h */,
+				E45E02F61B55F08B00724211 /* PhoneUpdateViewController.m */,
+				E45E02F71B55F08B00724211 /* PhoneUpdateViewController.xib */,
 				E4DBFAEC1B4517E3002004BC /* NichengUpdateViewController.h */,
 				E4DBFAED1B4517E3002004BC /* NichengUpdateViewController.m */,
 				E4DBFAEE1B4517E3002004BC /* NichengUpdateViewController.xib */,
@@ -2140,6 +2148,7 @@
 				E446F2C51B325F240060E9D7 /* IQKeyboardManager.bundle in Resources */,
 				E4E2111A1B5368D500940E90 /* AlipaySDK.bundle in Resources */,
 				E44BE9CB1B4A0F3300D35DE8 /* MyLovePartViewController.xib in Resources */,
+				E45E02F91B55F08B00724211 /* PhoneUpdateViewController.xib in Resources */,
 				E4E211331B5368D600940E90 /* Pingpp.bundle in Resources */,
 				E446F2EE1B325F240060E9D7 /* UserDetailTableViewCell1.xib in Resources */,
 				E4F59DEB1B42437200A6F002 /* WodeyaoyueTableViewCell.xib in Resources */,
@@ -2317,6 +2326,7 @@
 				E446F2911B325F240060E9D7 /* UIImage+ImageEffects.m in Sources */,
 				E446F2E61B325F240060E9D7 /* UIView+WebCacheOperation.m in Sources */,
 				E446F2891B325F240060E9D7 /* UIColor+Random.m in Sources */,
+				E45E02F81B55F08B00724211 /* PhoneUpdateViewController.m in Sources */,
 				E446F2511B325F240060E9D7 /* UIProgressView+AFNetworking.m in Sources */,
 				E446F2731B325F240060E9D7 /* NSString+DictionaryValue.m in Sources */,
 				E446F2DA1B325F240060E9D7 /* SDWebImageCompat.m in Sources */,

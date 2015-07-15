@@ -211,6 +211,9 @@
         
         [cell.userImage setImageWithURL:[NSURL URLWithString:avatar_url] placeholderImage:[UIImage imageNamed:@"public_load_face"]];
         
+//        cell.userImage.layer.masksToBounds = YES;
+//        cell.userImage.layer.cornerRadius = 5.0f;
+//        cell.userImage.layer.shouldRasterize = YES;
         NSString *name;
         if ([nickname isEqualToString:@""]) {
             name = [userid stringValue];

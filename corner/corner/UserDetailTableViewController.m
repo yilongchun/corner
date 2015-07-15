@@ -371,8 +371,10 @@
         
     }else if (indexPath.section == 3){//礼物
         return 167;
+    }else if (indexPath.section == 4){//电话
+        return 50;
     }
-    else if (indexPath.section == 4){//个人信息
+    else if (indexPath.section == 5){//个人信息
         CGFloat width = [UIScreen mainScreen].bounds.size.width - 15 - 10 - 15;
         switch (indexPath.row) {
             case 2:
@@ -439,7 +441,7 @@
                 return 50;
                 break;
         }
-    }else if (indexPath.section == 5){
+    }else if (indexPath.section == 6){
         CGFloat width = [UIScreen mainScreen].bounds.size.width - 15 - 10 - 15;
         switch (indexPath.row) {
             case 0:
@@ -542,7 +544,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 6;
+    return 7;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -563,9 +565,11 @@
         }
     }else if (section == 3){//礼物
         return 1;
-    }else if (section == 4){//个人象形
+    }else if (section == 4){//电话
+        return 1;
+    }else if (section == 5){//个人象形
         return 13;
-    }else if (section == 5){//个人喜好
+    }else if (section == 6){//个人喜好
         return 3;
     }else{
         return 1;
@@ -725,6 +729,20 @@
         return cell;
     }
     else if (indexPath.section == 4){
+        
+        UserDetailTableViewCell5 *cell = [tableView dequeueReusableCellWithIdentifier:@"userdetailcell55"];
+        if (cell == nil) {
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"UserDetailTableViewCell5" owner:self options:nil] lastObject];
+            cell.rightLayoutCons.constant = 15;
+        }
+        
+        NSString *phone = [userinfo objectForKey:@"phone"];//电话
+        cell.leftLabel.text = @"手机号";
+        cell.rightLabel.text = [phone isEqualToString:@""] ? @"未填" : phone;
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        return cell;
+    }
+    else if (indexPath.section == 5){
         UserDetailTableViewCell5 *cell = [tableView dequeueReusableCellWithIdentifier:@"userdetailcell5"];
         if (cell == nil) {
             cell = [[[NSBundle mainBundle] loadNibNamed:@"UserDetailTableViewCell5" owner:self options:nil] lastObject];
@@ -919,7 +937,7 @@
         }
         return cell;
     }
-    else if (indexPath.section == 5){
+    else if (indexPath.section == 6){
         
         NSString *xue = [userinfo objectForKey:@"xue"];
         NSString *chang = [userinfo objectForKey:@"chang"];
@@ -1046,7 +1064,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     if (section == 1 || section == 2) {
         return 10;
-    }else if(section < 5){
+    }else if(section < 6){
         return 5;
     }else{
         return 20;

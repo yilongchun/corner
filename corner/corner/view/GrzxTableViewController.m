@@ -19,6 +19,7 @@
 
 #import "WodeyaoyueViewController.h"
 
+#import "PhoneUpdateViewController.h"
 #import "NichengUpdateViewController.h"
 #import "ZiwojieshaoViewController.h"
 #import "XuanshiViewController.h"
@@ -1070,74 +1071,76 @@
             
             return 10 + height + 10 + 34 + 10;
         }
-    }else if (indexPath.section == 3){//个人信息
-        CGFloat width = [UIScreen mainScreen].bounds.size.width - 15 - 10 - 33;
-        switch (indexPath.row) {
-            case 2:
-            {
-                NSString *aboutme = [userinfo objectForKey:@"aboutme"];
-                aboutme =  [aboutme isEqualToString:@""] ? @"未填" : aboutme;
-                UIFont *font = [UIFont systemFontOfSize:13];
-                CGSize leftTextSize;
-                CGSize textSize;
-                if ([NSString instancesRespondToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
-                    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
-                    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
-                    NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
-                    NSStringDrawingOptions options = NSStringDrawingUsesLineFragmentOrigin;
-                    
-                    leftTextSize = [@"对爱情的看法" boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT)
-                                                           options:options
-                                                        attributes:attributes
-                                                           context:nil].size;
-                    textSize = [aboutme boundingRectWithSize:CGSizeMake(width - leftTextSize.width, MAXFLOAT)
-                                                    options:options
-                                                 attributes:attributes
-                                                    context:nil].size;
-                }
-                if (textSize.height + 17 +17 > 50) {
-                    return textSize.height + 17 + 17;
-                }else{
-                    return 50;
-                }
-            }
-                break;
-            case 11:
-            {
-                NSString *aiqing = [userinfo objectForKey:@"aiqing"];//对爱情的想法
-                aiqing =  [aiqing isEqualToString:@""] ? @"未填" : aiqing;
+    }else if (indexPath.section == 3){//电话
+        return 50;
+    }else if (indexPath.section == 4){//个人信息
+    CGFloat width = [UIScreen mainScreen].bounds.size.width - 15 - 10 - 33;
+    switch (indexPath.row) {
+        case 2:
+        {
+            NSString *aboutme = [userinfo objectForKey:@"aboutme"];
+            aboutme =  [aboutme isEqualToString:@""] ? @"未填" : aboutme;
+            UIFont *font = [UIFont systemFontOfSize:13];
+            CGSize leftTextSize;
+            CGSize textSize;
+            if ([NSString instancesRespondToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+                NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+                paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+                NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
+                NSStringDrawingOptions options = NSStringDrawingUsesLineFragmentOrigin;
                 
-                UIFont *font = [UIFont systemFontOfSize:13];
-                CGSize leftTextSize;
-                CGSize textSize;
-                if ([NSString instancesRespondToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
-                    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
-                    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
-                    NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
-                    NSStringDrawingOptions options = NSStringDrawingUsesLineFragmentOrigin;
-                    
-                    leftTextSize = [@"对爱情的看法" boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT)
-                                                           options:options
-                                                        attributes:attributes
-                                                           context:nil].size;
-                    textSize = [aiqing boundingRectWithSize:CGSizeMake(width - leftTextSize.width, MAXFLOAT)
-                                                         options:options
-                                                      attributes:attributes
-                                                         context:nil].size;
-                }
-                if (textSize.height + 17 +17 > 50) {
-                    return textSize.height + 17 + 17;
-                }else{
-                    return 50;
-                }
+                leftTextSize = [@"对爱情的看法" boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT)
+                                                       options:options
+                                                    attributes:attributes
+                                                       context:nil].size;
+                textSize = [aboutme boundingRectWithSize:CGSizeMake(width - leftTextSize.width, MAXFLOAT)
+                                                options:options
+                                             attributes:attributes
+                                                context:nil].size;
             }
-                break;
-                
-            default:
+            if (textSize.height + 17 +17 > 50) {
+                return textSize.height + 17 + 17;
+            }else{
                 return 50;
-                break;
+            }
         }
-    }else if (indexPath.section == 4){
+            break;
+        case 11:
+        {
+            NSString *aiqing = [userinfo objectForKey:@"aiqing"];//对爱情的想法
+            aiqing =  [aiqing isEqualToString:@""] ? @"未填" : aiqing;
+            
+            UIFont *font = [UIFont systemFontOfSize:13];
+            CGSize leftTextSize;
+            CGSize textSize;
+            if ([NSString instancesRespondToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+                NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+                paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+                NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
+                NSStringDrawingOptions options = NSStringDrawingUsesLineFragmentOrigin;
+                
+                leftTextSize = [@"对爱情的看法" boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT)
+                                                       options:options
+                                                    attributes:attributes
+                                                       context:nil].size;
+                textSize = [aiqing boundingRectWithSize:CGSizeMake(width - leftTextSize.width, MAXFLOAT)
+                                                     options:options
+                                                  attributes:attributes
+                                                     context:nil].size;
+            }
+            if (textSize.height + 17 +17 > 50) {
+                return textSize.height + 17 + 17;
+            }else{
+                return 50;
+            }
+        }
+            break;
+            
+        default:
+            return 50;
+            break;
+    }
+    }else if (indexPath.section == 5){
         CGFloat width = [UIScreen mainScreen].bounds.size.width - 15 - 10 - 33;
         switch (indexPath.row) {
             case 0:
@@ -1239,7 +1242,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 5;
+    return 6;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -1258,9 +1261,11 @@
         }else{
             return [activities count];
         }
-    }else if (section == 3){
+    }else if (section == 3){//电话
+        return 1;
+    }else if (section == 4){//个人详情
         return 13;
-    }else if (section == 4){
+    }else if (section == 5){//个人爱好
         return 3;
     }else{
         return 1;
@@ -1277,8 +1282,6 @@
                 
                 UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(uploadUserImagePrefix)];
                 [cell.userImage addGestureRecognizer:tap];
-                
-                
                 
 //                userImage = cell.userImage;
 //                userImageCenter = cell.userImageCenter;
@@ -1398,6 +1401,22 @@
         }
     }
     else if (indexPath.section == 3){
+        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell33"];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell3"];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.textLabel.font = [UIFont systemFontOfSize:13];
+            cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
+        }
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+        NSString *phone = [userinfo objectForKey:@"phone"];//电话
+        cell.textLabel.text = @"手机号";
+        cell.detailTextLabel.text = [phone isEqualToString:@""] ? @"未填" : phone;
+        return cell;
+    }
+    else if (indexPath.section == 4){
         
         
         NSNumber *userid = [userinfo objectForKey:@"id"];
@@ -1606,7 +1625,7 @@
         }
         return cell;
     }
-    else if (indexPath.section == 4){
+    else if (indexPath.section == 5){
         
         
         NSString *xue = [userinfo objectForKey:@"xue"];//想学
@@ -1746,7 +1765,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     if (section == 1) {
         return 10;
-    }else if(section < 4){
+    }else if(section < 5){
         return 5;
     }else{
         return 20;
@@ -1793,16 +1812,24 @@
             break;
         case 2://邀约
         {
-            NSArray *activities = [userinfo objectForKey:@"activities"];
-            if ([activities count] == 0) {
-                [self fabuyaoyue];
-            }else{
+//            NSArray *activities = [userinfo objectForKey:@"activities"];
+//            if ([activities count] == 0) {
+//                [self fabuyaoyue];
+//            }else{
                 WodeyaoyueViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"WodeyaoyueViewController"];
                 [self.navigationController pushViewController:vc animated:YES];
-            }
+//            }
         }
             break;
-        case 3://详情
+        case 3://电话
+        {
+            PhoneUpdateViewController *vc = [[PhoneUpdateViewController alloc] init];
+            NSString *phone = [userinfo objectForKey:@"phone"];
+            vc.phone = phone;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 4://详情
         {
             switch (indexPath.row) {
                 case 1://昵称
@@ -1898,7 +1925,7 @@
             }
         }
             break;
-        case 4://其他信息
+        case 5://其他信息
         {
             switch (indexPath.row) {
                 case 0://想学
@@ -2284,6 +2311,7 @@
     NSMutableIndexSet *idxSet = [[NSMutableIndexSet alloc] init];
     [idxSet addIndex:3];
     [idxSet addIndex:4];
+    [idxSet addIndex:5];
     [self.tableView reloadSections:idxSet withRowAnimation:UITableViewRowAnimationNone];
 }
 @end
