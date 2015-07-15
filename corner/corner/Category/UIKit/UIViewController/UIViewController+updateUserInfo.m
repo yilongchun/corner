@@ -43,6 +43,7 @@
             NSNumber *status = [dic objectForKey:@"status"];
             if ([status intValue] == 200) {
                 NSDictionary *message = [[dic objectForKey:@"message"] cleanNull];
+                [UD setObject:message forKey:LOGINED_USER];
                 [[NSNotificationCenter defaultCenter] postNotificationName:USER_DETAIL_CHANGE object:nil userInfo:message];
                 [self.navigationController popViewControllerAnimated:YES];
             }else if([status intValue] >= 600){

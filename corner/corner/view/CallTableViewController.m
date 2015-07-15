@@ -231,13 +231,20 @@
 
 -(void)call:(UIButton *)sender{
     NSDictionary *info = [[dataSource objectAtIndex:sender.tag] cleanNull];
-    NSNumber *phone = [info objectForKey:@"phone"];
-    NSString *src = [[NSUserDefaults standardUserDefaults] stringForKey:@"SBFormattedPhoneNumber"];
+    NSString *dst = [info objectForKey:@"phone"];
+    
+    NSDictionary *loginUser = [UD objectForKey:LOGINED_USER];
+    NSString *src = [loginUser objectForKey:@"phone"];
     if (src == nil || (src != nil && [src isEqualToString:@""])) {
-        [self showHint:@"获取本机号码失败"];
+        [self showHint:@"您未填写手机号码，请先填写手机号码再拨打电话"];
         return;
     }
-    NSString *dst = [phone stringValue];
+//    NSString *sPhone = [phone stringValue];
+    if (dst == nil || (dst != nil && [dst isEqualToString:@""])) {
+        [self showHint:@"对方未填写手机号码，拨打失败"];
+        return;
+    }
+//    NSString *dst = [phone stringValue];
 //    NSString *src = @"18671701215";
 //    NSString *dst = @"15872610102";
     [self showHudInView:self.view hint:@"拨打中，请稍后"];
