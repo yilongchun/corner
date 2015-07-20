@@ -228,7 +228,7 @@ static const CGFloat kDefaultPlaySoundInterval = 1.0;
     if (message.messageId) {
         NSTimeInterval timeInterval = [[NSDate date]
                                        timeIntervalSinceDate:self.lastPlaySoundDate];
-        if (self.lastPlaySoundDate == Nil || timeInterval >= kDefaultPlaySoundInterval) {
+        if (self.lastPlaySoundDate == nil || timeInterval >= kDefaultPlaySoundInterval) {
             //保存最后一次响铃时间
             AudioServicesPlaySystemSound(1007);
         }

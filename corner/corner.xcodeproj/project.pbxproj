@@ -237,6 +237,11 @@
 		E44D48081B325DA40064404B /* cornerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E44D48071B325DA40064404B /* cornerTests.m */; };
 		E45E02F81B55F08B00724211 /* PhoneUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E45E02F61B55F08B00724211 /* PhoneUpdateViewController.m */; };
 		E45E02F91B55F08B00724211 /* PhoneUpdateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E45E02F71B55F08B00724211 /* PhoneUpdateViewController.xib */; };
+		E45E03151B565AC800724211 /* CDCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E45E030C1B565AC800724211 /* CDCacheManager.m */; };
+		E45E03161B565AC800724211 /* CDIMService.m in Sources */ = {isa = PBXBuildFile; fileRef = E45E030E1B565AC800724211 /* CDIMService.m */; };
+		E45E03171B565AC800724211 /* CDUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E45E03101B565AC800724211 /* CDUserManager.m */; };
+		E45E03181B565AC800724211 /* CDUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E45E03121B565AC800724211 /* CDUtils.m */; };
+		E45E03191B565AC800724211 /* MCPhotographyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E45E03141B565AC800724211 /* MCPhotographyHelper.m */; };
 		E465C47B1B33BA180084CE29 /* YaoyueDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E465C4791B33BA180084CE29 /* YaoyueDetailViewController.m */; };
 		E465C47C1B33BA180084CE29 /* YaoyueDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E465C47A1B33BA180084CE29 /* YaoyueDetailViewController.xib */; };
 		E46928421B3AA3550094CA7A /* TongchengyaoyueTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E46928411B3AA3550094CA7A /* TongchengyaoyueTableViewCell.xib */; };
@@ -758,6 +763,16 @@
 		E45E02F51B55F08B00724211 /* PhoneUpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneUpdateViewController.h; sourceTree = "<group>"; };
 		E45E02F61B55F08B00724211 /* PhoneUpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneUpdateViewController.m; sourceTree = "<group>"; };
 		E45E02F71B55F08B00724211 /* PhoneUpdateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhoneUpdateViewController.xib; sourceTree = "<group>"; };
+		E45E030B1B565AC800724211 /* CDCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDCacheManager.h; sourceTree = "<group>"; };
+		E45E030C1B565AC800724211 /* CDCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDCacheManager.m; sourceTree = "<group>"; };
+		E45E030D1B565AC800724211 /* CDIMService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDIMService.h; sourceTree = "<group>"; };
+		E45E030E1B565AC800724211 /* CDIMService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDIMService.m; sourceTree = "<group>"; };
+		E45E030F1B565AC800724211 /* CDUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDUserManager.h; sourceTree = "<group>"; };
+		E45E03101B565AC800724211 /* CDUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDUserManager.m; sourceTree = "<group>"; };
+		E45E03111B565AC800724211 /* CDUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDUtils.h; sourceTree = "<group>"; };
+		E45E03121B565AC800724211 /* CDUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDUtils.m; sourceTree = "<group>"; };
+		E45E03131B565AC800724211 /* MCPhotographyHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPhotographyHelper.h; sourceTree = "<group>"; };
+		E45E03141B565AC800724211 /* MCPhotographyHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCPhotographyHelper.m; sourceTree = "<group>"; };
 		E465C4781B33BA180084CE29 /* YaoyueDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YaoyueDetailViewController.h; sourceTree = "<group>"; };
 		E465C4791B33BA180084CE29 /* YaoyueDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YaoyueDetailViewController.m; sourceTree = "<group>"; };
 		E465C47A1B33BA180084CE29 /* YaoyueDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YaoyueDetailViewController.xib; sourceTree = "<group>"; };
@@ -1828,6 +1843,7 @@
 				E446F31F1B32968B0060E9D7 /* LCEChatListVC.m */,
 				E446F3201B32968B0060E9D7 /* LCEChatRoomVC.h */,
 				E446F3211B32968B0060E9D7 /* LCEChatRoomVC.m */,
+				E45E030A1B565AC800724211 /* manager */,
 			);
 			path = leanChat;
 			sourceTree = "<group>";
@@ -1962,6 +1978,23 @@
 				E44D48061B325DA40064404B /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E45E030A1B565AC800724211 /* manager */ = {
+			isa = PBXGroup;
+			children = (
+				E45E030B1B565AC800724211 /* CDCacheManager.h */,
+				E45E030C1B565AC800724211 /* CDCacheManager.m */,
+				E45E030D1B565AC800724211 /* CDIMService.h */,
+				E45E030E1B565AC800724211 /* CDIMService.m */,
+				E45E030F1B565AC800724211 /* CDUserManager.h */,
+				E45E03101B565AC800724211 /* CDUserManager.m */,
+				E45E03111B565AC800724211 /* CDUtils.h */,
+				E45E03121B565AC800724211 /* CDUtils.m */,
+				E45E03131B565AC800724211 /* MCPhotographyHelper.h */,
+				E45E03141B565AC800724211 /* MCPhotographyHelper.m */,
+			);
+			path = manager;
 			sourceTree = "<group>";
 		};
 		E4E210E61B5368D500940E90 /* pingppSDK */ = {
@@ -2233,6 +2266,7 @@
 				E446F27D1B325F240060E9D7 /* NSTimer+Blocks.m in Sources */,
 				E446F29D1B325F240060E9D7 /* UIScrollView+Addition.m in Sources */,
 				E446F29F1B325F240060E9D7 /* UIScrollView+PullLoad.m in Sources */,
+				E45E03171B565AC800724211 /* CDUserManager.m in Sources */,
 				E446F2481B325F240060E9D7 /* AFURLConnectionOperation.m in Sources */,
 				E446F2D51B325F240060E9D7 /* SDPhotoBrowser.m in Sources */,
 				E446F24E1B325F240060E9D7 /* UIAlertView+AFNetworking.m in Sources */,
@@ -2254,13 +2288,16 @@
 				E446F2A41B325F240060E9D7 /* UITextView+PlaceHolder.m in Sources */,
 				E446F2431B325F240060E9D7 /* AFHTTPRequestOperation.m in Sources */,
 				E446F2A21B325F240060E9D7 /* UITableViewCell+NIB.m in Sources */,
+				E45E03161B565AC800724211 /* CDIMService.m in Sources */,
 				E446F2AE1B325F240060E9D7 /* UIViewController+RecursiveDescription.m in Sources */,
 				E4F59DEA1B42437200A6F002 /* WodeyaoyueTableViewCell.m in Sources */,
+				E45E03191B565AC800724211 /* MCPhotographyHelper.m in Sources */,
 				E446F26E1B325F240060E9D7 /* NSObject+AutoCoding.m in Sources */,
 				E446F2821B325F240060E9D7 /* UIBezierPath+Symbol.m in Sources */,
 				E46E8DE81B467D7D006CAE06 /* XiangxueViewController.m in Sources */,
 				E446F3081B325F240060E9D7 /* RedupaihangViewController.m in Sources */,
 				E446F2651B325F240060E9D7 /* NSDictionary+SafeAccess.m in Sources */,
+				E45E03151B565AC800724211 /* CDCacheManager.m in Sources */,
 				E446F2CB1B325F240060E9D7 /* MBProgressHUD.m in Sources */,
 				E446F3241B32968B0060E9D7 /* LCEChatListVC.m in Sources */,
 				E446F2EF1B325F240060E9D7 /* UserDetailTableViewCell2.m in Sources */,
@@ -2363,6 +2400,7 @@
 				E446F2BD1B325F240060E9D7 /* IQKeyboardManager.m in Sources */,
 				E4DBFAF41B452032002004BC /* ZiwojieshaoViewController.m in Sources */,
 				E46E8DD61B4666DB006CAE06 /* ChooseZhiyeViewController.m in Sources */,
+				E45E03181B565AC800724211 /* CDUtils.m in Sources */,
 				E446F2791B325F240060E9D7 /* NSString+UrlEncode.m in Sources */,
 				E446F2761B325F240060E9D7 /* NSString+HXAddtions.m in Sources */,
 				E446F2DD1B325F240060E9D7 /* SDWebImageDownloaderOperation.m in Sources */,
