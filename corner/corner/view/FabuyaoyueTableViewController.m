@@ -91,11 +91,11 @@
     userInfo = text.userInfo;
     
     NSString *name = text.userInfo[@"name"];
-    NSNumber *latitude = text.userInfo[@"latitude"];
-    NSNumber *longitude = text.userInfo[@"longitude"];
-    
-    DLog(@"%f",[latitude floatValue]);
-    DLog(@"%f",[longitude floatValue]);
+//    NSNumber *latitude = text.userInfo[@"latitude"];
+//    NSNumber *longitude = text.userInfo[@"longitude"];
+//    
+//    DLog(@"%f",[latitude floatValue]);
+//    DLog(@"%f",[longitude floatValue]);
     self.locationLabel.text = name;
     self.locationLabel.textColor = [UIColor blackColor];
     
@@ -592,9 +592,9 @@
             [self hideHud];
             NSNumber *status = [dic objectForKey:@"status"];
             if ([status intValue] == 200) {
-                NSDictionary *message = [[dic objectForKey:@"message"] cleanNull];
+//                NSDictionary *message = [[dic objectForKey:@"message"] cleanNull];
                 [self showHint:@"发布成功"];
-                DLog(@"%@",message);
+//                DLog(@"%@",message);
                 
                 int64_t delayInSeconds = 1.5;
                 dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);

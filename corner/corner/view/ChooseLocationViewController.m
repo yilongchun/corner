@@ -74,8 +74,8 @@
         strPoi = [NSString stringWithFormat:@"%@\nPOI: %@", strPoi, p.description];
         [dataSource addObject:p];
     }
-    NSString *result = [NSString stringWithFormat:@"%@ \n %@ \n %@", strCount, strSuggestion, strPoi];
-    NSLog(@"Place: %@", result);
+//    NSString *result = [NSString stringWithFormat:@"%@ \n %@ \n %@", strCount, strSuggestion, strPoi];
+//    NSLog(@"Place: %@", result);
     [self.mytableview reloadData];
 }
 

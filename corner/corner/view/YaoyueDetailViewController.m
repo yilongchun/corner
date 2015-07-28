@@ -76,7 +76,7 @@
                     self.enjoyBtnHeight.constant = 0;
                     self.navigationItem.rightBarButtonItem = rightItem;
                     NSArray *cared_users = [message objectForKey:@"cared_users"];//感兴趣的人
-                    self.caredNumsLabel.text = [NSString stringWithFormat:@"(共计%d人)",[cared_users count]];
+                    self.caredNumsLabel.text = [NSString stringWithFormat:@"(共计%lu人)",(unsigned long)[cared_users count]];
                     if ([cared_users count] != 0) {
                         dataSource = [NSMutableArray arrayWithArray:cared_users];
                         [self addBtn:cared_users];
@@ -178,11 +178,11 @@
 }
 //同意
 -(void)ok:(UIButton *)btn{
-    [self saveAgreeOrRegict:ACTIVITY_AGREE_URL index:btn.tag];
+    [self saveAgreeOrRegict:ACTIVITY_AGREE_URL index:(int)btn.tag];
 }
 //拒绝
 -(void)no:(UIButton *)btn{
-    [self saveAgreeOrRegict:ACTIVITY_REGECT_URL index:btn.tag];
+    [self saveAgreeOrRegict:ACTIVITY_REGECT_URL index:(int)btn.tag];
 }
 //保存数据
 -(void)saveAgreeOrRegict:(NSString *)method index:(int)index{
@@ -213,7 +213,7 @@
         }else{
             NSNumber *status = [dic objectForKey:@"status"];
             if ([status intValue] == 200) {
-                NSDictionary *message = [[dic objectForKey:@"message"] cleanNull];
+//                NSDictionary *message = [[dic objectForKey:@"message"] cleanNull];
                 if ([method isEqualToString:ACTIVITY_AGREE_URL]) {
                     [self showHint:@"已同意邀约"];
                     [self backAndFresh];
@@ -221,7 +221,7 @@
                     [self showHint:@"已拒绝邀约"];
                 }
                 
-                DLog(@"%@",message);
+//                DLog(@"%@",message);
             }else if([status intValue] >= 600){
                 NSString *message = [dic objectForKey:@"message"];
                 [self hideHud];
@@ -282,12 +282,12 @@
         }else{
             NSNumber *status = [dic objectForKey:@"status"];
             if ([status intValue] == 200) {
-                NSDictionary *message = [[dic objectForKey:@"message"] cleanNull];
+//                NSDictionary *message = [[dic objectForKey:@"message"] cleanNull];
                 [self showHint:@"关闭邀约"];
                 
                 [self backAndFresh];
                 
-                DLog(@"%@",message);
+//                DLog(@"%@",message);
             }else if([status intValue] >= 600){
                 NSString *message = [dic objectForKey:@"message"];
                 [self hideHud];
@@ -340,9 +340,9 @@
         }else{
             NSNumber *status = [dic objectForKey:@"status"];
             if ([status intValue] == 200) {
-                NSDictionary *message = [[dic objectForKey:@"message"] cleanNull];
+//                NSDictionary *message = [[dic objectForKey:@"message"] cleanNull];
                 [self showHint:@"发送邀约成功"];
-                DLog(@"%@",message);
+//                DLog(@"%@",message);
                 
             }else if([status intValue] >= 600){
                 NSString *message = [dic objectForKey:@"message"];

@@ -199,9 +199,9 @@
 
 //事件
 -(void)segmentAction:(UISegmentedControl *)Seg{
-    NSInteger Index = Seg.selectedSegmentIndex;
+//    NSInteger Index = Seg.selectedSegmentIndex;
     [self loadData];
-    NSLog(@"Seg.selectedSegmentIndex:%ld",(long)Index);
+//    NSLog(@"Seg.selectedSegmentIndex:%ld",(long)Index);
 }
 
 - (NSInteger)numberOfSections{

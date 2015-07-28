@@ -30,7 +30,6 @@
 
 -(void)done{
     [[IQKeyboardManager sharedManager] resignFirstResponder];
-    DLog(@"done");
     if (self.nicknameTextField.text.length == 0) {
         [self showHint:@"请填写昵称"];
         return;
