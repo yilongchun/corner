@@ -282,7 +282,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="162.66666666666666" y="259.38666666666666"/>
+            <point key="canvasLocation" x="-212" y="611"/>
         </scene>
         <!--热度排行-->
         <scene sceneID="ih1-jk-cet">
@@ -1668,7 +1668,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="UserDetailTableViewController" id="qX7-Uq-klb" customClass="UserDetailTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="5" sectionFooterHeight="5" id="2g9-Eq-ElD">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
@@ -1981,7 +1981,7 @@
             <objects>
                 <collectionViewController storyboardIdentifier="MainCollectionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tWa-YS-7qq" customClass="MainCollectionViewController" sceneMemberID="viewController">
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" id="aGy-PX-zTW">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="1" id="64v-1e-T3u">
@@ -2079,6 +2079,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DDo-Pm-QNV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1350" y="259"/>
+        </scene>
+        <!--转角-->
+        <scene sceneID="t51-vp-dXW">
+            <objects>
+                <viewController storyboardIdentifier="MainViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tWM-Md-zvs" customClass="MainViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rmw-Kx-s7O"/>
+                        <viewControllerLayoutGuide type="bottom" id="ji2-yh-a37"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mVB-Qj-vx5">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tW8-p9-TIf">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tW8-p9-TIf" firstAttribute="top" secondItem="rmw-Kx-s7O" secondAttribute="bottom" id="GYf-qq-Mmr"/>
+                            <constraint firstItem="tW8-p9-TIf" firstAttribute="leading" secondItem="mVB-Qj-vx5" secondAttribute="leading" id="QFo-j3-eQ5"/>
+                            <constraint firstAttribute="trailing" secondItem="tW8-p9-TIf" secondAttribute="trailing" id="cFn-lI-tfz"/>
+                            <constraint firstItem="ji2-yh-a37" firstAttribute="top" secondItem="tW8-p9-TIf" secondAttribute="bottom" constant="49" id="knM-BK-ZWt"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="转角" id="HnH-EH-L5H"/>
+                    <connections>
+                        <outlet property="myscrollview" destination="tW8-p9-TIf" id="bAc-03-6qx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lvD-KO-Ewi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="961" y="259"/>
         </scene>
         <!--波一下-->
         <scene sceneID="bLi-HT-24B">
@@ -2381,7 +2415,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pue-5X-r4Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="541" y="259"/>
+            <point key="canvasLocation" x="162" y="611"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UcX-eM-Z5k">
@@ -2394,17 +2428,17 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="tWa-YS-7qq" kind="relationship" relationship="rootViewController" id="oKW-Yv-XyA"/>
                         <segue destination="EJO-aI-LHR" kind="push" identifier="toview2" id="Ydk-zD-U8w"/>
                         <segue destination="vpW-UO-TA1" kind="push" identifier="toview3" id="rAA-mj-ff9"/>
                         <segue destination="bF8-Dh-Eta" kind="push" identifier="toview4" id="WIJ-Yq-nxI"/>
                         <segue destination="Obs-Sx-exR" kind="push" identifier="toview5" id="DnE-vA-lia"/>
                         <segue destination="sSA-B9-df6" kind="push" identifier="toboyixia" id="B7M-qd-78j"/>
+                        <segue destination="tWM-Md-zvs" kind="relationship" relationship="rootViewController" id="tRi-V5-OdW"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wpn-16-QJ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="934" y="259"/>
+            <point key="canvasLocation" x="562" y="611"/>
         </scene>
     </scenes>
     <resources>

@@ -177,7 +177,7 @@
     
     if (indexPath.row == 0) {
         if (nc1 == nil) {
-            nc1 = [[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"MainCollectionViewController"]];
+            nc1 = [[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"MainViewController"]];
             nc1.navigationBar.barTintColor = [UIColor colorWithRed:0/255. green:0/255. blue:0/255. alpha:1];
             nc1.navigationBar.tintColor = [UIColor whiteColor];
             [nc1.navigationBar setTitleTextAttributes:

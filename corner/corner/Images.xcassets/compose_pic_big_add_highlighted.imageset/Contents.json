@@ -2,7 +2,8 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "compose_pic_big_add_highlighted.png"
     },
     {
       "idiom" : "universal",

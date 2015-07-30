@@ -254,6 +254,7 @@
 		E46E8DE41B4677EB006CAE06 /* ChooseXingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E46E8DE21B4677EB006CAE06 /* ChooseXingViewController.xib */; };
 		E46E8DE81B467D7D006CAE06 /* XiangxueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E46E8DE61B467D7D006CAE06 /* XiangxueViewController.m */; };
 		E46E8DE91B467D7D006CAE06 /* XiangxueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E46E8DE71B467D7D006CAE06 /* XiangxueViewController.xib */; };
+		E4CDAFEC1B6879B000A0432E /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4CDAFEB1B6879B000A0432E /* MainViewController.m */; };
 		E4D3C3941B411BE000ED9652 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4D3C3931B411BE000ED9652 /* TencentOpenAPI.framework */; };
 		E4D3C3961B411C2F00ED9652 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E4D3C3951B411C2F00ED9652 /* libiconv.dylib */; };
 		E4D3C3981B411C4900ED9652 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4D3C3971B411C4900ED9652 /* SystemConfiguration.framework */; };
@@ -791,6 +792,8 @@
 		E46E8DE51B467D7D006CAE06 /* XiangxueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XiangxueViewController.h; sourceTree = "<group>"; };
 		E46E8DE61B467D7D006CAE06 /* XiangxueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XiangxueViewController.m; sourceTree = "<group>"; };
 		E46E8DE71B467D7D006CAE06 /* XiangxueViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XiangxueViewController.xib; sourceTree = "<group>"; };
+		E4CDAFEA1B6879B000A0432E /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		E4CDAFEB1B6879B000A0432E /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		E4D3C3931B411BE000ED9652 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TencentOpenAPI.framework; path = corner/TencentOpenAPI.framework; sourceTree = SOURCE_ROOT; };
 		E4D3C3951B411C2F00ED9652 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		E4D3C3971B411C4900ED9652 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -1897,6 +1900,8 @@
 				E446F1BF1B325F240060E9D7 /* PreLoginViewController.m */,
 				E446F1AC1B325F240060E9D7 /* LoginViewController.h */,
 				E446F1AD1B325F240060E9D7 /* LoginViewController.m */,
+				E4CDAFEA1B6879B000A0432E /* MainViewController.h */,
+				E4CDAFEB1B6879B000A0432E /* MainViewController.m */,
 				E446F1AE1B325F240060E9D7 /* MainCollectionViewController.h */,
 				E446F1AF1B325F240060E9D7 /* MainCollectionViewController.m */,
 				E446F1BA1B325F240060E9D7 /* MyCollectionReusableView.h */,
@@ -2416,6 +2421,7 @@
 				E446F2DE1B325F240060E9D7 /* SDWebImageManager.m in Sources */,
 				E4DBFAE91B44D477002004BC /* UIView+RGSize.m in Sources */,
 				E446F2B81B325F240060E9D7 /* DOPDropDownMenu.m in Sources */,
+				E4CDAFEC1B6879B000A0432E /* MainViewController.m in Sources */,
 				E446F2521B325F240060E9D7 /* UIRefreshControl+AFNetworking.m in Sources */,
 				E446F2711B325F240060E9D7 /* NSObject+Runtime.m in Sources */,
 				E43DAA6C1B54B1FC008CF574 /* CallTableViewController.m in Sources */,
@@ -2655,7 +2661,7 @@
 					"-fobjc-arc",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "39020f61-f964-4a8b-a8d2-33e253cd2cd1";
+				PROVISIONING_PROFILE = "ec1eb976-0ab7-4683-bbab-9ef4ce307e43";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
@@ -2737,7 +2743,7 @@
 					"-fobjc-arc",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "39020f61-f964-4a8b-a8d2-33e253cd2cd1";
+				PROVISIONING_PROFILE = "ec1eb976-0ab7-4683-bbab-9ef4ce307e43";
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;
