@@ -11,7 +11,7 @@
 @interface PaihangTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIView *leftTopView;
-@property (weak, nonatomic) IBOutlet UILabel *sortLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *sortImage;
 @property (weak, nonatomic) IBOutlet UIImageView *userHeadImage;
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;

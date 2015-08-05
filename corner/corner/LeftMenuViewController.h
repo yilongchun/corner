@@ -21,4 +21,6 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *unReadCountImageView;
 
+@property (nonatomic,strong) UINavigationController *chatnav;
+
 @end

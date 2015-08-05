@@ -20,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y2J-PX-ama">
-                    <rect key="frame" x="0.0" y="74" width="320" height="50"/>
+                    <rect key="frame" x="0.0" y="10" width="320" height="50"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="年龄" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gOy-gw-uif">
                             <rect key="frame" x="15" y="16" width="30" height="18"/>
@@ -48,7 +48,7 @@
             <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="Y2J-PX-ama" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Hj5-Fv-x0e"/>
-                <constraint firstItem="Y2J-PX-ama" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="74" id="PWn-tA-mJT"/>
+                <constraint firstItem="Y2J-PX-ama" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="PWn-tA-mJT"/>
                 <constraint firstAttribute="trailing" secondItem="Y2J-PX-ama" secondAttribute="trailing" id="k2d-9R-atQ"/>
             </constraints>
             <point key="canvasLocation" x="243" y="287"/>

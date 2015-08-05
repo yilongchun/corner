@@ -17,7 +17,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jNt-UH-uIa">
-                    <rect key="frame" x="0.0" y="74" width="320" height="40"/>
+                    <rect key="frame" x="0.0" y="10" width="320" height="40"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="Evo-Db-ISA"/>
@@ -26,7 +26,7 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请留下手机号码" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NpQ-6S-OhA">
-                    <rect key="frame" x="8" y="124" width="105" height="18"/>
+                    <rect key="frame" x="8" y="60" width="105" height="18"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -35,7 +35,7 @@
             <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="jNt-UH-uIa" firstAttribute="leading" secondItem="gdF-x7-Cmm" secondAttribute="leading" id="1ve-gK-hZA"/>
-                <constraint firstItem="jNt-UH-uIa" firstAttribute="top" secondItem="gdF-x7-Cmm" secondAttribute="top" constant="74" id="Ejm-if-pbc"/>
+                <constraint firstItem="jNt-UH-uIa" firstAttribute="top" secondItem="gdF-x7-Cmm" secondAttribute="top" constant="10" id="Ejm-if-pbc"/>
                 <constraint firstItem="NpQ-6S-OhA" firstAttribute="leading" secondItem="gdF-x7-Cmm" secondAttribute="leading" constant="8" id="UUU-lo-eLH"/>
                 <constraint firstAttribute="trailing" secondItem="jNt-UH-uIa" secondAttribute="trailing" id="WnL-6y-v3g"/>
                 <constraint firstItem="NpQ-6S-OhA" firstAttribute="top" secondItem="jNt-UH-uIa" secondAttribute="bottom" constant="10" id="qzX-U0-AKe"/>

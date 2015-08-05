@@ -8,9 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "RESideMenu.h"
+#import "PagedFlowView.h"
 
-@interface MainViewController : UIViewController
+@interface MainViewController : UIViewController<PagedFlowViewDelegate,PagedFlowViewDataSource>{
+    NSArray *imageArray;
+}
 
 @property (weak, nonatomic) IBOutlet UIScrollView *myscrollview;
+@property (nonatomic, strong) IBOutlet PagedFlowView *hFlowView;
+@property (weak, nonatomic) IBOutlet UIToolbar *mytoolbar;
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *charItem;
+- (IBAction)action1:(id)sender;
+- (IBAction)action2:(id)sender;
+- (IBAction)action3:(id)sender;
+- (IBAction)action4:(id)sender;
 
 @end

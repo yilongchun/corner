@@ -16,7 +16,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8U0-Lf-bVE">
-                    <rect key="frame" x="20" y="102" width="280" height="40"/>
+                    <rect key="frame" x="20" y="38" width="280" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="qnA-iK-gOn"/>
                     </constraints>
@@ -30,7 +30,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Be-7k-p9d">
-                    <rect key="frame" x="20" y="150" width="280" height="40"/>
+                    <rect key="frame" x="20" y="86" width="280" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="sBA-iL-hOz"/>
                     </constraints>
@@ -43,7 +43,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qNa-4b-DBZ">
-                    <rect key="frame" x="20" y="198" width="280" height="40"/>
+                    <rect key="frame" x="20" y="134" width="280" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="CjQ-X6-6ey"/>
                     </constraints>
@@ -56,13 +56,13 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我来转角的目的：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D9d-gg-J2p">
-                    <rect key="frame" x="15" y="74" width="128" height="20"/>
+                    <rect key="frame" x="15" y="10" width="128" height="20"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LTm-cj-QuI">
-                    <rect key="frame" x="20" y="246" width="280" height="40"/>
+                    <rect key="frame" x="20" y="182" width="280" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="N8f-Jt-kaB"/>
                     </constraints>
@@ -80,7 +80,7 @@
                 <constraint firstItem="qNa-4b-DBZ" firstAttribute="top" secondItem="9Be-7k-p9d" secondAttribute="bottom" constant="8" id="183-PX-fa6"/>
                 <constraint firstItem="qNa-4b-DBZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="6BD-fz-NBq"/>
                 <constraint firstAttribute="trailing" secondItem="8U0-Lf-bVE" secondAttribute="trailing" constant="20" id="6Np-3e-DzY"/>
-                <constraint firstItem="D9d-gg-J2p" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="74" id="6TN-b7-dDX"/>
+                <constraint firstItem="D9d-gg-J2p" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="6TN-b7-dDX"/>
                 <constraint firstAttribute="trailing" secondItem="9Be-7k-p9d" secondAttribute="trailing" constant="20" id="AdS-7y-HqH"/>
                 <constraint firstAttribute="trailing" secondItem="LTm-cj-QuI" secondAttribute="trailing" constant="20" id="JOU-4M-no4"/>
                 <constraint firstItem="8U0-Lf-bVE" firstAttribute="top" secondItem="D9d-gg-J2p" secondAttribute="bottom" constant="8" id="N20-aW-AEh"/>

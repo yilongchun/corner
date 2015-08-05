@@ -10,6 +10,9 @@
 #import "LCEChatListVC.h"
 #import <AudioToolbox/AudioToolbox.h>
 
+#import "RedupaihangViewController.h"
+#import "JYSlideSegmentController.h"
+
 #define cellIdentifier @"leftMenuCell"
 
 
@@ -32,10 +35,12 @@
     UINavigationController *nc6;
     UINavigationController *nc8;
     
-    UINavigationController *chatnav;
+    
     UINavigationController *grzxnc;
     UINavigationController *ilikenc;
 }
+
+@synthesize chatnav;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -46,24 +51,9 @@
                                                  name:USER_INFO_CHANGE
                                                object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(setUnRadCount)
-                                                 name:@"setUnRadCount"
-                                               object:nil];
+    
     
     titles = @[@"转角", @"care一下", @"同城邀约", @"call她", @"热度排行", @"我的转角", @"vip专区", @"设置"];
-    
-    LCEChatListVC *chatListVC = [[LCEChatListVC alloc] init];
-    chatnav = [[UINavigationController alloc] initWithRootViewController:chatListVC];
-    chatnav.navigationBar.barTintColor = [UIColor colorWithRed:0/255. green:0/255. blue:0/255. alpha:1];
-    chatnav.navigationBar.tintColor = [UIColor whiteColor];
-    [chatnav.navigationBar setTitleTextAttributes:
-     @{NSFontAttributeName:[UIFont boldSystemFontOfSize:17],
-       NSForegroundColorAttributeName:[UIColor whiteColor]}];
-    
-    
-    [self setUnRadCount];
-    
     
     self.userimage.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickImage)];
@@ -72,18 +62,18 @@
     self.userimage.layer.borderWidth = 1.0f;
     
     UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.mytableview.frame.size.width, 20)];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, v.frame.size.width, 0.5)];
-    label.backgroundColor = [UIColor colorWithRed:250/255. green:250/255. blue:250/255. alpha:0.2];
-    [v addSubview:label];
+//    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, v.frame.size.width, 0.5)];
+//    label.backgroundColor = [UIColor colorWithRed:250/255. green:250/255. blue:250/255. alpha:0.2];
+//    [v addSubview:label];
     
     
     self.mytableview.tableFooterView = v;
-//    if ([self.mytableview respondsToSelector:@selector(setSeparatorInset:)]) {
-//        [self.mytableview setSeparatorInset:UIEdgeInsetsZero];
-//    }
-//    if ([self.mytableview respondsToSelector:@selector(setLayoutMargins:)]) {
-//        [self.mytableview setLayoutMargins:UIEdgeInsetsZero];
-//    }
+    if ([self.mytableview respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self.mytableview setSeparatorInset:UIEdgeInsetsMake(0, 15, 0, 0)];
+    }
+    if ([self.mytableview respondsToSelector:@selector(setLayoutMargins:)]) {
+        [self.mytableview setLayoutMargins:UIEdgeInsetsMake(0, 15, 0, 0)];
+    }
     
 //    [self.mytableview registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
     [self.mytableview setSeparatorColor:[UIColor colorWithWhite:1.0 alpha:0.2]];
@@ -160,14 +150,14 @@
 //    return 20;
 //}
 
-//- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
-//        [cell setSeparatorInset:UIEdgeInsetsZero];
-//    }
-//    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-//        [cell setLayoutMargins:UIEdgeInsetsZero];
-//    }
-//}
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsMake(0, 15, 0, 0)];
+    }
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsMake(0, 15, 0, 0)];
+    }
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 //    [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -219,7 +209,38 @@
         [self.sideMenuViewController setContentViewController:nc4 animated:YES];
     }else if(indexPath.row == 4){
         if (nc5 == nil) {
-            nc5 = [[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"RedupaihangViewController"]];
+            
+            
+            NSMutableArray *vcs = [NSMutableArray array];
+            
+            RedupaihangViewController *vc1 = [self.storyboard instantiateViewControllerWithIdentifier:@"RedupaihangViewController"];
+            vc1.title = @"今日排行";
+            vc1.redutype = 1;
+            [vcs addObject:vc1];
+            RedupaihangViewController *vc2 = [self.storyboard instantiateViewControllerWithIdentifier:@"RedupaihangViewController"];
+            vc2.title = @"本周排行";
+            vc2.redutype = 2;
+            [vcs addObject:vc2];
+            RedupaihangViewController *vc3 = [self.storyboard instantiateViewControllerWithIdentifier:@"RedupaihangViewController"];
+            vc3.title = @"同城排行";
+            vc3.redutype = 3;
+            [vcs addObject:vc3];
+            
+            
+            JYSlideSegmentController *slideSegmentController = [[JYSlideSegmentController alloc] initWithViewControllers:vcs];
+            //设置背景图片
+            UIImage *image = [UIImage imageNamed:@"mainbackground"];
+            slideSegmentController.view.layer.contents = (id)image.CGImage;
+            
+            
+            slideSegmentController.title = @"热度排行";
+            slideSegmentController.indicatorInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+            slideSegmentController.indicator.backgroundColor = RGBACOLOR(212, 100, 24, 1);
+            
+//            [self.navigationController setNavigationBarHidden:NO];
+//            [self.navigationController pushViewController:slideSegmentController animated:YES];
+            
+            nc5 = [[UINavigationController alloc] initWithRootViewController:slideSegmentController];
             nc5.navigationBar.barTintColor = [UIColor colorWithRed:0/255. green:0/255. blue:0/255. alpha:1];
             nc5.navigationBar.tintColor = [UIColor whiteColor];
             [nc5.navigationBar setTitleTextAttributes:
@@ -314,9 +335,9 @@
     [sender setImage:[UIImage imageNamed:@"menu7c_v1_2x"] forState:UIControlStateNormal];
     [self.mytableview deselectRowAtIndexPath:oldIndexPath animated:YES];
     
-    [self.sideMenuViewController setContentViewController:chatnav animated:YES];
-    
-    [self.sideMenuViewController hideMenuViewController];
+//    [self.sideMenuViewController setContentViewController:chatnav animated:YES];
+//    
+//    [self.sideMenuViewController hideMenuViewController];
 }
 
 //短信按钮
@@ -350,20 +371,5 @@
 }
 
 
-/**
- *  设置未读聊天数量
- */
--(void)setUnRadCount{
-    NSInteger totalUnreadCount = [[CDStorage storage] countUnread];
-    if (totalUnreadCount > 0) {
-        
-        [self.unReadCountImageView setHidden:NO];
-        
-        
-        
-        
-    }else {
-        [self.unReadCountImageView setHidden:YES];
-    }
-}
+
 @end

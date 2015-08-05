@@ -48,7 +48,9 @@
         [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     }
     
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
     
     //设置自动登录
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];

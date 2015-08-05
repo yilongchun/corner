@@ -8,7 +8,7 @@
 
 #import "LCEChatListVC.h"
 #import "LCEChatRoomVC.h"
-#import "RESideMenu.h"
+//#import "RESideMenu.h"
 
 @interface LCEChatListVC () <CDChatListVCDelegate>
 
@@ -35,14 +35,14 @@
     UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.tableFooterView = v;
     
-    UIImage *image = [[UIImage imageNamed:@"kiss_top1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStyleDone target:self action:@selector(leftMenu)];
-    self.navigationItem.leftBarButtonItem = leftItem;
+//    UIImage *image = [[UIImage imageNamed:@"kiss_top1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStyleDone target:self action:@selector(leftMenu)];
+//    self.navigationItem.leftBarButtonItem = leftItem;
 }
 
--(void)leftMenu{
-    [self.sideMenuViewController presentLeftMenuViewController];
-}
+//-(void)leftMenu{
+//    [self.sideMenuViewController presentLeftMenuViewController];
+//}
 
 - (void)logout:(id)sender {
     [[CDIM sharedInstance] closeWithCallback: ^(BOOL succeeded, NSError *error) {

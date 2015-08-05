@@ -8,10 +8,11 @@
 
 #import "RedupaihangViewController.h"
 #import "PaihangTableViewCell.h"
+#import "PaihangTableViewCell2.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UserDetailTableViewController.h"
 #define cellIdentifier @"paihangcell"
-
+#define cellIdentifier2 @"paihangcell2"
 #import "SVPullToRefresh.h"
 
 
@@ -47,28 +48,29 @@
     UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
     [self.mytableview setTableFooterView:v];
     if ([self.mytableview respondsToSelector:@selector(setSeparatorInset:)]) {
-        [self.mytableview setSeparatorInset:UIEdgeInsetsZero];
+        [self.mytableview setSeparatorInset:UIEdgeInsetsMake(0, 10, 0, 10)];
     }
     if ([self.mytableview respondsToSelector:@selector(setLayoutMargins:)]) {
-        [self.mytableview setLayoutMargins:UIEdgeInsetsZero];
+        [self.mytableview setLayoutMargins:UIEdgeInsetsMake(0, 10, 0, 10)];
     }
+    [self.mytableview setSeparatorColor:[UIColor lightGrayColor]];
     
     dataSource = [NSMutableArray array];
     
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.mytableview.frame.size.width, 50)];
-    NSArray *segmentedArray = [[NSArray alloc]initWithObjects:@"今日排行",@"本周排行",@"同城排行",nil];
-    //初始化UISegmentedControl
-    segmentedControl = [[UISegmentedControl alloc]initWithItems:segmentedArray];
-    segmentedControl.frame = CGRectMake(10.0, 7.0, [UIScreen mainScreen].bounds.size.width - 20 , 35.0);
-    segmentedControl.selectedSegmentIndex = 0;//设置默认选择项索引
-    segmentedControl.tintColor = [UIColor colorWithRed:121/255. green:121/255. blue:121/255. alpha:1];
-    [segmentedControl addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
-    [view addSubview:segmentedControl];
-    UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, view.frame.size.height-0.5, [UIScreen mainScreen].bounds.size.width, 0.5)];
-    imageview.backgroundColor = [UIColor colorWithRed:200/255. green:199/255. blue:204/255. alpha:1];
-    [view addSubview:imageview];
-    self.mytableview.tableHeaderView = view;
+//    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.mytableview.frame.size.width, 50)];
+//    NSArray *segmentedArray = [[NSArray alloc]initWithObjects:@"今日排行",@"本周排行",@"同城排行",nil];
+//    //初始化UISegmentedControl
+//    segmentedControl = [[UISegmentedControl alloc]initWithItems:segmentedArray];
+//    segmentedControl.frame = CGRectMake(10.0, 7.0, [UIScreen mainScreen].bounds.size.width - 20 , 35.0);
+//    segmentedControl.selectedSegmentIndex = 0;//设置默认选择项索引
+//    segmentedControl.tintColor = [UIColor whiteColor];
+//    [segmentedControl addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
+//    [view addSubview:segmentedControl];
+//    UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, view.frame.size.height-0.5, [UIScreen mainScreen].bounds.size.width, 0.5)];
+//    imageview.backgroundColor = [UIColor colorWithRed:200/255. green:199/255. blue:204/255. alpha:1];
+//    [view addSubview:imageview];
+//    self.mytableview.tableHeaderView = view;
     
     __weak RedupaihangViewController *weakSelf = self;
     
@@ -81,7 +83,6 @@
     }];
     //初始化数据
     [self.mytableview triggerPullToRefresh];
-    
     
 }
 
@@ -109,7 +110,7 @@
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setValue:[NSNumber numberWithInt:page] forKey:@"page"];
-    [parameters setValue:[NSNumber numberWithLong:segmentedControl.selectedSegmentIndex + 1] forKey:@"type"];
+    [parameters setValue:[NSNumber numberWithInt:_redutype] forKey:@"type"];
     [parameters setValue:token forKey:@"token"];
     
     NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,USER_LOVELY_URL];
@@ -155,7 +156,7 @@
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setValue:[NSNumber numberWithInt:page] forKey:@"page"];
-    [parameters setValue:[NSNumber numberWithLong:segmentedControl.selectedSegmentIndex + 1] forKey:@"type"];
+    [parameters setValue:[NSNumber numberWithInt:_redutype] forKey:@"type"];
     [parameters setValue:token forKey:@"token"];
     
     NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,USER_LOVELY_URL];
@@ -197,12 +198,12 @@
     }];
 }
 
-//事件
--(void)segmentAction:(UISegmentedControl *)Seg{
-//    NSInteger Index = Seg.selectedSegmentIndex;
-    [self loadData];
-//    NSLog(@"Seg.selectedSegmentIndex:%ld",(long)Index);
-}
+////事件
+//-(void)segmentAction:(UISegmentedControl *)Seg{
+////    NSInteger Index = Seg.selectedSegmentIndex;
+//    [self loadData];
+////    NSLog(@"Seg.selectedSegmentIndex:%ld",(long)Index);
+//}
 
 - (NSInteger)numberOfSections{
     return 1;
@@ -214,96 +215,131 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    PaihangTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        cell = [[[NSBundle mainBundle] loadNibNamed:@"PaihangTableViewCell" owner:self options:nil] lastObject];
-    }
-//    cell.userHeadImage.layer.cornerRadius = 5.0f;
-//    cell.userHeadImage.layer.masksToBounds = YES;
-//    cell.userHeadImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
-//    cell.userHeadImage.layer.borderWidth = 0.2f;
-    
-    NSDictionary *info = [[dataSource objectAtIndex:indexPath.row] cleanNull];
-    NSNumber *userid = [info objectForKey:@"id"];
-    NSString *nickname = [info objectForKey:@"nickname"];
-    NSNumber *sexnum = [info objectForKey:@"sex"];
-//    NSString *age = [info objectForKey:@"age"];
-    NSString *zhiye = [info objectForKey:@"zhiye"];
-    NSString *avatar_url = [info objectForKey:@"avatar_url"];
     if (indexPath.row < 3) {
-        cell.leftTopView.backgroundColor = TOP_COLOR;
         
+        PaihangTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (cell == nil) {
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"PaihangTableViewCell" owner:self options:nil] lastObject];
+        }
+            cell.userHeadImage.layer.cornerRadius = 25.0f;
+            cell.userHeadImage.layer.masksToBounds = YES;
+            cell.userHeadImage.layer.borderColor = [UIColor whiteColor].CGColor;
+            cell.userHeadImage.layer.borderWidth = 1.0f;
         
-//        CALayer * layer = cell.userHeadImage.layer;
-//        [layer setShadowOffset:CGSizeMake(10, 10)]; //为阴影偏移量,默认为(左右,上下)
-//        [layer setShadowRadius:5]; //为阴影四角圆角半径,默认值为
-//        [layer setShadowOpacity:1]; //为阴影透明度(取值为[0,1])
-//        [layer setShadowColor:[UIColor blackColor].CGColor]; //为阴影颜色
+        NSDictionary *info = [[dataSource objectAtIndex:indexPath.row] cleanNull];
+        NSNumber *userid = [info objectForKey:@"id"];
+        NSString *nickname = [info objectForKey:@"nickname"];
         
-//        CGRect rect;
-//        rect = CGRectMake(0, 0, 48, 48);
-//        
-//        
-//        //Round the corners
-//        CALayer * layer = [cell.userHeadImage layer];
-//        [layer setMasksToBounds:YES];
-//        [layer setCornerRadius:5.0];
-//        
-//        //Add a shadow by wrapping the avatar into a container
-//        UIView * shadow = [[UIView alloc] initWithFrame: rect];
-//        cell.userHeadImage.frame = CGRectMake(0,0,rect.size.width, rect.size.height);
-//        
-//        // setup shadow layer and corner
-//        shadow.layer.shadowColor = [UIColor grayColor].CGColor;
-//        shadow.layer.shadowOffset = CGSizeMake(0, 1);
-//        shadow.layer.shadowOpacity = 1;
-//        shadow.layer.shadowRadius = 9.0;
-//        shadow.layer.cornerRadius = 9.0;  
-//        shadow.clipsToBounds = NO;  
-//        
-//        // combine the views  
-//        [shadow addSubview: cell.userHeadImage];
+        //    NSString *age = [info objectForKey:@"age"];
+//        NSString *zhiye = [info objectForKey:@"zhiye"];
+        NSString *avatar_url = [info objectForKey:@"avatar_url"];
         
+        switch (indexPath.row) {
+            case 0:
+                cell.sortImage.image = [UIImage imageNamed:@"paihang1"];
+                break;
+            case 1:
+                cell.sortImage.image = [UIImage imageNamed:@"paihang2"];
+                break;
+            case 2:
+                cell.sortImage.image = [UIImage imageNamed:@"paihang3"];
+                break;
+            default:
+                break;
+        }
+        if ([nickname isEqualToString:@""]) {
+            nickname = [userid stringValue];
+        }
+        cell.nameLabel.text = nickname;
         
-        
+        NSString *birthday = [info objectForKey:@"birthday"];
+        if ([birthday isEqualToString:@"1900-01-01"]) {
+            cell.ageLabel.text = @"-";
+        }else{
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+            NSDate *date= [dateFormatter dateFromString:birthday];
+            NSInteger age = [NSDate ageWithDateOfBirth:date];
+            cell.ageLabel.text = [NSString stringWithFormat:@"%ld岁",(long)age];
+        }
+//        cell.zhiyeLabel.text = zhiye;
+        if (![avatar_url isEqualToString:@""]) {
+            [cell.userHeadImage setImageWithURL:[NSURL URLWithString:avatar_url] placeholderImage:[UIImage imageNamed:@"public_load_face"]];
+        }else{
+            [cell.userHeadImage setImage:[UIImage imageNamed:@"public_load_face"]];
+        }
+        NSNumber *sexnum = [info objectForKey:@"sex"];
+        switch ([sexnum intValue]) {
+            case 0:
+                [cell.sexImageView setImage:[UIImage imageNamed:@"man"]];
+                break;
+            case 1:
+                [cell.sexImageView setImage:[UIImage imageNamed:@"women"]];
+                break;
+            default:
+                break;
+        }
+        return cell;
     }else{
-        cell.leftTopView.backgroundColor = NORMAL_COLOR;
+        PaihangTableViewCell2 *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier2];
+        if (cell == nil) {
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"PaihangTableViewCell2" owner:self options:nil] lastObject];
+            
+            
+            
+        }
+        cell.sortBgView.layer.cornerRadius = 18.0f;
+        cell.sortBgView.layer.masksToBounds = YES;
+            cell.userHeadImage.layer.cornerRadius = 25.0f;
+            cell.userHeadImage.layer.masksToBounds = YES;
+            cell.userHeadImage.layer.borderColor = [UIColor whiteColor].CGColor;
+            cell.userHeadImage.layer.borderWidth = 1.0f;
+        
+        NSDictionary *info = [[dataSource objectAtIndex:indexPath.row] cleanNull];
+        NSNumber *userid = [info objectForKey:@"id"];
+        NSString *nickname = [info objectForKey:@"nickname"];
+        NSNumber *sexnum = [info objectForKey:@"sex"];
+        //    NSString *age = [info objectForKey:@"age"];
+//        NSString *zhiye = [info objectForKey:@"zhiye"];
+        NSString *avatar_url = [info objectForKey:@"avatar_url"];
+        
+        cell.sortLabel.text = [NSString stringWithFormat:@"%d",indexPath.row + 1];
+        if ([nickname isEqualToString:@""]) {
+            nickname = [userid stringValue];
+        }
+        cell.nameLabel.text = nickname;
+        
+        NSString *birthday = [info objectForKey:@"birthday"];
+        if ([birthday isEqualToString:@"1900-01-01"]) {
+            cell.ageLabel.text = @"-";
+        }else{
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+            NSDate *date= [dateFormatter dateFromString:birthday];
+            NSInteger age = [NSDate ageWithDateOfBirth:date];
+            cell.ageLabel.text = [NSString stringWithFormat:@"%ld岁",(long)age];
+        }
+//        cell.zhiyeLabel.text = zhiye;
+        if (![avatar_url isEqualToString:@""]) {
+            [cell.userHeadImage setImageWithURL:[NSURL URLWithString:avatar_url] placeholderImage:[UIImage imageNamed:@"public_load_face"]];
+        }else{
+            [cell.userHeadImage setImage:[UIImage imageNamed:@"public_load_face"]];
+        }
+        switch ([sexnum intValue]) {
+            case 0:
+                [cell.sexImageView setImage:[UIImage imageNamed:@"man"]];
+                break;
+            case 1:
+                [cell.sexImageView setImage:[UIImage imageNamed:@"women"]];
+                break;
+            default:
+                break;
+        }
+        return cell;
     }
-    cell.sortLabel.text = [NSString stringWithFormat:@"%d",(int)(indexPath.row + 1)];
-    if ([nickname isEqualToString:@""]) {
-        nickname = [userid stringValue];
-    }
-    cell.nameLabel.text = nickname;
     
-    NSString *birthday = [info objectForKey:@"birthday"];
-    if ([birthday isEqualToString:@"1900-01-01"]) {
-        cell.ageLabel.text = @"-";
-    }else{
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-        NSDate *date= [dateFormatter dateFromString:birthday];
-        NSInteger age = [NSDate ageWithDateOfBirth:date];
-        cell.ageLabel.text = [NSString stringWithFormat:@"%ld",(long)age];
-    }
     
     
-    cell.zhiyeLabel.text = zhiye;
-    if (![avatar_url isEqualToString:@""]) {
-        [cell.userHeadImage setImageWithURL:[NSURL URLWithString:avatar_url] placeholderImage:[UIImage imageNamed:@"public_load_face"]];
-    }else{
-        [cell.userHeadImage setImage:[UIImage imageNamed:@"public_load_face"]];
-    }
-    switch ([sexnum intValue]) {
-        case 0:
-            [cell.sexImageView setImage:[UIImage imageNamed:@"ico_man"]];
-            break;
-        case 1:
-            [cell.sexImageView setImage:[UIImage imageNamed:@"ico_woman"]];
-            break;
-        default:
-            break;
-    }
-    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -327,7 +363,7 @@
 //}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 95;
+    return 70;
 }
 
 //- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -337,10 +373,10 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
-        [cell setSeparatorInset:UIEdgeInsetsZero];
+        [cell setSeparatorInset:UIEdgeInsetsMake(0, 10, 0, 10)];
     }
     if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-        [cell setLayoutMargins:UIEdgeInsetsZero];
+        [cell setLayoutMargins:UIEdgeInsetsMake(0, 10, 0, 10)];
     }
 }
 

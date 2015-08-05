@@ -29,12 +29,38 @@
         self.extendedLayoutIncludesOpaqueBars = YES;
     }
     
-    UIImage *image = [[UIImage imageNamed:@"kiss_top1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStyleDone target:self action:@selector(leftMenu)];
-    self.navigationItem.leftBarButtonItem = leftItem;
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"mainbackground"]];
+    self.tableView.backgroundView = view;
+    
+    NSDictionary *userinfo = [UD objectForKey:LOGINED_USER];
+    NSString *avatar_url = [userinfo objectForKey:@"avatar_url"];
+    UIImage* image= [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:avatar_url]]];
+    CGRect frame= CGRectMake(8, 0, 30, 30);
+    UIButton* someButton= [[UIButton alloc] initWithFrame:frame];
+    someButton.layer.cornerRadius = 15;
+    someButton.layer.masksToBounds = YES;
+    someButton.layer.borderColor = RGBACOLOR(220, 220, 220, 1).CGColor;
+    someButton.layer.borderWidth = 1.0f;
+    [someButton addTarget:self action:@selector(leftMenu) forControlEvents:UIControlEventTouchUpInside];
+    [someButton setImage:image forState:UIControlStateNormal];
+    UIBarButtonItem* someBarButtonItem= [[UIBarButtonItem alloc] initWithCustomView:someButton];
+    [self.navigationItem setLeftBarButtonItem:someBarButtonItem];
+    
+    UIImage *image2 = [[UIImage imageNamed:@"callItem"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithImage:image2 style:UIBarButtonItemStyleDone target:self action:@selector(rightMenu)];
+    self.navigationItem.rightBarButtonItem = rightItem;
     
     self.title = @"call她";
     dataSource = [NSMutableArray array];
+    
+    [self.tableView setSeparatorColor:[UIColor lightGrayColor]];
+    if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    }
+    if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+        [self.tableView setLayoutMargins:UIEdgeInsetsZero];
+    }
     
     __weak CallTableViewController *weakSelf = self;
     
@@ -155,6 +181,9 @@
     [self.sideMenuViewController presentLeftMenuViewController];    
 }
 
+-(void)rightMenu{
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -164,29 +193,30 @@
 -(void)viewDidLayoutSubviews
 {
     if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
-        [self.tableView setSeparatorInset:UIEdgeInsetsMake(0,0,0,0)];
+        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     }
-    
     if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
-        [self.tableView setLayoutMargins:UIEdgeInsetsMake(0,0,0,0)];
+        [self.tableView setLayoutMargins:UIEdgeInsetsZero];
     }
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
-        [cell setSeparatorInset:UIEdgeInsetsZero];
+    if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     }
-    
-    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-        [cell setLayoutMargins:UIEdgeInsetsZero];
+    if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+        [self.tableView setLayoutMargins:UIEdgeInsetsZero];
     }
 }
 
 #pragma mark - Table view data source
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 85;
+    if (indexPath.row == 0) {
+        return 85;
+    }
+    return 70;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -209,11 +239,34 @@
         NSNumber *userid = [info objectForKey:@"id"];
         NSString *avatar_url = [info objectForKey:@"avatar_url"];
         
-        [cell.userImage setImageWithURL:[NSURL URLWithString:avatar_url] placeholderImage:[UIImage imageNamed:@"public_load_face"]];
+        NSString *birthday = [info objectForKey:@"birthday"];
+        if ([birthday isEqualToString:@"1900-01-01"]) {
+            cell.ageLabel.text = @"-";
+        }else{
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+            NSDate *date= [dateFormatter dateFromString:birthday];
+            NSInteger age = [NSDate ageWithDateOfBirth:date];
+            cell.ageLabel.text = [NSString stringWithFormat:@"%ld岁",(long)age];
+        }
         
-//        cell.userImage.layer.masksToBounds = YES;
-//        cell.userImage.layer.cornerRadius = 5.0f;
-//        cell.userImage.layer.shouldRasterize = YES;
+        NSNumber *sexnum = [info objectForKey:@"sex"];
+        switch ([sexnum intValue]) {
+            case 0:
+                [cell.sexImageView setImage:[UIImage imageNamed:@"man"]];
+                break;
+            case 1:
+                [cell.sexImageView setImage:[UIImage imageNamed:@"women"]];
+                break;
+            default:
+                break;
+        }
+        
+        [cell.userImage setImageWithURL:[NSURL URLWithString:avatar_url] placeholderImage:[UIImage imageNamed:@"public_load_face"]];
+        cell.userImage.layer.cornerRadius = 25.0f;
+        cell.userImage.layer.masksToBounds = YES;
+        cell.userImage.layer.borderColor = [UIColor whiteColor].CGColor;
+        cell.userImage.layer.borderWidth = 1.0f;
         NSString *name;
         if ([nickname isEqualToString:@""]) {
             name = [userid stringValue];
@@ -222,7 +275,7 @@
         }
         
         cell.nameLabel.text = name;
-        [cell.callBtn setBackgroundImage:[[UIImage imageNamed:@"restaurant_btn_bg2"] stretchableImageWithLeftCapWidth:17 topCapHeight:15] forState:UIControlStateNormal];
+        //[cell.callBtn setBackgroundImage:[[UIImage imageNamed:@"restaurant_btn_bg2"] stretchableImageWithLeftCapWidth:17 topCapHeight:15] forState:UIControlStateNormal];
         cell.callBtn.tag = indexPath.row - 1;
         [cell.callBtn addTarget:self action:@selector(call:) forControlEvents:UIControlEventTouchUpInside];
         return cell;
@@ -236,7 +289,7 @@
     NSDictionary *loginUser = [UD objectForKey:LOGINED_USER];
     NSString *src = [loginUser objectForKey:@"phone"];
     if (src == nil || (src != nil && [src isEqualToString:@""])) {
-        [self showHint:@"您未填写手机号码，请先填写手机号码再拨打电话"];
+        [self showHint:@"请先填写手机号码再拨打电话"];
         return;
     }
     if (dst == nil || (dst != nil && [dst isEqualToString:@""])) {

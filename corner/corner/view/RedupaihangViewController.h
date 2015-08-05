@@ -10,6 +10,8 @@
 #import "RESideMenu.h"
 
 @interface RedupaihangViewController : UIViewController
+
 @property (weak, nonatomic) IBOutlet UITableView *mytableview;
+@property int redutype;
 
 @end

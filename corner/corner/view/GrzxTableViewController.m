@@ -11,7 +11,7 @@
 #import "UserDetailTableViewCell2.h"
 #import "UserDetailTableViewCell3.h"
 #import "UserDetailTableViewCell5.h"
-#import "RESideMenu.h"
+//#import "RESideMenu.h"
 #import "YaoyueDetailViewController.h"
 #import "DongtaiTableViewController.h"
 #import "FabuyaoyueTableViewController.h"
@@ -118,9 +118,9 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    UIImage *image = [[UIImage imageNamed:@"kiss_top1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStyleDone target:self action:@selector(leftMenu)];
-    self.navigationItem.leftBarButtonItem = leftItem;
+//    UIImage *image = [[UIImage imageNamed:@"kiss_top1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStyleDone target:self action:@selector(leftMenu)];
+//    self.navigationItem.leftBarButtonItem = leftItem;
     
     UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.tableFooterView = v;
@@ -390,10 +390,10 @@
     
 }
 
--(void)leftMenu{
-    [self.sideMenuViewController presentLeftMenuViewController];
-    
-}
+//-(void)leftMenu{
+//    [self.sideMenuViewController presentLeftMenuViewController];
+//    
+//}
 
 /**
  *  点击用户头像 上传头像

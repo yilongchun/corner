@@ -17,7 +17,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gJ1-M9-HpY">
-                    <rect key="frame" x="0.0" y="74" width="320" height="40"/>
+                    <rect key="frame" x="0.0" y="10" width="320" height="40"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="oiL-YE-HcK"/>
@@ -26,7 +26,7 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="昵称长度为2～8个汉子，或3～16个字符。" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xeg-aR-PAz">
-                    <rect key="frame" x="8" y="124" width="283" height="18"/>
+                    <rect key="frame" x="8" y="60" width="283" height="18"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -34,7 +34,7 @@
             </subviews>
             <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="gJ1-M9-HpY" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="74" id="FqY-B4-c5d"/>
+                <constraint firstItem="gJ1-M9-HpY" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="FqY-B4-c5d"/>
                 <constraint firstItem="gJ1-M9-HpY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Gdc-vo-TVE"/>
                 <constraint firstItem="Xeg-aR-PAz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="c39-6C-SVo"/>
                 <constraint firstAttribute="trailing" secondItem="gJ1-M9-HpY" secondAttribute="trailing" id="nCR-zZ-kXN"/>

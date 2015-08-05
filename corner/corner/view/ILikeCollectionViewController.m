@@ -44,9 +44,9 @@ static NSString * const reuseIdentifier = @"ILikeCollectionViewCell";
     [self.myseg setTitleTextAttributes:dic forState:UIControlStateSelected];
     [self.myseg setTitleTextAttributes:dic2 forState:UIControlStateNormal];
     
-    UIImage *image = [[UIImage imageNamed:@"kiss_top1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStyleDone target:self action:@selector(leftMenu)];
-    self.navigationItem.leftBarButtonItem = leftItem;
+//    UIImage *image = [[UIImage imageNamed:@"kiss_top1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStyleDone target:self action:@selector(leftMenu)];
+//    self.navigationItem.leftBarButtonItem = leftItem;
     
     __weak ILikeCollectionViewController *weakSelf = self;
     
@@ -240,10 +240,10 @@ static NSString * const reuseIdentifier = @"ILikeCollectionViewCell";
 }
 */
 
--(void)leftMenu{
-    [self.sideMenuViewController presentLeftMenuViewController];
-    
-}
+//-(void)leftMenu{
+//    [self.sideMenuViewController presentLeftMenuViewController];
+//    
+//}
 
 - (IBAction)changeType:(UISegmentedControl *)sender {
     type = (int)sender.selectedSegmentIndex;
