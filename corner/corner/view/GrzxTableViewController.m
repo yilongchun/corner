@@ -16,9 +16,9 @@
 #import "DongtaiTableViewController.h"
 #import "FabuyaoyueTableViewController.h"
 #import "SVPullToRefresh.h"
-
+#import "UIButton+Badge.h"
 #import "WodeyaoyueViewController.h"
-
+#import "LCEChatListVC.h"
 #import "PhoneUpdateViewController.h"
 #import "NichengUpdateViewController.h"
 #import "ZiwojieshaoViewController.h"
@@ -31,6 +31,7 @@
 #import "MyLovePartViewController.h"
 #import "UpdateAgeViewController.h"
 #import "NSDate+Addition.h"
+#import "ILikeCollectionViewController.h"
 //#import "MLPhotoBrowserAssets.h"
 //#import "MLPhotoBrowserViewController.h"
 //#import "UIButton+WebCache.h"
@@ -72,6 +73,8 @@
     NSArray *shouruArr;//收入
     NSArray *shengaoArr;//身高
     NSArray *tizhongArr;//体重
+    
+    UIButton *chatBtn;
 }
 
 @property (strong, nonatomic) IBOutlet UIPickerView *myPicker;
@@ -80,10 +83,19 @@
 
 @end
 
+#define PICTURE_NUMBER 3
+#define PICTURE_MARGIN 2
+
 @implementation GrzxTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(setUnRadCount)
+                                                 name:@"setUnRadCount"
+                                               object:nil];
+    [self setUnRadCount];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(userDetailChange:)
@@ -112,6 +124,10 @@
         self.automaticallyAdjustsScrollViewInsets = YES;
         self.extendedLayoutIncludesOpaqueBars = YES;
     }
+    
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"mainbackground"]];
+    self.tableView.backgroundView = view;
     
     rectFlag = NO;
     
@@ -300,6 +316,8 @@
 //    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:0 inSection:0];
 //    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationFade];
     
+    
+    
     [cell.view1.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         UIButton *btn = obj;
         if (btn.tag != -1) {
@@ -314,7 +332,7 @@
     }];
     if (rectFlag == NO) {
         resetRect = cell.gongkaiBtn.frame;
-        resetRect.origin.x = 0;
+        resetRect.origin.x = 2;
         resetRect.origin.y = 0;
         rectFlag = YES;
     }
@@ -328,6 +346,8 @@
         cell.topConstraint.constant = rect.origin.y;
         cell.view1HeightConstraint.constant = rect.origin.y + rect.size.height;
     }else{
+        
+        
         for (int i = 0; i < [photo1 count]; i++) {
             UIImageView *img = [[UIImageView alloc] initWithFrame:cell.gongkaiBtn.frame];
             img.contentMode = UIViewContentModeScaleToFill;
@@ -338,12 +358,12 @@
             [img addGestureRecognizer:tap];
             [cell.view1 addSubview:img];
             CGRect rect = cell.gongkaiBtn.frame;
-            if (i !=0 && (i+1) % 4 == 0) {//应该换行
-                rect.origin.x = 0;
-                rect.origin.y = (i / 3) * (rect.size.height + 2);
-                cell.view1HeightConstraint.constant = rect.origin.y + rect.size.height + 2;
+            if (i !=0 && (i+1) % PICTURE_NUMBER == 0) {//应该换行
+                rect.origin.x = 2;
+                rect.origin.y = (i / (PICTURE_NUMBER - 1)) * (rect.size.height + PICTURE_MARGIN);
+                cell.view1HeightConstraint.constant = rect.origin.y + rect.size.height + PICTURE_MARGIN;
             }else{
-                rect.origin.x = cell.gongkaiBtn.frame.size.width + cell.gongkaiBtn.frame.origin.x + 2;
+                rect.origin.x = cell.gongkaiBtn.frame.size.width + cell.gongkaiBtn.frame.origin.x + PICTURE_MARGIN;
                 cell.view1HeightConstraint.constant = rect.origin.y + rect.size.height;
             }
             cell.leadingConstraint.constant = rect.origin.x;
@@ -368,14 +388,14 @@
             [img addGestureRecognizer:tap];
             [cell.view2 addSubview:img];
             CGRect rect = cell.yinsiBtn.frame;
-            if (i !=0 && (i+1) % 4 == 0) {//应该换行
-                rect.origin.x = 0;
-                rect.origin.y = (i / 3) * (rect.size.height + 2);
+            if (i !=0 && (i+1) % PICTURE_NUMBER == 0) {//应该换行
+                rect.origin.x = 2;
+                rect.origin.y = (i / (PICTURE_NUMBER - 1)) * (rect.size.height + PICTURE_MARGIN);
                 cell.leadingConstraint2.constant = rect.origin.x;
                 cell.topConstraint2.constant = rect.origin.y;
-                cell.view2HeightConstraint.constant = rect.origin.y + rect.size.height + 2;
+                cell.view2HeightConstraint.constant = rect.origin.y + rect.size.height + PICTURE_MARGIN;
             }else{
-                rect.origin.x = cell.yinsiBtn.frame.size.width + cell.yinsiBtn.frame.origin.x + 2;
+                rect.origin.x = cell.yinsiBtn.frame.size.width + cell.yinsiBtn.frame.origin.x + PICTURE_MARGIN;
                 cell.leadingConstraint2.constant = rect.origin.x;
                 cell.topConstraint2.constant = rect.origin.y;
                 cell.view2HeightConstraint.constant = rect.origin.y + rect.size.height;
@@ -729,8 +749,6 @@
                 
                 
                 GrzxTableViewCell *cell = (GrzxTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-                cell.userImageCenter.hidden = YES;
-                cell.userImageBtn.hidden = YES;
                 [cell.userImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,key]]];
                 
                 
@@ -967,21 +985,22 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        CGFloat width = ([UIScreen mainScreen].bounds.size.width - 20 - 8) / 4;
-        CGFloat height1;
-        CGFloat height2;
-        CGFloat imgHeight = [UIScreen mainScreen].bounds.size.width - 20;
-        CGFloat jiange = 32;
-        CGFloat totalHeight = imgHeight + jiange + jiange + 20;
-        if ((photo1.count + 1) % 4 == 0) {
-            height1 = ((photo1.count + 1) / 4) * (width + ((photo1.count + 1) / 4 -1) * 2);
+        CGFloat imgWidth = ([UIScreen mainScreen].bounds.size.width - PICTURE_MARGIN * (PICTURE_NUMBER +1)) / PICTURE_NUMBER;//图片宽度
+        CGFloat height1;//第一个图片集高度
+        CGFloat height2;//第二个图片集高度
+        
+        CGFloat y = 290;
+        CGFloat jiange = 32;//第一个图片集 和 第二个图片集间隔
+        CGFloat totalHeight = y + jiange + 20;
+        if ((photo1.count + 1) % PICTURE_NUMBER == 0) {
+            height1 = ((photo1.count + 1) / PICTURE_NUMBER) * (imgWidth + ((photo1.count + 1) / PICTURE_NUMBER -1) * PICTURE_MARGIN);
         }else{
-            height1 = (((photo1.count + 1) / 4) + 1) * (width + ((photo1.count + 1) / 4) * 2);
+            height1 = (((photo1.count + 1) / PICTURE_NUMBER) + 1) * (imgWidth + ((photo1.count + 1) / PICTURE_NUMBER) * PICTURE_MARGIN);
         }
-        if ((photo2.count + 1) % 4 == 0) {
-            height2 = ((photo2.count + 1) / 4) * (width + ((photo2.count + 1) / 4 -1) * 2);
+        if ((photo2.count + 1) % PICTURE_NUMBER == 0) {
+            height2 = ((photo2.count + 1) / PICTURE_NUMBER) * (imgWidth + ((photo2.count + 1) / PICTURE_NUMBER -1) * PICTURE_MARGIN);
         }else{
-            height2 = (((photo2.count + 1) / 4) + 1) * (width + ((photo2.count + 1) / 4) * 2);
+            height2 = (((photo2.count + 1) / PICTURE_NUMBER) + 1) * (imgWidth + ((photo2.count + 1) / PICTURE_NUMBER) * PICTURE_MARGIN);
         }
         return totalHeight + height1 + height2;
     }else if (indexPath.section == 1){//动态计算高度
@@ -1283,6 +1302,9 @@
                 UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(uploadUserImagePrefix)];
                 [cell.userImage addGestureRecognizer:tap];
                 
+                cell.userImage.layer.cornerRadius = 50;
+                cell.userImage.layer.masksToBounds = YES;
+                
 //                userImage = cell.userImage;
 //                userImageCenter = cell.userImageCenter;
 //                userImageBtn = cell.userImageBtn;
@@ -1298,13 +1320,70 @@
             }
             
             if (avatar_url == nil || [avatar_url isEqualToString:@""]) {
-                cell.userImageCenter.hidden = NO;
-                cell.userImageBtn.hidden = NO;
+//                cell.userImageCenter.hidden = NO;
+//                cell.userImageBtn.hidden = NO;
             }else{
-                cell.userImageCenter.hidden = YES;
-                cell.userImageBtn.hidden = YES;
+//                cell.userImageCenter.hidden = YES;
+//                cell.userImageBtn.hidden = YES;
                 [cell.userImage setImageWithURL:[NSURL URLWithString:avatar_url]];
             }
+            
+            NSString *nickname = [userinfo objectForKey:@"nickname"];//昵称
+            NSString *aboutme = [userinfo objectForKey:@"aboutme"];//自我介绍
+            cell.nameLabel.text = nickname;
+            cell.jieshaoLabel.text = aboutme;
+            
+            NSString *birthday = [userinfo objectForKey:@"birthday"];
+            if (birthday == nil || [birthday isEqualToString:@""] || (birthday != nil && [birthday isEqualToString:@"1900-01-01"])) {
+                cell.ageLabel.text = @"-";
+            }else{
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+                NSDate *date= [dateFormatter dateFromString:birthday];
+                NSInteger age = [NSDate ageWithDateOfBirth:date];
+                cell.ageLabel.text = [NSString stringWithFormat:@"%ld岁",(long)age];
+            }
+            
+            NSNumber *sexnum = [userinfo objectForKey:@"sex"];
+            switch ([sexnum intValue]) {
+                case 0:
+                    cell.sexImageView.image = [UIImage imageNamed:@"man"];
+                    break;
+                case 1:
+                    cell.sexImageView.image = [UIImage imageNamed:@"women"];
+                    break;
+                default:
+                    break;
+            }
+            
+            
+            cell.btn1.text = [NSString stringWithFormat:@"%d\n%@",111,@"关注数"];
+            NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:cell.btn1.text];
+            [str addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0,cell.btn1.text.length - 3)];
+            cell.btn1.attributedText = str;
+            UITapGestureRecognizer *click = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(myaction:)];
+            [cell.btn1 addGestureRecognizer:click];
+            
+            cell.btn2.text = [NSString stringWithFormat:@"%d\n%@",111,@"被关注数"];
+            NSMutableAttributedString *str2 = [[NSMutableAttributedString alloc] initWithString:cell.btn2.text];
+            [str2 addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0,cell.btn2.text.length - 4)];
+            cell.btn2.attributedText = str2;
+            UITapGestureRecognizer *click2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(myaction:)];
+            [cell.btn2 addGestureRecognizer:click2];
+            
+            cell.btn3.text = [NSString stringWithFormat:@"%d\n%@",111,@"动态数"];
+            NSMutableAttributedString *str3 = [[NSMutableAttributedString alloc] initWithString:cell.btn3.text];
+            [str3 addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0,cell.btn3.text.length - 3)];
+            cell.btn3.attributedText = str3;
+            UITapGestureRecognizer *click3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(myaction:)];
+            [cell.btn3 addGestureRecognizer:click3];
+            
+            
+            [cell.likeBtn addTarget:self action:@selector(toMyLike) forControlEvents:UIControlEventTouchUpInside];
+            chatBtn = cell.talkBtn;
+            [cell.talkBtn addTarget:self action:@selector(toChat) forControlEvents:UIControlEventTouchUpInside];
+            NSInteger totalUnreadCount = [[CDStorage storage] countUnread];
+            chatBtn.badgeValue = [NSString stringWithFormat:@"%d",totalUnreadCount];
             return cell;
         }
     }else if (indexPath.section == 1){//动态
@@ -2313,5 +2392,53 @@
     [idxSet addIndex:4];
     [idxSet addIndex:5];
     [self.tableView reloadSections:idxSet withRowAnimation:UITableViewRowAnimationNone];
+}
+
+-(void)myaction:(UITapGestureRecognizer *)recognizer{
+    
+    UILabel *label=(UILabel *)recognizer.view;
+    switch (label.tag) {
+        case 1:
+        {
+            DLog(@"关注数");
+            ILikeCollectionViewController *iLikeVc = [self.storyboard instantiateViewControllerWithIdentifier:@"ILikeCollectionViewController"];
+            [self.navigationController pushViewController:iLikeVc animated:YES];
+        }
+            break;
+        case 2:
+        {
+            DLog(@"被关注数");
+            ILikeCollectionViewController *iLikeVc = [self.storyboard instantiateViewControllerWithIdentifier:@"ILikeCollectionViewController"];
+            iLikeVc.segtype = 2;
+            [self.navigationController pushViewController:iLikeVc animated:YES];
+        }
+            break;
+        case 3:
+        {
+            DLog(@"动态");
+            DongtaiTableViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"DongtaiTableViewController"];
+            NSString *userid = [UD objectForKey:USER_ID];
+            vc.userid = userid;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        default:
+            break;
+    }
+}
+
+-(void)toMyLike{
+    ILikeCollectionViewController *iLikeVc = [self.storyboard instantiateViewControllerWithIdentifier:@"ILikeCollectionViewController"];
+    [self.navigationController pushViewController:iLikeVc animated:YES];
+}
+
+-(void)toChat{
+    LCEChatListVC *chatListVC = [[LCEChatListVC alloc] init];
+    [self.navigationController pushViewController:chatListVC animated:YES];
+}
+
+-(void)setUnRadCount{
+    NSInteger totalUnreadCount = [[CDStorage storage] countUnread];
+    chatBtn.badgeValue = [NSString stringWithFormat:@"%d",totalUnreadCount];
 }
 @end

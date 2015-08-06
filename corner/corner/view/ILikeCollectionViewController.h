@@ -15,4 +15,6 @@
 - (IBAction)changeType:(UISegmentedControl *)sender;
 @property (nonatomic, strong) NSMutableArray *dataSource;
 
+@property int segtype;
+
 @end

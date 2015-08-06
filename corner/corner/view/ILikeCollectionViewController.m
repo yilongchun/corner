@@ -32,6 +32,11 @@ static NSString * const reuseIdentifier = @"ILikeCollectionViewCell";
     
     type = 0;
     
+    if (self.segtype == 2) {
+        [self.myseg setSelectedSegmentIndex:1];
+        type = 1;
+    }
+    
     if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
         self.automaticallyAdjustsScrollViewInsets = YES;
