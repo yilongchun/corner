@@ -21,6 +21,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.automaticallyAdjustsScrollViewInsets = YES;
+        self.extendedLayoutIncludesOpaqueBars = YES;
+    }
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -30,9 +36,11 @@
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationItem.backBarButtonItem = item;
     
-    UIImage *image = [[UIImage imageNamed:@"kiss_top1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *image = [[UIImage imageNamed:@"leftMenu"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStyleDone target:self action:@selector(leftMenu)];
     self.navigationItem.leftBarButtonItem = leftItem;
+    
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
 }
 
 -(void)leftMenu{
@@ -64,26 +72,47 @@
 //    return 40;
 //}
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    // Return the number of sections.
-//    return 3;
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 50;
+}
 
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//#warning Incomplete method implementation.
-//    // Return the number of rows in the section.
-//    return 0;
-//}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
 
-/*
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (section == 0) {
+        return 2;
+    }else{
+        return 1;
+    }
+}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"setcell" forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor blackColor];
+    cell.textLabel.textColor = [UIColor whiteColor];
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"我的VIP专区";
+            UILabel *bottomLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 49, [UIScreen mainScreen].bounds.size.width-20, 0.3)];
+            bottomLabel.backgroundColor = RGBACOLOR(220, 220, 220, 1);
+            [cell.contentView addSubview:bottomLabel];
+        }else if (indexPath.row == 1){
+            cell.textLabel.text = @"帮助与反馈";
+        }
+//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellrightview"]];
+    }else{
+        cell.textLabel.text = @"注销";
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    }
     
-    // Configure the cell...
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.

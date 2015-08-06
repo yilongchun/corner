@@ -10,7 +10,10 @@
 
 @interface MyAccountTableViewCell2 : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *hotsellImage;
 @property (weak, nonatomic) IBOutlet UIImageView *conisImage;
 @property (weak, nonatomic) IBOutlet UILabel *label1;
-@property (weak, nonatomic) IBOutlet UILabel *label2;
+@property (weak, nonatomic) IBOutlet UILabel *msg1;
+@property (weak, nonatomic) IBOutlet UILabel *msg2;
+@property (weak, nonatomic) IBOutlet UIButton *payBtn;
 @end

@@ -68,35 +68,9 @@
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationItem.backBarButtonItem = item;
     
-    
-    
-    
-//    UIImage *image = [[UIImage imageNamed:@"kiss_top1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    
-    NSDictionary *userinfo = [UD objectForKey:LOGINED_USER];
-    NSString *avatar_url = [userinfo objectForKey:@"avatar_url"];
-    UIImage* image= [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:avatar_url]]];
-    CGRect frame= CGRectMake(8, 0, 30, 30);
-    UIButton* someButton= [[UIButton alloc] initWithFrame:frame];
-    someButton.layer.cornerRadius = 15;
-    someButton.layer.masksToBounds = YES;
-    someButton.layer.borderColor = RGBACOLOR(220, 220, 220, 1).CGColor;
-    someButton.layer.borderWidth = 1.0f;
-    [someButton addTarget:self action:@selector(leftMenu) forControlEvents:UIControlEventTouchUpInside];
-    [someButton setImage:image forState:UIControlStateNormal];
-    
-//    UIView *myview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 38, 30)];
-//    UIImageView *sandian = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 8, 30)];
-//    [sandian setImage:[UIImage imageNamed:@"a1"]];
-//    [sandian setContentMode:UIViewContentModeLeft];
-//    [myview addSubview:sandian];
-//    [myview addSubview:someButton];
-    UIBarButtonItem* someBarButtonItem= [[UIBarButtonItem alloc] initWithCustomView:someButton];
-    [self.navigationItem setLeftBarButtonItem:someBarButtonItem];
-    
-//    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:avatar_url]]];
-//    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStyleDone target:self action:@selector(leftMenu)];
-//    self.navigationItem.leftBarButtonItem = leftItem;
+    UIImage *image = [[UIImage imageNamed:@"leftMenu"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStyleDone target:self action:@selector(leftMenu)];
+    self.navigationItem.leftBarButtonItem = leftItem;
     
     
     

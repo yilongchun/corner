@@ -52,7 +52,7 @@ extern NSString *const segmentBarItemID;
 @property (nonatomic, weak, readonly) UIViewController *selectedViewController;
 @property (nonatomic, assign, readonly) NSInteger selectedIndex;
 
-
+@property int type;
 /**
  *  By default segmentBar use viewController's title for segment's button title
  *  You should implement JYSlideSegmentDataSource & JYSlideSegmentDelegate instead of segmentBar delegate & datasource

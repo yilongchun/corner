@@ -12,6 +12,6 @@
 @interface WodezhuanjiaoViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITableView *mytableview;
-
+@property int currentType;
 - (IBAction)fadongtai:(id)sender;
 @end

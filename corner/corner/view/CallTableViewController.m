@@ -33,19 +33,9 @@
     view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"mainbackground"]];
     self.tableView.backgroundView = view;
     
-    NSDictionary *userinfo = [UD objectForKey:LOGINED_USER];
-    NSString *avatar_url = [userinfo objectForKey:@"avatar_url"];
-    UIImage* image= [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:avatar_url]]];
-    CGRect frame= CGRectMake(8, 0, 30, 30);
-    UIButton* someButton= [[UIButton alloc] initWithFrame:frame];
-    someButton.layer.cornerRadius = 15;
-    someButton.layer.masksToBounds = YES;
-    someButton.layer.borderColor = RGBACOLOR(220, 220, 220, 1).CGColor;
-    someButton.layer.borderWidth = 1.0f;
-    [someButton addTarget:self action:@selector(leftMenu) forControlEvents:UIControlEventTouchUpInside];
-    [someButton setImage:image forState:UIControlStateNormal];
-    UIBarButtonItem* someBarButtonItem= [[UIBarButtonItem alloc] initWithCustomView:someButton];
-    [self.navigationItem setLeftBarButtonItem:someBarButtonItem];
+    UIImage *image = [[UIImage imageNamed:@"leftMenu"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStyleDone target:self action:@selector(leftMenu)];
+    self.navigationItem.leftBarButtonItem = leftItem;
     
     UIImage *image2 = [[UIImage imageNamed:@"callItem"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithImage:image2 style:UIBarButtonItemStyleDone target:self action:@selector(rightMenu)];

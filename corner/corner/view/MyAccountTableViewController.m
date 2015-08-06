@@ -36,7 +36,7 @@
         self.extendedLayoutIncludesOpaqueBars = YES;
     }
     
-    self.title = @"我的账户";
+    self.title = @"VIP专区";
     dataSource = [NSMutableArray array];
     
     __weak MyAccountTableViewController *weakSelf = self;
@@ -48,6 +48,14 @@
     self.tableView.tableFooterView = v;
     //初始化数据
     [self.tableView triggerPullToRefresh];
+    
+    [self.tableView setSeparatorColor:[UIColor lightGrayColor]];
+    if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self.tableView setSeparatorInset:UIEdgeInsetsMake(0, 10, 0, 10)];
+    }
+    if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+        [self.tableView setLayoutMargins:UIEdgeInsetsMake(0, 10, 0, 10)];
+    }
 }
 
 - (void)insertRowAtTop {
@@ -63,33 +71,30 @@
     [dataSource removeAllObjects];
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    [dic setObject:@"1200金币" forKey:@"name"];
+    [dic setObject:@"蓝钻VIP" forKey:@"name"];
+    [dic setObject:@"每天赠送10把钥匙" forKey:@"msg1"];
+    [dic setObject:@"VIP时长90天" forKey:@"msg2"];
     [dic setObject:[NSNumber numberWithInt:12] forKey:@"price"];
     [dataSource addObject:dic];
     NSMutableDictionary *dic2 = [NSMutableDictionary dictionary];
-    [dic2 setObject:@"3000金币" forKey:@"name"];
+    [dic2 setObject:@"绿钻VIP" forKey:@"name"];
+    [dic2 setObject:@"每天赠送12把钥匙" forKey:@"msg1"];
+    [dic2 setObject:@"VIP时长180天" forKey:@"msg2"];
     [dic2 setObject:[NSNumber numberWithInt:30] forKey:@"price"];
     [dataSource addObject:dic2];
     NSMutableDictionary *dic3 = [NSMutableDictionary dictionary];
-    [dic3 setObject:@"6000金币" forKey:@"name"];
+    [dic3 setObject:@"粉钻VIP" forKey:@"name"];
+    [dic3 setObject:@"每天赠送20把钥匙" forKey:@"msg1"];
+    [dic3 setObject:@"VIP时长一年" forKey:@"msg2"];
     [dic3 setObject:[NSNumber numberWithInt:60] forKey:@"price"];
     [dataSource addObject:dic3];
     NSMutableDictionary *dic4 = [NSMutableDictionary dictionary];
-    [dic4 setObject:@"10800金币" forKey:@"name"];
+    [dic4 setObject:@"黄钻VIP" forKey:@"name"];
+    [dic4 setObject:@"每天赠送30把钥匙" forKey:@"msg1"];
+    [dic4 setObject:@"VIP时长两年" forKey:@"msg2"];
     [dic4 setObject:[NSNumber numberWithInt:108] forKey:@"price"];
     [dataSource addObject:dic4];
-    NSMutableDictionary *dic5 = [NSMutableDictionary dictionary];
-    [dic5 setObject:@"21800金币" forKey:@"name"];
-    [dic5 setObject:[NSNumber numberWithInt:218] forKey:@"price"];
-    [dataSource addObject:dic5];
-    NSMutableDictionary *dic6 = [NSMutableDictionary dictionary];
-    [dic6 setObject:@"51800金币" forKey:@"name"];
-    [dic6 setObject:[NSNumber numberWithInt:518] forKey:@"price"];
-    [dataSource addObject:dic6];
-    NSMutableDictionary *dic7 = [NSMutableDictionary dictionary];
-    [dic7 setObject:@"108000金币" forKey:@"name"];
-    [dic7 setObject:[NSNumber numberWithInt:1080] forKey:@"price"];
-    [dataSource addObject:dic7];
+    
     
     NSString *userid = [UD objectForKey:USER_ID];
     NSString *token = [UD objectForKey:[NSString stringWithFormat:@"%@%@",USER_TOKEN_ID,userid]];
@@ -132,44 +137,50 @@
 #pragma mark - Table view data source
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
-        return 77;
-    }else if (indexPath.section == 1){
-        return 70;
-    }
-    return 0;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (section == 0) {
-        return 0.1;
+//    if (indexPath.section == 0) {
+//        return 90;
+//    }else if (indexPath.section == 1){
+    if (indexPath.row == 0) {
+        return 105;
     }else{
-        return 0.1;
+        return 95;
     }
     
+//    }
+//    return 0;
 }
 
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+//    if (section == 0) {
+//        return 0.1;
+//    }else{
+//        return 0.1;
+//    }
+//    
+//}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    switch (section) {
-        case 0:
-            return 1;
-            break;
-        case 1:
-            return [dataSource count];
-            break;
-        default:
-            return 0;
-            break;
-    }
+//    switch (section) {
+//        case 0:
+//            return 1;
+//            break;
+//        case 1:
+            return [dataSource count] + 1;
+//            break;
+//        default:
+//            return 0;
+//            break;
+//    }
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
+//    if (indexPath.section == 0) {
+    if (indexPath.row == 0) {
         MyAccountTableViewCell1 *cell = [tableView dequeueReusableCellWithIdentifier:@"cell1" forIndexPath:indexPath];
         NSString *coins = [userinfo objectForKey:@"coins"];
         if ([coins isEqualToString:@""]) {
@@ -177,27 +188,79 @@
         }
         cell.coinsLabel.text = coins;
         
+        NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:cell.titleLabel.text];
+        [str addAttribute:NSForegroundColorAttributeName value:RGBACOLOR(226, 82, 69, 1) range:NSMakeRange(2,3)];
+        cell.titleLabel.attributedText = str;
         return cell;
-    }else if (indexPath.section == 1) {
+    }else{
         MyAccountTableViewCell2 *cell = [tableView dequeueReusableCellWithIdentifier:@"cell2" forIndexPath:indexPath];
-        NSDictionary *info = [dataSource objectAtIndex:indexPath.row];
+        NSDictionary *info = [dataSource objectAtIndex:indexPath.row - 1];
         NSString *name = [info objectForKey:@"name"];
+        NSString *msg1 = [info objectForKey:@"msg1"];
+        NSString *msg2 = [info objectForKey:@"msg2"];
         NSNumber *price = [info objectForKey:@"price"];
         cell.label1.text = name;
-        cell.label2.text = [NSString stringWithFormat:@"￥%d元",[price intValue]];
+        cell.msg1.text = msg1;
+        cell.msg2.text = msg2;
+        [cell.payBtn setTitle:[NSString stringWithFormat:@"￥%d元",[price intValue]] forState:UIControlStateNormal];
+        cell.payBtn.tag = indexPath.row - 1;
+        [cell.payBtn addTarget:self action:@selector(pay:) forControlEvents:UIControlEventTouchUpInside];
+        
+        switch (indexPath.row - 1) {
+            case 0:
+                cell.conisImage.image = [UIImage imageNamed:@"vip1-1"];
+                [cell.hotsellImage setHidden:YES];
+                break;
+            case 1:
+                cell.conisImage.image = [UIImage imageNamed:@"vip2-1"];
+                [cell.hotsellImage setHidden:YES];
+                break;
+            case 2:
+                cell.conisImage.image = [UIImage imageNamed:@"vip3"];
+                break;
+            case 3:
+                cell.conisImage.image = [UIImage imageNamed:@"vip4"];
+                break;
+            default:
+                break;
+        }
+        
+        
         return cell;
     }
-    return nil;
+    
+    
+//    }else if (indexPath.section == 1) {
+    
+//    }
+//    return nil;
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self.tableView setSeparatorInset:UIEdgeInsetsMake(0, 10, 0, 10)];
+    }
+    if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+        [self.tableView setLayoutMargins:UIEdgeInsetsMake(0, 10, 0, 10)];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 1) {
+    if (indexPath.row > 0) {
         PayTypeViewController *vc = [[PayTypeViewController alloc] init];
-        vc.payInfo = [dataSource objectAtIndex:indexPath.row];
+        vc.payInfo = [dataSource objectAtIndex:indexPath.row - 1];
         [self.navigationController pushViewController:vc animated:YES];
     }
     
 }
+
+-(void)pay:(UIButton *)sender{
+    PayTypeViewController *vc = [[PayTypeViewController alloc] init];
+    vc.payInfo = [dataSource objectAtIndex:sender.tag];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 
 
 

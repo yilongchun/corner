@@ -12,6 +12,7 @@
 
 #import "RedupaihangViewController.h"
 #import "JYSlideSegmentController.h"
+#import "WodezhuanjiaoViewController.h"
 
 #define cellIdentifier @"leftMenuCell"
 
@@ -250,7 +251,35 @@
         [self.sideMenuViewController setContentViewController:nc5 animated:YES];
     }else if(indexPath.row == 5){
         if (nc6 == nil) {
-            nc6 = [[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"WodezhuanjiaoViewController"]];
+            
+            NSMutableArray *vcs = [NSMutableArray array];
+            
+            WodezhuanjiaoViewController *vc1 = [self.storyboard instantiateViewControllerWithIdentifier:@"WodezhuanjiaoViewController"];
+            vc1.title = @"关注";
+            vc1.currentType = 0;
+            [vcs addObject:vc1];
+            WodezhuanjiaoViewController *vc2 = [self.storyboard instantiateViewControllerWithIdentifier:@"WodezhuanjiaoViewController"];
+            vc2.title = @"同城";
+            vc2.currentType = 1;
+            [vcs addObject:vc2];
+            WodezhuanjiaoViewController *vc3 = [self.storyboard instantiateViewControllerWithIdentifier:@"WodezhuanjiaoViewController"];
+            vc3.title = @"推荐";
+            vc3.currentType = 2;
+            [vcs addObject:vc3];
+            
+            
+            JYSlideSegmentController *slideSegmentController = [[JYSlideSegmentController alloc] initWithViewControllers:vcs];
+            slideSegmentController.type = 1;
+            //设置背景图片
+            UIImage *image = [UIImage imageNamed:@"mainbackground"];
+            slideSegmentController.view.layer.contents = (id)image.CGImage;
+            
+            
+            slideSegmentController.title = @"我的转角";
+            slideSegmentController.indicatorInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+            slideSegmentController.indicator.backgroundColor = RGBACOLOR(212, 100, 24, 1);
+            
+            nc6 = [[UINavigationController alloc] initWithRootViewController:slideSegmentController];
             nc6.navigationBar.barTintColor = [UIColor colorWithRed:0/255. green:0/255. blue:0/255. alpha:1];
             nc6.navigationBar.tintColor = [UIColor whiteColor];
             [nc6.navigationBar setTitleTextAttributes:

@@ -15,17 +15,18 @@
 @implementation WodezhuanjiaoViewController{
     NSMutableArray *dataSource;
     
-    NSInteger currentType;//type: 0 关注,1 同城,2 推荐
+    //NSInteger currentType;//type: 0 关注,1 同城,2 推荐
     
     int page;//分页设置
     
     
 }
+@synthesize currentType;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    currentType = 0;
+//    currentType = 0;
     
     if (kCurrentSystemVersion > 6.0) {
         self.automaticallyAdjustsScrollViewInsets = NO;
@@ -42,7 +43,7 @@
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationItem.backBarButtonItem = item;
     
-    UIImage *image = [[UIImage imageNamed:@"kiss_top1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *image = [[UIImage imageNamed:@"leftMenu"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStyleDone target:self action:@selector(leftMenu)];
     self.navigationItem.leftBarButtonItem = leftItem;
     
@@ -51,36 +52,36 @@
     
     
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 43)];
-    UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn1.tag = 0;
-    [btn1 setTitle:@"关注" forState:UIControlStateNormal];
-    [btn1 setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    btn1.titleLabel.font = [UIFont systemFontOfSize:13];
-    [btn1 setFrame:CGRectMake(0, 0, view.frame.size.width / 3, view.frame.size.height - 3)];
-    [btn1 addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIButton *btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn2.tag = 1;
-    [btn2 setTitle:@"同城" forState:UIControlStateNormal];
-    [btn2 setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    btn2.titleLabel.font = [UIFont systemFontOfSize:13];
-    [btn2 setFrame:CGRectMake(btn1.frame.size.width, 0, view.frame.size.width / 3, view.frame.size.height - 3)];
-    [btn2 addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIButton *btn3 = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn3.tag = 2;
-    [btn3 setTitle:@"推荐" forState:UIControlStateNormal];
-    [btn3 setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    btn3.titleLabel.font = [UIFont systemFontOfSize:13];
-    [btn3 setFrame:CGRectMake(btn1.frame.size.width + btn2.frame.size.width, 0, view.frame.size.width / 3, view.frame.size.height - 3)];
-    [btn3 addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [view addSubview:btn1];
-    [view addSubview:btn2];
-    [view addSubview:btn3];
-    
-    self.mytableview.tableHeaderView = view;
+//    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 43)];
+//    UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
+//    btn1.tag = 0;
+//    [btn1 setTitle:@"关注" forState:UIControlStateNormal];
+//    [btn1 setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+//    btn1.titleLabel.font = [UIFont systemFontOfSize:13];
+//    [btn1 setFrame:CGRectMake(0, 0, view.frame.size.width / 3, view.frame.size.height - 3)];
+//    [btn1 addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    UIButton *btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
+//    btn2.tag = 1;
+//    [btn2 setTitle:@"同城" forState:UIControlStateNormal];
+//    [btn2 setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+//    btn2.titleLabel.font = [UIFont systemFontOfSize:13];
+//    [btn2 setFrame:CGRectMake(btn1.frame.size.width, 0, view.frame.size.width / 3, view.frame.size.height - 3)];
+//    [btn2 addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    UIButton *btn3 = [UIButton buttonWithType:UIButtonTypeCustom];
+//    btn3.tag = 2;
+//    [btn3 setTitle:@"推荐" forState:UIControlStateNormal];
+//    [btn3 setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+//    btn3.titleLabel.font = [UIFont systemFontOfSize:13];
+//    [btn3 setFrame:CGRectMake(btn1.frame.size.width + btn2.frame.size.width, 0, view.frame.size.width / 3, view.frame.size.height - 3)];
+//    [btn3 addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    [view addSubview:btn1];
+//    [view addSubview:btn2];
+//    [view addSubview:btn3];
+//    
+//    self.mytableview.tableHeaderView = view;
     
     //下拉刷新 上拉加载
     __weak WodezhuanjiaoViewController *weakSelf = self;
@@ -92,6 +93,15 @@
     }];
     //初始化数据
     [self.mytableview triggerPullToRefresh];
+    
+    if ([self.mytableview respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self.mytableview setSeparatorInset:UIEdgeInsetsMake(0, 10, 0, 10)];
+    }
+    if ([self.mytableview respondsToSelector:@selector(setLayoutMargins:)]) {
+        [self.mytableview setLayoutMargins:UIEdgeInsetsMake(0, 10, 0, 10)];
+    }
+    
+    
 }
 
 -(void)leftMenu{
@@ -124,7 +134,7 @@
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setValue:token forKey:@"token"];
-    [parameters setValue:[NSNumber numberWithLong:currentType] forKey:@"type"];
+    [parameters setValue:[NSNumber numberWithInt:currentType] forKey:@"type"];
     
     NSString *urlString = [NSString stringWithFormat:@"%@%@/%d",HOST,POST_LIST_URL,page];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -172,7 +182,7 @@
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setValue:token forKey:@"token"];
-    [parameters setValue:[NSNumber numberWithLong:currentType] forKey:@"type"];
+    [parameters setValue:[NSNumber numberWithInt:currentType] forKey:@"type"];
     
     NSString *urlString = [NSString stringWithFormat:@"%@%@/%d",HOST,POST_LIST_URL,page];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -213,13 +223,13 @@
     }];
 }
 
--(void)btnClick:(UIButton *)sender{
-    if (sender.tag != currentType) {
-        currentType = sender.tag;
-        [self loadData];
-    }
-    
-}
+//-(void)btnClick:(UIButton *)sender{
+//    if (sender.tag != currentType) {
+//        currentType = sender.tag;
+//        [self loadData];
+//    }
+//    
+//}
 
 #pragma mark - UITableViewDelegate
 
@@ -264,65 +274,75 @@
     return cell;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 3)];
-    view.backgroundColor = RGBACOLOR(239, 239, 239, 1);
-    
-    CGFloat width = view.frame.size.width / 3;
-    CGFloat height = view.frame.size.height;
-    CGFloat margin = 20;
-    switch (currentType) {
-        case 0:
-        {
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0 + margin, 0, width - margin*2, height)];
-            label.backgroundColor = RGBACOLOR(245, 186, 0, 1);
-            [view addSubview:label];
-        }
-            break;
-        case 1:
-        {
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(width + margin, 0, width - margin*2, height)];
-            label.backgroundColor = RGBACOLOR(245, 186, 0, 1);
-            [view addSubview:label];
-        }
-            break;
-        case 2:
-        {
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(width * 2 + margin, 0, width - margin*2, height)];
-            label.backgroundColor = RGBACOLOR(245, 186, 0, 1);
-            [view addSubview:label];
-        }
-            break;
-        default:
-            break;
-    }
-    
-    return view;
-}
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 3)];
+//    view.backgroundColor = RGBACOLOR(239, 239, 239, 1);
+//    
+//    CGFloat width = view.frame.size.width / 3;
+//    CGFloat height = view.frame.size.height;
+//    CGFloat margin = 20;
+//    switch (currentType) {
+//        case 0:
+//        {
+//            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0 + margin, 0, width - margin*2, height)];
+//            label.backgroundColor = RGBACOLOR(245, 186, 0, 1);
+//            [view addSubview:label];
+//        }
+//            break;
+//        case 1:
+//        {
+//            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(width + margin, 0, width - margin*2, height)];
+//            label.backgroundColor = RGBACOLOR(245, 186, 0, 1);
+//            [view addSubview:label];
+//        }
+//            break;
+//        case 2:
+//        {
+//            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(width * 2 + margin, 0, width - margin*2, height)];
+//            label.backgroundColor = RGBACOLOR(245, 186, 0, 1);
+//            [view addSubview:label];
+//        }
+//            break;
+//        default:
+//            break;
+//    }
+//    
+//    return view;
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 257;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 3;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//{
+//    return 3;
+//}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-//去掉UItableview headerview黏性(sticky)
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGFloat sectionHeaderHeight = 3;
-    if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
-        scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
-    } else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
-        scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([self.mytableview respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self.mytableview setSeparatorInset:UIEdgeInsetsMake(0, 10, 0, 10)];
+    }
+    if ([self.mytableview respondsToSelector:@selector(setLayoutMargins:)]) {
+        [self.mytableview setLayoutMargins:UIEdgeInsetsMake(0, 10, 0, 10)];
     }
 }
+
+//去掉UItableview headerview黏性(sticky)
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//    CGFloat sectionHeaderHeight = 3;
+//    if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
+//        scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+//    } else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
+//        scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+//    }
+//}
 
 /**
  *  发动态

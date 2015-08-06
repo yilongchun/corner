@@ -35,7 +35,7 @@
     UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.tableFooterView = v;
     
-//    UIImage *image = [[UIImage imageNamed:@"kiss_top1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//    UIImage *image = [[UIImage imageNamed:@"leftMenu"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 //    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStyleDone target:self action:@selector(leftMenu)];
 //    self.navigationItem.leftBarButtonItem = leftItem;
 }

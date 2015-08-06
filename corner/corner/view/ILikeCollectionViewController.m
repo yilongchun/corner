@@ -44,7 +44,7 @@ static NSString * const reuseIdentifier = @"ILikeCollectionViewCell";
     [self.myseg setTitleTextAttributes:dic forState:UIControlStateSelected];
     [self.myseg setTitleTextAttributes:dic2 forState:UIControlStateNormal];
     
-//    UIImage *image = [[UIImage imageNamed:@"kiss_top1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//    UIImage *image = [[UIImage imageNamed:@"leftMenu"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 //    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStyleDone target:self action:@selector(leftMenu)];
 //    self.navigationItem.leftBarButtonItem = leftItem;
     

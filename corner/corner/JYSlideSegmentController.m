@@ -19,6 +19,8 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #define SELECTED_COLOR RGBACOLOR(212, 100, 24, 1)
 #define NORMAL_COLOR RGBACOLOR(255, 255, 255, 1)
 
+#import "FabudongtaiViewController.h"
+
 NSString * const segmentBarItemID = @"JYSegmentBarItem";
 
 @interface JYSegmentBarItem : UICollectionViewCell
@@ -88,19 +90,21 @@ NSString * const segmentBarItemID = @"JYSegmentBarItem";
   [self setupSubviews];
   [self reset];
     
-    NSDictionary *userinfo = [UD objectForKey:LOGINED_USER];
-    NSString *avatar_url = [userinfo objectForKey:@"avatar_url"];
-    UIImage* image= [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:avatar_url]]];
-    CGRect frame= CGRectMake(8, 0, 30, 30);
-    UIButton* someButton= [[UIButton alloc] initWithFrame:frame];
-    someButton.layer.cornerRadius = 15;
-    someButton.layer.masksToBounds = YES;
-    someButton.layer.borderColor = RGBACOLOR(220, 220, 220, 1).CGColor;
-    someButton.layer.borderWidth = 1.0f;
-    [someButton addTarget:self action:@selector(leftMenu) forControlEvents:UIControlEventTouchUpInside];
-    [someButton setImage:image forState:UIControlStateNormal];
-    UIBarButtonItem* someBarButtonItem= [[UIBarButtonItem alloc] initWithCustomView:someButton];
-    [self.navigationItem setLeftBarButtonItem:someBarButtonItem];
+    UIImage *image = [[UIImage imageNamed:@"leftMenu"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStyleDone target:self action:@selector(leftMenu)];
+    self.navigationItem.leftBarButtonItem = leftItem;
+    
+    if (self.type == 1) {
+        UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"发动态" style:UIBarButtonItemStyleDone target:self action:@selector(fadongtai)];
+        self.navigationItem.rightBarButtonItem = rightItem;
+        
+    }
+}
+
+- (void)fadongtai {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    FabudongtaiViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"FabudongtaiViewController"];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)leftMenu{

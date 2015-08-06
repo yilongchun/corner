@@ -11,4 +11,6 @@
 @interface MyAccountTableViewCell1 : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *coinsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
 @end

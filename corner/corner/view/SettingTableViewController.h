@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "RESideMenu.h"
 
-@interface SettingTableViewController : UITableViewController<UIActionSheetDelegate>
+@interface SettingTableViewController : UIViewController<UIActionSheetDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
