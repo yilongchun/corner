@@ -2306,19 +2306,19 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kiss_bg1" translatesAutoresizingMaskIntoConstraints="NO" id="mHl-on-qwC">
-                                <rect key="frame" x="8" y="57" width="304" height="389"/>
+                                <rect key="frame" x="8" y="58" width="304" height="389"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="mHl-on-qwC" secondAttribute="height" multiplier="93:119" id="mNi-S5-kC9"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="47S-vN-okv">
-                                <rect key="frame" x="36" y="87" width="248" height="334"/>
+                                <rect key="frame" x="36" y="88" width="248" height="334"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tju-G6-5sG">
-                                <rect key="frame" x="16" y="28" width="22" height="29"/>
+                                <rect key="frame" x="16" y="28" width="30" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="29" id="9kd-Gj-eR2"/>
-                                    <constraint firstAttribute="width" constant="22" id="di8-4r-buK"/>
+                                    <constraint firstAttribute="height" constant="30" id="9kd-Gj-eR2"/>
+                                    <constraint firstAttribute="width" constant="30" id="di8-4r-buK"/>
                                 </constraints>
                                 <state key="normal" image="leftMenu">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -2327,18 +2327,8 @@
                                     <action selector="leftMenu:" destination="sSA-B9-df6" eventType="touchUpInside" id="0AW-XB-mEg"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ET3-r5-Mc6">
-                                <rect key="frame" x="282" y="32" width="22" height="22"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="22" id="hw7-R5-ErJ"/>
-                                    <constraint firstAttribute="width" constant="22" id="qey-yM-Lzq"/>
-                                </constraints>
-                                <state key="normal" image="pub_top3">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="网络好像有问题，请点击重试!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cnt-gt-5dn">
-                                <rect key="frame" x="67" y="193" width="186" height="17"/>
+                                <rect key="frame" x="67" y="194" width="186" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -2405,7 +2395,6 @@
                             <constraint firstItem="u8D-YC-pVq" firstAttribute="width" secondItem="nwL-Lv-3cM" secondAttribute="width" id="VXX-ad-Lrb"/>
                             <constraint firstItem="47S-vN-okv" firstAttribute="centerY" secondItem="mHl-on-qwC" secondAttribute="centerY" constant="2" id="WLh-eJ-SV6"/>
                             <constraint firstItem="KJj-gM-iL2" firstAttribute="top" secondItem="zaW-zg-VYC" secondAttribute="bottom" id="YvY-jv-yUF"/>
-                            <constraint firstAttribute="trailing" secondItem="ET3-r5-Mc6" secondAttribute="trailing" constant="16" id="ZrS-DZ-gf7"/>
                             <constraint firstItem="u8D-YC-pVq" firstAttribute="centerX" secondItem="r6s-Jj-QpI" secondAttribute="centerX" id="cyV-8a-kkv"/>
                             <constraint firstItem="KJj-gM-iL2" firstAttribute="top" secondItem="6T0-fO-3DC" secondAttribute="bottom" constant="10" id="dkR-7j-3rU"/>
                             <constraint firstItem="r6s-Jj-QpI" firstAttribute="top" secondItem="u8D-YC-pVq" secondAttribute="bottom" constant="10" id="gVG-F9-dop"/>
@@ -2414,7 +2403,6 @@
                             <constraint firstItem="nwL-Lv-3cM" firstAttribute="top" relation="greaterThanOrEqual" secondItem="mHl-on-qwC" secondAttribute="bottom" constant="5" id="lgp-GI-1R3"/>
                             <constraint firstItem="Tju-G6-5sG" firstAttribute="top" secondItem="knT-8S-SVx" secondAttribute="bottom" constant="8" id="n9s-vz-dhn"/>
                             <constraint firstAttribute="centerX" secondItem="r6s-Jj-QpI" secondAttribute="centerX" constant="-70" id="no4-vk-4j0"/>
-                            <constraint firstItem="ET3-r5-Mc6" firstAttribute="top" secondItem="knT-8S-SVx" secondAttribute="bottom" constant="12" id="stS-Vy-i30"/>
                             <constraint firstItem="zaW-zg-VYC" firstAttribute="width" secondItem="hci-D4-ezL" secondAttribute="width" id="tDG-VD-tQi"/>
                         </constraints>
                     </view>
@@ -2581,7 +2569,6 @@
         <image name="point_yellow" width="4" height="4"/>
         <image name="pub_2_v1" width="13" height="13"/>
         <image name="pub_girl_v1" width="30" height="14"/>
-        <image name="pub_top3" width="22" height="22"/>
         <image name="public_load" width="100" height="100"/>
         <image name="public_load_face" width="100" height="100"/>
         <image name="qq_v1" width="31" height="26"/>

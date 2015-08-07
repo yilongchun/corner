@@ -235,7 +235,8 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
     [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", operation.responseString);
+//        NSLog(@"JSON: %@", operation.responseString);
+        DLog(@"loadData 成功");
         rectFlag = NO;
         if (refreshAll) {
             [self.tableView.pullToRefreshView stopAnimating];
@@ -298,6 +299,7 @@
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"发生错误！%@",error);
+        DLog(@"loadData 失败");
         [self.tableView.pullToRefreshView stopAnimating];
         [self showHint:@"连接失败"];
         
@@ -360,7 +362,7 @@
             CGRect rect = cell.gongkaiBtn.frame;
             if (i !=0 && (i+1) % PICTURE_NUMBER == 0) {//应该换行
                 rect.origin.x = 2;
-                rect.origin.y = (i / (PICTURE_NUMBER - 1)) * (rect.size.height + PICTURE_MARGIN);
+                rect.origin.y = ((i + 1) / PICTURE_NUMBER) * (rect.size.height + PICTURE_MARGIN);
                 cell.view1HeightConstraint.constant = rect.origin.y + rect.size.height + PICTURE_MARGIN;
             }else{
                 rect.origin.x = cell.gongkaiBtn.frame.size.width + cell.gongkaiBtn.frame.origin.x + PICTURE_MARGIN;
@@ -390,7 +392,7 @@
             CGRect rect = cell.yinsiBtn.frame;
             if (i !=0 && (i+1) % PICTURE_NUMBER == 0) {//应该换行
                 rect.origin.x = 2;
-                rect.origin.y = (i / (PICTURE_NUMBER - 1)) * (rect.size.height + PICTURE_MARGIN);
+                rect.origin.y = ((i + 1) / PICTURE_NUMBER) * (rect.size.height + PICTURE_MARGIN);
                 cell.leadingConstraint2.constant = rect.origin.x;
                 cell.topConstraint2.constant = rect.origin.y;
                 cell.view2HeightConstraint.constant = rect.origin.y + rect.size.height + PICTURE_MARGIN;
@@ -403,11 +405,6 @@
             [cell.yinsiBtn setFrame:rect];
         }
     }
-    
-    
-    
-    
-    
 }
 
 //-(void)leftMenu{
@@ -541,7 +538,7 @@
                         break;
                     case 2:
                     {
-                        if (currentImageIndex < [photo1 count]) {
+                        if (currentImageIndex < [photo2 count]) {
                             NSNumber *photoId = [[photo2 objectAtIndex:currentImageIndex] objectForKey:@"id"];
                             [self deleteImg:photoId];
                         }else{
@@ -647,6 +644,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
     [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
 //        NSLog(@"JSON: %@", operation.responseString);
+        DLog(@"上传图片 第一步 获取token 成功");
         NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
         NSError *error;
         NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
@@ -666,6 +664,7 @@
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"发生错误！%@",error);
+        DLog(@"上传图片 第一步 获取token 失败");
         [self hideHud];
         [self showHint:@"连接失败"];
     }];
@@ -688,6 +687,7 @@
         [formData appendPartWithFileData:data name:@"file" fileName:@"1.png" mimeType:@"image/png"];
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
 //        NSLog(@"JSON: %@", operation.responseString);
+        DLog(@"上传图片 第二步 带上 token 上传文件 成功");
         NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
         NSError *error;
         NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
@@ -712,6 +712,7 @@
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"发生错误！%@",error);
+        DLog(@"上传图片 第二步 带上 token 上传文件 失败");
         [self hideHud];
         [self showHint:@"连接失败"];
     }];
@@ -735,6 +736,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
 //        NSLog(@"JSON: %@", operation.responseString);
+        DLog(@"第三部 修改数据 改头像 成功");
         [self hideHud];
         NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
         NSError *error;
@@ -763,6 +765,7 @@
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"发生错误！%@",error);
+        DLog(@"第三部 修改数据 改头像 成功");
         [self hideHud];
         [self showHint:@"连接失败"];
     }];
@@ -792,6 +795,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
 //        NSLog(@"JSON: %@", operation.responseString);
+        DLog(@"第三部 修改数据 上传公开图片 和 隐私图片 成功");
         [self hideHud];
         NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
         NSError *error;
@@ -811,6 +815,7 @@
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"发生错误！%@",error);
+        DLog(@"第三部 修改数据 上传公开图片 和 隐私图片 失败");
         [self hideHud];
         [self showHint:@"连接失败"];
     }];
@@ -976,6 +981,10 @@
     if (viewtype == 1) {
         return [NSURL URLWithString:[[photo1 objectAtIndex:index] objectForKey:@"url"]];
     }else if (viewtype == 2){
+        DLog(@"%d %d",index,[photo2 count]);
+        DLog(@"%d",view2.subviews.count);
+        
+        
         return [NSURL URLWithString:[[photo2 objectAtIndex:index] objectForKey:@"url"]];
     }
     return nil;
@@ -989,9 +998,9 @@
         CGFloat height1;//第一个图片集高度
         CGFloat height2;//第二个图片集高度
         
-        CGFloat y = 290;
+        CGFloat y = 290 - 17;//减去自我介绍的高度 下面有算高度
         CGFloat jiange = 32;//第一个图片集 和 第二个图片集间隔
-        CGFloat totalHeight = y + jiange + 20;
+        CGFloat totalHeight = y + jiange + 10;
         if ((photo1.count + 1) % PICTURE_NUMBER == 0) {
             height1 = ((photo1.count + 1) / PICTURE_NUMBER) * (imgWidth + ((photo1.count + 1) / PICTURE_NUMBER -1) * PICTURE_MARGIN);
         }else{
@@ -1002,7 +1011,37 @@
         }else{
             height2 = (((photo2.count + 1) / PICTURE_NUMBER) + 1) * (imgWidth + ((photo2.count + 1) / PICTURE_NUMBER) * PICTURE_MARGIN);
         }
-        return totalHeight + height1 + height2;
+        
+        
+        
+        // 列寬
+        CGFloat contentWidth = [UIScreen mainScreen].bounds.size.width - 40;
+        // 用何種字體進行顯示
+        UIFont *font = [UIFont systemFontOfSize:14];
+        // 該行要顯示的內容
+        NSString *content = [userinfo objectForKey:@"aboutme"];//自我介绍
+        // 計算出顯示完內容需要的最小尺寸
+        
+        CGSize textSize;
+        if ([NSString instancesRespondToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+            NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+            paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+            NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
+            NSStringDrawingOptions options = NSStringDrawingUsesLineFragmentOrigin;
+            textSize = [content boundingRectWithSize:CGSizeMake(contentWidth, MAXFLOAT)
+                                             options:options
+                                          attributes:attributes
+                                             context:nil].size;
+        } else {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+            textSize = [content sizeWithFont:font
+                           constrainedToSize:CGSizeMake(contentWidth, MAXFLOAT)
+                               lineBreakMode:NSLineBreakByWordWrapping];
+#pragma clang diagnostic pop
+            
+        }
+        return totalHeight + height1 + height2 + textSize.height;
     }else if (indexPath.section == 1){//动态计算高度
         
         NSArray *posts = [userinfo objectForKey:@"posts"];
@@ -1331,7 +1370,16 @@
             NSString *nickname = [userinfo objectForKey:@"nickname"];//昵称
             NSString *aboutme = [userinfo objectForKey:@"aboutme"];//自我介绍
             cell.nameLabel.text = nickname;
-            cell.jieshaoLabel.text = aboutme;
+            
+            if ([aboutme isEqualToString:@""]) {
+                cell.jieshaoLabel.text = @"请填写个性签名";
+            }else{
+                cell.jieshaoLabel.text = aboutme;
+            }
+            
+            UITapGestureRecognizer *jieshaotap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toJieshao)];
+            [cell.jieshaoLabel addGestureRecognizer:jieshaotap];
+            
             
             NSString *birthday = [userinfo objectForKey:@"birthday"];
             if (birthday == nil || [birthday isEqualToString:@""] || (birthday != nil && [birthday isEqualToString:@"1900-01-01"])) {
@@ -2425,6 +2473,14 @@
         default:
             break;
     }
+}
+
+-(void)toJieshao{
+    ZiwojieshaoViewController *vc = [[ZiwojieshaoViewController alloc] init];
+    vc.title = @"自我介绍";
+    NSString *aboutme = [userinfo objectForKey:@"aboutme"];
+    vc.jieshao = aboutme;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)toMyLike{

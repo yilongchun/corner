@@ -31,6 +31,8 @@
     [WeiboSDK registerApp:kWeiboAppKay];
     //聊天
     [AVOSCloud setApplicationId: LEANCLOUD_APP_ID clientKey:LEANCLOUD_APP_KEY];
+    [AVOSCloud setAllLogsEnabled:YES];
+    
     [CDIMConfig config].userDelegate=[[CDUserFactory alloc] init];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -71,6 +73,7 @@
         }];
     }
     
+
     NSString *storyboardId = isLoggedIn ? @"RootViewController" : @"loginnav";
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     self.viewController = [storyboard instantiateViewControllerWithIdentifier:storyboardId];
