@@ -25,11 +25,14 @@
 @property (weak, nonatomic) IBOutlet UIButton *wxBtn;
 @property (weak, nonatomic) IBOutlet UIButton *wbBtn;
 @property (weak, nonatomic) IBOutlet UIButton *qqBtn;
-@property (weak, nonatomic) IBOutlet UIButton *emailOrPhoneBtn;
+@property (weak, nonatomic) IBOutlet UIButton *loginBtn;
+@property (weak, nonatomic) IBOutlet UIButton *regBtn;
+@property (weak, nonatomic) IBOutlet UITextField *username;
+@property (weak, nonatomic) IBOutlet UITextField *password;
 
 - (IBAction)wxlogin:(id)sender;
 - (IBAction)wblogin:(id)sender;
 - (IBAction)qqlogin:(id)sender;
-
-
+- (IBAction)login:(id)sender;
+- (IBAction)reg:(id)sender;
 @end

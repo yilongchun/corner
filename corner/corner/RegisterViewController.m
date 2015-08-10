@@ -19,13 +19,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.navigationController setNavigationBarHidden:NO];
+//    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"注册" style:UIBarButtonItemStyleDone target:self action:@selector(reg)];
+//    self.navigationItem.rightBarButtonItem = rightItem;
     
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"注册" style:UIBarButtonItemStyleDone target:self action:@selector(reg)];
-    self.navigationItem.rightBarButtonItem = rightItem;
+    self.title = @"注册";
+    UIView *leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 1)];
+    self.username.leftView = leftView;
+    self.username.leftViewMode = UITextFieldViewModeAlways;
+    UIView *leftView2 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 1)];
+    self.password.leftView = leftView2;
+    self.password.leftViewMode = UITextFieldViewModeAlways;
+    
+    [self.username setBackground:[[UIImage imageNamed:@"regBg"] stretchableImageWithLeftCapWidth:30 topCapHeight:17]];
+    [self.password setBackground:[[UIImage imageNamed:@"regBg"] stretchableImageWithLeftCapWidth:30 topCapHeight:17]];
+    [self.username setValue:RGBACOLOR(230, 230, 230, 1) forKeyPath:@"_placeholderLabel.textColor"];
+    [self.password setValue:RGBACOLOR(230, 230, 230, 1) forKeyPath:@"_placeholderLabel.textColor"];
+    
+    if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1){
+        [self.username setTintColor:RGBACOLOR(230, 230, 230, 1)];
+        [self.password setTintColor:RGBACOLOR(230, 230, 230, 1)];
+    }
     
 }
 
--(void)reg{
+-(IBAction)reg:(id)sender{
     [[IQKeyboardManager sharedManager] resignFirstResponder];
     if (self.username.text.length == 0) {
         [self showHint:@"请输入账号"];
@@ -98,6 +116,11 @@
     UIViewController *initViewController = [storyboard instantiateViewControllerWithIdentifier:storyboardId];
     self.view.window.rootViewController = initViewController;
     
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+//    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
