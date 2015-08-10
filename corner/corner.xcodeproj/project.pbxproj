@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		52C808A3D41D3545DB12D522 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B82A8F5DCFB44C8AAE87EE3F /* libPods.a */; };
+		E41162311B789D310067C2A2 /* VIPTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E41162301B789D310067C2A2 /* VIPTableViewController.m */; };
+		E41162341B78A1250067C2A2 /* MyTableViewCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = E41162331B78A1250067C2A2 /* MyTableViewCell1.m */; };
+		E41162371B78A1320067C2A2 /* MyTableViewCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = E41162361B78A1320067C2A2 /* MyTableViewCell2.m */; };
 		E413E0551B4A681F00784187 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E413E0511B4A681F00784187 /* libWeChatSDK.a */; };
 		E413E0561B4A681F00784187 /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = E413E0521B4A681F00784187 /* read_me.txt */; };
 		E42959CE1B69C7D0003609B2 /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = E42959A41B69C7D0003609B2 /* MJRefreshAutoFooter.m */; };
@@ -344,6 +347,12 @@
 		17658371F7363BD5E5367C51 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B82A8F5DCFB44C8AAE87EE3F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0B93E7C399943FCCF09B2AF /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		E411622F1B789D310067C2A2 /* VIPTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPTableViewController.h; sourceTree = "<group>"; };
+		E41162301B789D310067C2A2 /* VIPTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPTableViewController.m; sourceTree = "<group>"; };
+		E41162321B78A1250067C2A2 /* MyTableViewCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableViewCell1.h; sourceTree = "<group>"; };
+		E41162331B78A1250067C2A2 /* MyTableViewCell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTableViewCell1.m; sourceTree = "<group>"; };
+		E41162351B78A1320067C2A2 /* MyTableViewCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableViewCell2.h; sourceTree = "<group>"; };
+		E41162361B78A1320067C2A2 /* MyTableViewCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTableViewCell2.m; sourceTree = "<group>"; };
 		E413E0511B4A681F00784187 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		E413E0521B4A681F00784187 /* read_me.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = read_me.txt; sourceTree = "<group>"; };
 		E413E0531B4A681F00784187 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
@@ -1997,12 +2006,18 @@
 				E446F23F1B325F240060E9D7 /* WodezhuanjiaoViewController.m */,
 				E446F2361B325F240060E9D7 /* SettingTableViewController.h */,
 				E446F2371B325F240060E9D7 /* SettingTableViewController.m */,
-				E4E211361B53821500940E90 /* MyAccountTableViewController.h */,
-				E4E211371B53821500940E90 /* MyAccountTableViewController.m */,
+				E411622F1B789D310067C2A2 /* VIPTableViewController.h */,
+				E41162301B789D310067C2A2 /* VIPTableViewController.m */,
 				E4E211391B5385B400940E90 /* MyAccountTableViewCell1.h */,
 				E4E2113A1B5385B400940E90 /* MyAccountTableViewCell1.m */,
 				E4E2113C1B5385DA00940E90 /* MyAccountTableViewCell2.h */,
 				E4E2113D1B5385DA00940E90 /* MyAccountTableViewCell2.m */,
+				E4E211361B53821500940E90 /* MyAccountTableViewController.h */,
+				E4E211371B53821500940E90 /* MyAccountTableViewController.m */,
+				E41162321B78A1250067C2A2 /* MyTableViewCell1.h */,
+				E41162331B78A1250067C2A2 /* MyTableViewCell1.m */,
+				E41162351B78A1320067C2A2 /* MyTableViewCell2.h */,
+				E41162361B78A1320067C2A2 /* MyTableViewCell2.m */,
 				E4E2113F1B538B3800940E90 /* PayTypeViewController.h */,
 				E4E211401B538B3800940E90 /* PayTypeViewController.m */,
 				E4E211411B538B3800940E90 /* PayTypeViewController.xib */,
@@ -2468,6 +2483,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E446F2D11B325F240060E9D7 /* RESideMenu.m in Sources */,
+				E41162311B789D310067C2A2 /* VIPTableViewController.m in Sources */,
 				E446F26D1B325F240060E9D7 /* NSObject+AssociatedObject.m in Sources */,
 				E446F2FC1B325F240060E9D7 /* DongtaiTableViewController.m in Sources */,
 				E446F2C01B325F240060E9D7 /* IQTextView.m in Sources */,
@@ -2610,6 +2626,7 @@
 				E446F2731B325F240060E9D7 /* NSString+DictionaryValue.m in Sources */,
 				E446F2DA1B325F240060E9D7 /* SDWebImageCompat.m in Sources */,
 				E446F3051B325F240060E9D7 /* ILikeCollectionViewCell.m in Sources */,
+				E41162341B78A1250067C2A2 /* MyTableViewCell1.m in Sources */,
 				E446F3091B325F240060E9D7 /* SettingTableViewController.m in Sources */,
 				E446F2BA1B325F240060E9D7 /* IQNSArray+Sort.m in Sources */,
 				E446F2E41B325F240060E9D7 /* UIImageView+HighlightedWebCache.m in Sources */,
@@ -2651,6 +2668,7 @@
 				E446F2761B325F240060E9D7 /* NSString+HXAddtions.m in Sources */,
 				E42959DD1B69C7D0003609B2 /* MJRefreshConst.m in Sources */,
 				E446F2DD1B325F240060E9D7 /* SDWebImageDownloaderOperation.m in Sources */,
+				E41162371B78A1320067C2A2 /* MyTableViewCell2.m in Sources */,
 				E42959D81B69C7D0003609B2 /* MJRefreshBackStateFooter.m in Sources */,
 				E446F2CE1B325F240060E9D7 /* PreLoginViewController.m in Sources */,
 				E446F30C1B325F240060E9D7 /* WodezhuanjiaoTableViewCell.m in Sources */,

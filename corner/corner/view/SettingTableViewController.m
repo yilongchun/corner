@@ -96,7 +96,7 @@
     cell.textLabel.textColor = [UIColor whiteColor];
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            cell.textLabel.text = @"我的VIP专区";
+            cell.textLabel.text = @"我的账户";
             UILabel *bottomLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 49, [UIScreen mainScreen].bounds.size.width-20, 0.3)];
             bottomLabel.backgroundColor = RGBACOLOR(220, 220, 220, 1);
             [cell.contentView addSubview:bottomLabel];
