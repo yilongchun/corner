@@ -2529,7 +2529,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1Oc-m7-ID5">
-                                <rect key="frame" x="0.0" y="220" width="240" height="348"/>
+                                <rect key="frame" x="0.0" y="64" width="240" height="504"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="de9-px-zlf" id="ts9-aQ-Kz0"/>
@@ -2537,7 +2537,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.10000000000000001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSx-Zr-zTi">
-                                <rect key="frame" x="0.0" y="219" width="240" height="1"/>
+                                <rect key="frame" x="0.0" y="63" width="240" height="1"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="7Sq-Ey-qKM"/>
@@ -2546,56 +2546,20 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lick_nopeole1_v1" translatesAutoresizingMaskIntoConstraints="NO" id="m9X-mb-q63">
-                                <rect key="frame" x="80" y="60" width="80" height="80"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="LAx-90-LYu"/>
-                                    <constraint firstAttribute="height" constant="80" id="id1-o6-56W"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="40"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="加载中" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PgB-tq-dNR">
-                                <rect key="frame" x="0.0" y="150" width="240" height="18"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vip2" translatesAutoresizingMaskIntoConstraints="NO" id="iEx-Kp-gQh">
-                                <rect key="frame" x="138" y="117" width="26" height="25"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="1Ew-1J-PSY"/>
-                                    <constraint firstAttribute="width" constant="26" id="Vbu-jM-z5k"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="m9X-mb-q63" firstAttribute="top" secondItem="EkF-ND-3uX" secondAttribute="bottom" constant="40" id="6vj-jT-aRx"/>
-                            <constraint firstItem="PgB-tq-dNR" firstAttribute="leading" secondItem="1Oc-m7-ID5" secondAttribute="leading" id="E2e-yu-svW"/>
                             <constraint firstItem="1Oc-m7-ID5" firstAttribute="leading" secondItem="btc-Fn-w2w" secondAttribute="leading" id="JDV-MN-FDc"/>
-                            <constraint firstItem="m9X-mb-q63" firstAttribute="bottom" secondItem="iEx-Kp-gQh" secondAttribute="bottom" constant="-2" id="M1L-00-lQS"/>
-                            <constraint firstItem="1Oc-m7-ID5" firstAttribute="top" secondItem="btc-Fn-w2w" secondAttribute="top" constant="220" id="bUs-ae-hGN"/>
-                            <constraint firstItem="PgB-tq-dNR" firstAttribute="trailing" secondItem="1Oc-m7-ID5" secondAttribute="trailing" id="gVP-9d-9q4"/>
-                            <constraint firstItem="m9X-mb-q63" firstAttribute="centerX" secondItem="PgB-tq-dNR" secondAttribute="centerX" id="hi0-Qb-r61"/>
+                            <constraint firstItem="1Oc-m7-ID5" firstAttribute="top" secondItem="btc-Fn-w2w" secondAttribute="top" constant="64" id="bUs-ae-hGN"/>
                             <constraint firstItem="1Oc-m7-ID5" firstAttribute="top" secondItem="dSx-Zr-zTi" secondAttribute="bottom" id="ho4-Zd-e6P"/>
-                            <constraint firstItem="m9X-mb-q63" firstAttribute="trailing" secondItem="iEx-Kp-gQh" secondAttribute="trailing" constant="-4" id="jyT-Ma-ayw"/>
                             <constraint firstItem="dSx-Zr-zTi" firstAttribute="leading" secondItem="btc-Fn-w2w" secondAttribute="leading" id="oD2-rf-HDi"/>
                             <constraint firstItem="1Oc-m7-ID5" firstAttribute="width" secondItem="btc-Fn-w2w" secondAttribute="width" multiplier="1:2" constant="80" id="oRZ-q3-bzS"/>
                             <constraint firstItem="hRb-9t-01a" firstAttribute="top" secondItem="1Oc-m7-ID5" secondAttribute="bottom" id="qwD-dx-gcN"/>
                             <constraint firstItem="1Oc-m7-ID5" firstAttribute="width" secondItem="dSx-Zr-zTi" secondAttribute="width" id="vsY-Cn-cNp"/>
-                            <constraint firstItem="PgB-tq-dNR" firstAttribute="top" secondItem="m9X-mb-q63" secondAttribute="bottom" constant="10" id="xin-IF-aby"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="mytableview" destination="1Oc-m7-ID5" id="4rl-LE-eL4"/>
-                        <outlet property="nicknameLabel" destination="PgB-tq-dNR" id="6UC-lQ-cDd"/>
-                        <outlet property="userimage" destination="m9X-mb-q63" id="ay7-uG-g58"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pue-5X-r4Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2650,7 +2614,6 @@
         <image name="kiss_cbtn2" width="74" height="74"/>
         <image name="l1" width="7" height="12"/>
         <image name="leftMenu" width="24" height="25"/>
-        <image name="lick_nopeole1_v1" width="110" height="110"/>
         <image name="line" width="2" height="33"/>
         <image name="logo" width="179" height="159"/>
         <image name="mainbackground" width="640" height="1136"/>
@@ -2667,7 +2630,6 @@
         <image name="regBtn" width="267" height="37"/>
         <image name="spot" width="5" height="5"/>
         <image name="vip1-1" width="31" height="29"/>
-        <image name="vip2" width="52" height="50"/>
         <image name="vippaybtn" width="74" height="29"/>
         <image name="wblogin" width="85" height="38"/>
         <image name="wxlogin" width="85" height="38"/>

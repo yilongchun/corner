@@ -54,7 +54,7 @@
     
     
     
-    titles = @[@"转角", @"care一下", @"同城邀约", @"call她", @"热度排行", @"我的转角", @"vip专区", @"设置"];
+    titles = @[@"转角", @"care一下", @"同城邀约", @"call她", @"热度排行", @"我的转角", @"设置"];
     
     self.userimage.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickImage)];
@@ -287,7 +287,7 @@
                NSForegroundColorAttributeName:[UIColor whiteColor]}];
         }
         [self.sideMenuViewController setContentViewController:nc6 animated:YES];
-    }else if(indexPath.row == 7){
+    }else if(indexPath.row == 6){
         if (nc8 == nil) {
             nc8 = [[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"SettingTableViewController"]];
             nc8.navigationBar.barTintColor = [UIColor colorWithRed:0/255. green:0/255. blue:0/255. alpha:1];

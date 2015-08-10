@@ -1415,7 +1415,8 @@
             UITapGestureRecognizer *click2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(myaction:)];
             [cell.btn2 addGestureRecognizer:click2];
             
-            cell.btn3.text = [NSString stringWithFormat:@"%d\n%@",111,@"动态数"];
+            NSArray *posts = [userinfo objectForKey:@"posts"];
+            cell.btn3.text = [NSString stringWithFormat:@"%lu\n%@",(unsigned long)[posts count],@"动态数"];
             NSMutableAttributedString *str3 = [[NSMutableAttributedString alloc] initWithString:cell.btn3.text];
             [str3 addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0,cell.btn3.text.length - 3)];
             cell.btn3.attributedText = str3;

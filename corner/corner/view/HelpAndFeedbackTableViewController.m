@@ -29,6 +29,8 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    self.title = @"常见问题";
+    
     dataSource = [NSMutableArray array];
     
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
@@ -95,21 +97,11 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    switch (section) {
-        case 0:
-            return 1;
-            break;
-        case 1:
-            return [dataSource count];
-            break;
-        default:
-            return 0;
-            break;
-    }
+    return [dataSource count];
 }
 
 
@@ -118,34 +110,22 @@
      if (cell == nil) {
          cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"helpcell"];
      }
-     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-     switch (indexPath.section) {
-         
-         case 0:
-             cell.textLabel.text = @"意见反馈";
-             break;
-         case 1:
-         {
-             NSDictionary *info = [dataSource objectAtIndex:indexPath.row];
-             NSString *content = info[@"content"];
-             cell.textLabel.text = content;
-         }
-             break;
-         default:
-             break;
-     }
+//     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+     NSDictionary *info = [dataSource objectAtIndex:indexPath.row];
+     NSString *content = info[@"content"];
+     cell.textLabel.text = content;
      return cell;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.section == 0) {
-        if (indexPath.row == 0) {//帮助与反馈
-            FeedbackViewController *vc = [[FeedbackViewController alloc] init];
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-    }
+//    if (indexPath.section == 0) {
+//        if (indexPath.row == 0) {//帮助与反馈
+//            FeedbackViewController *vc = [[FeedbackViewController alloc] init];
+//            [self.navigationController pushViewController:vc animated:YES];
+//        }
+//    }
 }
 
 @end

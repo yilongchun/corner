@@ -9,6 +9,7 @@
 #import "SettingTableViewController.h"
 #import "HelpAndFeedbackTableViewController.h"
 #import "MyAccountTableViewController.h"
+#import "FeedbackViewController.h"
 
 @interface SettingTableViewController (){
     UIAlertController *alert;
@@ -82,7 +83,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return 2;
+        return 3;
     }else{
         return 1;
     }
@@ -100,7 +101,12 @@
             bottomLabel.backgroundColor = RGBACOLOR(220, 220, 220, 1);
             [cell.contentView addSubview:bottomLabel];
         }else if (indexPath.row == 1){
-            cell.textLabel.text = @"帮助与反馈";
+            cell.textLabel.text = @"常见问题";
+            UILabel *bottomLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 49, [UIScreen mainScreen].bounds.size.width-20, 0.3)];
+            bottomLabel.backgroundColor = RGBACOLOR(220, 220, 220, 1);
+            [cell.contentView addSubview:bottomLabel];
+        }else if (indexPath.row == 2){
+            cell.textLabel.text = @"意见反馈";
         }
 //        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellrightview"]];
@@ -160,6 +166,9 @@
         }
         else if (indexPath.row == 1) {//帮助与反馈
             HelpAndFeedbackTableViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"HelpAndFeedbackTableViewController"];
+            [self.navigationController pushViewController:vc animated:YES];
+        }else if (indexPath.row == 2){
+            FeedbackViewController *vc = [[FeedbackViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         }
     }
