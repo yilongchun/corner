@@ -981,10 +981,6 @@
     if (viewtype == 1) {
         return [NSURL URLWithString:[[photo1 objectAtIndex:index] objectForKey:@"url"]];
     }else if (viewtype == 2){
-        DLog(@"%d %d",index,[photo2 count]);
-        DLog(@"%d",view2.subviews.count);
-        
-        
         return [NSURL URLWithString:[[photo2 objectAtIndex:index] objectForKey:@"url"]];
     }
     return nil;
@@ -2474,7 +2470,7 @@
             break;
     }
 }
-
+//自我介绍
 -(void)toJieshao{
     ZiwojieshaoViewController *vc = [[ZiwojieshaoViewController alloc] init];
     vc.title = @"自我介绍";
@@ -2482,17 +2478,17 @@
     vc.jieshao = aboutme;
     [self.navigationController pushViewController:vc animated:YES];
 }
-
+//我关注的
 -(void)toMyLike{
     ILikeCollectionViewController *iLikeVc = [self.storyboard instantiateViewControllerWithIdentifier:@"ILikeCollectionViewController"];
     [self.navigationController pushViewController:iLikeVc animated:YES];
 }
-
+//聊天
 -(void)toChat{
     LCEChatListVC *chatListVC = [[LCEChatListVC alloc] init];
     [self.navigationController pushViewController:chatListVC animated:YES];
 }
-
+//设置未读消息数
 -(void)setUnRadCount{
     NSInteger totalUnreadCount = [[CDStorage storage] countUnread];
     chatBtn.badgeValue = [NSString stringWithFormat:@"%d",totalUnreadCount];

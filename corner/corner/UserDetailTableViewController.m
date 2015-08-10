@@ -11,7 +11,7 @@
 #import "UserDetailTableViewCell2.h"
 #import "UserDetailTableViewCell3.h"
 #import "UserDetailTableViewCell5.h"
-
+#import "GrzxTableViewCell.h"
 #import "YaoyueDetailViewController.h"
 
 #import "DongtaiTableViewController.h"
@@ -19,20 +19,28 @@
 #import "SVPullToRefresh.h"
 #import "GiveGiftTableViewController.h"
 
+#define PICTURE_NUMBER 3
+#define PICTURE_MARGIN 2
+
 @interface UserDetailTableViewController (){
     NSMutableDictionary *userinfo;
     
     UIView *view1;//公开照片 父视图
+    UIView *view2;//隐私照片 父视图
     NSMutableArray *photo1;//公开照片
+    NSMutableArray *photo2;//隐私照片
     int currentImageIndex;//当前点击的图片
     CGRect resetRect;
     BOOL rectFlag;
+    int viewtype;//用于区别点的是哪个区域的图片
 }
 
 @end
 
 @implementation UserDetailTableViewController
 @synthesize userinfo;
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -55,6 +63,7 @@
     self.navigationItem.rightBarButtonItem = rightItem;
     
     photo1 = [NSMutableArray array];
+    photo2 = [NSMutableArray array];
     rectFlag = NO;
     
     // Uncomment the following line to preserve selection between presentations.
@@ -63,6 +72,9 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"mainbackground"]];
+    self.tableView.backgroundView = view;
     
     UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.tableFooterView = v;
@@ -128,8 +140,10 @@
                     self.title = nickname;
                 }
                 
+                //用户的照片
                 NSArray *photos = [userinfo objectForKey:@"photos"];
                 [photo1 removeAllObjects];
+                [photo2 removeAllObjects];
                 for (int i = 0; i < [photos count]; i++) {
                     NSDictionary *imgdic = [photos objectAtIndex:i];
                     //                    NSString *url = [dic objectForKey:@"url"];
@@ -139,13 +153,16 @@
                         if ([status intValue] == 0) {
                             [photo1 addObject:imgdic];
                         }
+                        
+                    }else if ([imagetype intValue] == 1){//隐私
+                        if ([status intValue] == 0) {
+                            [photo2 addObject:imgdic];
+                        }
                     }
                 }
                 [self.tableView reloadData];
-                //设置第一行的公开图片和隐私图片
-                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-                UserDetailTableViewCell1 *cell = (UserDetailTableViewCell1 *)[self.tableView cellForRowAtIndexPath:indexPath];
-                [self addPicture:cell];
+                
+                [self addPicture];
                 
                 
             }else if([status intValue] >= 600){
@@ -166,7 +183,16 @@
 /**
  *  添加公开图片和隐私图片
  */
--(void)addPicture:(UserDetailTableViewCell1 *)cell{
+-(void)addPicture{
+    //设置第一行的公开图片和隐私图片
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    GrzxTableViewCell *cell = (GrzxTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+    
+    //一个cell刷新
+    //    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:0 inSection:0];
+    //    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationFade];
+    
+    
     
     [cell.view1.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         UIButton *btn = obj;
@@ -174,45 +200,84 @@
             [btn removeFromSuperview];
         }
     }];
-    
+    [cell.view2.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        UIButton *btn = obj;
+        if (btn.tag != -1) {
+            [btn removeFromSuperview];
+        }
+    }];
     if (rectFlag == NO) {
         resetRect = cell.gongkaiBtn.frame;
+        resetRect.origin.x = 2;
+        resetRect.origin.y = 0;
         rectFlag = YES;
     }
     
     [cell.gongkaiBtn setFrame:resetRect];
+    [cell.yinsiBtn setFrame:resetRect];
     
-    for (int i = 0; i < [photo1 count]; i++) {
-        UIImageView *img = [[UIImageView alloc] initWithFrame:cell.gongkaiBtn.frame];
-        img.contentMode = UIViewContentModeScaleToFill;
-//        img.layer.cornerRadius = 5.0;
-//        img.layer.masksToBounds = YES;
-        [img setImageWithURL:[NSURL URLWithString:[[photo1 objectAtIndex:i] objectForKey:@"url"]]];
-        img.tag = i;
-        img.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageClick:)];
-        [img addGestureRecognizer:tap];
-        
-        [cell.view1 addSubview:img];
-        
+    if ([photo1 count] == 0) {
         CGRect rect = cell.gongkaiBtn.frame;
+        cell.leadingConstraint.constant = rect.origin.x;
+        cell.topConstraint.constant = rect.origin.y;
+        cell.view1HeightConstraint.constant = rect.origin.y + rect.size.height;
+    }else{
         
-        if (i !=0 && (i+1) % 4 == 0) {//应该换行
-            rect.origin.x = 0;
-            rect.origin.y = (i / 3) * (rect.size.height + 2);
+        
+        for (int i = 0; i < [photo1 count]; i++) {
+            UIImageView *img = [[UIImageView alloc] initWithFrame:cell.gongkaiBtn.frame];
+            img.contentMode = UIViewContentModeScaleToFill;
+            [img setImageWithURL:[NSURL URLWithString:[[photo1 objectAtIndex:i] objectForKey:@"url"]]];
+            img.tag = i;
+            img.userInteractionEnabled = YES;
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageClick:)];
+            [img addGestureRecognizer:tap];
+            [cell.view1 addSubview:img];
+            CGRect rect = cell.gongkaiBtn.frame;
+            if (i !=0 && (i+1) % PICTURE_NUMBER == 0) {//应该换行
+                rect.origin.x = 2;
+                rect.origin.y = ((i + 1) / PICTURE_NUMBER) * (rect.size.height + PICTURE_MARGIN);
+                cell.view1HeightConstraint.constant = rect.origin.y + rect.size.height + PICTURE_MARGIN;
+            }else{
+                rect.origin.x = cell.gongkaiBtn.frame.size.width + cell.gongkaiBtn.frame.origin.x + PICTURE_MARGIN;
+                cell.view1HeightConstraint.constant = rect.origin.y + rect.size.height;
+            }
             cell.leadingConstraint.constant = rect.origin.x;
             cell.topConstraint.constant = rect.origin.y;
-            
-            cell.view1HeightConstraint.constant = rect.origin.y + rect.size.height + 2;
-        }else{
-            rect.origin.x = cell.gongkaiBtn.frame.size.width + cell.gongkaiBtn.frame.origin.x + 2;
-            cell.leadingConstraint.constant = rect.origin.x;
-            cell.view1HeightConstraint.constant = rect.origin.y + rect.size.height;
+            [cell.gongkaiBtn setFrame:rect];
         }
-        
-        [cell.gongkaiBtn setFrame:rect];
-        
-        
+    }
+    
+    if ([photo2 count] == 0) {
+        CGRect rect = cell.yinsiBtn.frame;
+        cell.leadingConstraint2.constant = rect.origin.x;
+        cell.topConstraint2.constant = rect.origin.y;
+        cell.view2HeightConstraint.constant = rect.origin.y + rect.size.height;
+    }else{
+        for (int i = 0; i < [photo2 count]; i++) {
+            UIImageView *img = [[UIImageView alloc] initWithFrame:cell.yinsiBtn.frame];
+            img.contentMode = UIViewContentModeScaleToFill;
+            [img setImageWithURL:[NSURL URLWithString:[[photo2 objectAtIndex:i] objectForKey:@"url"]]];
+            img.tag = i;
+            img.userInteractionEnabled = YES;
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageClick:)];
+            [img addGestureRecognizer:tap];
+            [cell.view2 addSubview:img];
+            CGRect rect = cell.yinsiBtn.frame;
+            if (i !=0 && (i+1) % PICTURE_NUMBER == 0) {//应该换行
+                rect.origin.x = 2;
+                rect.origin.y = ((i + 1) / PICTURE_NUMBER) * (rect.size.height + PICTURE_MARGIN);
+                cell.leadingConstraint2.constant = rect.origin.x;
+                cell.topConstraint2.constant = rect.origin.y;
+                cell.view2HeightConstraint.constant = rect.origin.y + rect.size.height + PICTURE_MARGIN;
+            }else{
+                rect.origin.x = cell.yinsiBtn.frame.size.width + cell.yinsiBtn.frame.origin.x + PICTURE_MARGIN;
+                cell.leadingConstraint2.constant = rect.origin.x;
+                cell.topConstraint2.constant = rect.origin.y;
+                cell.view2HeightConstraint.constant = rect.origin.y + rect.size.height;
+            }
+            [cell.yinsiBtn setFrame:rect];
+        }
     }
 }
 
@@ -223,12 +288,23 @@
  */
 - (void)imageClick:(UITapGestureRecognizer *)recognizer
 {
+    if (recognizer.view.superview.tag == 1) {
+        viewtype = 1;
+    }else if(recognizer.view.superview.tag == 2){
+        viewtype = 2;
+    }
+    
     currentImageIndex = (int)recognizer.view.tag;
     
     SDPhotoBrowser *browser = [[SDPhotoBrowser alloc] init];
     
-    browser.sourceImagesContainerView = view1;//原图的父控件
-    browser.imageCount = photo1.count;//原图的数量
+    if (viewtype == 1) {
+        browser.sourceImagesContainerView = view1;//原图的父控件
+        browser.imageCount = photo1.count;//原图的数量
+    }else if (viewtype == 2){
+        browser.sourceImagesContainerView = view2;
+        browser.imageCount = photo2.count;
+    }
     
     browser.currentImageIndex = (int)recognizer.view.tag;//当前需要展示图片的index
     browser.delegate = self;
@@ -250,7 +326,12 @@
 - (UIImage *)photoBrowser:(SDPhotoBrowser *)browser placeholderImageForIndex:(NSInteger)index
 {
     
-    return [view1.subviews[index + 1] image];
+    if (viewtype == 1) {
+        return [view1.subviews[index + 1] image];
+    }else if (viewtype == 2){
+        return [view2.subviews[index + 1] image];
+    }
+    return nil;
     
 }
 
@@ -258,28 +339,66 @@
 // 返回高质量图片的url
 - (NSURL *)photoBrowser:(SDPhotoBrowser *)browser highQualityImageURLForIndex:(NSInteger)index
 {
-    return [NSURL URLWithString:[[photo1 objectAtIndex:index] objectForKey:@"url"]];
+    if (viewtype == 1) {
+        return [NSURL URLWithString:[[photo1 objectAtIndex:index] objectForKey:@"url"]];
+    }else if (viewtype == 2){
+        return [NSURL URLWithString:[[photo2 objectAtIndex:index] objectForKey:@"url"]];
+    }
+    return nil;
 }
 
 #pragma mark - Table view data source
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        CGFloat width = ([UIScreen mainScreen].bounds.size.width - 20 - 8) / 4;
-        CGFloat height1;
+        CGFloat imgWidth = ([UIScreen mainScreen].bounds.size.width - PICTURE_MARGIN * (PICTURE_NUMBER +1)) / PICTURE_NUMBER;//图片宽度
+        CGFloat height1;//第一个图片集高度
+        CGFloat height2;//第二个图片集高度
         
-        CGFloat imgHeight = [UIScreen mainScreen].bounds.size.width - 20;
-        CGFloat jiange = 32;
-        
-        CGFloat totalHeight = imgHeight + jiange + 10;
-        
-        if ((photo1.count + 1) % 4 == 0) {
-            height1 = ((photo1.count + 1) / 4) * (width + ((photo1.count + 1) / 4 -1) * 2);
+        CGFloat y = 290 - 17;//减去自我介绍的高度 下面有算高度
+        CGFloat jiange = 32;//第一个图片集 和 第二个图片集间隔
+        CGFloat totalHeight = y + jiange + 10;
+        if ((photo1.count + 1) % PICTURE_NUMBER == 0) {
+            height1 = ((photo1.count + 1) / PICTURE_NUMBER) * (imgWidth + ((photo1.count + 1) / PICTURE_NUMBER -1) * PICTURE_MARGIN);
         }else{
-            height1 = (((photo1.count + 1) / 4) + 1) * (width + ((photo1.count + 1) / 4) * 2);
+            height1 = (((photo1.count + 1) / PICTURE_NUMBER) + 1) * (imgWidth + ((photo1.count + 1) / PICTURE_NUMBER) * PICTURE_MARGIN);
+        }
+        if ((photo2.count + 1) % PICTURE_NUMBER == 0) {
+            height2 = ((photo2.count + 1) / PICTURE_NUMBER) * (imgWidth + ((photo2.count + 1) / PICTURE_NUMBER -1) * PICTURE_MARGIN);
+        }else{
+            height2 = (((photo2.count + 1) / PICTURE_NUMBER) + 1) * (imgWidth + ((photo2.count + 1) / PICTURE_NUMBER) * PICTURE_MARGIN);
         }
         
-        return totalHeight + height1;
+        
+        
+        // 列寬
+        CGFloat contentWidth = [UIScreen mainScreen].bounds.size.width - 40;
+        // 用何種字體進行顯示
+        UIFont *font = [UIFont systemFontOfSize:14];
+        // 該行要顯示的內容
+        NSString *content = [userinfo objectForKey:@"aboutme"];//自我介绍
+        // 計算出顯示完內容需要的最小尺寸
+        
+        CGSize textSize;
+        if ([NSString instancesRespondToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+            NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+            paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+            NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
+            NSStringDrawingOptions options = NSStringDrawingUsesLineFragmentOrigin;
+            textSize = [content boundingRectWithSize:CGSizeMake(contentWidth, MAXFLOAT)
+                                             options:options
+                                          attributes:attributes
+                                             context:nil].size;
+        } else {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+            textSize = [content sizeWithFont:font
+                           constrainedToSize:CGSizeMake(contentWidth, MAXFLOAT)
+                               lineBreakMode:NSLineBreakByWordWrapping];
+#pragma clang diagnostic pop
+            
+        }
+        return totalHeight + height1 + height2 + textSize.height;
     }else if (indexPath.section == 1){//动态计算高度
         NSArray *posts = [userinfo objectForKey:@"posts"];
         if ([posts count] == 0) {
@@ -580,42 +699,145 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {//头像
         if (indexPath.row == 0) {
-            UserDetailTableViewCell1 *cell = [tableView dequeueReusableCellWithIdentifier:@"userdetailcell1"];
+            GrzxTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GrzxTableViewCell"];
             if (cell == nil) {
-                cell = [[[NSBundle mainBundle] loadNibNamed:@"UserDetailTableViewCell1" owner:self options:nil] lastObject];
-                
-                cell.likebtn.layer.borderWidth = 1.0;
-                cell.likebtn.layer.borderColor = [UIColor whiteColor].CGColor;
-                cell.likebtn.layer.cornerRadius = 20.0;
-                cell.likebtn.layer.masksToBounds = YES;
-                [cell.likebtn addTarget:self action:@selector(like) forControlEvents:UIControlEventTouchUpInside];
-                
-                cell.chatbtn.layer.borderWidth = 1.0;
-                cell.chatbtn.layer.borderColor = [UIColor whiteColor].CGColor;
-                cell.chatbtn.layer.cornerRadius = 20.0;
-                cell.chatbtn.layer.masksToBounds = YES;
-                [cell.chatbtn addTarget:self action:@selector(chat) forControlEvents:UIControlEventTouchUpInside];
-                
-//                UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width-20, 60) byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(5, 5)];
-//                CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-//                maskLayer.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width-20, 60);
-//                maskLayer.path = maskPath.CGPath;
-//                cell.userImageBottom.layer.mask = maskLayer;
-                view1 = cell.view1;
+                cell = [[[NSBundle mainBundle] loadNibNamed:@"GrzxTableViewCell" owner:self options:nil] lastObject];
+                cell.userImage.layer.cornerRadius = 50;
+                cell.userImage.layer.masksToBounds = YES;
+//                [cell.gongkaiBtn addTarget:self action:@selector(gongkaiBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+//                [cell.yinsiBtn addTarget:self action:@selector(yinsiBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+                if (view1 == nil) {
+                    view1 = cell.view1;
+                }
+                if (view2 == nil) {
+                    view2 = cell.view2;
+                }
             }
-            
-            NSNumber *connected = [userinfo objectForKey:@"connected"];//是否关注 1 关注 0未关注
-            
-            if ([connected boolValue]) {//已关注
-                cell.likebtn.imageView.image = [UIImage imageNamed:@"like_love1_v1"];
-            }else{//未关注
-                cell.likebtn.imageView.image = [UIImage imageNamed:@"menu9_v1_2x"];
-            }
-            
             
             NSString *avatar_url = [userinfo objectForKey:@"avatar_url"];//头像
-            [cell.userImage setImageWithURL:[NSURL URLWithString:avatar_url]];
+            
+            if (avatar_url == nil || [avatar_url isEqualToString:@""]) {
+                //                cell.userImageCenter.hidden = NO;
+                //                cell.userImageBtn.hidden = NO;
+            }else{
+                //                cell.userImageCenter.hidden = YES;
+                //                cell.userImageBtn.hidden = YES;
+                [cell.userImage setImageWithURL:[NSURL URLWithString:avatar_url]];
+            }
+            
+            NSString *nickname = [userinfo objectForKey:@"nickname"];//昵称
+            NSString *aboutme = [userinfo objectForKey:@"aboutme"];//自我介绍
+            cell.nameLabel.text = nickname;
+            
+            if ([aboutme isEqualToString:@""]) {
+                cell.jieshaoLabel.text = @"请填写个性签名";
+            }else{
+                cell.jieshaoLabel.text = aboutme;
+            }
+            
+//            UITapGestureRecognizer *jieshaotap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toJieshao)];
+//            [cell.jieshaoLabel addGestureRecognizer:jieshaotap];
+            
+            
+            NSString *birthday = [userinfo objectForKey:@"birthday"];
+            if (birthday == nil || [birthday isEqualToString:@""] || (birthday != nil && [birthday isEqualToString:@"1900-01-01"])) {
+                cell.ageLabel.text = @"-";
+            }else{
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+                NSDate *date= [dateFormatter dateFromString:birthday];
+                NSInteger age = [NSDate ageWithDateOfBirth:date];
+                cell.ageLabel.text = [NSString stringWithFormat:@"%ld岁",(long)age];
+            }
+            
+            NSNumber *sexnum = [userinfo objectForKey:@"sex"];
+            switch ([sexnum intValue]) {
+                case 0:
+                    cell.sexImageView.image = [UIImage imageNamed:@"man"];
+                    break;
+                case 1:
+                    cell.sexImageView.image = [UIImage imageNamed:@"women"];
+                    break;
+                default:
+                    break;
+            }
+            
+            
+            cell.btn1.text = [NSString stringWithFormat:@"%d\n%@",111,@"关注数"];
+            NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:cell.btn1.text];
+            [str addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0,cell.btn1.text.length - 3)];
+            cell.btn1.attributedText = str;
+//            UITapGestureRecognizer *click = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(myaction:)];
+//            [cell.btn1 addGestureRecognizer:click];
+            
+            cell.btn2.text = [NSString stringWithFormat:@"%d\n%@",111,@"被关注数"];
+            NSMutableAttributedString *str2 = [[NSMutableAttributedString alloc] initWithString:cell.btn2.text];
+            [str2 addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0,cell.btn2.text.length - 4)];
+            cell.btn2.attributedText = str2;
+//            UITapGestureRecognizer *click2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(myaction:)];
+//            [cell.btn2 addGestureRecognizer:click2];
+            
+            cell.btn3.text = [NSString stringWithFormat:@"%d\n%@",111,@"动态数"];
+            NSMutableAttributedString *str3 = [[NSMutableAttributedString alloc] initWithString:cell.btn3.text];
+            [str3 addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0,cell.btn3.text.length - 3)];
+            cell.btn3.attributedText = str3;
+//            UITapGestureRecognizer *click3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(myaction:)];
+//            [cell.btn3 addGestureRecognizer:click3];
+            
+            
+            NSNumber *connected = [userinfo objectForKey:@"connected"];//是否关注 1 关注 0未关注
+
+            if ([connected boolValue]) {//已关注
+                cell.likeBtn.imageView.image = [UIImage imageNamed:@"like"];
+            }else{//未关注
+                cell.likeBtn.imageView.image = [UIImage imageNamed:@"unlike2"];
+            }
+            
+            [cell.likeBtn addTarget:self action:@selector(like) forControlEvents:UIControlEventTouchUpInside];
+//            chatBtn = cell.talkBtn;
+            [cell.talkBtn addTarget:self action:@selector(chat) forControlEvents:UIControlEventTouchUpInside];
+//            NSInteger totalUnreadCount = [[CDStorage storage] countUnread];
+//            chatBtn.badgeValue = [NSString stringWithFormat:@"%d",totalUnreadCount];
             return cell;
+            
+            
+            
+//            UserDetailTableViewCell1 *cell = [tableView dequeueReusableCellWithIdentifier:@"userdetailcell1"];
+//            if (cell == nil) {
+//                cell = [[[NSBundle mainBundle] loadNibNamed:@"UserDetailTableViewCell1" owner:self options:nil] lastObject];
+//                
+//                cell.likebtn.layer.borderWidth = 1.0;
+//                cell.likebtn.layer.borderColor = [UIColor whiteColor].CGColor;
+//                cell.likebtn.layer.cornerRadius = 20.0;
+//                cell.likebtn.layer.masksToBounds = YES;
+//                [cell.likebtn addTarget:self action:@selector(like) forControlEvents:UIControlEventTouchUpInside];
+//                
+//                cell.chatbtn.layer.borderWidth = 1.0;
+//                cell.chatbtn.layer.borderColor = [UIColor whiteColor].CGColor;
+//                cell.chatbtn.layer.cornerRadius = 20.0;
+//                cell.chatbtn.layer.masksToBounds = YES;
+//                [cell.chatbtn addTarget:self action:@selector(chat) forControlEvents:UIControlEventTouchUpInside];
+//                
+////                UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width-20, 60) byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(5, 5)];
+////                CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+////                maskLayer.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width-20, 60);
+////                maskLayer.path = maskPath.CGPath;
+////                cell.userImageBottom.layer.mask = maskLayer;
+//                view1 = cell.view1;
+//            }
+//            
+//            NSNumber *connected = [userinfo objectForKey:@"connected"];//是否关注 1 关注 0未关注
+//            
+//            if ([connected boolValue]) {//已关注
+//                cell.likebtn.imageView.image = [UIImage imageNamed:@"like_love1_v1"];
+//            }else{//未关注
+//                cell.likebtn.imageView.image = [UIImage imageNamed:@"menu9_v1_2x"];
+//            }
+//            
+//            
+//            NSString *avatar_url = [userinfo objectForKey:@"avatar_url"];//头像
+//            [cell.userImage setImageWithURL:[NSURL URLWithString:avatar_url]];
+//            return cell;
         }
     }else if (indexPath.section == 1){
         if (indexPath.row == 0) {//动态
@@ -1216,14 +1438,14 @@
         }else{
             NSNumber *status = [dic objectForKey:@"status"];
             if ([status intValue] == 200) {
-                UserDetailTableViewCell1 *cell = (UserDetailTableViewCell1 *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+                GrzxTableViewCell *cell = (GrzxTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
                 if ([connected boolValue]) {//已关注 设置取消
                     [userinfo setObject:[NSNumber numberWithBool:NO] forKey:@"connected"];
-                    cell.likebtn.imageView.image = [UIImage imageNamed:@"menu9_v1_2x"];
+                    cell.likeBtn.imageView.image = [UIImage imageNamed:@"unlike2"];
                     [self showHintInCenter:@"取消关注!"];
                 }else{//未关注 添加关注
                     [userinfo setObject:[NSNumber numberWithBool:YES] forKey:@"connected"];
-                    cell.likebtn.imageView.image = [UIImage imageNamed:@"like_love1_v1"];
+                    cell.likeBtn.imageView.image = [UIImage imageNamed:@"like"];
                     [self showHintInCenter:@"关注成功!"];
                 }
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshIlike" object:nil];
@@ -1254,10 +1476,6 @@
             [weakSelf.navigationController pushViewController:chatRoomVC animated:YES];
         }
     }];
-}
-
--(void)showLatestTime{
-    DLog(@"showLatestTime");
 }
 
 @end
