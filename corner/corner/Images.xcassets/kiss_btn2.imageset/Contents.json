@@ -12,7 +12,8 @@
     },
     {
       "idiom" : "universal",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "kiss_btn2@3x.png"
     }
   ],
   "info" : {
