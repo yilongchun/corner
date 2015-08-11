@@ -12,6 +12,7 @@
 #import "FabudongtaiViewController.h"
 #import "NSDate+Extension.h"
 
+
 @implementation WodezhuanjiaoViewController{
     NSMutableArray *dataSource;
     
@@ -19,7 +20,8 @@
     
     int page;//分页设置
     
-    
+    int tempIndex;
+    UIImage *smallImage;
 }
 @synthesize currentType;
 
@@ -261,16 +263,26 @@
         [cell.dateLabel setHidden:YES];
     }
    
-    
-    NSString *avatar_url = [NSString stringWithFormat:@"%@-small",pic_url];//头像
-    
-    if (![pic_url hasSuffix:@"post.jpg"]) {//无图片
-        [cell.userImage setImageWithURL:[NSURL URLWithString:avatar_url] placeholderImage:[UIImage imageNamed:@"public_load_face"]];
+    if (![pic_url hasSuffix:@"post.jpg"] && ![pic_url isEqualToString:@""]) {
+        cell.imgViewHeight.constant = 140;
+        [cell.myimage setImageWithURL:[NSURL URLWithString:pic_url] placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
+    }else{
+        cell.imgViewHeight.constant = 0;
     }
+    
+    cell.myimage.tag = indexPath.row;
+    cell.myimage.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageClick:)];
+    [cell.myimage addGestureRecognizer:tap];
     
     
     cell.username.text = [NSString stringWithFormat:@"%d",[user_id intValue]];
+    if ([post_body isEqualToString:@""]) {
+        post_body = @" ";
+    }
     cell.msgLabel.text = post_body;
+//    cell.msgLabel.numberOfLines = 0;
+//    [cell.msgLabel sizeToFit];
     return cell;
 }
 
@@ -312,7 +324,48 @@
 //}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 257;
+    
+    // 列寬
+    CGFloat contentWidth = [UIScreen mainScreen].bounds.size.width - 80 - 15;
+    // 用何種字體進行顯示
+    UIFont *font = [UIFont systemFontOfSize:15];
+    // 該行要顯示的內容
+    NSDictionary *info = [[dataSource objectAtIndex:indexPath.row] cleanNull];
+    NSString *content = [info objectForKey:@"post_body"];
+    // 計算出顯示完內容需要的最小尺寸
+    CGSize textSize;
+    if ([NSString instancesRespondToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+        paragraphStyle.lineBreakMode = NSLineBreakByCharWrapping;
+        NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
+        NSStringDrawingOptions options = NSStringDrawingUsesLineFragmentOrigin;
+        textSize = [content boundingRectWithSize:CGSizeMake(contentWidth, MAXFLOAT)
+                                         options:options
+                                      attributes:attributes
+                                         context:nil].size;
+    } else {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        textSize = [content sizeWithFont:font
+                       constrainedToSize:CGSizeMake(contentWidth, MAXFLOAT)
+                           lineBreakMode:NSLineBreakByCharWrapping];
+#pragma clang diagnostic pop
+        
+    }
+    CGFloat height;
+    if (textSize.height > 18) {
+        height = textSize.height;
+    }else{
+        height = 18;
+    }
+    NSString *pic_url = [info objectForKey:@"pic_url"];
+    if (![pic_url hasSuffix:@"post.jpg"] && ![pic_url isEqualToString:@""]) {
+        return 257 - 18 + height;
+    }else{
+        return 257 - 18 + height - 140;
+    }
+    
+    
 }
 
 //- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -354,5 +407,33 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)imageClick:(UITapGestureRecognizer *)recognizer
+{
+    tempIndex = recognizer.view.tag;
+    UIImageView *imageview = (UIImageView *)recognizer.view;
+    smallImage = imageview.image;
+    SDPhotoBrowser *browser = [[SDPhotoBrowser alloc] init];
+    browser.sourceImagesContainerView = recognizer.view.superview;//原图的父控件
+    browser.imageCount = 1;//原图的数量
+    browser.currentImageIndex = 0;//当前需要展示图片的index
+    browser.delegate = self;
+    [browser show]; // 展示图片浏览器
+}
 
+#pragma mark - photobrowser代理方法
+
+// 返回临时占位图片（即原来的小图）
+- (UIImage *)photoBrowser:(SDPhotoBrowser *)browser placeholderImageForIndex:(NSInteger)index
+{
+    return smallImage;
+}
+
+
+// 返回高质量图片的url
+- (NSURL *)photoBrowser:(SDPhotoBrowser *)browser highQualityImageURLForIndex:(NSInteger)index
+{
+    NSDictionary *info = [[dataSource objectAtIndex:tempIndex] cleanNull];
+    NSString *pic_url = [info objectForKey:@"pic_url"];
+    return [NSURL URLWithString:pic_url];
+}
 @end

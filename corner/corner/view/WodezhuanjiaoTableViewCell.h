@@ -15,4 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *msgLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *myimage;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UIView *imgView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imgViewHeight;
+
 @end

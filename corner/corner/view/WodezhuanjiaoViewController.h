@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "RESideMenu.h"
+#import "SDPhotoBrowser.h"
 
-@interface WodezhuanjiaoViewController : UIViewController
+@interface WodezhuanjiaoViewController : UIViewController<SDPhotoBrowserDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *mytableview;
 @property int currentType;
