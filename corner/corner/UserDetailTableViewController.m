@@ -58,9 +58,9 @@
     
 //    self.automaticallyAdjustsScrollViewInsets = NO;
     
-    UIImage *image = [[UIImage imageNamed:@"pub_title_8_v1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStyleDone target:self action:@selector(action1)];
-    self.navigationItem.rightBarButtonItem = rightItem;
+//    UIImage *image = [[UIImage imageNamed:@"pub_title_8_v1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStyleDone target:self action:@selector(action1)];
+//    self.navigationItem.rightBarButtonItem = rightItem;
     
     photo1 = [NSMutableArray array];
     photo2 = [NSMutableArray array];
