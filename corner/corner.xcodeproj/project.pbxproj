@@ -344,8 +344,6 @@
 		E4FCE4731B81C90800569064 /* MLPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E4FCE4681B81C90800569064 /* MLPhotoBrowser.bundle */; };
 		E4FCE47C1B81C9A500569064 /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4FCE4771B81C9A500569064 /* DACircularProgressView.m */; };
 		E4FCE47D1B81C9A500569064 /* DALabeledCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4FCE4791B81C9A500569064 /* DALabeledCircularProgressView.m */; };
-		E4FCE47E1B81C9A500569064 /* LICENSE.md in Sources */ = {isa = PBXBuildFile; fileRef = E4FCE47A1B81C9A500569064 /* LICENSE.md */; };
-		E4FCE47F1B81C9A500569064 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = E4FCE47B1B81C9A500569064 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2798,7 +2796,6 @@
 				E446F2531B325F240060E9D7 /* UIWebView+AFNetworking.m in Sources */,
 				E446F2B51B325F240060E9D7 /* UIWebView+Load.m in Sources */,
 				E446F2D31B325F240060E9D7 /* RootViewController.m in Sources */,
-				E4FCE47E1B81C9A500569064 /* LICENSE.md in Sources */,
 				E446F2461B325F240060E9D7 /* AFNetworkReachabilityManager.m in Sources */,
 				E42959DE1B69C7D0003609B2 /* UIScrollView+MJExtension.m in Sources */,
 				E4FCE4721B81C90800569064 /* MLPhotoBrowserPhotoView.m in Sources */,
@@ -2827,7 +2824,6 @@
 				E446F2741B325F240060E9D7 /* NSString+Emoji.m in Sources */,
 				E446F2F61B325F240060E9D7 /* BoyixiaViewController.m in Sources */,
 				E446F2D01B325F240060E9D7 /* RECommonFunctions.m in Sources */,
-				E4FCE47F1B81C9A500569064 /* README.md in Sources */,
 				E42959DA1B69C7D0003609B2 /* MJRefreshNormalHeader.m in Sources */,
 				E446F2621B325F240060E9D7 /* NSDictionary+Category.m in Sources */,
 				E446F24D1B325F240060E9D7 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
