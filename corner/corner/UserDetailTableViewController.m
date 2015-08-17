@@ -13,7 +13,7 @@
 #import "UserDetailTableViewCell5.h"
 #import "GrzxTableViewCell.h"
 #import "YaoyueDetailViewController.h"
-
+#import "MLPhotoBrowserViewController.h"
 #import "DongtaiTableViewController.h"
 #import "LCEChatRoomVC.h"
 #import "SVPullToRefresh.h"
@@ -288,31 +288,54 @@
  */
 - (void)imageClick:(UITapGestureRecognizer *)recognizer
 {
+    currentImageIndex = (int)recognizer.view.tag;
     if (recognizer.view.superview.tag == 1) {
         viewtype = 1;
     }else if(recognizer.view.superview.tag == 2){
         viewtype = 2;
     }
-    
-    currentImageIndex = (int)recognizer.view.tag;
-    
-    SDPhotoBrowser *browser = [[SDPhotoBrowser alloc] init];
-    
-    if (viewtype == 1) {
-        browser.sourceImagesContainerView = view1;//原图的父控件
-        browser.imageCount = photo1.count;//原图的数量
-    }else if (viewtype == 2){
-        browser.sourceImagesContainerView = view2;
-        browser.imageCount = photo2.count;
-    }
-    
-    browser.currentImageIndex = (int)recognizer.view.tag;//当前需要展示图片的index
-    browser.delegate = self;
-    [browser show]; // 展示图片浏览器
+    [self showPic];
 }
 
 -(void)action1{
     DLog(@"action1");
+}
+
+/**
+ *  点击图片查看大图
+ */
+-(void)showPic{
+    // 图片游览器
+    MLPhotoBrowserViewController *photoBrowser = [[MLPhotoBrowserViewController alloc] init];
+    // 缩放动画
+    photoBrowser.status = UIViewAnimationAnimationStatusFade;
+    // 可以删除
+    photoBrowser.editing = NO;
+    // 数据源/delegate
+    //    photoBrowser.delegate = self;
+    // 同样支持数据源/DataSource
+    //                    photoBrowser.dataSource = self;
+    
+    NSMutableArray *imgDataSource = [NSMutableArray array];
+    if (viewtype == 1) {
+        for (int i = 0; i < photo1.count; i++) {
+            MLPhotoBrowserPhoto *photo = [[MLPhotoBrowserPhoto alloc] init];
+            photo.photoURL = [NSURL URLWithString:[[photo1 objectAtIndex:i] objectForKey:@"url"]];
+            [imgDataSource addObject:photo];
+        }
+    }else if (viewtype == 2){
+        for (int i = 0; i < photo2.count; i++) {
+            MLPhotoBrowserPhoto *photo = [[MLPhotoBrowserPhoto alloc] init];
+            photo.photoURL = [NSURL URLWithString:[[photo2 objectAtIndex:i] objectForKey:@"url"]];
+            [imgDataSource addObject:photo];
+        }
+    }
+    photoBrowser.photos = imgDataSource;
+    
+    // 当前选中的值
+    photoBrowser.currentIndexPath = [NSIndexPath indexPathForItem:currentImageIndex inSection:0];
+    // 展示控制器
+    [photoBrowser showPickerVc:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -320,32 +343,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - photobrowser代理方法
 
-// 返回临时占位图片（即原来的小图）
-- (UIImage *)photoBrowser:(SDPhotoBrowser *)browser placeholderImageForIndex:(NSInteger)index
-{
-    
-    if (viewtype == 1) {
-        return [view1.subviews[index + 1] image];
-    }else if (viewtype == 2){
-        return [view2.subviews[index + 1] image];
-    }
-    return nil;
-    
-}
-
-
-// 返回高质量图片的url
-- (NSURL *)photoBrowser:(SDPhotoBrowser *)browser highQualityImageURLForIndex:(NSInteger)index
-{
-    if (viewtype == 1) {
-        return [NSURL URLWithString:[[photo1 objectAtIndex:index] objectForKey:@"url"]];
-    }else if (viewtype == 2){
-        return [NSURL URLWithString:[[photo2 objectAtIndex:index] objectForKey:@"url"]];
-    }
-    return nil;
-}
 
 #pragma mark - Table view data source
 
@@ -730,7 +728,7 @@
             cell.nameLabel.text = nickname;
             
             if ([aboutme isEqualToString:@""]) {
-                cell.jieshaoLabel.text = @"请填写个性签名";
+                cell.jieshaoLabel.text = @"未填写个性签名";
             }else{
                 cell.jieshaoLabel.text = aboutme;
             }
@@ -762,15 +760,16 @@
                     break;
             }
             
-            
-            cell.btn1.text = [NSString stringWithFormat:@"%d\n%@",111,@"关注数"];
+            NSNumber *count_a = [userinfo objectForKey:@"count_a"];
+            NSNumber *count_b = [userinfo objectForKey:@"count_b"];
+            cell.btn1.text = [NSString stringWithFormat:@"%d\n%@",[count_a intValue],@"关注数"];
             NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:cell.btn1.text];
             [str addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0,cell.btn1.text.length - 3)];
             cell.btn1.attributedText = str;
 //            UITapGestureRecognizer *click = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(myaction:)];
 //            [cell.btn1 addGestureRecognizer:click];
             
-            cell.btn2.text = [NSString stringWithFormat:@"%d\n%@",111,@"被关注数"];
+            cell.btn2.text = [NSString stringWithFormat:@"%d\n%@",[count_b intValue],@"被关注数"];
             NSMutableAttributedString *str2 = [[NSMutableAttributedString alloc] initWithString:cell.btn2.text];
             [str2 addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0,cell.btn2.text.length - 4)];
             cell.btn2.attributedText = str2;

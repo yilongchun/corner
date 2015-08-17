@@ -171,19 +171,21 @@ updatingLocation:(BOOL)updatingLocation
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.row < dataSource.count) {
+        AMapPOI *p = [dataSource objectAtIndex:indexPath.row];
+        NSString *name = p.name;
+        CGFloat latitude = p.location.latitude;
+        CGFloat longitude = p.location.longitude;
+        
+        
+        NSDictionary *dict =[[NSDictionary alloc] initWithObjectsAndKeys:name,@"name",[NSNumber numberWithFloat:latitude],@"latitude",[NSNumber numberWithFloat:longitude],@"longitude", nil];
+        //创建通知
+        NSNotification *notification =[NSNotification notificationWithName:@"chooseLocation" object:nil userInfo:dict];
+        //通过通知中心发送通知
+        [[NSNotificationCenter defaultCenter] postNotification:notification];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
     
-    AMapPOI *p = [dataSource objectAtIndex:indexPath.row];
-    NSString *name = p.name;
-    CGFloat latitude = p.location.latitude;
-    CGFloat longitude = p.location.longitude;
-    
-    
-    NSDictionary *dict =[[NSDictionary alloc] initWithObjectsAndKeys:name,@"name",[NSNumber numberWithFloat:latitude],@"latitude",[NSNumber numberWithFloat:longitude],@"longitude", nil];
-    //创建通知
-    NSNotification *notification =[NSNotification notificationWithName:@"chooseLocation" object:nil userInfo:dict];
-    //通过通知中心发送通知
-    [[NSNotificationCenter defaultCenter] postNotification:notification];
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

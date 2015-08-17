@@ -249,10 +249,23 @@
     NSDictionary *info = [[dataSource objectAtIndex:indexPath.row] cleanNull];
     DLog(@"%@",info);
     
+    NSDictionary *user = [[info objectForKey:@"user"] cleanNull];
+    NSString *avatar_url = [user objectForKey:@"avatar_url"];
+    NSString *nickname = [user objectForKey:@"nickname"];
+    NSNumber *userid = [user objectForKey:@"id"];
+    if (![avatar_url isEqualToString:@""]) {
+        [cell.userImage setImageWithURL:[NSURL URLWithString:avatar_url]];
+    }
+    if (![nickname isEqualToString:@""]) {
+        cell.username.text = nickname;
+    }else{
+        cell.username.text = [userid stringValue];
+    }
+    
     NSString *pic_url = [info objectForKey:@"pic_url"];
     NSString *post_body = [info objectForKey:@"post_body"];
 //    NSNumber *status = [info objectForKey:@"status"];
-    NSNumber *user_id = [info objectForKey:@"user_id"];
+//    NSNumber *user_id = [info objectForKey:@"user_id"];
     
     NSString *created_at = [info objectForKey:@"created_at"];
     
@@ -276,7 +289,7 @@
     [cell.myimage addGestureRecognizer:tap];
     
     
-    cell.username.text = [NSString stringWithFormat:@"%d",[user_id intValue]];
+//    cell.username.text = [NSString stringWithFormat:@"%d",[user_id intValue]];
     if ([post_body isEqualToString:@""]) {
         post_body = @" ";
     }

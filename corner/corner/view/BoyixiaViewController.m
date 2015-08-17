@@ -20,7 +20,7 @@
     CGRect rect;
     BOOL flag;//动画状态
     UIImageView *tempView;
-    NSString *oldImageUrl;
+    NSMutableString *oldImageUrl;
     NSMutableDictionary *firstDic;
     NSMutableDictionary *secondDic;
 }
@@ -30,7 +30,7 @@
     
 //    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     
-    
+    oldImageUrl = [NSMutableString string];
     
     [self.msglabel removeFromSuperview];
     self.btn1.enabled = NO;
@@ -116,8 +116,7 @@
                 }else{
                     secondDic = [NSMutableDictionary dictionaryWithDictionary:message];
                 }
-                
-                oldImageUrl = avatar_url;
+                oldImageUrl = [NSMutableString stringWithString:avatar_url];
 //                [self.imageview setImageToBlur:self.userimageview.image
 //                                    blurRadius:kLBBlurredImageDefaultBlurRadius
 //                               completionBlock:^(){
@@ -225,6 +224,7 @@
     [UIView animateWithDuration:0.3f animations:^{
         kiss_lip1.transform = CGAffineTransformMakeScale(1.0, 1.0);
     } completion:^(BOOL finished) {
+        DLog(@"%d",finished);
         [self performSelector:@selector(rightAnimation) withObject:nil afterDelay:0.2];
     }];
 }

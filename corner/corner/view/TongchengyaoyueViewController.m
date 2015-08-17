@@ -171,6 +171,10 @@ static NSString * const reuseIdentifier = @"MyCollectionViewCell";
     // Dispose of any resources that can be recreated.
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 213;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return dataSource.count;
 }
@@ -180,8 +184,10 @@ static NSString * const reuseIdentifier = @"MyCollectionViewCell";
     TongchengyaoyueTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellreuseIdentifier];
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"TongchengyaoyueTableViewCell" owner:self options:nil] lastObject];
-            [cell.bgview setImage:[[UIImage imageNamed:@"activity_9_v1"] stretchableImageWithLeftCapWidth:12 topCapHeight:12]];
-            [cell.topBg setImage:[[UIImage imageNamed:@"activity_top_v1"] stretchableImageWithLeftCapWidth:6 topCapHeight:0]];
+//            [cell.bgview setImage:[[UIImage imageNamed:@"activity_9_v1"] stretchableImageWithLeftCapWidth:12 topCapHeight:12]];
+//            [cell.topBg setImage:[[UIImage imageNamed:@"activity_top_v1"] stretchableImageWithLeftCapWidth:6 topCapHeight:0]];
+        cell.userHeadImage.layer.masksToBounds = YES;
+        cell.userHeadImage.layer.cornerRadius = 25;
     }
 
     
@@ -193,21 +199,58 @@ static NSString * const reuseIdentifier = @"MyCollectionViewCell";
     NSDictionary *info = [[dataSource objectAtIndex:indexPath.row] cleanNull];
     DLog(@"%@",info);
     
+    NSDictionary *user = [[info objectForKey:@"user"] cleanNull];
+    NSString *avatar_url = [user objectForKey:@"avatar_url"];
+    NSString *nickname = [user objectForKey:@"nickname"];
+    NSNumber *userid = [user objectForKey:@"id"];
+    NSString *birthday = [user objectForKey:@"birthday"];
+    NSNumber *sex = [user objectForKey:@"sex"];
+    if (![avatar_url isEqualToString:@""]) {
+        [cell.userHeadImage setImageWithURL:[NSURL URLWithString:avatar_url]];
+    }
+    if (![nickname isEqualToString:@""]) {
+        cell.usernameLabel.text = nickname;
+    }else{
+        cell.usernameLabel.text = [userid stringValue];
+    }
+    switch ([sex intValue]) {
+        case 0:
+            [cell.userGenderImage setImage:[UIImage imageNamed:@"man"]];
+            break;
+        case 1:
+            [cell.userGenderImage setImage:[UIImage imageNamed:@"women"]];
+            break;
+        default:
+            break;
+    }
+    if ([birthday isEqualToString:@"1900-01-01"]) {
+        cell.useAgeLabel.text = @"-";
+    }else{
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        NSDate *date= [dateFormatter dateFromString:birthday];
+        NSInteger age = [NSDate ageWithDateOfBirth:date];
+        cell.useAgeLabel.text = [NSString stringWithFormat:@"%ld岁",(long)age];
+    }
+    
+    
+    
     NSString *created_at = [info objectForKey:@"created_at"];
     NSString *description = [info objectForKey:@"description"];
     NSString *location_desc = [info objectForKey:@"location_desc"];
     NSString *pic_url = [info objectForKey:@"pic_url"];
+    [cell.bgview setImageWithURL:[NSURL URLWithString:pic_url]];
 //    NSNumber *status = [info objectForKey:@"status"];
     if ([description isEqualToString:@""]) {
         description = @" ";
     }
     
-    if (![pic_url hasSuffix:@"activity.jpg"]) {//无图片
-        [cell.userImage setImageWithURL:[NSURL URLWithString:pic_url] placeholderImage:[UIImage imageNamed:@"public_load_face"]];
-    }
+//    if (![pic_url hasSuffix:@"activity.jpg"]) {//无图片
+//        [cell.userImage setImageWithURL:[NSURL URLWithString:pic_url] placeholderImage:[UIImage imageNamed:@"public_load_face"]];
+//    }
     cell.titleLabel.text = description;
     cell.addressLabel.text = [NSString stringWithFormat:@"地点:%@",location_desc];
-    cell.dateLabel.text = [NSString stringWithFormat:@"时间:%@", created_at];
+    cell.dateLabel.text = [NSString stringWithFormat:@"%@", created_at];
     
     return cell;
 }

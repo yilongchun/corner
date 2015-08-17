@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SDPhotoBrowser.h"
 
-@interface UserDetailTableViewController : UITableViewController<SDPhotoBrowserDelegate>
+@interface UserDetailTableViewController : UITableViewController
 
 @property(nonatomic, strong) NSDictionary *userinfo;
 
