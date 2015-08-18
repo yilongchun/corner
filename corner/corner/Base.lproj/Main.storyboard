@@ -1444,9 +1444,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mainbackground" translatesAutoresizingMaskIntoConstraints="NO" id="9h4-EG-mVf">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                            </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="pWq-ls-T8b">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell1" rowHeight="110" id="bgG-GY-Jr9" customClass="MyTableViewCell1">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -1459,6 +1463,7 @@
                                                         <constraint firstAttribute="height" constant="20" id="OWO-J9-rtW"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="1" green="0.49803921568627452" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qil-uL-GBb">
@@ -1472,7 +1477,7 @@
                                                     <string key="text">金币可以用于升级vip,电话私聊，购买钥匙／礼物
 vip可以使用电话直呼功能</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -1486,7 +1491,7 @@ vip可以使用电话直呼功能</string>
                                                 <constraint firstItem="2l3-40-Hen" firstAttribute="leading" secondItem="Bsp-Y6-Fe4" secondAttribute="leading" constant="15" id="grQ-Hl-hpc"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="coinsLabel" destination="Qil-uL-GBb" id="EZC-Dg-DMf"/>
                                         </connections>
@@ -1505,21 +1510,22 @@ vip可以使用电话直呼功能</string>
                                                     </state>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="系统每天赠送10把钥匙" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IQb-9x-8Yt">
-                                                    <rect key="frame" x="66" y="49" width="132" height="16"/>
+                                                    <rect key="frame" x="73" y="49" width="132" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" red="0.70588235294117641" green="0.70588235294117641" blue="0.70588235294117641" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Al3-a3-pgT">
-                                                    <rect key="frame" x="8" y="20" width="50" height="50"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jinbi1" translatesAutoresizingMaskIntoConstraints="NO" id="Al3-a3-pgT">
+                                                    <rect key="frame" x="15" y="20" width="50" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="Syy-IP-fvX"/>
                                                         <constraint firstAttribute="height" constant="50" id="lDF-EB-csg"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1200金币" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tfp-oQ-7nc">
-                                                    <rect key="frame" x="66" y="25" width="64" height="18"/>
+                                                    <rect key="frame" x="73" y="25" width="64" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -1528,13 +1534,13 @@ vip可以使用电话直呼功能</string>
                                                 <constraint firstAttribute="trailing" secondItem="dA5-3o-fst" secondAttribute="trailing" constant="15" id="4pG-NI-1hk"/>
                                                 <constraint firstItem="IQb-9x-8Yt" firstAttribute="bottom" secondItem="Al3-a3-pgT" secondAttribute="bottom" constant="-5" id="GaU-3f-1KK"/>
                                                 <constraint firstAttribute="centerY" secondItem="dA5-3o-fst" secondAttribute="centerY" id="O4p-JX-3px"/>
-                                                <constraint firstItem="Al3-a3-pgT" firstAttribute="leading" secondItem="Bkd-Oa-tbu" secondAttribute="leading" constant="8" id="TFJ-8G-xXN"/>
+                                                <constraint firstItem="Al3-a3-pgT" firstAttribute="leading" secondItem="Bkd-Oa-tbu" secondAttribute="leading" constant="15" id="TFJ-8G-xXN"/>
                                                 <constraint firstAttribute="centerY" secondItem="Al3-a3-pgT" secondAttribute="centerY" id="Zgd-Op-ErF"/>
                                                 <constraint firstItem="IQb-9x-8Yt" firstAttribute="leading" secondItem="Al3-a3-pgT" secondAttribute="trailing" constant="8" id="diB-wy-vXM"/>
                                                 <constraint firstItem="tfp-oQ-7nc" firstAttribute="leading" secondItem="Al3-a3-pgT" secondAttribute="trailing" constant="8" id="dz2-BM-yKU"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="conisImage" destination="Al3-a3-pgT" id="JhH-yX-vKy"/>
                                             <outlet property="label1" destination="tfp-oQ-7nc" id="S12-u8-zXA"/>
@@ -1551,10 +1557,14 @@ vip可以使用电话直呼功能</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="XRr-dd-n5k" firstAttribute="top" secondItem="9h4-EG-mVf" secondAttribute="bottom" id="3Qf-PD-HqE"/>
+                            <constraint firstItem="9h4-EG-mVf" firstAttribute="top" secondItem="HGI-Qa-LJM" secondAttribute="bottom" id="I6R-6K-K9m"/>
                             <constraint firstItem="pWq-ls-T8b" firstAttribute="leading" secondItem="vvB-W2-AXQ" secondAttribute="leading" id="O0w-Ay-7NC"/>
+                            <constraint firstAttribute="trailing" secondItem="9h4-EG-mVf" secondAttribute="trailing" id="UWi-Vl-bA3"/>
                             <constraint firstAttribute="trailing" secondItem="pWq-ls-T8b" secondAttribute="trailing" id="gEV-rf-Aom"/>
                             <constraint firstItem="XRr-dd-n5k" firstAttribute="top" secondItem="pWq-ls-T8b" secondAttribute="bottom" id="x70-IW-sX1"/>
                             <constraint firstItem="pWq-ls-T8b" firstAttribute="top" secondItem="vvB-W2-AXQ" secondAttribute="top" id="xrw-Vh-uJ6"/>
+                            <constraint firstItem="9h4-EG-mVf" firstAttribute="leading" secondItem="vvB-W2-AXQ" secondAttribute="leading" id="xyr-j9-QWA"/>
                         </constraints>
                     </view>
                     <connections>
@@ -2378,6 +2388,9 @@ vip可以使用电话直呼功能</string>
                     <navigationItem key="navigationItem" title="转角" id="HnH-EH-L5H">
                         <barButtonItem key="rightBarButtonItem" image="a2" id="qtK-cJ-AM1">
                             <color key="tintColor" red="0.58823529411764708" green="0.58823529411764708" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="search:" destination="tWM-Md-zvs" id="GVs-9X-9Ef"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -2521,26 +2534,13 @@ vip可以使用电话直呼功能</string>
                                     <outlet property="delegate" destination="de9-px-zlf" id="ydg-OD-d7W"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.10000000000000001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSx-Zr-zTi">
-                                <rect key="frame" x="0.0" y="63" width="240" height="1"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="7Sq-Ey-qKM"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="1Oc-m7-ID5" firstAttribute="leading" secondItem="btc-Fn-w2w" secondAttribute="leading" id="JDV-MN-FDc"/>
                             <constraint firstItem="1Oc-m7-ID5" firstAttribute="top" secondItem="btc-Fn-w2w" secondAttribute="top" constant="64" id="bUs-ae-hGN"/>
-                            <constraint firstItem="1Oc-m7-ID5" firstAttribute="top" secondItem="dSx-Zr-zTi" secondAttribute="bottom" id="ho4-Zd-e6P"/>
-                            <constraint firstItem="dSx-Zr-zTi" firstAttribute="leading" secondItem="btc-Fn-w2w" secondAttribute="leading" id="oD2-rf-HDi"/>
                             <constraint firstItem="1Oc-m7-ID5" firstAttribute="width" secondItem="btc-Fn-w2w" secondAttribute="width" multiplier="1:2" constant="80" id="oRZ-q3-bzS"/>
                             <constraint firstItem="hRb-9t-01a" firstAttribute="top" secondItem="1Oc-m7-ID5" secondAttribute="bottom" id="qwD-dx-gcN"/>
-                            <constraint firstItem="1Oc-m7-ID5" firstAttribute="width" secondItem="dSx-Zr-zTi" secondAttribute="width" id="vsY-Cn-cNp"/>
                         </constraints>
                     </view>
                     <connections>
@@ -2637,7 +2637,7 @@ vip可以使用电话直呼功能</string>
                                                 <constraint firstItem="yWo-8C-2bz" firstAttribute="leading" secondItem="hNj-AF-E9S" secondAttribute="leading" constant="15" id="x8y-p9-29S"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="coinsLabel" destination="ai2-nJ-eJh" id="QNt-x0-hNB"/>
                                             <outlet property="titleLabel" destination="hZc-WY-He9" id="IdT-wT-eeI"/>
@@ -2696,7 +2696,7 @@ vip可以使用电话直呼功能</string>
                                                 <constraint firstItem="X3G-2s-lCi" firstAttribute="top" secondItem="EQy-gE-Rx7" secondAttribute="bottom" constant="3" id="w3d-Oc-5FH"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="conisImage" destination="amh-sg-ZgS" id="J1q-AU-xmE"/>
                                             <outlet property="hotsellImage" destination="fdT-ft-N8n" id="iYw-FN-2iN"/>
@@ -2751,6 +2751,7 @@ vip可以使用电话直呼功能</string>
         <image name="ico_attest" width="16" height="16"/>
         <image name="ico_hot" width="16" height="16"/>
         <image name="ico_woman" width="13" height="13"/>
+        <image name="jinbi1" width="46" height="46"/>
         <image name="kiss_bg1" width="279" height="357"/>
         <image name="l1" width="7" height="12"/>
         <image name="leftMenu" width="24" height="25"/>

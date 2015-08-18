@@ -11,7 +11,7 @@
 #import "PagedFlowView.h"
 
 @interface MainViewController : UIViewController<PagedFlowViewDelegate,PagedFlowViewDataSource>{
-    NSArray *imageArray;
+    NSMutableArray *imageArray;
 }
 
 @property (weak, nonatomic) IBOutlet UIScrollView *myscrollview;
@@ -23,5 +23,6 @@
 - (IBAction)action2:(id)sender;
 - (IBAction)action3:(id)sender;
 - (IBAction)action4:(id)sender;
+- (IBAction)search:(id)sender;
 
 @end

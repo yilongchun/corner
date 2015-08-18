@@ -14,10 +14,9 @@
 #import "JYSlideSegmentController.h"
 #import "WodezhuanjiaoViewController.h"
 #import "VIPTableViewController.h"
-
 #define cellIdentifier @"leftMenuCell"
 
-
+#import "ChoosePersonViewController.h"
 
 @interface LeftMenuViewController ()
 
@@ -27,6 +26,7 @@
 
 @implementation LeftMenuViewController{
     NSArray *titles;
+    NSArray *images;
     NSIndexPath *oldIndexPath;
     UIButton *oldButton;
     UINavigationController *nc1;
@@ -56,6 +56,7 @@
     
     
     titles = @[@"转角", @"在乎", @"同城邀约", @"call她", @"热度排行", @"我的转角",@"VIP专区", @"设置"];
+    images = @[@"leftMenuIcon1", @"leftMenuIcon2", @"leftMenuIcon3", @"leftMenuIcon4",@"leftMenuIcon5",@"leftMenuIcon6",@"leftMenuIcon7",@"leftMenuIcon8"];
     
     self.userimage.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickImage)];
@@ -71,10 +72,10 @@
     
     self.mytableview.tableFooterView = v;
     if ([self.mytableview respondsToSelector:@selector(setSeparatorInset:)]) {
-        [self.mytableview setSeparatorInset:UIEdgeInsetsMake(0, 15, 0, 0)];
+        [self.mytableview setSeparatorInset:UIEdgeInsetsMake(0, 0, 0, 0)];
     }
     if ([self.mytableview respondsToSelector:@selector(setLayoutMargins:)]) {
-        [self.mytableview setLayoutMargins:UIEdgeInsetsMake(0, 15, 0, 0)];
+        [self.mytableview setLayoutMargins:UIEdgeInsetsMake(0, 0, 0, 0)];
     }
     
 //    [self.mytableview registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
@@ -122,11 +123,8 @@
         cell.backgroundColor = [UIColor clearColor];
     }
     
-//    NSArray *images = @[@"dengluicon", @"zhuceicon", @"tougaoicon", @"guanyuicon"];
     cell.textLabel.text = titles[indexPath.row];
-//    cell.imageView.image = [UIImage imageNamed:@"icon_setting"];
-    
-    
+    cell.imageView.image = [UIImage imageNamed:images[indexPath.row]];
     
     cell.contentView.backgroundColor = [UIColor clearColor];
     UIView *aView = [[UIView alloc] initWithFrame:cell.contentView.frame];
@@ -154,10 +152,10 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
-        [cell setSeparatorInset:UIEdgeInsetsMake(0, 15, 0, 0)];
+        [cell setSeparatorInset:UIEdgeInsetsMake(0, 0, 0, 0)];
     }
     if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-        [cell setLayoutMargins:UIEdgeInsetsMake(0, 15, 0, 0)];
+        [cell setLayoutMargins:UIEdgeInsetsMake(0, 0, 0, 0)];
     }
 }
 
@@ -179,7 +177,7 @@
         [self.sideMenuViewController setContentViewController:nc1 animated:YES];
     }else if(indexPath.row == 1){
         if (nc2 == nil) {
-            nc2 = [[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"BoyixiaViewController"]];
+            nc2 = [[UINavigationController alloc] initWithRootViewController:[ChoosePersonViewController new]];
             nc2.navigationBar.barTintColor = [UIColor colorWithRed:0/255. green:0/255. blue:0/255. alpha:1];
             nc2.navigationBar.tintColor = [UIColor whiteColor];
             [nc2.navigationBar setTitleTextAttributes:

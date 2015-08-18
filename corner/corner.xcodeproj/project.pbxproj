@@ -13,6 +13,22 @@
 		E41162371B78A1320067C2A2 /* MyTableViewCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = E41162361B78A1320067C2A2 /* MyTableViewCell2.m */; };
 		E413E0551B4A681F00784187 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E413E0511B4A681F00784187 /* libWeChatSDK.a */; };
 		E413E0561B4A681F00784187 /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = E413E0521B4A681F00784187 /* read_me.txt */; };
+		E41E4CBC1B82EAE600C968A9 /* MDCGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = E41E4CA01B82EAE600C968A9 /* MDCGeometry.m */; };
+		E41E4CBD1B82EAE600C968A9 /* MDCViewState.m in Sources */ = {isa = PBXBuildFile; fileRef = E41E4CA31B82EAE600C968A9 /* MDCViewState.m */; };
+		E41E4CBE1B82EAE600C968A9 /* UIColor+MDCRGB8Bit.m in Sources */ = {isa = PBXBuildFile; fileRef = E41E4CA51B82EAE600C968A9 /* UIColor+MDCRGB8Bit.m */; };
+		E41E4CBF1B82EAE600C968A9 /* UIView+MDCBorderedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E41E4CA81B82EAE600C968A9 /* UIView+MDCBorderedLabel.m */; };
+		E41E4CC01B82EAE600C968A9 /* MDCSwipeOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = E41E4CAD1B82EAE600C968A9 /* MDCSwipeOptions.m */; };
+		E41E4CC11B82EAE600C968A9 /* MDCSwipeToChooseViewOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = E41E4CAF1B82EAE600C968A9 /* MDCSwipeToChooseViewOptions.m */; };
+		E41E4CC21B82EAE600C968A9 /* MDCPanState.m in Sources */ = {isa = PBXBuildFile; fileRef = E41E4CB21B82EAE600C968A9 /* MDCPanState.m */; };
+		E41E4CC31B82EAE600C968A9 /* MDCSwipeResult.m in Sources */ = {isa = PBXBuildFile; fileRef = E41E4CB51B82EAE600C968A9 /* MDCSwipeResult.m */; };
+		E41E4CC41B82EAE600C968A9 /* MDCSwipeToChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = E41E4CB91B82EAE600C968A9 /* MDCSwipeToChooseView.m */; };
+		E41E4CC51B82EAE600C968A9 /* UIView+MDCSwipeToChoose.m in Sources */ = {isa = PBXBuildFile; fileRef = E41E4CBB1B82EAE600C968A9 /* UIView+MDCSwipeToChoose.m */; };
+		E41E4CD11B82EB2F00C968A9 /* ChoosePersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E41E4CC81B82EB2F00C968A9 /* ChoosePersonViewController.m */; };
+		E41E4CD21B82EB2F00C968A9 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = E41E4CCB1B82EB2F00C968A9 /* Person.m */; };
+		E41E4CD31B82EB2F00C968A9 /* ChoosePersonView.m in Sources */ = {isa = PBXBuildFile; fileRef = E41E4CCE1B82EB2F00C968A9 /* ChoosePersonView.m */; };
+		E41E4CD41B82EB2F00C968A9 /* ImageLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = E41E4CD01B82EB2F00C968A9 /* ImageLabelView.m */; };
+		E41E4CD81B831CD600C968A9 /* ShaixuanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E41E4CD61B831CD600C968A9 /* ShaixuanViewController.m */; };
+		E41E4CD91B831CD600C968A9 /* ShaixuanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E41E4CD71B831CD600C968A9 /* ShaixuanViewController.xib */; };
 		E42959CE1B69C7D0003609B2 /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = E42959A41B69C7D0003609B2 /* MJRefreshAutoFooter.m */; };
 		E42959CF1B69C7D0003609B2 /* MJRefreshBackFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = E42959A61B69C7D0003609B2 /* MJRefreshBackFooter.m */; };
 		E42959D01B69C7D0003609B2 /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = E42959A81B69C7D0003609B2 /* MJRefreshComponent.m */; };
@@ -370,6 +386,40 @@
 		E413E0521B4A681F00784187 /* read_me.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = read_me.txt; sourceTree = "<group>"; };
 		E413E0531B4A681F00784187 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		E413E0541B4A681F00784187 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		E41E4C9F1B82EAE600C968A9 /* MDCGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCGeometry.h; sourceTree = "<group>"; };
+		E41E4CA01B82EAE600C968A9 /* MDCGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDCGeometry.m; sourceTree = "<group>"; };
+		E41E4CA21B82EAE600C968A9 /* MDCViewState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCViewState.h; sourceTree = "<group>"; };
+		E41E4CA31B82EAE600C968A9 /* MDCViewState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDCViewState.m; sourceTree = "<group>"; };
+		E41E4CA41B82EAE600C968A9 /* UIColor+MDCRGB8Bit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MDCRGB8Bit.h"; sourceTree = "<group>"; };
+		E41E4CA51B82EAE600C968A9 /* UIColor+MDCRGB8Bit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MDCRGB8Bit.m"; sourceTree = "<group>"; };
+		E41E4CA71B82EAE600C968A9 /* UIView+MDCBorderedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MDCBorderedLabel.h"; sourceTree = "<group>"; };
+		E41E4CA81B82EAE600C968A9 /* UIView+MDCBorderedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MDCBorderedLabel.m"; sourceTree = "<group>"; };
+		E41E4CAA1B82EAE600C968A9 /* MDCSwipeToChoose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCSwipeToChoose.h; sourceTree = "<group>"; };
+		E41E4CAC1B82EAE600C968A9 /* MDCSwipeOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCSwipeOptions.h; sourceTree = "<group>"; };
+		E41E4CAD1B82EAE600C968A9 /* MDCSwipeOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDCSwipeOptions.m; sourceTree = "<group>"; };
+		E41E4CAE1B82EAE600C968A9 /* MDCSwipeToChooseViewOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCSwipeToChooseViewOptions.h; sourceTree = "<group>"; };
+		E41E4CAF1B82EAE600C968A9 /* MDCSwipeToChooseViewOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDCSwipeToChooseViewOptions.m; sourceTree = "<group>"; };
+		E41E4CB11B82EAE600C968A9 /* MDCPanState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCPanState.h; sourceTree = "<group>"; };
+		E41E4CB21B82EAE600C968A9 /* MDCPanState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDCPanState.m; sourceTree = "<group>"; };
+		E41E4CB31B82EAE600C968A9 /* MDCSwipeDirection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCSwipeDirection.h; sourceTree = "<group>"; };
+		E41E4CB41B82EAE600C968A9 /* MDCSwipeResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCSwipeResult.h; sourceTree = "<group>"; };
+		E41E4CB51B82EAE600C968A9 /* MDCSwipeResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDCSwipeResult.m; sourceTree = "<group>"; };
+		E41E4CB71B82EAE600C968A9 /* MDCSwipeToChooseDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCSwipeToChooseDelegate.h; sourceTree = "<group>"; };
+		E41E4CB81B82EAE600C968A9 /* MDCSwipeToChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCSwipeToChooseView.h; sourceTree = "<group>"; };
+		E41E4CB91B82EAE600C968A9 /* MDCSwipeToChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDCSwipeToChooseView.m; sourceTree = "<group>"; };
+		E41E4CBA1B82EAE600C968A9 /* UIView+MDCSwipeToChoose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MDCSwipeToChoose.h"; sourceTree = "<group>"; };
+		E41E4CBB1B82EAE600C968A9 /* UIView+MDCSwipeToChoose.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MDCSwipeToChoose.m"; sourceTree = "<group>"; };
+		E41E4CC71B82EB2F00C968A9 /* ChoosePersonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoosePersonViewController.h; sourceTree = "<group>"; };
+		E41E4CC81B82EB2F00C968A9 /* ChoosePersonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoosePersonViewController.m; sourceTree = "<group>"; };
+		E41E4CCA1B82EB2F00C968A9 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		E41E4CCB1B82EB2F00C968A9 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		E41E4CCD1B82EB2F00C968A9 /* ChoosePersonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoosePersonView.h; sourceTree = "<group>"; };
+		E41E4CCE1B82EB2F00C968A9 /* ChoosePersonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoosePersonView.m; sourceTree = "<group>"; };
+		E41E4CCF1B82EB2F00C968A9 /* ImageLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageLabelView.h; sourceTree = "<group>"; };
+		E41E4CD01B82EB2F00C968A9 /* ImageLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageLabelView.m; sourceTree = "<group>"; };
+		E41E4CD51B831CD600C968A9 /* ShaixuanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaixuanViewController.h; sourceTree = "<group>"; };
+		E41E4CD61B831CD600C968A9 /* ShaixuanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShaixuanViewController.m; sourceTree = "<group>"; };
+		E41E4CD71B831CD600C968A9 /* ShaixuanViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShaixuanViewController.xib; sourceTree = "<group>"; };
 		E42959A31B69C7D0003609B2 /* MJRefreshAutoFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshAutoFooter.h; sourceTree = "<group>"; };
 		E42959A41B69C7D0003609B2 /* MJRefreshAutoFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshAutoFooter.m; sourceTree = "<group>"; };
 		E42959A51B69C7D0003609B2 /* MJRefreshBackFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackFooter.h; sourceTree = "<group>"; };
@@ -1054,6 +1104,121 @@
 				E413E0541B4A681F00784187 /* WXApiObject.h */,
 			);
 			path = WeChatSDK;
+			sourceTree = "<group>";
+		};
+		E41E4C9D1B82EAE600C968A9 /* MDCSwipeToChoose */ = {
+			isa = PBXGroup;
+			children = (
+				E41E4C9E1B82EAE600C968A9 /* Internal */,
+				E41E4CA91B82EAE600C968A9 /* Public */,
+			);
+			path = MDCSwipeToChoose;
+			sourceTree = "<group>";
+		};
+		E41E4C9E1B82EAE600C968A9 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				E41E4C9F1B82EAE600C968A9 /* MDCGeometry.h */,
+				E41E4CA01B82EAE600C968A9 /* MDCGeometry.m */,
+				E41E4CA11B82EAE600C968A9 /* State */,
+				E41E4CA41B82EAE600C968A9 /* UIColor+MDCRGB8Bit.h */,
+				E41E4CA51B82EAE600C968A9 /* UIColor+MDCRGB8Bit.m */,
+				E41E4CA61B82EAE600C968A9 /* Views */,
+			);
+			path = Internal;
+			sourceTree = "<group>";
+		};
+		E41E4CA11B82EAE600C968A9 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				E41E4CA21B82EAE600C968A9 /* MDCViewState.h */,
+				E41E4CA31B82EAE600C968A9 /* MDCViewState.m */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		E41E4CA61B82EAE600C968A9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E41E4CA71B82EAE600C968A9 /* UIView+MDCBorderedLabel.h */,
+				E41E4CA81B82EAE600C968A9 /* UIView+MDCBorderedLabel.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E41E4CA91B82EAE600C968A9 /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				E41E4CAA1B82EAE600C968A9 /* MDCSwipeToChoose.h */,
+				E41E4CAB1B82EAE600C968A9 /* Options */,
+				E41E4CB01B82EAE600C968A9 /* State */,
+				E41E4CB61B82EAE600C968A9 /* Views */,
+			);
+			path = Public;
+			sourceTree = "<group>";
+		};
+		E41E4CAB1B82EAE600C968A9 /* Options */ = {
+			isa = PBXGroup;
+			children = (
+				E41E4CAC1B82EAE600C968A9 /* MDCSwipeOptions.h */,
+				E41E4CAD1B82EAE600C968A9 /* MDCSwipeOptions.m */,
+				E41E4CAE1B82EAE600C968A9 /* MDCSwipeToChooseViewOptions.h */,
+				E41E4CAF1B82EAE600C968A9 /* MDCSwipeToChooseViewOptions.m */,
+			);
+			path = Options;
+			sourceTree = "<group>";
+		};
+		E41E4CB01B82EAE600C968A9 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				E41E4CB11B82EAE600C968A9 /* MDCPanState.h */,
+				E41E4CB21B82EAE600C968A9 /* MDCPanState.m */,
+				E41E4CB31B82EAE600C968A9 /* MDCSwipeDirection.h */,
+				E41E4CB41B82EAE600C968A9 /* MDCSwipeResult.h */,
+				E41E4CB51B82EAE600C968A9 /* MDCSwipeResult.m */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		E41E4CB61B82EAE600C968A9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E41E4CB71B82EAE600C968A9 /* MDCSwipeToChooseDelegate.h */,
+				E41E4CB81B82EAE600C968A9 /* MDCSwipeToChooseView.h */,
+				E41E4CB91B82EAE600C968A9 /* MDCSwipeToChooseView.m */,
+				E41E4CBA1B82EAE600C968A9 /* UIView+MDCSwipeToChoose.h */,
+				E41E4CBB1B82EAE600C968A9 /* UIView+MDCSwipeToChoose.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E41E4CC61B82EB2F00C968A9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E41E4CC71B82EB2F00C968A9 /* ChoosePersonViewController.h */,
+				E41E4CC81B82EB2F00C968A9 /* ChoosePersonViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		E41E4CC91B82EB2F00C968A9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E41E4CCA1B82EB2F00C968A9 /* Person.h */,
+				E41E4CCB1B82EB2F00C968A9 /* Person.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E41E4CCC1B82EB2F00C968A9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E41E4CCD1B82EB2F00C968A9 /* ChoosePersonView.h */,
+				E41E4CCE1B82EB2F00C968A9 /* ChoosePersonView.m */,
+				E41E4CCF1B82EB2F00C968A9 /* ImageLabelView.h */,
+				E41E4CD01B82EB2F00C968A9 /* ImageLabelView.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		E42959A11B69C7D0003609B2 /* MJRefresh */ = {
@@ -1925,6 +2090,10 @@
 		E446F2111B325F240060E9D7 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				E41E4CC61B82EB2F00C968A9 /* Controllers */,
+				E41E4CC91B82EB2F00C968A9 /* Models */,
+				E41E4CCC1B82EB2F00C968A9 /* Views */,
+				E41E4C9D1B82EAE600C968A9 /* MDCSwipeToChoose */,
 				E446F22A1B325F240060E9D7 /* GrzxTableViewController.h */,
 				E446F22B1B325F240060E9D7 /* GrzxTableViewController.m */,
 				E45E02F51B55F08B00724211 /* PhoneUpdateViewController.h */,
@@ -2139,6 +2308,9 @@
 				E446F1AD1B325F240060E9D7 /* LoginViewController.m */,
 				E4CDAFEA1B6879B000A0432E /* MainViewController.h */,
 				E4CDAFEB1B6879B000A0432E /* MainViewController.m */,
+				E41E4CD51B831CD600C968A9 /* ShaixuanViewController.h */,
+				E41E4CD61B831CD600C968A9 /* ShaixuanViewController.m */,
+				E41E4CD71B831CD600C968A9 /* ShaixuanViewController.xib */,
 				E446F1AE1B325F240060E9D7 /* MainCollectionViewController.h */,
 				E446F1AF1B325F240060E9D7 /* MainCollectionViewController.m */,
 				E446F1BA1B325F240060E9D7 /* MyCollectionReusableView.h */,
@@ -2486,6 +2658,7 @@
 				E446F2F21B325F240060E9D7 /* UserDetailTableViewCell3.xib in Resources */,
 				E4DBFAFA1B4529A5002004BC /* XuanshiViewController.xib in Resources */,
 				E446F2E71B325F240060E9D7 /* sr_refresh.png in Resources */,
+				E41E4CD91B831CD600C968A9 /* ShaixuanViewController.xib in Resources */,
 				E44D47F71B325DA40064404B /* Main.storyboard in Resources */,
 				E446F2601B325F240060E9D7 /* NSDateTimeAgo.bundle in Resources */,
 				E446F2541B325F240060E9D7 /* AMap.bundle in Resources */,
@@ -2609,8 +2782,10 @@
 				E446F2FA1B325F240060E9D7 /* DongtaiTableViewCellAdd.m in Sources */,
 				E446F27D1B325F240060E9D7 /* NSTimer+Blocks.m in Sources */,
 				E446F29D1B325F240060E9D7 /* UIScrollView+Addition.m in Sources */,
+				E41E4CD31B82EB2F00C968A9 /* ChoosePersonView.m in Sources */,
 				E446F29F1B325F240060E9D7 /* UIScrollView+PullLoad.m in Sources */,
 				E45E03171B565AC800724211 /* CDUserManager.m in Sources */,
+				E41E4CC41B82EAE600C968A9 /* MDCSwipeToChooseView.m in Sources */,
 				E446F2481B325F240060E9D7 /* AFURLConnectionOperation.m in Sources */,
 				E446F2D51B325F240060E9D7 /* SDPhotoBrowser.m in Sources */,
 				E446F24E1B325F240060E9D7 /* UIAlertView+AFNetworking.m in Sources */,
@@ -2621,6 +2796,7 @@
 				E446F2D71B325F240060E9D7 /* MKAnnotationView+WebCache.m in Sources */,
 				E446F2B71B325F240060E9D7 /* UIWindow+Hierarchy.m in Sources */,
 				E46E8DDF1B46707E006CAE06 /* UIViewController+updateUserInfo.m in Sources */,
+				E41E4CC51B82EAE600C968A9 /* UIView+MDCSwipeToChoose.m in Sources */,
 				E446F28D1B325F240060E9D7 /* UIImage+animatedGIF.m in Sources */,
 				E446F2871B325F240060E9D7 /* UIColor+HEX.m in Sources */,
 				E446F2971B325F240060E9D7 /* UINavigationBar+Awesome.m in Sources */,
@@ -2648,8 +2824,11 @@
 				E446F2CB1B325F240060E9D7 /* MBProgressHUD.m in Sources */,
 				E446F3241B32968B0060E9D7 /* LCEChatListVC.m in Sources */,
 				E42959D61B69C7D0003609B2 /* MJRefreshBackGifFooter.m in Sources */,
+				E41E4CD81B831CD600C968A9 /* ShaixuanViewController.m in Sources */,
+				E41E4CC01B82EAE600C968A9 /* MDCSwipeOptions.m in Sources */,
 				E446F2EF1B325F240060E9D7 /* UserDetailTableViewCell2.m in Sources */,
 				E4F59DEF1B425F3900A6F002 /* WodeyaoyueTableViewCell2.m in Sources */,
+				E41E4CBE1B82EAE600C968A9 /* UIColor+MDCRGB8Bit.m in Sources */,
 				E446F2B41B325F240060E9D7 /* UIWebView+JS.m in Sources */,
 				E446F2C31B325F240060E9D7 /* IQToolbar.m in Sources */,
 				E446F2851B325F240060E9D7 /* UIButton+Indicator.m in Sources */,
@@ -2680,6 +2859,7 @@
 				E446F24A1B325F240060E9D7 /* AFURLResponseSerialization.m in Sources */,
 				E446F2BB1B325F240060E9D7 /* IQUIView+Hierarchy.m in Sources */,
 				E446F3061B325F240060E9D7 /* ILikeCollectionViewController.m in Sources */,
+				E41E4CD21B82EB2F00C968A9 /* Person.m in Sources */,
 				E446F2EA1B325F240060E9D7 /* SRSlimeView.m in Sources */,
 				E446F2681B325F240060E9D7 /* NSIndexPath+Offset.m in Sources */,
 				E446F2B01B325F240060E9D7 /* UIViewController+Visible.m in Sources */,
@@ -2698,7 +2878,9 @@
 				E446F29E1B325F240060E9D7 /* UIScrollView+Pages.m in Sources */,
 				E446F2EB1B325F240060E9D7 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				E42959D41B69C7D0003609B2 /* MJRefreshAutoNormalFooter.m in Sources */,
+				E41E4CBF1B82EAE600C968A9 /* UIView+MDCBorderedLabel.m in Sources */,
 				E446F2F31B325F240060E9D7 /* UserDetailTableViewCell5.m in Sources */,
+				E41E4CC31B82EAE600C968A9 /* MDCSwipeResult.m in Sources */,
 				E446F2E91B325F240060E9D7 /* SRRefreshView.m in Sources */,
 				E446F2641B325F240060E9D7 /* NSDictionary+Merge.m in Sources */,
 				E446F2A61B325F240060E9D7 /* UIView+Debug.m in Sources */,
@@ -2709,6 +2891,7 @@
 				E446F2611B325F240060E9D7 /* NSDateFormatter+Make.m in Sources */,
 				E446F26A1B325F240060E9D7 /* NSManagedObjectContext+FetchRequestsConstructors.m in Sources */,
 				E446F2F11B325F240060E9D7 /* UserDetailTableViewCell3.m in Sources */,
+				E41E4CD41B82EB2F00C968A9 /* ImageLabelView.m in Sources */,
 				E4E211381B53821500940E90 /* MyAccountTableViewController.m in Sources */,
 				E446F28B1B325F240060E9D7 /* UIDevice+Hardware.m in Sources */,
 				E4E211421B538B3800940E90 /* PayTypeViewController.m in Sources */,
@@ -2721,12 +2904,14 @@
 				E446F2E61B325F240060E9D7 /* UIView+WebCacheOperation.m in Sources */,
 				E446F2891B325F240060E9D7 /* UIColor+Random.m in Sources */,
 				E45E02F81B55F08B00724211 /* PhoneUpdateViewController.m in Sources */,
+				E41E4CBD1B82EAE600C968A9 /* MDCViewState.m in Sources */,
 				E446F2511B325F240060E9D7 /* UIProgressView+AFNetworking.m in Sources */,
 				E446F2731B325F240060E9D7 /* NSString+DictionaryValue.m in Sources */,
 				E4FCE46D1B81C90800569064 /* MLPhotoBrowserSignleViewController.m in Sources */,
 				E446F2DA1B325F240060E9D7 /* SDWebImageCompat.m in Sources */,
 				E4FCE46F1B81C90800569064 /* MLPhotoBrowserCustomToolBarView.m in Sources */,
 				E446F3051B325F240060E9D7 /* ILikeCollectionViewCell.m in Sources */,
+				E41E4CC21B82EAE600C968A9 /* MDCPanState.m in Sources */,
 				E41162341B78A1250067C2A2 /* MyTableViewCell1.m in Sources */,
 				E446F3091B325F240060E9D7 /* SettingTableViewController.m in Sources */,
 				E446F2BA1B325F240060E9D7 /* IQNSArray+Sort.m in Sources */,
@@ -2798,6 +2983,7 @@
 				E446F2D31B325F240060E9D7 /* RootViewController.m in Sources */,
 				E446F2461B325F240060E9D7 /* AFNetworkReachabilityManager.m in Sources */,
 				E42959DE1B69C7D0003609B2 /* UIScrollView+MJExtension.m in Sources */,
+				E41E4CD11B82EB2F00C968A9 /* ChoosePersonViewController.m in Sources */,
 				E4FCE4721B81C90800569064 /* MLPhotoBrowserPhotoView.m in Sources */,
 				E4E210E21B53524600940E90 /* GiveGiftTableViewController.m in Sources */,
 				E446F2CD1B325F240060E9D7 /* MyCollectionViewCell.m in Sources */,
@@ -2818,6 +3004,7 @@
 				E446F31D1B3294E00060E9D7 /* CDUserFactory.m in Sources */,
 				E44D47EE1B325DA40064404B /* main.m in Sources */,
 				E42959DB1B69C7D0003609B2 /* MJRefreshStateHeader.m in Sources */,
+				E41E4CBC1B82EAE600C968A9 /* MDCGeometry.m in Sources */,
 				E446F2C41B325F240060E9D7 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				E446F2981B325F240060E9D7 /* UINavigationController+BATransitions.m in Sources */,
 				E446F2C61B325F240060E9D7 /* LeftMenuViewController.m in Sources */,
@@ -2836,6 +3023,7 @@
 				E446F2B11B325F240060E9D7 /* UIWebView+Alert.m in Sources */,
 				E446F3071B325F240060E9D7 /* PaihangTableViewCell.m in Sources */,
 				E446F2841B325F240060E9D7 /* UIButton+CountDown.m in Sources */,
+				E41E4CC11B82EAE600C968A9 /* MDCSwipeToChooseViewOptions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

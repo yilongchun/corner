@@ -24,12 +24,12 @@
     self.contentViewShadowRadius = 12;
     self.contentViewShadowEnabled = YES;
     self.scaleContentView = NO;
-    self.scaleMenuView = NO;
-    self.fadeMenuView = NO;
+    self.scaleMenuView = YES;
+    self.fadeMenuView = YES;
     self.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"NViewController"];
     self.leftMenuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"leftMenuViewController"];
     //self.rightMenuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"rightMenuViewController"];
-    self.backgroundImage = [UIImage imageNamed:@"bg.jpg"];
+    self.backgroundImage = [UIImage imageNamed:@"leftMenuBackground"];
     self.delegate = self;
 }
 
