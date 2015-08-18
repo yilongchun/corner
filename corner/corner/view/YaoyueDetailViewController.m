@@ -42,6 +42,23 @@
     
     //DLog(@"%@",_activityDic);
     
+    
+    NSDictionary *user = [[_activityDic objectForKey:@"user"] cleanNull];
+    NSString *avatar_url = [user objectForKey:@"avatar_url"];
+    NSString *nickname = [user objectForKey:@"nickname"];
+    NSNumber *userid = [user objectForKey:@"id"];
+//    NSString *birthday = [user objectForKey:@"birthday"];
+//    NSNumber *sex = [user objectForKey:@"sex"];
+    if (![avatar_url isEqualToString:@""]) {
+        [_userImage setImageWithURL:[NSURL URLWithString:avatar_url]];
+    }
+    if (![nickname isEqualToString:@""]) {
+        _nameLabel.text = nickname;
+    }else{
+        _nameLabel.text = [userid stringValue];
+    }
+    
+    
 
 }
 
@@ -92,9 +109,6 @@
                 if ([pic_url hasSuffix:@"activity.jpg"]) {//没有图片
                     
                 }
-            
-                _nameLabel.text = @"";
-                _lengthLabel.text = @"";
                 _descLabel.text = description;
                 _addressLabel.text = [NSString stringWithFormat:@"地点:%@",location_desc];
             

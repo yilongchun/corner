@@ -55,7 +55,7 @@
     
     
     
-    titles = @[@"转角", @"care一下", @"同城邀约", @"call她", @"热度排行", @"我的转角",@"VIP专区", @"设置"];
+    titles = @[@"转角", @"在乎", @"同城邀约", @"call她", @"热度排行", @"我的转角",@"VIP专区", @"设置"];
     
     self.userimage.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickImage)];
