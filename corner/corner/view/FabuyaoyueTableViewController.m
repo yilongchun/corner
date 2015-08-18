@@ -60,7 +60,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(chooseLocation:) name:@"chooseLocation" object:nil];
     
     dataSource = @[@"不限时间",@"平时周末",@"指定日期"];
-    typeDataSource = @[@"一般约会",@"饭饭之交",@"约定一生"];
+    typeDataSource = @[@"吃饭",@"唱歌",@"看电影",@"谈天",@"游泳",@"跑步",@"其他"];
     
     
     
@@ -430,7 +430,7 @@
                     //    [toolbar sizeToFit];
                     [typeActionSheet addSubview:toolbar];
                     
-                    [typeActionSheet addSubview:currencyPicker];
+                    [typeActionSheet addSubview:typeCurrencyPicker];
                     
                     [typeActionSheet showInView:self.view];
                 
@@ -439,47 +439,47 @@
 //            [currencyPicker selectedRowInComponent:typeSelectedIndexPath.row];
         }
     }else if (indexPath.section == 1){
-//        if (indexPath.row == 0) {//时间
-//            
-//            pickerType = 0;
-//            
-//            if (selectedIndexPath == nil) {
-//                selectedIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-//            }
-//            if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_7_1){
-//                [self alertWithPicer:currencyPicker title:@""];
-//            }else{
-//                actionSheet = [[UIActionSheet alloc] initWithTitle:@"\n\n\n\n\n\n\n\n\n\n\n\n\n"
-//                                                          delegate:self
-//                                                 cancelButtonTitle:nil
-//                                            destructiveButtonTitle:nil
-//                                                 otherButtonTitles:nil, nil];
-//                actionSheet.tag = 1;
-//                toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(8, 0, self.view.frame.size.width-16, 44)];
-//                toolbar.barStyle = UIBarStyleDefault;
-//                //                [toolbar sizeToFit];
-//                //                toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-//                NSMutableArray *barItems = [[NSMutableArray alloc] init];
-//                
-//                UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(PickerCancelClick)];
-//                [barItems addObject:cancelBtn];
-//                
-//                UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-//                [barItems addObject:flexSpace];
-//                
-//                UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(PickerDoneClick)];
-//                [barItems addObject:doneBtn];
-//                [toolbar setItems:barItems animated:YES];
-//                //    [toolbar sizeToFit];
-//                [actionSheet addSubview:toolbar];
-//                
-//                [actionSheet addSubview:currencyPicker];
-//                
-//                [actionSheet showInView:self.view];
-//            }
-////            [currencyPicker selectedRowInComponent:selectedIndexPath.row];
-//        }
-        if (indexPath.row == 0){//位置
+        if (indexPath.row == 0) {//时间
+            
+            pickerType = 0;
+            
+            if (selectedIndexPath == nil) {
+                selectedIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+            }
+            if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_7_1){
+                [self alertWithPicer:currencyPicker title:@""];
+            }else{
+                actionSheet = [[UIActionSheet alloc] initWithTitle:@"\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                                                          delegate:self
+                                                 cancelButtonTitle:nil
+                                            destructiveButtonTitle:nil
+                                                 otherButtonTitles:nil, nil];
+                actionSheet.tag = 1;
+                toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(8, 0, self.view.frame.size.width-16, 44)];
+                toolbar.barStyle = UIBarStyleDefault;
+                //                [toolbar sizeToFit];
+                //                toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+                NSMutableArray *barItems = [[NSMutableArray alloc] init];
+                
+                UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(PickerCancelClick)];
+                [barItems addObject:cancelBtn];
+                
+                UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+                [barItems addObject:flexSpace];
+                
+                UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(PickerDoneClick)];
+                [barItems addObject:doneBtn];
+                [toolbar setItems:barItems animated:YES];
+                //    [toolbar sizeToFit];
+                [actionSheet addSubview:toolbar];
+                
+                [actionSheet addSubview:currencyPicker];
+                
+                [actionSheet showInView:self.view];
+            }
+//            [currencyPicker selectedRowInComponent:selectedIndexPath.row];
+        }
+        if (indexPath.row == 1){//位置
             ChooseLocationViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ChooseLocationViewController"];
             [self.navigationController pushViewController:vc animated:YES];
         }
@@ -558,6 +558,12 @@
         return;
     }
     [parameters setValue:type forKey:@"type"];
+    
+    if ([_dateLabel.text isEqualToString:@"选择活动时间"] || [_dateLabel.text isEqualToString:@""]) {
+        [self showHint:@"请选择活动时间"];
+        return;
+    }
+    [parameters setValue:_dateLabel.text forKey:@"datetime"];
     [parameters setValue:userInfo[@"name"] forKey:@"location_desc"];
     
     if (userInfo == nil) {

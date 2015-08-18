@@ -1676,6 +1676,33 @@ vip可以使用电话直呼功能</string>
                             </tableViewSection>
                             <tableViewSection id="Z39-75-grn">
                                 <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="50" id="H5C-KH-W0A">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="H5C-KH-W0A" id="jIj-TT-dF6">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="时间" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F37-Je-Jcf">
+                                                    <rect key="frame" x="15" y="16" width="30" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择活动时间" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9z5-YD-F34">
+                                                    <rect key="frame" x="215" y="16" width="90" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="F37-Je-Jcf" firstAttribute="leading" secondItem="jIj-TT-dF6" secondAttribute="leading" constant="15" id="4FS-HI-RSk"/>
+                                                <constraint firstAttribute="centerY" secondItem="F37-Je-Jcf" secondAttribute="centerY" id="8ta-s5-vjS"/>
+                                                <constraint firstAttribute="centerY" secondItem="9z5-YD-F34" secondAttribute="centerY" id="Bfm-p9-gqe"/>
+                                                <constraint firstAttribute="trailing" secondItem="9z5-YD-F34" secondAttribute="trailing" constant="15" id="yni-tb-fAh"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="50" id="2LW-9w-dfi">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -1752,6 +1779,7 @@ vip可以使用电话直呼功能</string>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="dateLabel" destination="9z5-YD-F34" id="0qp-3Q-sst"/>
                         <outlet property="locationLabel" destination="oaI-aT-dAV" id="Z7W-OS-7AC"/>
                         <outlet property="mytextview" destination="7tq-dF-mni" id="Jmy-QY-ojb"/>
                         <outlet property="themeLabel" destination="Rj0-0q-c8s" id="efH-wO-MgF"/>

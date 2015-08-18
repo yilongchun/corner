@@ -68,7 +68,8 @@
 
 /*activity*/
 //发布邀约
-#define ACTIVITY_CREATE_URL @"/activity/create"
+//#define ACTIVITY_CREATE_URL @"/activity/create"
+#define ACTIVITY_CREATE_URL @"/activities/create"
 //对邀约感兴趣
 #define ACTIVITY_CARED_URL @"/activity/cared"
 //关闭邀约

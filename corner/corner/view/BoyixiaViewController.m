@@ -85,6 +85,7 @@
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                               action:@selector(toDetail)];
         [tempView addGestureRecognizer:tap];
+        
         [tempView setImageWithURL:[NSURL URLWithString:oldImageUrl]];
         [self.view addSubview:tempView];
         firstDic = [NSMutableDictionary dictionaryWithDictionary:secondDic];
@@ -110,7 +111,9 @@
             if ([status intValue] == 200) {
                 NSDictionary *message = [[dic objectForKey:@"message"] cleanNull];
                 NSString *avatar_url = [message objectForKey:@"avatar_url"];
+                [self.userimageview setHidden:YES];
                 [self.userimageview setImageWithURL:[NSURL URLWithString:avatar_url]];
+                
                 if (first) {
                     secondDic = [NSMutableDictionary dictionaryWithDictionary:message];
                 }else{
@@ -194,7 +197,7 @@
 - (IBAction)action1:(id)sender {
     self.btn1.enabled = NO;
     self.btn2.enabled = NO;
-    
+    [self.userimageview setHidden:NO];
     CGPoint finishPoint = CGPointMake(self.view.center.x-600, tempView.center.y);
     CABasicAnimation* rotationAnimation;
     rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
@@ -207,6 +210,7 @@
     [UIView animateWithDuration:0.4f animations:^{
         tempView.center = finishPoint;
     } completion:^(BOOL finished) {
+        DLog(@"%d",finished);
         [tempView removeFromSuperview];
         [self loadData:NO];
     }];
