@@ -12,6 +12,7 @@
 #import "UIBarButtonItem+Badge.h"
 #import "DongtaiTableViewController.h"
 #import "ShaixuanViewController.h"
+#import "UserDetailTableViewController.h"
 
 @interface MainViewController ()
 
@@ -102,8 +103,8 @@
     
     // 添加下拉刷新控件
     self.myscrollview.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        DLog(@"加载完毕");
-        [self.myscrollview.header endRefreshing];
+        [self loadData];
+        [self loadDataCenter];
     }];
     
     
@@ -122,8 +123,10 @@
                                                object:nil];
     page = 1;
     [self setUnRadCount];
-    [self loadData];
-    [self loadDataCenter];
+//    [self loadData];
+//    [self loadDataCenter];
+    
+    [self.myscrollview.header beginRefreshing];
     
 }
 
@@ -131,9 +134,7 @@
  *  初始化 加载数据 周围一圈10个
  */
 -(void)loadData{
-    
-    
-    
+
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     
 //    [parameters setValue:[NSNumber numberWithInt:near_close] forKey:@"near_close"];
@@ -163,73 +164,73 @@
                 if ([arr count] > 0) {
                     page++;
                 }else{
-                    page--;
+                    page = 1;
                 }
                 
                 for (int i = 0 ; i < dataSource.count; i++) {
                     
                     NSDictionary *info = [[dataSource objectAtIndex:i] cleanNull];
-                    NSString *avatar_url = [info objectForKey:@"avatar_url"];//头像
+                    NSString *avatar_url = [NSString stringWithFormat:@"%@-small",[info objectForKey:@"avatar_url"]];//头像
                     NSString *nickname = [info objectForKey:@"nickname"];
                     
                     switch (i) {
                         case 0:
                         {
-                            [imageview1 setImageWithURL:[NSURL URLWithString:avatar_url]];
+                            [imageview1 setImageWithURL:[NSURL URLWithString:avatar_url] placeholderImage:[UIImage imageNamed:@"public_load_face"]];
                             label1.text = nickname;
                         }
                             break;
                         case 1:
                         {
-                            [imageview2 setImageWithURL:[NSURL URLWithString:avatar_url]];
+                            [imageview2 setImageWithURL:[NSURL URLWithString:avatar_url] placeholderImage:[UIImage imageNamed:@"public_load_face"]];
                             label2.text = nickname;
                         }
                             break;
                         case 2:
                         {
-                            [imageview3 setImageWithURL:[NSURL URLWithString:avatar_url]];
+                            [imageview3 setImageWithURL:[NSURL URLWithString:avatar_url]placeholderImage:[UIImage imageNamed:@"public_load_face"]];
                             label3.text = nickname;
                         }
                             break;
                         case 3:
                         {
-                            [imageview4 setImageWithURL:[NSURL URLWithString:avatar_url]];
+                            [imageview4 setImageWithURL:[NSURL URLWithString:avatar_url]placeholderImage:[UIImage imageNamed:@"public_load_face"]];
                             label4.text = nickname;
                         }
                             break;
                         case 4:
                         {
-                            [imageview5 setImageWithURL:[NSURL URLWithString:avatar_url]];
+                            [imageview5 setImageWithURL:[NSURL URLWithString:avatar_url]placeholderImage:[UIImage imageNamed:@"public_load_face"]];
                             label5.text = nickname;
                         }
                             break;
                         case 5:
                         {
-                            [imageview6 setImageWithURL:[NSURL URLWithString:avatar_url]];
+                            [imageview6 setImageWithURL:[NSURL URLWithString:avatar_url]placeholderImage:[UIImage imageNamed:@"public_load_face"]];
                             label6.text = nickname;
                         }
                             break;
                         case 6:
                         {
-                            [imageview7 setImageWithURL:[NSURL URLWithString:avatar_url]];
+                            [imageview7 setImageWithURL:[NSURL URLWithString:avatar_url]placeholderImage:[UIImage imageNamed:@"public_load_face"]];
                             label7.text = nickname;
                         }
                             break;
                         case 7:
                         {
-                            [imageview8 setImageWithURL:[NSURL URLWithString:avatar_url]];
+                            [imageview8 setImageWithURL:[NSURL URLWithString:avatar_url]placeholderImage:[UIImage imageNamed:@"public_load_face"]];
                             label8.text = nickname;
                         }
                             break;
                         case 8:
                         {
-                            [imageview9 setImageWithURL:[NSURL URLWithString:avatar_url]];
+                            [imageview9 setImageWithURL:[NSURL URLWithString:avatar_url]placeholderImage:[UIImage imageNamed:@"public_load_face"]];
                             label9.text = nickname;
                         }
                             break;
                         case 9:
                         {
-                            [imageview10 setImageWithURL:[NSURL URLWithString:avatar_url]];
+                            [imageview10 setImageWithURL:[NSURL URLWithString:avatar_url]placeholderImage:[UIImage imageNamed:@"public_load_face"]];
                             label10.text = nickname;
                         }
                             break;
@@ -311,18 +312,25 @@
     CGFloat imageSize = width/6;
     
     imageview1 = [[UIImageView alloc] init];
+    imageview1.userInteractionEnabled = YES;
+    imageview1.tag = 0;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imgClick:)];
+    [imageview1 addGestureRecognizer:tap];
     imageview1.layer.cornerRadius = imageSize / 2;
     imageview1.layer.masksToBounds = YES;
     [imageview1 setFrame:CGRectMake(10, height / 2 - 50 - imageSize, imageSize, imageSize)];
     [self.myscrollview addSubview:imageview1];
     label1 = [[UILabel alloc] initWithFrame:CGRectMake(imageview1.frame.origin.x, CGRectGetMaxY(imageview1.frame) + 5, CGRectGetWidth(imageview1.frame), 10)];
-    
     label1.textAlignment = NSTextAlignmentCenter;
     label1.font = [UIFont systemFontOfSize:10];
     label1.textColor = [UIColor whiteColor];
     [self.myscrollview addSubview:label1];
     
     imageview3 = [[UIImageView alloc] init];
+    imageview3.userInteractionEnabled = YES;
+    imageview3.tag = 2;
+    UITapGestureRecognizer *tap3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imgClick:)];
+    [imageview3 addGestureRecognizer:tap3];
     imageview3.layer.cornerRadius = imageSize / 2;
     imageview3.layer.masksToBounds = YES;
     [imageview3 setFrame:CGRectMake(width / 2 - imageSize / 2, height / 4 - imageSize - 10, imageSize, imageSize)];
@@ -334,6 +342,10 @@
     [self.myscrollview addSubview:label3];
     
     imageview5 = [[UIImageView alloc] init];
+    imageview5.userInteractionEnabled = YES;
+    imageview5.tag = 4;
+    UITapGestureRecognizer *tap5 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imgClick:)];
+    [imageview5 addGestureRecognizer:tap5];
     imageview5.layer.cornerRadius = imageSize / 2;
     imageview5.layer.masksToBounds = YES;
     [imageview5 setFrame:CGRectMake(width - 10 - imageSize, imageview1.frame.origin.y, imageSize, imageSize)];
@@ -345,6 +357,10 @@
     [self.myscrollview addSubview:label5];
     
     imageview2 = [[UIImageView alloc] init];
+    imageview2.userInteractionEnabled = YES;
+    imageview2.tag = 1;
+    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imgClick:)];
+    [imageview2 addGestureRecognizer:tap2];
     imageview2.layer.cornerRadius = imageSize / 2;
     imageview2.layer.masksToBounds = YES;
     [imageview2 setFrame:CGRectMake((imageview3.frame.origin.x - imageview1.frame.origin.x) / 2 + imageview1.frame.origin.x - 10, height / 2 - 50 - imageSize - imageview1.frame.size.height - 5, imageSize, imageSize)];
@@ -356,6 +372,10 @@
     [self.myscrollview addSubview:label2];
     
     imageview4 = [[UIImageView alloc] init];
+    imageview4.userInteractionEnabled = YES;
+    imageview4.tag = 3;
+    UITapGestureRecognizer *tap4 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imgClick:)];
+    [imageview4 addGestureRecognizer:tap4];
     imageview4.layer.cornerRadius = imageSize / 2;
     imageview4.layer.masksToBounds = YES;
     [imageview4 setFrame:CGRectMake((imageview5.frame.origin.x - imageview3.frame.origin.x) / 2 + imageview3.frame.origin.x + 10, imageview2.frame.origin.y, imageSize, imageSize)];
@@ -368,6 +388,10 @@
     
     
     imageview6 = [[UIImageView alloc] init];
+    imageview6.userInteractionEnabled = YES;
+    imageview6.tag = 5;
+    UITapGestureRecognizer *tap6 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imgClick:)];
+    [imageview6 addGestureRecognizer:tap6];
     imageview6.layer.cornerRadius = imageSize / 2;
     imageview6.layer.masksToBounds = YES;
     [imageview6 setFrame:CGRectMake(10, height / 2 + 50, imageSize, imageSize)];
@@ -379,6 +403,10 @@
     [self.myscrollview addSubview:label6];
     
     imageview8 = [[UIImageView alloc] init];
+    imageview8.userInteractionEnabled = YES;
+    imageview8.tag = 7;
+    UITapGestureRecognizer *tap8 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imgClick:)];
+    [imageview8 addGestureRecognizer:tap8];
     imageview8.layer.cornerRadius = imageSize / 2;
     imageview8.layer.masksToBounds = YES;
     [imageview8 setFrame:CGRectMake(width / 2 - imageSize / 2, height / 4 * 3 + 5, imageSize, imageSize)];
@@ -390,6 +418,10 @@
     [self.myscrollview addSubview:label8];
     
     imageview10 = [[UIImageView alloc] init];
+    imageview10.userInteractionEnabled = YES;
+    imageview10.tag = 9;
+    UITapGestureRecognizer *tap10 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imgClick:)];
+    [imageview10 addGestureRecognizer:tap10];
     imageview10.layer.cornerRadius = imageSize / 2;
     imageview10.layer.masksToBounds = YES;
     [imageview10 setFrame:CGRectMake(width - 10 - imageSize, imageview6.frame.origin.y, imageSize, imageSize)];
@@ -401,6 +433,10 @@
     [self.myscrollview addSubview:label10];
     
     imageview7 = [[UIImageView alloc] init];
+    imageview7.userInteractionEnabled = YES;
+    imageview7.tag = 6;
+    UITapGestureRecognizer *tap7 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imgClick:)];
+    [imageview7 addGestureRecognizer:tap7];
     imageview7.layer.cornerRadius = imageSize / 2;
     imageview7.layer.masksToBounds = YES;
     [imageview7 setFrame:CGRectMake(imageview2.frame.origin.x, height / 2 + 50 + imageview6.frame.size.height + 10, imageSize, imageSize)];
@@ -412,6 +448,10 @@
     [self.myscrollview addSubview:label7];
     
     imageview9 = [[UIImageView alloc] init];
+    imageview9.userInteractionEnabled = YES;
+    imageview9.tag = 8;
+    UITapGestureRecognizer *tap9 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imgClick:)];
+    [imageview9 addGestureRecognizer:tap9];
     imageview9.layer.cornerRadius = imageSize / 2;
     imageview9.layer.masksToBounds = YES;
     [imageview9 setFrame:CGRectMake(imageview4.frame.origin.x, imageview7.frame.origin.y, imageSize, imageSize)];
@@ -445,6 +485,13 @@
 
 - (void)flowView:(PagedFlowView *)flowView didTapPageAtIndex:(NSInteger)index{
     NSLog(@"Tapped on page # %ld", (long)index);
+    NSDictionary *info = [[imageArray objectAtIndex:index] cleanNull];
+    NSString *nickname = [info objectForKey:@"nickname"];
+    UserDetailTableViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"UserDetailTableViewController"];
+    vc.title = nickname;
+    vc.userinfo = info;
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -465,7 +512,7 @@
     }
     
     NSDictionary *info = [[imageArray objectAtIndex:index] cleanNull];
-    NSString *avatar_url = [info objectForKey:@"avatar_url"];
+    NSString *avatar_url = [NSString stringWithFormat:@"%@-small",[info objectForKey:@"avatar_url"]];
     
     [imageView setImageWithURL:[NSURL URLWithString:avatar_url] placeholderImage:[UIImage imageNamed:@"public_load_face"]];
     return imageView;
@@ -510,4 +557,22 @@
     ShaixuanViewController *vc = [[ShaixuanViewController alloc] init];
     [self.navigationController presentViewController:vc animated:YES completion:nil];
 }
+
+/**
+ *  点击周围图片
+ *
+ *  @param gesture
+ */
+-(void)imgClick:(UITapGestureRecognizer *)gesture{
+    DLog(@"%d",gesture.view.tag);
+    NSDictionary *info = [[dataSource objectAtIndex:(int)gesture.view.tag] cleanNull];
+    
+    NSString *nickname = [info objectForKey:@"nickname"];
+    UserDetailTableViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"UserDetailTableViewController"];
+    vc.title = nickname;
+    vc.userinfo = info;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+
 @end

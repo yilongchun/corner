@@ -894,7 +894,7 @@
                                                 <constraint firstItem="eAK-Ac-OQ8" firstAttribute="leading" secondItem="Atb-rN-8sl" secondAttribute="trailing" constant="15" id="zq6-UJ-ZRo"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="dateLabel" destination="vWh-Xt-UgP" id="soF-0g-Qdt"/>
                                             <outlet property="imgView" destination="wy9-rZ-yFF" id="VDz-5s-3Tu"/>

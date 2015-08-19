@@ -11,7 +11,7 @@
 #import "PagedFlowView.h"
 
 @interface MainViewController : UIViewController<PagedFlowViewDelegate,PagedFlowViewDataSource>{
-    NSMutableArray *imageArray;
+    NSMutableArray *imageArray;//中间数据
 }
 
 @property (weak, nonatomic) IBOutlet UIScrollView *myscrollview;
