@@ -111,21 +111,7 @@
                 }
                 _descLabel.text = description;
                 _addressLabel.text = [NSString stringWithFormat:@"地点:%@",location_desc];
-            
-                switch ([type intValue]) {
-                    case 0:
-                        _typeLabel.text = @"一般约会";
-                        break;
-                    case 1:
-                        _typeLabel.text = @"饭饭之交";
-                        break;
-                    case 2:
-                        _typeLabel.text = @"约定一生";
-                        break;
-                    default:
-                        _typeLabel.text = @"";
-                        break;
-                }
+                _typeLabel.text = [TypeDataSource objectAtIndex:[type intValue]];
             }else if([status intValue] >= 600){
                 NSString *message = [dic objectForKey:@"message"];
                 [self hideHud];

@@ -179,16 +179,18 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 // Create and add the "nope" button.
 - (void)constructNopeButton {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    UIImage *image = [UIImage imageNamed:@"xButton"];
+    UIImage *image = [UIImage imageNamed:@"refresh"];
+//    UIImage *image = [UIImage imageNamed:@"xButton"];
     button.frame = CGRectMake(ChoosePersonButtonHorizontalPadding,
                               CGRectGetMaxY(self.backCardView.frame) + ChoosePersonButtonVerticalPadding,
                               image.size.width,
                               image.size.height);
-    [button setImage:image forState:UIControlStateNormal];
-    [button setTintColor:[UIColor colorWithRed:247.f/255.f
-                                         green:91.f/255.f
-                                          blue:37.f/255.f
-                                         alpha:1.f]];
+    [button setBackgroundImage:image forState:UIControlStateNormal];
+//    [button setImage:image forState:UIControlStateNormal];
+//    [button setTintColor:[UIColor colorWithRed:247.f/255.f
+//                                         green:91.f/255.f
+//                                          blue:37.f/255.f
+//                                         alpha:1.f]];
     [button addTarget:self
                action:@selector(nopeFrontCardView)
      forControlEvents:UIControlEventTouchUpInside];
@@ -198,16 +200,18 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 // Create and add the "like" button.
 - (void)constructLikedButton {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    UIImage *image = [UIImage imageNamed:@"checkButton"];
+    UIImage *image = [UIImage imageNamed:@"like3"];
+//    UIImage *image = [UIImage imageNamed:@"checkButton"];
     button.frame = CGRectMake(CGRectGetMaxX(self.view.frame) - image.size.width - ChoosePersonButtonHorizontalPadding,
                               CGRectGetMaxY(self.backCardView.frame) + ChoosePersonButtonVerticalPadding,
                               image.size.width,
                               image.size.height);
-    [button setImage:image forState:UIControlStateNormal];
-    [button setTintColor:[UIColor colorWithRed:29.f/255.f
-                                         green:245.f/255.f
-                                          blue:106.f/255.f
-                                         alpha:1.f]];
+    [button setBackgroundImage:image forState:UIControlStateNormal];
+//    [button setImage:image forState:UIControlStateNormal];
+//    [button setTintColor:[UIColor colorWithRed:29.f/255.f
+//                                         green:245.f/255.f
+//                                          blue:106.f/255.f
+//                                         alpha:1.f]];
     [button addTarget:self
                action:@selector(likeFrontCardView)
      forControlEvents:UIControlEventTouchUpInside];

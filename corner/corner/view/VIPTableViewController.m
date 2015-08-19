@@ -82,25 +82,25 @@
     [dic setObject:@"蓝钻VIP" forKey:@"name"];
     [dic setObject:@"每天赠送10把钥匙" forKey:@"msg1"];
     [dic setObject:@"VIP时长90天" forKey:@"msg2"];
-    [dic setObject:[NSNumber numberWithInt:12] forKey:@"price"];
+    [dic setObject:[NSNumber numberWithInt:12800] forKey:@"price"];
     [dataSource addObject:dic];
     NSMutableDictionary *dic2 = [NSMutableDictionary dictionary];
     [dic2 setObject:@"绿钻VIP" forKey:@"name"];
     [dic2 setObject:@"每天赠送12把钥匙" forKey:@"msg1"];
     [dic2 setObject:@"VIP时长180天" forKey:@"msg2"];
-    [dic2 setObject:[NSNumber numberWithInt:30] forKey:@"price"];
+    [dic2 setObject:[NSNumber numberWithInt:18800] forKey:@"price"];
     [dataSource addObject:dic2];
     NSMutableDictionary *dic3 = [NSMutableDictionary dictionary];
     [dic3 setObject:@"粉钻VIP" forKey:@"name"];
     [dic3 setObject:@"每天赠送20把钥匙" forKey:@"msg1"];
     [dic3 setObject:@"VIP时长一年" forKey:@"msg2"];
-    [dic3 setObject:[NSNumber numberWithInt:60] forKey:@"price"];
+    [dic3 setObject:[NSNumber numberWithInt:26800] forKey:@"price"];
     [dataSource addObject:dic3];
     NSMutableDictionary *dic4 = [NSMutableDictionary dictionary];
     [dic4 setObject:@"黄钻VIP" forKey:@"name"];
     [dic4 setObject:@"每天赠送30把钥匙" forKey:@"msg1"];
     [dic4 setObject:@"VIP时长两年" forKey:@"msg2"];
-    [dic4 setObject:[NSNumber numberWithInt:108] forKey:@"price"];
+    [dic4 setObject:[NSNumber numberWithInt:38800] forKey:@"price"];
     [dataSource addObject:dic4];
     
     
@@ -210,7 +210,7 @@
         cell.label1.text = name;
         cell.msg1.text = msg1;
         cell.msg2.text = msg2;
-        [cell.payBtn setTitle:[NSString stringWithFormat:@"￥%d元",[price intValue]] forState:UIControlStateNormal];
+        [cell.payBtn setTitle:[NSString stringWithFormat:@"%d金币",[price intValue]] forState:UIControlStateNormal];
         cell.payBtn.tag = indexPath.row - 1;
         [cell.payBtn addTarget:self action:@selector(pay:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -256,9 +256,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row > 0) {
-        PayTypeViewController *vc = [[PayTypeViewController alloc] init];
-        vc.payInfo = [dataSource objectAtIndex:indexPath.row - 1];
-        [self.navigationController pushViewController:vc animated:YES];
+//        PayTypeViewController *vc = [[PayTypeViewController alloc] init];
+//        vc.payInfo = [dataSource objectAtIndex:indexPath.row - 1];
+//        [self.navigationController pushViewController:vc animated:YES];
     }
     
 }

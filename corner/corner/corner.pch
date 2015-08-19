@@ -29,6 +29,7 @@
 #define kWeixinAppId @"wxd96d1f7d05fe7b81"
 #define kWeixinAppSecret @"34b37037fb862d1acf9f813c63232bd7"
 
+#define TypeDataSource @[@"吃饭",@"唱歌",@"看电影",@"谈天",@"游泳",@"跑步",@"其他"]
 /*user*/
 //登陆
 #define USER_LOGIN_URL @"/user/login"
@@ -68,8 +69,7 @@
 
 /*activity*/
 //发布邀约
-//#define ACTIVITY_CREATE_URL @"/activity/create"
-#define ACTIVITY_CREATE_URL @"/activities/create"
+#define ACTIVITY_CREATE_URL @"/activity/create"
 //对邀约感兴趣
 #define ACTIVITY_CARED_URL @"/activity/cared"
 //关闭邀约

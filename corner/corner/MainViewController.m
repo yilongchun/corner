@@ -120,9 +120,10 @@
                                              selector:@selector(setUnRadCount)
                                                  name:@"setUnRadCount"
                                                object:nil];
-    
+    page = 1;
     [self setUnRadCount];
     [self loadData];
+    [self loadDataCenter];
     
 }
 
@@ -130,7 +131,7 @@
  *  初始化 加载数据 周围一圈10个
  */
 -(void)loadData{
-    page = 1;
+    
     
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
@@ -157,7 +158,13 @@
             NSNumber *status = [dic objectForKey:@"status"];
             if ([status intValue] == 200) {
                 [dataSource removeAllObjects];
-                [dataSource addObjectsFromArray:[dic objectForKey:@"message"]];
+                NSArray *arr = [dic objectForKey:@"message"];
+                [dataSource addObjectsFromArray:arr];
+                if ([arr count] > 0) {
+                    page++;
+                }else{
+                    page--;
+                }
                 
                 for (int i = 0 ; i < dataSource.count; i++) {
                     
@@ -250,14 +257,14 @@
  *  加载推荐之星
  */
 -(void)loadDataCenter{
-    page = 1;
+    
     
     NSString *userid = [UD objectForKey:USER_ID];
     NSString *token = [UD objectForKey:[NSString stringWithFormat:@"%@%@",USER_TOKEN_ID,userid]];
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setValue:[NSNumber numberWithInt:page] forKey:@"page"];
-    [parameters setValue:[NSNumber numberWithInt:3] forKey:@"type"];
+    [parameters setValue:[NSNumber numberWithInt:1] forKey:@"page"];
+    [parameters setValue:[NSNumber numberWithInt:1] forKey:@"type"];
     [parameters setValue:token forKey:@"token"];
     
     NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,USER_LOVELY_URL];
@@ -460,7 +467,7 @@
     NSDictionary *info = [[imageArray objectAtIndex:index] cleanNull];
     NSString *avatar_url = [info objectForKey:@"avatar_url"];
     
-    imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:avatar_url]]];
+    [imageView setImageWithURL:[NSURL URLWithString:avatar_url] placeholderImage:[UIImage imageNamed:@"public_load_face"]];
     return imageView;
 }
 

@@ -17,7 +17,7 @@
     UIToolbar *toolbar;
     UIToolbar *toolbar2;
     NSArray *dataSource;
-    NSArray *typeDataSource;//活动类型
+//    NSArray *typeDataSource;//活动类型
     
     UIActionSheet *actionSheet;
     UIActionSheet *actionSheet2;
@@ -60,7 +60,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(chooseLocation:) name:@"chooseLocation" object:nil];
     
     dataSource = @[@"不限时间",@"平时周末",@"指定日期"];
-    typeDataSource = @[@"吃饭",@"唱歌",@"看电影",@"谈天",@"游泳",@"跑步",@"其他"];
+//    typeDataSource = @[@"吃饭",@"唱歌",@"看电影",@"谈天",@"游泳",@"跑步",@"其他"];
     
     
     
@@ -126,7 +126,7 @@
             return [dataSource count];
             break;
         case 1:
-            return [typeDataSource count];
+            return [TypeDataSource count];
             break;
         default:
             return 0;
@@ -144,7 +144,7 @@
             break;
         case 1:
         {
-            NSString *typename = [typeDataSource objectAtIndex:row];
+            NSString *typename = [TypeDataSource objectAtIndex:row];
             return typename;
         }
             break;
@@ -289,7 +289,7 @@
             }
         }
     }else if (pickerType == 1){
-        NSString *typename = [typeDataSource objectAtIndex:typeSelectedIndexPath.row];
+        NSString *typename = [TypeDataSource objectAtIndex:typeSelectedIndexPath.row];
         
         _themeLabel.text = typename;
         _themeLabel.textColor = [UIColor blackColor];

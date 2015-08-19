@@ -1570,20 +1570,8 @@
             NSString *description = [activity objectForKey:@"description"];
             NSNumber *typen = [activity objectForKey:@"type"];
             
-            switch ([typen intValue]) {
-                case 0:
-                    cell.typeLabel.text = @"一般约会";
-                    break;
-                case 1:
-                    cell.typeLabel.text = @"饭饭之交";
-                    break;
-                case 2:
-                    cell.typeLabel.text = @"约定一生";
-                    break;
-                default:
-                    cell.typeLabel.text = @"";
-                    break;
-            }
+            cell.typeLabel.text = [TypeDataSource objectAtIndex:[typen intValue]];
+            
             cell.descLabel.text = description;
             cell.addressLabel.text = location_desc;
             if ([pic_url hasSuffix:@"activity.jpg"]) {//没有图片
