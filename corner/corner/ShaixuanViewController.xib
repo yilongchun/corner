@@ -7,7 +7,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShaixuanViewController">
             <connections>
+                <outlet property="addressLabel" destination="FQD-Of-0JH" id="qMZ-IN-LuB"/>
+                <outlet property="ageText" destination="n6z-V8-14A" id="s3K-TA-K18"/>
                 <outlet property="mytoolbar" destination="mng-UO-WKf" id="ZUm-RZ-Rkl"/>
+                <outlet property="pickerBgView" destination="17S-od-gO5" id="5kA-uS-HIh"/>
+                <outlet property="pickerView" destination="tS5-Z4-dMY" id="vKq-dN-fWc"/>
+                <outlet property="segSeg" destination="aqQ-c5-8h8" id="x6I-wj-u5n"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -33,8 +38,9 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="xpt-et-R4M"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="性别" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IF5-gK-pI5">
                     <rect key="frame" x="15" y="119" width="32" height="30"/>
@@ -54,7 +60,7 @@
                     </segments>
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </segmentedControl>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请选择地区" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FQD-Of-0JH">
+                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请选择地区" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FQD-Of-0JH">
                     <rect key="frame" x="57" y="169" width="80" height="20"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -121,6 +127,63 @@
                 <constraint firstAttribute="trailing" secondItem="mng-UO-WKf" secondAttribute="trailing" id="uqb-jF-bCH"/>
             </constraints>
             <point key="canvasLocation" x="246" y="287"/>
+        </view>
+        <view contentMode="scaleToFill" id="17S-od-gO5">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="255"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vVQ-aa-1F4">
+                    <rect key="frame" x="0.0" y="0.0" width="60" height="39"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="39" id="Usi-Xw-zHK"/>
+                        <constraint firstAttribute="width" constant="60" id="lwS-E5-DMR"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <state key="normal" title="取消">
+                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="cancel:" destination="-1" eventType="touchUpInside" id="vyG-jX-wGd"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SFM-Zq-iVE">
+                    <rect key="frame" x="260" y="0.0" width="60" height="39"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="595-ql-IK3"/>
+                        <constraint firstAttribute="height" constant="39" id="Ibu-de-cQB"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <state key="normal" title="确定">
+                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="ensure:" destination="-1" eventType="touchUpInside" id="u94-jL-8YO"/>
+                    </connections>
+                </button>
+                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tS5-Z4-dMY">
+                    <rect key="frame" x="0.0" y="39" width="320" height="216"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="216" id="rNX-Qt-wEZ"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="YOu-7R-sZY"/>
+                        <outlet property="delegate" destination="-1" id="NkB-Ar-djk"/>
+                    </connections>
+                </pickerView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="tS5-Z4-dMY" firstAttribute="leading" secondItem="17S-od-gO5" secondAttribute="leading" id="7K3-Z1-xXB"/>
+                <constraint firstAttribute="trailing" secondItem="tS5-Z4-dMY" secondAttribute="trailing" id="Bb3-1J-5nB"/>
+                <constraint firstItem="SFM-Zq-iVE" firstAttribute="top" secondItem="17S-od-gO5" secondAttribute="top" id="RNd-eE-kFx"/>
+                <constraint firstItem="vVQ-aa-1F4" firstAttribute="top" secondItem="17S-od-gO5" secondAttribute="top" id="TPU-rc-KNF"/>
+                <constraint firstAttribute="trailing" secondItem="SFM-Zq-iVE" secondAttribute="trailing" id="TfT-2d-FKi"/>
+                <constraint firstItem="tS5-Z4-dMY" firstAttribute="top" secondItem="SFM-Zq-iVE" secondAttribute="bottom" id="eSB-eq-clj"/>
+                <constraint firstItem="vVQ-aa-1F4" firstAttribute="leading" secondItem="17S-od-gO5" secondAttribute="leading" id="qhf-ze-ZH5"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="624" y="300.5"/>
         </view>
     </objects>
     <resources>

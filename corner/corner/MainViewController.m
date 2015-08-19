@@ -106,7 +106,10 @@
         [self loadData];
         [self loadDataCenter];
     }];
-    
+    // 添加下拉刷新控件
+    self.myscrollview.footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
+        [self loadDataMore];
+    }];
     
     
     hFlowView.delegate = self;
@@ -134,6 +137,8 @@
  *  初始化 加载数据 周围一圈10个
  */
 -(void)loadData{
+    
+    page = 1;
 
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     
@@ -149,7 +154,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
     [manager GET:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", operation.responseString);
-        
+        [self.myscrollview.header endRefreshing];
         NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
         NSError *error;
         NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
@@ -161,11 +166,6 @@
                 [dataSource removeAllObjects];
                 NSArray *arr = [dic objectForKey:@"message"];
                 [dataSource addObjectsFromArray:arr];
-                if ([arr count] > 0) {
-                    page++;
-                }else{
-                    page = 1;
-                }
                 
                 for (int i = 0 ; i < dataSource.count; i++) {
                     
@@ -239,7 +239,7 @@
                     }
                 }
                 
-                [self.myscrollview.header endRefreshing];
+                
             }else if([status intValue] >= 600){
                 NSString *message = [dic objectForKey:@"message"];
                 [self showHint:message];
@@ -249,6 +249,127 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"发生错误！%@",error);
         [self.myscrollview.header endRefreshing];
+        [self showHint:@"连接失败"];
+        
+    }];
+}
+
+/**
+ *  分页 加载数据 周围一圈10个
+ */
+-(void)loadDataMore{
+    
+    page ++;
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    
+    //    [parameters setValue:[NSNumber numberWithInt:near_close] forKey:@"near_close"];
+    //    [parameters setValue:[NSNumber numberWithInt:sex] forKey:@"sex"];
+    //    [parameters setValue:address forKey:@"address"];
+    
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/%d",HOST,USER_LIST_URL,page];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager GET:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", operation.responseString);
+        [self.myscrollview.footer endRefreshing];
+        NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+        NSError *error;
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if (dic == nil) {
+            NSLog(@"json parse failed \r\n");
+        }else{
+            NSNumber *status = [dic objectForKey:@"status"];
+            if ([status intValue] == 200) {
+                [dataSource removeAllObjects];
+                NSArray *arr = [dic objectForKey:@"message"];
+                [dataSource addObjectsFromArray:arr];
+                
+                for (int i = 0 ; i < dataSource.count; i++) {
+                    
+                    NSDictionary *info = [[dataSource objectAtIndex:i] cleanNull];
+                    NSString *avatar_url = [NSString stringWithFormat:@"%@-small",[info objectForKey:@"avatar_url"]];//头像
+                    NSString *nickname = [info objectForKey:@"nickname"];
+                    
+                    switch (i) {
+                        case 0:
+                        {
+                            [imageview1 setImageWithURL:[NSURL URLWithString:avatar_url] placeholderImage:[UIImage imageNamed:@"public_load_face"]];
+                            label1.text = nickname;
+                        }
+                            break;
+                        case 1:
+                        {
+                            [imageview2 setImageWithURL:[NSURL URLWithString:avatar_url] placeholderImage:[UIImage imageNamed:@"public_load_face"]];
+                            label2.text = nickname;
+                        }
+                            break;
+                        case 2:
+                        {
+                            [imageview3 setImageWithURL:[NSURL URLWithString:avatar_url]placeholderImage:[UIImage imageNamed:@"public_load_face"]];
+                            label3.text = nickname;
+                        }
+                            break;
+                        case 3:
+                        {
+                            [imageview4 setImageWithURL:[NSURL URLWithString:avatar_url]placeholderImage:[UIImage imageNamed:@"public_load_face"]];
+                            label4.text = nickname;
+                        }
+                            break;
+                        case 4:
+                        {
+                            [imageview5 setImageWithURL:[NSURL URLWithString:avatar_url]placeholderImage:[UIImage imageNamed:@"public_load_face"]];
+                            label5.text = nickname;
+                        }
+                            break;
+                        case 5:
+                        {
+                            [imageview6 setImageWithURL:[NSURL URLWithString:avatar_url]placeholderImage:[UIImage imageNamed:@"public_load_face"]];
+                            label6.text = nickname;
+                        }
+                            break;
+                        case 6:
+                        {
+                            [imageview7 setImageWithURL:[NSURL URLWithString:avatar_url]placeholderImage:[UIImage imageNamed:@"public_load_face"]];
+                            label7.text = nickname;
+                        }
+                            break;
+                        case 7:
+                        {
+                            [imageview8 setImageWithURL:[NSURL URLWithString:avatar_url]placeholderImage:[UIImage imageNamed:@"public_load_face"]];
+                            label8.text = nickname;
+                        }
+                            break;
+                        case 8:
+                        {
+                            [imageview9 setImageWithURL:[NSURL URLWithString:avatar_url]placeholderImage:[UIImage imageNamed:@"public_load_face"]];
+                            label9.text = nickname;
+                        }
+                            break;
+                        case 9:
+                        {
+                            [imageview10 setImageWithURL:[NSURL URLWithString:avatar_url]placeholderImage:[UIImage imageNamed:@"public_load_face"]];
+                            label10.text = nickname;
+                        }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                
+                
+            }else if([status intValue] >= 600){
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
+                [self validateUserToken:[status intValue]];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"发生错误！%@",error);
+        [self.myscrollview.footer endRefreshing];
         [self showHint:@"连接失败"];
         
     }];

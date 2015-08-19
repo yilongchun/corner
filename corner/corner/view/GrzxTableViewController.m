@@ -2315,39 +2315,39 @@
             break;
         case 2://所在地区
         {
-            NSString *diqu = [userinfo objectForKey:@"diqu"];//地区
-            if (![diqu isEqualToString:@""]) {
-                NSArray *address =[diqu componentsSeparatedByString:NSLocalizedString(@",", nil)];
-                
-                NSInteger index1 = [provinceArray indexOfObject:[address objectAtIndex:0]];
-                if (index1 > -1) {
-                    [self.myPicker selectRow:index1 inComponent:0 animated:NO];
-                    selectedArray = [pickerDic objectForKey:[provinceArray objectAtIndex:index1]];
-                    if (selectedArray.count > 0) {
-                        cityArray = [[selectedArray objectAtIndex:0] allKeys];
-                    } else {
-                        cityArray = nil;
-                    }
-
-                    NSInteger index2 = [cityArray indexOfObject:[address objectAtIndex:1]];
-                    if (index2 > -1) {
-                        [self.myPicker selectRow:index2 inComponent:1 animated:NO];
-                        if (selectedArray.count > 0 && cityArray.count > 0) {
-                            townArray = [[selectedArray objectAtIndex:0] objectForKey:[cityArray objectAtIndex:index2]];
-                        } else {
-                            townArray = nil;
-                        }
-                        NSInteger index3 = [townArray indexOfObject:[address objectAtIndex:2]];
-                        if (index3 > -1) {
-                            [self.myPicker selectRow:index3 inComponent:2 animated:NO];
-                        }
-                    }
-                }
-            }else{
+//            NSString *diqu = [userinfo objectForKey:@"diqu"];//地区
+//            if (![diqu isEqualToString:@""]) {
+//                NSArray *address =[diqu componentsSeparatedByString:NSLocalizedString(@",", nil)];
+//                
+//                NSInteger index1 = [provinceArray indexOfObject:[address objectAtIndex:0]];
+//                if (index1 > -1) {
+//                    [self.myPicker selectRow:index1 inComponent:0 animated:NO];
+//                    selectedArray = [pickerDic objectForKey:[provinceArray objectAtIndex:index1]];
+//                    if (selectedArray.count > 0) {
+//                        cityArray = [[selectedArray objectAtIndex:0] allKeys];
+//                    } else {
+//                        cityArray = nil;
+//                    }
+//
+//                    NSInteger index2 = [cityArray indexOfObject:[address objectAtIndex:1]];
+//                    if (index2 > -1) {
+//                        [self.myPicker selectRow:index2 inComponent:1 animated:NO];
+//                        if (selectedArray.count > 0 && cityArray.count > 0) {
+//                            townArray = [[selectedArray objectAtIndex:0] objectForKey:[cityArray objectAtIndex:index2]];
+//                        } else {
+//                            townArray = nil;
+//                        }
+//                        NSInteger index3 = [townArray indexOfObject:[address objectAtIndex:2]];
+//                        if (index3 > -1) {
+//                            [self.myPicker selectRow:index3 inComponent:2 animated:NO];
+//                        }
+//                    }
+//                }
+//            }else{
                 [self.myPicker selectRow:0 inComponent:0 animated:YES];
                 [self.myPicker selectRow:0 inComponent:1 animated:YES];
                 [self.myPicker selectRow:0 inComponent:2 animated:YES];
-            }
+//            }
         }
             break;
         case 3://收入
@@ -2440,7 +2440,7 @@
             NSString *province = [provinceArray objectAtIndex:[self.myPicker selectedRowInComponent:0]];
             NSString *city = [cityArray objectAtIndex:[self.myPicker selectedRowInComponent:1]];
             NSString *town = [townArray objectAtIndex:[self.myPicker selectedRowInComponent:2]];
-            NSString *value = [NSString stringWithFormat:@"%@,%@,%@",province,city,town];
+            NSString *value = [NSString stringWithFormat:@"%@%@%@",province,city,town];
             [self updateUserInfo:@"diqu" value:value];
         }
             break;
