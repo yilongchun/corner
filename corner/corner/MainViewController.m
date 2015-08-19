@@ -762,8 +762,17 @@
 }
 
 - (IBAction)search:(id)sender {
-    ShaixuanViewController *vc = [[ShaixuanViewController alloc] init];
-    [self.navigationController presentViewController:vc animated:YES completion:nil];
+    
+    UINavigationController *nc =  [[UINavigationController alloc] initWithRootViewController:[[ShaixuanViewController alloc] init]];
+    nc.navigationBar.barTintColor = [UIColor colorWithRed:0/255. green:0/255. blue:0/255. alpha:1];
+    nc.navigationBar.tintColor = [UIColor whiteColor];
+    [nc.navigationBar setTitleTextAttributes:
+     @{NSFontAttributeName:[UIFont boldSystemFontOfSize:17],
+       NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    [self presentViewController:nc animated:YES completion:nil];
+    
+    
+//    [self.navigationController presentViewController:vc animated:YES completion:nil];
 }
 
 /**

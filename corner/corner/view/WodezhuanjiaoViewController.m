@@ -155,9 +155,13 @@
             NSNumber *status = [dic objectForKey:@"status"];
             if ([status intValue] == 200) {
                 [dataSource removeAllObjects];
-                [dataSource addObjectsFromArray:[dic objectForKey:@"message"]];
-                
-                [self.mytableview reloadData];
+                NSArray *arr = [dic objectForKey:@"message"];
+                if ([arr count] > 0) {
+                    [dataSource addObjectsFromArray:arr];
+                    [self.mytableview reloadData];
+                }else{
+                    [self showHint:@"没有查询到数据"];
+                }
             }else if([status intValue] >= 600){
                 NSString *message = [dic objectForKey:@"message"];
                 [self showHint:message];
@@ -343,6 +347,7 @@
     // 用何種字體進行顯示
     UIFont *font = [UIFont systemFontOfSize:15];
     // 該行要顯示的內容
+    DLog(@"%@",[dataSource objectAtIndex:indexPath.row]);
     NSDictionary *info = [[dataSource objectAtIndex:indexPath.row] cleanNull];
     NSString *content = [info objectForKey:@"post_body"];
     // 計算出顯示完內容需要的最小尺寸

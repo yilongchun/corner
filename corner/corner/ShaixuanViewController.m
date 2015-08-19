@@ -24,7 +24,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.mytoolbar.clipsToBounds = YES;
+    self.title = @"筛选";
+    
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:self action:@selector(back)];
+    self.navigationItem.leftBarButtonItem = leftItem;
+    
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"查询" style:UIBarButtonItemStyleDone target:self action:@selector(search)];
+    self.navigationItem.rightBarButtonItem = rightItem;
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showMyPicker)];
     [self.addressLabel addGestureRecognizer:tap];
@@ -71,11 +77,11 @@
 }
 */
 
-- (IBAction)back:(id)sender {
+- (void)back{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (IBAction)search:(id)sender {
+- (void)search{
     NSString *age = _ageText.text;
     int sex = _segSeg.selectedSegmentIndex;
     NSString *address = _addressLabel.text;

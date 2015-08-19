@@ -57,6 +57,7 @@
 		E42FE2331B8435D600FEAAC3 /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E42FE21E1B8435D600FEAAC3 /* UIScrollView+MJExtension.m */; };
 		E42FE2341B8435D600FEAAC3 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = E42FE2201B8435D600FEAAC3 /* UIScrollView+MJRefresh.m */; };
 		E42FE2351B8435D600FEAAC3 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E42FE2221B8435D600FEAAC3 /* UIView+MJExtension.m */; };
+		E42FE2361B8471F600FEAAC3 /* WodezhuanjiaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E446F23F1B325F240060E9D7 /* WodezhuanjiaoViewController.m */; };
 		E43DAA691B549966008CF574 /* LiwuTableViewCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = E43DAA681B549966008CF574 /* LiwuTableViewCell2.m */; };
 		E43DAA6C1B54B1FC008CF574 /* CallTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E43DAA6B1B54B1FC008CF574 /* CallTableViewController.m */; };
 		E43DAA6F1B54B7F7008CF574 /* CallTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E43DAA6E1B54B7F7008CF574 /* CallTableViewCell.m */; };
@@ -259,7 +260,6 @@
 		E446F30A1B325F240060E9D7 /* TongchengyaoyueTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E446F2391B325F240060E9D7 /* TongchengyaoyueTableViewCell.m */; };
 		E446F30B1B325F240060E9D7 /* TongchengyaoyueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E446F23B1B325F240060E9D7 /* TongchengyaoyueViewController.m */; };
 		E446F30C1B325F240060E9D7 /* WodezhuanjiaoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E446F23D1B325F240060E9D7 /* WodezhuanjiaoTableViewCell.m */; };
-		E446F30D1B325F240060E9D7 /* WodezhuanjiaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E446F23F1B325F240060E9D7 /* WodezhuanjiaoViewController.m */; };
 		E446F30E1B325F240060E9D7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E446F2411B325F240060E9D7 /* Localizable.strings */; };
 		E446F3111B32602D0060E9D7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E446F3101B32602D0060E9D7 /* Security.framework */; };
 		E446F3131B3260400060E9D7 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E446F3121B3260400060E9D7 /* libstdc++.6.0.9.dylib */; };
@@ -2809,7 +2809,6 @@
 				E4FCE4701B81C90800569064 /* MLPhotoBrowserPhotoImageView.m in Sources */,
 				E446F25F1B325F240060E9D7 /* NSDate+Utilities.m in Sources */,
 				E446F2B61B325F240060E9D7 /* UIWebView+Style.m in Sources */,
-				E446F30D1B325F240060E9D7 /* WodezhuanjiaoViewController.m in Sources */,
 				E446F2A81B325F240060E9D7 /* UIView+Frame.m in Sources */,
 				E446F2BE1B325F240060E9D7 /* IQKeyboardReturnKeyHandler.m in Sources */,
 				E446F2A41B325F240060E9D7 /* UITextView+PlaceHolder.m in Sources */,
@@ -2828,6 +2827,7 @@
 				E446F2CB1B325F240060E9D7 /* MBProgressHUD.m in Sources */,
 				E446F3241B32968B0060E9D7 /* LCEChatListVC.m in Sources */,
 				E41E4CD81B831CD600C968A9 /* ShaixuanViewController.m in Sources */,
+				E42FE2361B8471F600FEAAC3 /* WodezhuanjiaoViewController.m in Sources */,
 				E41E4CC01B82EAE600C968A9 /* MDCSwipeOptions.m in Sources */,
 				E446F2EF1B325F240060E9D7 /* UserDetailTableViewCell2.m in Sources */,
 				E4F59DEF1B425F3900A6F002 /* WodeyaoyueTableViewCell2.m in Sources */,

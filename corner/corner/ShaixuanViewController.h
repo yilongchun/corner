@@ -15,9 +15,7 @@
 
 @interface ShaixuanViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UIToolbar *mytoolbar;
-- (IBAction)back:(id)sender;
-- (IBAction)search:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UITextField *ageText;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segSeg;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
