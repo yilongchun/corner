@@ -24,6 +24,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    self.mytoolbar.clipsToBounds = YES;
+    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showMyPicker)];
     [self.addressLabel addGestureRecognizer:tap];
     
@@ -78,8 +80,12 @@
     int sex = _segSeg.selectedSegmentIndex;
     NSString *address = _addressLabel.text;
     
-    DLog(@"%@ %d %@",age,sex,address);
-    [self dismissViewControllerAnimated:YES completion:nil];
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:age,@"age",[NSNumber numberWithInt:sex],@"sex",address,@"address", nil];
+    
+    
+    [self dismissViewControllerAnimated:YES completion:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"mainSearch" object:params];
+    }];
 }
 
 #pragma mark - UIPicker Delegate

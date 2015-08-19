@@ -48,6 +48,8 @@
     UILabel *label10;
     NSMutableArray *labelArr;
     NSMutableArray *dataSource;
+    
+    NSMutableDictionary *params;//查询参数
 }
 @synthesize hFlowView;
 
@@ -66,6 +68,10 @@
 //    [self.navigationController.navigationBar.layer setMasksToBounds:YES];
     
 //    self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
+    
+    params = [NSMutableDictionary dictionary];
+    //注册查询通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mainSearch:) name:@"mainSearch" object:nil];
     
     dataSource = [NSMutableArray array];
     
@@ -107,10 +113,28 @@
         [self loadDataCenter];
     }];
     // 添加下拉刷新控件
+    
+//    // 添加默认的上拉刷新
+//    // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
+//    MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadDataMore)];
+//    
+//    // 设置文字
+//    [footer setTitle:@"Click or drag up to refresh" forState:MJRefreshStateIdle];
+//    [footer setTitle:@"Loading more ..." forState:MJRefreshStateRefreshing];
+//    [footer setTitle:@"No more data" forState:MJRefreshStateNoMoreData];
+//    
+//    // 设置字体
+//    footer.stateLabel.font = [UIFont systemFontOfSize:17];
+//    
+//    // 设置颜色
+//    footer.stateLabel.textColor = [UIColor blueColor];
+//    self.myscrollview.footer = footer;
+    
     self.myscrollview.footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
         [self loadDataMore];
     }];
-    
+    DLog(@"%@",self.myscrollview);
+    DLog(@"%@",self.myscrollview.footer);
     
     hFlowView.delegate = self;
     hFlowView.dataSource = self;
@@ -132,6 +156,33 @@
     [self.myscrollview.header beginRefreshing];
     
 }
+/**
+ *  重置图片
+ */
+-(void)resetImg{
+    [imageview1 setHidden:YES];
+    [label1 setHidden:YES];
+    [imageview2 setHidden:YES];
+    [label2 setHidden:YES];
+    [imageview3 setHidden:YES];
+    [label3 setHidden:YES];
+    [imageview4 setHidden:YES];
+    [label4 setHidden:YES];
+    [imageview5 setHidden:YES];
+    [label5 setHidden:YES];
+    [imageview6 setHidden:YES];
+    [label6 setHidden:YES];
+    [imageview7 setHidden:YES];
+    [label7 setHidden:YES];
+    [imageview8 setHidden:YES];
+    [label8 setHidden:YES];
+    [imageview9 setHidden:YES];
+    [label9 setHidden:YES];
+    [imageview10 setHidden:YES];
+    [label10 setHidden:YES];
+}
+
+
 
 /**
  *  初始化 加载数据 周围一圈10个
@@ -140,11 +191,13 @@
     
     page = 1;
 
-    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    
     
 //    [parameters setValue:[NSNumber numberWithInt:near_close] forKey:@"near_close"];
 //    [parameters setValue:[NSNumber numberWithInt:sex] forKey:@"sex"];
 //    [parameters setValue:address forKey:@"address"];
+    
+    
     
     
     NSString *urlString = [NSString stringWithFormat:@"%@%@/%d",HOST,USER_LIST_URL,page];
@@ -152,7 +205,7 @@
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
-    [manager GET:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:urlString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", operation.responseString);
         [self.myscrollview.header endRefreshing];
         NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
@@ -166,7 +219,7 @@
                 [dataSource removeAllObjects];
                 NSArray *arr = [dic objectForKey:@"message"];
                 [dataSource addObjectsFromArray:arr];
-                
+                [self resetImg];
                 for (int i = 0 ; i < dataSource.count; i++) {
                     
                     NSDictionary *info = [[dataSource objectAtIndex:i] cleanNull];
@@ -176,60 +229,80 @@
                     switch (i) {
                         case 0:
                         {
+                            [imageview1 setHidden:NO];
+                            [label1 setHidden:NO];
                             [imageview1 setImageWithURL:[NSURL URLWithString:avatar_url] placeholderImage:[UIImage imageNamed:@"public_load_face"]];
                             label1.text = nickname;
                         }
                             break;
                         case 1:
                         {
+                            [imageview2 setHidden:NO];
+                            [label2 setHidden:NO];
                             [imageview2 setImageWithURL:[NSURL URLWithString:avatar_url] placeholderImage:[UIImage imageNamed:@"public_load_face"]];
                             label2.text = nickname;
                         }
                             break;
                         case 2:
                         {
+                            [imageview3 setHidden:NO];
+                            [label3 setHidden:NO];
                             [imageview3 setImageWithURL:[NSURL URLWithString:avatar_url]placeholderImage:[UIImage imageNamed:@"public_load_face"]];
                             label3.text = nickname;
                         }
                             break;
                         case 3:
                         {
+                            [imageview4 setHidden:NO];
+                            [label4 setHidden:NO];
                             [imageview4 setImageWithURL:[NSURL URLWithString:avatar_url]placeholderImage:[UIImage imageNamed:@"public_load_face"]];
                             label4.text = nickname;
                         }
                             break;
                         case 4:
                         {
+                            [imageview5 setHidden:NO];
+                            [label5 setHidden:NO];
                             [imageview5 setImageWithURL:[NSURL URLWithString:avatar_url]placeholderImage:[UIImage imageNamed:@"public_load_face"]];
                             label5.text = nickname;
                         }
                             break;
                         case 5:
                         {
+                            [imageview6 setHidden:NO];
+                            [label6 setHidden:NO];
                             [imageview6 setImageWithURL:[NSURL URLWithString:avatar_url]placeholderImage:[UIImage imageNamed:@"public_load_face"]];
                             label6.text = nickname;
                         }
                             break;
                         case 6:
                         {
+                            [imageview7 setHidden:NO];
+                            [label7 setHidden:NO];
                             [imageview7 setImageWithURL:[NSURL URLWithString:avatar_url]placeholderImage:[UIImage imageNamed:@"public_load_face"]];
                             label7.text = nickname;
                         }
                             break;
                         case 7:
                         {
+                            [imageview8 setHidden:NO];
+                            [label8 setHidden:NO];
                             [imageview8 setImageWithURL:[NSURL URLWithString:avatar_url]placeholderImage:[UIImage imageNamed:@"public_load_face"]];
                             label8.text = nickname;
                         }
                             break;
                         case 8:
                         {
+                            [imageview9 setHidden:NO];
+                            [label9 setHidden:NO];
                             [imageview9 setImageWithURL:[NSURL URLWithString:avatar_url]placeholderImage:[UIImage imageNamed:@"public_load_face"]];
                             label9.text = nickname;
                         }
                             break;
                         case 9:
                         {
+                            [imageview10 setHidden:NO];
+                            [label10 setHidden:NO];
                             [imageview10 setImageWithURL:[NSURL URLWithString:avatar_url]placeholderImage:[UIImage imageNamed:@"public_load_face"]];
                             label10.text = nickname;
                         }
@@ -261,19 +334,12 @@
     
     page ++;
     
-    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    
-    //    [parameters setValue:[NSNumber numberWithInt:near_close] forKey:@"near_close"];
-    //    [parameters setValue:[NSNumber numberWithInt:sex] forKey:@"sex"];
-    //    [parameters setValue:address forKey:@"address"];
-    
-    
     NSString *urlString = [NSString stringWithFormat:@"%@%@/%d",HOST,USER_LIST_URL,page];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
-    [manager GET:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:urlString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", operation.responseString);
         [self.myscrollview.footer endRefreshing];
         NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
@@ -287,6 +353,7 @@
                 [dataSource removeAllObjects];
                 NSArray *arr = [dic objectForKey:@"message"];
                 [dataSource addObjectsFromArray:arr];
+                [self resetImg];
                 
                 for (int i = 0 ; i < dataSource.count; i++) {
                     
@@ -297,60 +364,80 @@
                     switch (i) {
                         case 0:
                         {
+                            [imageview1 setHidden:NO];
+                            [label1 setHidden:NO];
                             [imageview1 setImageWithURL:[NSURL URLWithString:avatar_url] placeholderImage:[UIImage imageNamed:@"public_load_face"]];
                             label1.text = nickname;
                         }
                             break;
                         case 1:
                         {
+                            [imageview2 setHidden:NO];
+                            [label2 setHidden:NO];
                             [imageview2 setImageWithURL:[NSURL URLWithString:avatar_url] placeholderImage:[UIImage imageNamed:@"public_load_face"]];
                             label2.text = nickname;
                         }
                             break;
                         case 2:
                         {
+                            [imageview3 setHidden:NO];
+                            [label3 setHidden:NO];
                             [imageview3 setImageWithURL:[NSURL URLWithString:avatar_url]placeholderImage:[UIImage imageNamed:@"public_load_face"]];
                             label3.text = nickname;
                         }
                             break;
                         case 3:
                         {
+                            [imageview4 setHidden:NO];
+                            [label4 setHidden:NO];
                             [imageview4 setImageWithURL:[NSURL URLWithString:avatar_url]placeholderImage:[UIImage imageNamed:@"public_load_face"]];
                             label4.text = nickname;
                         }
                             break;
                         case 4:
                         {
+                            [imageview5 setHidden:NO];
+                            [label5 setHidden:NO];
                             [imageview5 setImageWithURL:[NSURL URLWithString:avatar_url]placeholderImage:[UIImage imageNamed:@"public_load_face"]];
                             label5.text = nickname;
                         }
                             break;
                         case 5:
                         {
+                            [imageview6 setHidden:NO];
+                            [label6 setHidden:NO];
                             [imageview6 setImageWithURL:[NSURL URLWithString:avatar_url]placeholderImage:[UIImage imageNamed:@"public_load_face"]];
                             label6.text = nickname;
                         }
                             break;
                         case 6:
                         {
+                            [imageview7 setHidden:NO];
+                            [label7 setHidden:NO];
                             [imageview7 setImageWithURL:[NSURL URLWithString:avatar_url]placeholderImage:[UIImage imageNamed:@"public_load_face"]];
                             label7.text = nickname;
                         }
                             break;
                         case 7:
                         {
+                            [imageview8 setHidden:NO];
+                            [label8 setHidden:NO];
                             [imageview8 setImageWithURL:[NSURL URLWithString:avatar_url]placeholderImage:[UIImage imageNamed:@"public_load_face"]];
                             label8.text = nickname;
                         }
                             break;
                         case 8:
                         {
+                            [imageview9 setHidden:NO];
+                            [label9 setHidden:NO];
                             [imageview9 setImageWithURL:[NSURL URLWithString:avatar_url]placeholderImage:[UIImage imageNamed:@"public_load_face"]];
                             label9.text = nickname;
                         }
                             break;
                         case 9:
                         {
+                            [imageview10 setHidden:NO];
+                            [label10 setHidden:NO];
                             [imageview10 setImageWithURL:[NSURL URLWithString:avatar_url]placeholderImage:[UIImage imageNamed:@"public_load_face"]];
                             label10.text = nickname;
                         }
@@ -694,6 +781,35 @@
     vc.userinfo = info;
     [self.navigationController pushViewController:vc animated:YES];
 }
-
+/**
+ *  筛选
+ *
+ *  @param notification
+ */
+-(void)mainSearch:(NSNotification*) notification{
+    
+    NSDictionary *obj = [notification object];
+    NSString *age = [obj objectForKey:@"age"];
+    NSNumber *sex = [obj objectForKey:@"sex"];
+    NSString *address = [obj objectForKey:@"address"];
+    DLog(@"mainSearch %@ %@ %@",age,sex,address);
+    [params removeAllObjects];
+    if (![age isEqualToString:@""]) {
+        [params setObject:age forKey:@"age"];
+    }
+    if (![sex intValue] == 2) {
+        [params setObject:sex forKey:@"sex"];
+    }
+    if (![address isEqualToString:@""] && ![address isEqualToString:@"请选择地区"]) {
+        [params setObject:address forKey:@"address"];
+    }
+    [self.myscrollview.header beginRefreshing];
+    //    [parameters setValue:[NSNumber numberWithInt:near_close] forKey:@"near_close"];
+    //    [parameters setValue:[NSNumber numberWithInt:sex] forKey:@"sex"];
+    //    [parameters setValue:address forKey:@"address"];
+    
+    
+    
+}
 
 @end
