@@ -2678,6 +2678,10 @@ vip可以使用电话直呼功能</string>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vip1-1" translatesAutoresizingMaskIntoConstraints="NO" id="amh-sg-ZgS">
                                                     <rect key="frame" x="15" y="10" width="31" height="29"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="29" id="K4c-Mn-rFh"/>
+                                                        <constraint firstAttribute="width" constant="31" id="stX-Re-mmW"/>
+                                                    </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="蓝钻VIP" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9oc-cN-10A">
                                                     <rect key="frame" x="54" y="21" width="54" height="18"/>
