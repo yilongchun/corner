@@ -228,44 +228,19 @@
 #pragma mark - Table view data source
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    //    if (indexPath.section == 0) {
-    //        return 90;
-    //    }else if (indexPath.section == 1){
     if (indexPath.row == 0) {
         return 105;
     }else{
         return 74;
     }
-    
-    //    }
-    //    return 0;
 }
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-//    if (section == 0) {
-//        return 0.1;
-//    }else{
-//        return 0.1;
-//    }
-//
-//}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    //    switch (section) {
-    //        case 0:
-    //            return 1;
-    //            break;
-    //        case 1:
     return [dataSource count] + 1;
-    //            break;
-    //        default:
-    //            return 0;
-    //            break;
-    //    }
 }
 
 
@@ -300,34 +275,8 @@
         cell.payBtn.tag = indexPath.row - 1;
         [cell.payBtn addTarget:self action:@selector(pay:) forControlEvents:UIControlEventTouchUpInside];
         [cell.conisImage setImageWithURL:[NSURL URLWithString:pic]];
-//        switch (indexPath.row - 1) {
-//            case 0:
-//                cell.conisImage.image = [UIImage imageNamed:@"vip1-1"];
-//                [cell.hotsellImage setHidden:YES];
-//                break;
-//            case 1:
-//                cell.conisImage.image = [UIImage imageNamed:@"vip2-1"];
-//                [cell.hotsellImage setHidden:YES];
-//                break;
-//            case 2:
-//                cell.conisImage.image = [UIImage imageNamed:@"vip3"];
-//                break;
-//            case 3:
-//                cell.conisImage.image = [UIImage imageNamed:@"vip4"];
-//                break;
-//            default:
-//                break;
-//        }
-        
-        
         return cell;
     }
-    
-    
-    //    }else if (indexPath.section == 1) {
-    
-    //    }
-    //    return nil;
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -342,7 +291,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row > 0) {
-        [self buyVip:indexPath.row - 1];
+//        [self buyVip:indexPath.row - 1];
     }
 }
 /**
@@ -360,7 +309,43 @@
  */
 -(void)buyVip:(int)index{
     NSDictionary *vipinfo = [dataSource objectAtIndex:index];
-    DLog(@"%@",vipinfo);
+    NSNumber *vipid = [vipinfo objectForKey:@"id"];
+    
+    NSString *userid = [UD objectForKey:USER_ID];
+    NSString *token = [UD objectForKey:[NSString stringWithFormat:@"%@%@",USER_TOKEN_ID,userid]];
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:vipid forKey:@"gift_id"];
+    [parameters setValue:token forKey:@"token"];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,BUY_VIP_URL];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", operation.responseString);
+        
+        NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+        NSError *error;
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if (dic == nil) {
+            NSLog(@"json parse failed \r\n");
+        }else{
+            NSNumber *status = [dic objectForKey:@"status"];
+            if ([status intValue] == 200) {
+                [self showHint:@"购买成功"];
+            }else if([status intValue] >= 600){
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
+                [self validateUserToken:[status intValue]];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"发生错误！%@",error);
+        
+        [self showHint:@"连接失败"];
+    }];
+    
 }
 
 @end

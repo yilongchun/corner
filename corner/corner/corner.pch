@@ -62,6 +62,8 @@
 #define GIFT_LIST_URL @"/gift/list"
 //赠送礼物
 #define GIFT_GIVE_URL @"/gift/give"
+//购买VIP
+#define BUY_VIP_URL @"/vip"
 //用户充值金币
 #define RECHARGE_CREATE_URL @"/recharge/create"
 //call她
