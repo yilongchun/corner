@@ -17,7 +17,7 @@
 #import "DongtaiTableViewController.h"
 #import "LCEChatRoomVC.h"
 #import "SVPullToRefresh.h"
-#import "GiveGiftTableViewController.h"
+#import "GiveGiftViewController.h"
 
 #define PICTURE_NUMBER 3
 #define PICTURE_MARGIN 2
@@ -1377,10 +1377,11 @@
             break;
         case 3://礼物
         {
-            GiveGiftTableViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"GiveGiftTableViewController"];
+            GiveGiftViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"GiveGiftViewController"];
             NSNumber *receive_user_id = [userinfo objectForKey:@"id"];
+            NSString *avatar_url = [userinfo objectForKey:@"avatar_url"];
             vc.receive_user_id = receive_user_id;
-            
+            vc.avatar_url = avatar_url;
             NSNumber *userid = [userinfo objectForKey:@"id"];
             NSString *nickname = [userinfo objectForKey:@"nickname"];
             NSString *receive_user_name;

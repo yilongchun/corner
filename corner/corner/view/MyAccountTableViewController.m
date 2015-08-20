@@ -51,10 +51,10 @@
     
     [self.tableView setSeparatorColor:[UIColor lightGrayColor]];
     if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
-        [self.tableView setSeparatorInset:UIEdgeInsetsMake(0, 10, 0, 10)];
+        [self.tableView setSeparatorInset:UIEdgeInsetsMake(0, 0, 0, 0)];
     }
     if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
-        [self.tableView setLayoutMargins:UIEdgeInsetsMake(0, 10, 0, 10)];
+        [self.tableView setLayoutMargins:UIEdgeInsetsMake(0, 0, 0, 0)];
     }
 }
 
@@ -207,10 +207,10 @@
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
-        [self.tableView setSeparatorInset:UIEdgeInsetsMake(0, 10, 0, 10)];
+        [self.tableView setSeparatorInset:UIEdgeInsetsMake(0, 0, 0, 0)];
     }
     if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
-        [self.tableView setLayoutMargins:UIEdgeInsetsMake(0, 10, 0, 10)];
+        [self.tableView setLayoutMargins:UIEdgeInsetsMake(0, 0, 0, 0)];
     }
 }
 

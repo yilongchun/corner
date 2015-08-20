@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GiveGiftTableViewController : UITableViewController
+@interface GiveGiftViewController : UIViewController
+
+@property (weak, nonatomic) IBOutlet UITableView *mytableview;
 
 @property(nonatomic, strong) NSNumber *receive_user_id;
 @property(nonatomic, strong) NSString *receive_user_name;
+@property(nonatomic, strong) NSString *avatar_url;
 
 @end

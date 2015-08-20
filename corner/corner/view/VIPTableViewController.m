@@ -9,7 +9,7 @@
 #import "VIPTableViewController.h"
 #import "MyAccountTableViewCell1.h"
 #import "MyAccountTableViewCell2.h"
-#import "SVPullToRefresh.h"
+#import "MJRefresh.h"
 #import "PayTypeViewController.h"
 #import "RESideMenu.h"
 
@@ -20,6 +20,7 @@
 @implementation VIPTableViewController{
     NSMutableArray *dataSource;
     NSDictionary *userinfo;
+    int page;
 }
 
 - (void)viewDidLoad {
@@ -34,32 +35,39 @@
                                                  name:@"refreshMyAccount"
                                                object:nil];
     
+    self.title = @"VIP专区";
+    
     if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
         self.automaticallyAdjustsScrollViewInsets = YES;
         self.extendedLayoutIncludesOpaqueBars = YES;
     }
     
-    self.title = @"VIP专区";
-    dataSource = [NSMutableArray array];
-    
-    __weak VIPTableViewController *weakSelf = self;
-    
-    [self.tableView addPullToRefreshWithActionHandler:^{
-        [weakSelf insertRowAtTop];
-    }];
-    UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
-    self.tableView.tableFooterView = v;
-    //初始化数据
-    [self.tableView triggerPullToRefresh];
-    
     [self.tableView setSeparatorColor:[UIColor lightGrayColor]];
     if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
-        [self.tableView setSeparatorInset:UIEdgeInsetsMake(0, 10, 0, 10)];
+        [self.tableView setSeparatorInset:UIEdgeInsetsMake(0, 0, 0, 0)];
     }
     if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
-        [self.tableView setLayoutMargins:UIEdgeInsetsMake(0, 10, 0, 10)];
+        [self.tableView setLayoutMargins:UIEdgeInsetsMake(0, 0, 0, 0)];
     }
+    UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.tableFooterView = v;
+    
+    
+    dataSource = [NSMutableArray array];
+    
+    // 添加下拉刷新控件
+    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self loadData];
+    }];
+    // 添加下拉刷新控件
+    self.tableView.footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
+        [self loadMoreData];
+    }];
+    
+    [self.tableView.header beginRefreshing];
+    
+    
 }
 
 -(void)leftMenu{
@@ -76,33 +84,31 @@
 
 -(void)loadData{
     
-    [dataSource removeAllObjects];
     
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    [dic setObject:@"蓝钻VIP" forKey:@"name"];
-    [dic setObject:@"每天赠送10把钥匙" forKey:@"msg1"];
-    [dic setObject:@"VIP时长90天" forKey:@"msg2"];
-    [dic setObject:[NSNumber numberWithInt:12800] forKey:@"price"];
-    [dataSource addObject:dic];
-    NSMutableDictionary *dic2 = [NSMutableDictionary dictionary];
-    [dic2 setObject:@"绿钻VIP" forKey:@"name"];
-    [dic2 setObject:@"每天赠送12把钥匙" forKey:@"msg1"];
-    [dic2 setObject:@"VIP时长180天" forKey:@"msg2"];
-    [dic2 setObject:[NSNumber numberWithInt:18800] forKey:@"price"];
-    [dataSource addObject:dic2];
-    NSMutableDictionary *dic3 = [NSMutableDictionary dictionary];
-    [dic3 setObject:@"粉钻VIP" forKey:@"name"];
-    [dic3 setObject:@"每天赠送20把钥匙" forKey:@"msg1"];
-    [dic3 setObject:@"VIP时长一年" forKey:@"msg2"];
-    [dic3 setObject:[NSNumber numberWithInt:26800] forKey:@"price"];
-    [dataSource addObject:dic3];
-    NSMutableDictionary *dic4 = [NSMutableDictionary dictionary];
-    [dic4 setObject:@"黄钻VIP" forKey:@"name"];
-    [dic4 setObject:@"每天赠送30把钥匙" forKey:@"msg1"];
-    [dic4 setObject:@"VIP时长两年" forKey:@"msg2"];
-    [dic4 setObject:[NSNumber numberWithInt:38800] forKey:@"price"];
-    [dataSource addObject:dic4];
-    
+//    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+//    [dic setObject:@"蓝钻VIP" forKey:@"name"];
+//    [dic setObject:@"每天赠送10把钥匙" forKey:@"msg1"];
+//    [dic setObject:@"VIP时长90天" forKey:@"msg2"];
+//    [dic setObject:[NSNumber numberWithInt:12800] forKey:@"price"];
+//    [dataSource addObject:dic];
+//    NSMutableDictionary *dic2 = [NSMutableDictionary dictionary];
+//    [dic2 setObject:@"绿钻VIP" forKey:@"name"];
+//    [dic2 setObject:@"每天赠送12把钥匙" forKey:@"msg1"];
+//    [dic2 setObject:@"VIP时长180天" forKey:@"msg2"];
+//    [dic2 setObject:[NSNumber numberWithInt:18800] forKey:@"price"];
+//    [dataSource addObject:dic2];
+//    NSMutableDictionary *dic3 = [NSMutableDictionary dictionary];
+//    [dic3 setObject:@"粉钻VIP" forKey:@"name"];
+//    [dic3 setObject:@"每天赠送20把钥匙" forKey:@"msg1"];
+//    [dic3 setObject:@"VIP时长一年" forKey:@"msg2"];
+//    [dic3 setObject:[NSNumber numberWithInt:26800] forKey:@"price"];
+//    [dataSource addObject:dic3];
+//    NSMutableDictionary *dic4 = [NSMutableDictionary dictionary];
+//    [dic4 setObject:@"黄钻VIP" forKey:@"name"];
+//    [dic4 setObject:@"每天赠送30把钥匙" forKey:@"msg1"];
+//    [dic4 setObject:@"VIP时长两年" forKey:@"msg2"];
+//    [dic4 setObject:[NSNumber numberWithInt:38800] forKey:@"price"];
+//    [dataSource addObject:dic4];
     
     NSString *userid = [UD objectForKey:USER_ID];
     NSString *token = [UD objectForKey:[NSString stringWithFormat:@"%@%@",USER_TOKEN_ID,userid]];
@@ -113,7 +119,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
     [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", operation.responseString);
-        [self.tableView.pullToRefreshView stopAnimating];
+        
         NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
         NSError *error;
         NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
@@ -123,6 +129,47 @@
             NSNumber *status = [dic objectForKey:@"status"];
             if ([status intValue] == 200) {
                 userinfo = [NSMutableDictionary dictionaryWithDictionary:[[dic objectForKey:@"message"] cleanNull] ];
+                [self loadVipData];
+            }else if([status intValue] >= 600){
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
+                [self validateUserToken:[status intValue]];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"发生错误！%@",error);
+        [self.tableView.header endRefreshing];
+        [self showHint:@"连接失败"];
+        
+    }];
+}
+/**
+ *  加载VIP信息
+ */
+-(void)loadVipData{
+    page = 1;
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:[NSNumber numberWithInt:page] forKey:@"page"];
+    [parameters setValue:@"1" forKey:@"group"];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,GIFT_LIST_URL];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager GET:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", operation.responseString);
+        [self.tableView.header endRefreshing];
+        NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+        NSError *error;
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if (dic == nil) {
+            NSLog(@"json parse failed \r\n");
+        }else{
+            NSNumber *status = [dic objectForKey:@"status"];
+            if ([status intValue] == 200) {
+                [dataSource removeAllObjects];
+                [dataSource addObjectsFromArray:[dic objectForKey:@"message"]];
+                
                 [self.tableView reloadData];
             }else if([status intValue] >= 600){
                 NSString *message = [dic objectForKey:@"message"];
@@ -132,9 +179,45 @@
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"发生错误！%@",error);
-        [self.tableView.pullToRefreshView stopAnimating];
+        [self.tableView.header endRefreshing];
         [self showHint:@"连接失败"];
-        
+    }];
+}
+
+-(void)loadMoreData{
+    page++;
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:[NSNumber numberWithInt:page] forKey:@"page"];
+    [parameters setValue:@"1" forKey:@"group"];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,GIFT_LIST_URL];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager GET:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", operation.responseString);
+        [self.tableView.footer endRefreshing];
+        NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+        NSError *error;
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if (dic == nil) {
+            NSLog(@"json parse failed \r\n");
+        }else{
+            NSNumber *status = [dic objectForKey:@"status"];
+            if ([status intValue] == 200) {
+                [dataSource addObjectsFromArray:[dic objectForKey:@"message"]];
+                
+                [self.tableView reloadData];
+            }else if([status intValue] >= 600){
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
+                [self validateUserToken:[status intValue]];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"发生错误！%@",error);
+        [self.tableView.footer endRefreshing];
+        [self showHint:@"连接失败"];
     }];
 }
 
@@ -151,7 +234,7 @@
     if (indexPath.row == 0) {
         return 105;
     }else{
-        return 95;
+        return 74;
     }
     
     //    }
@@ -201,37 +284,40 @@
         cell.titleLabel.attributedText = str;
         return cell;
     }else{
+        
+        NSDictionary *info = [[dataSource objectAtIndex:indexPath.row - 1] cleanNull];
+        NSString *name = [info objectForKey:@"name"];//名称
+        NSNumber *price = [info objectForKey:@"price"];//价格
+        NSString *memo = [info objectForKey:@"memo"];//时长
+        NSString *pic = [info objectForKey:@"pic"];
+        
         MyAccountTableViewCell2 *cell = [tableView dequeueReusableCellWithIdentifier:@"cell2" forIndexPath:indexPath];
-        NSDictionary *info = [dataSource objectAtIndex:indexPath.row - 1];
-        NSString *name = [info objectForKey:@"name"];
-        NSString *msg1 = [info objectForKey:@"msg1"];
-        NSString *msg2 = [info objectForKey:@"msg2"];
-        NSNumber *price = [info objectForKey:@"price"];
+        
         cell.label1.text = name;
-        cell.msg1.text = msg1;
-        cell.msg2.text = msg2;
+        cell.msg1.text = [NSString stringWithFormat:@"VIP时长%@",memo];
         [cell.payBtn setTitle:[NSString stringWithFormat:@"%d金币",[price intValue]] forState:UIControlStateNormal];
+        [cell.payBtn setBackgroundImage:[[UIImage imageNamed:@"vippaybtn"] stretchableImageWithLeftCapWidth:37 topCapHeight:15] forState:UIControlStateNormal];
         cell.payBtn.tag = indexPath.row - 1;
         [cell.payBtn addTarget:self action:@selector(pay:) forControlEvents:UIControlEventTouchUpInside];
-        
-        switch (indexPath.row - 1) {
-            case 0:
-                cell.conisImage.image = [UIImage imageNamed:@"vip1-1"];
-                [cell.hotsellImage setHidden:YES];
-                break;
-            case 1:
-                cell.conisImage.image = [UIImage imageNamed:@"vip2-1"];
-                [cell.hotsellImage setHidden:YES];
-                break;
-            case 2:
-                cell.conisImage.image = [UIImage imageNamed:@"vip3"];
-                break;
-            case 3:
-                cell.conisImage.image = [UIImage imageNamed:@"vip4"];
-                break;
-            default:
-                break;
-        }
+        [cell.conisImage setImageWithURL:[NSURL URLWithString:pic]];
+//        switch (indexPath.row - 1) {
+//            case 0:
+//                cell.conisImage.image = [UIImage imageNamed:@"vip1-1"];
+//                [cell.hotsellImage setHidden:YES];
+//                break;
+//            case 1:
+//                cell.conisImage.image = [UIImage imageNamed:@"vip2-1"];
+//                [cell.hotsellImage setHidden:YES];
+//                break;
+//            case 2:
+//                cell.conisImage.image = [UIImage imageNamed:@"vip3"];
+//                break;
+//            case 3:
+//                cell.conisImage.image = [UIImage imageNamed:@"vip4"];
+//                break;
+//            default:
+//                break;
+//        }
         
         
         return cell;
@@ -247,26 +333,34 @@
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
-        [self.tableView setSeparatorInset:UIEdgeInsetsMake(0, 10, 0, 10)];
+        [self.tableView setSeparatorInset:UIEdgeInsetsMake(0, 0, 0, 0)];
     }
     if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
-        [self.tableView setLayoutMargins:UIEdgeInsetsMake(0, 10, 0, 10)];
+        [self.tableView setLayoutMargins:UIEdgeInsetsMake(0, 0, 0, 0)];
     }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row > 0) {
-//        PayTypeViewController *vc = [[PayTypeViewController alloc] init];
-//        vc.payInfo = [dataSource objectAtIndex:indexPath.row - 1];
-//        [self.navigationController pushViewController:vc animated:YES];
+        [self buyVip:indexPath.row - 1];
     }
-    
 }
-
+/**
+ *  点击按钮
+ *
+ *  @param sender
+ */
 -(void)pay:(UIButton *)sender{
-//    PayTypeViewController *vc = [[PayTypeViewController alloc] init];
-//    vc.payInfo = [dataSource objectAtIndex:sender.tag];
-//    [self.navigationController pushViewController:vc animated:YES];
+    [self buyVip:sender.tag];
+}
+/**
+ *  购买VIP
+ *
+ *  @param index 索引
+ */
+-(void)buyVip:(int)index{
+    NSDictionary *vipinfo = [dataSource objectAtIndex:index];
+    DLog(@"%@",vipinfo);
 }
 
 @end

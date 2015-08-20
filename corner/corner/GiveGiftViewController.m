@@ -6,16 +6,16 @@
 //  Copyright (c) 2015年 hmzl. All rights reserved.
 //
 
-#import "GiveGiftTableViewController.h"
+#import "GiveGiftViewController.h"
 #import "SVPullToRefresh.h"
 #import "LiwuTableViewCell.h"
 #import "LiwuTableViewCell2.h"
 
-@interface GiveGiftTableViewController ()
+@interface GiveGiftViewController ()
 
 @end
 
-@implementation GiveGiftTableViewController{
+@implementation GiveGiftViewController{
     int page;//分页设置
     NSMutableArray *dataSource;
 }
@@ -33,18 +33,18 @@
     
     dataSource = [NSMutableArray array];
     
-    __weak GiveGiftTableViewController *weakSelf = self;
+    __weak GiveGiftViewController *weakSelf = self;
     
-    [self.tableView addPullToRefreshWithActionHandler:^{
+    [self.mytableview addPullToRefreshWithActionHandler:^{
         [weakSelf insertRowAtTop];
     }];
-    [self.tableView addInfiniteScrollingWithActionHandler:^{
+    [self.mytableview addInfiniteScrollingWithActionHandler:^{
         [weakSelf insertRowAtBottom];
     }];
     UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
-    self.tableView.tableFooterView = v;
+    self.mytableview.tableFooterView = v;
     //初始化数据
-    [self.tableView triggerPullToRefresh];
+    [self.mytableview triggerPullToRefresh];
 }
 
 - (void)insertRowAtTop {
@@ -80,7 +80,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
     [manager GET:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", operation.responseString);
-        [self.tableView.pullToRefreshView stopAnimating];
+        [self.mytableview.pullToRefreshView stopAnimating];
         NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
         NSError *error;
         NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
@@ -92,7 +92,7 @@
                 [dataSource removeAllObjects];
                 [dataSource addObjectsFromArray:[dic objectForKey:@"message"]];
                 
-                [self.tableView reloadData];
+                [self.mytableview reloadData];
             }else if([status intValue] >= 600){
                 NSString *message = [dic objectForKey:@"message"];
                 [self showHint:message];
@@ -101,7 +101,7 @@
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"发生错误！%@",error);
-        [self.tableView.pullToRefreshView stopAnimating];
+        [self.mytableview.pullToRefreshView stopAnimating];
         [self showHint:@"连接失败"];
         
     }];
@@ -125,7 +125,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
     [manager GET:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", operation.responseString);
-        [self.tableView.infiniteScrollingView stopAnimating];
+        [self.mytableview.infiniteScrollingView stopAnimating];
         NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
         NSError *error;
         NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
@@ -138,7 +138,7 @@
                 
                 if ([array count] > 0) {
                     [dataSource addObjectsFromArray:array];
-                    [self.tableView reloadData];
+                    [self.mytableview reloadData];
                 }else{
                     page--;
                 }
@@ -151,19 +151,19 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         page--;
         NSLog(@"发生错误！%@",error);
-        [self.tableView.infiniteScrollingView stopAnimating];
+        [self.mytableview.infiniteScrollingView stopAnimating];
         [self showHint:@"连接失败"];
     }];
 }
 
 -(void)viewDidLayoutSubviews
 {
-    if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
-        [self.tableView setSeparatorInset:UIEdgeInsetsMake(0,0,0,0)];
+    if ([self.mytableview respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self.mytableview setSeparatorInset:UIEdgeInsetsMake(0,0,0,0)];
     }
     
-    if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
-        [self.tableView setLayoutMargins:UIEdgeInsetsMake(0,0,0,0)];
+    if ([self.mytableview respondsToSelector:@selector(setLayoutMargins:)]) {
+        [self.mytableview setLayoutMargins:UIEdgeInsetsMake(0,0,0,0)];
     }
 }
 
@@ -186,9 +186,9 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
-        return 60;
+        return 70;
     }else if (indexPath.row == 1){
-        return 60;
+        return 70;
     }
     return 80;
 }
@@ -207,6 +207,7 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"yuecell"];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"yuecell"];
+            cell.backgroundColor = [UIColor clearColor];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.textLabel.font = [UIFont systemFontOfSize:15];
@@ -217,12 +218,23 @@
             coins = @"0";
         }
         cell.textLabel.text = [NSString stringWithFormat:@"金币余额：%@金币",coins];
-        
+        [cell.textLabel setTextColor:[UIColor whiteColor]];
         return cell;
     }else if (indexPath.row == 1) {
         LiwuTableViewCell2 *cell = [tableView dequeueReusableCellWithIdentifier:@"cell3"];
+        
+        cell.userImage.layer.masksToBounds = YES;
+        cell.userImage.layer.cornerRadius = 25;
+        cell.userImage.layer.borderColor = [UIColor whiteColor].CGColor;
+        cell.userImage.layer.borderWidth = 0.5f;
+        
         cell.userMsg.text = [NSString stringWithFormat:@"给 %@ 送礼",_receive_user_name];
-        cell.userImage.image = [UIImage imageNamed:@"public_load_face"];
+        [cell.userImage setImageWithURL:[NSURL URLWithString:self.avatar_url]];
+        
+        NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:cell.userMsg.text];
+        [str addAttribute:NSForegroundColorAttributeName value:RGBACOLOR(255, 127, 0, 1) range:NSMakeRange(2,_receive_user_name.length)];
+        cell.userMsg.attributedText = str;
+        
         return cell;
     }else{
         LiwuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"liwucell" forIndexPath:indexPath];
@@ -231,11 +243,14 @@
         NSString *name = [info objectForKey:@"name"];
         NSNumber *price = [info objectForKey:@"price"];
         NSNumber *lovers = [info objectForKey:@"lovers"];
+        NSString *pic = [info objectForKey:@"pic"];
         cell.giftName.text = name;
         cell.giftPrice.text = [NSString stringWithFormat:@"价格：%d金币",[price intValue]];
         cell.giftLovers.text = [NSString stringWithFormat:@"+%d魅力",[lovers intValue]];
+        [cell.giveBtn setBackgroundImage:[[UIImage imageNamed:@"vippaybtn"] stretchableImageWithLeftCapWidth:37 topCapHeight:15] forState:UIControlStateNormal];
         cell.giveBtn.tag = indexPath.row - 2;
         [cell.giveBtn addTarget:self action:@selector(giveGift:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.giftImage setImageWithURL:[NSURL URLWithString:pic]];
         return cell;
     }
 }

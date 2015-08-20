@@ -14,6 +14,5 @@
 @property (weak, nonatomic) IBOutlet UIImageView *conisImage;
 @property (weak, nonatomic) IBOutlet UILabel *label1;
 @property (weak, nonatomic) IBOutlet UILabel *msg1;
-@property (weak, nonatomic) IBOutlet UILabel *msg2;
 @property (weak, nonatomic) IBOutlet UIButton *payBtn;
 @end

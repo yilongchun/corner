@@ -322,7 +322,7 @@
 		E4DBFAF51B452032002004BC /* ZiwojieshaoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4DBFAF31B452032002004BC /* ZiwojieshaoViewController.xib */; };
 		E4DBFAF91B4529A5002004BC /* XuanshiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4DBFAF71B4529A5002004BC /* XuanshiViewController.m */; };
 		E4DBFAFA1B4529A5002004BC /* XuanshiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4DBFAF81B4529A5002004BC /* XuanshiViewController.xib */; };
-		E4E210E21B53524600940E90 /* GiveGiftTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E210E11B53524600940E90 /* GiveGiftTableViewController.m */; };
+		E4E210E21B53524600940E90 /* GiveGiftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E210E11B53524600940E90 /* GiveGiftViewController.m */; };
 		E4E210E51B5357D300940E90 /* LiwuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E210E41B5357D300940E90 /* LiwuTableViewCell.m */; };
 		E4E2111A1B5368D500940E90 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E4E210E81B5368D500940E90 /* AlipaySDK.bundle */; };
 		E4E2111B1B5368D600940E90 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4E210E91B5368D500940E90 /* AlipaySDK.framework */; };
@@ -974,8 +974,8 @@
 		E4DBFAF61B4529A5002004BC /* XuanshiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XuanshiViewController.h; sourceTree = "<group>"; };
 		E4DBFAF71B4529A5002004BC /* XuanshiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XuanshiViewController.m; sourceTree = "<group>"; };
 		E4DBFAF81B4529A5002004BC /* XuanshiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XuanshiViewController.xib; sourceTree = "<group>"; };
-		E4E210E01B53524600940E90 /* GiveGiftTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GiveGiftTableViewController.h; sourceTree = "<group>"; };
-		E4E210E11B53524600940E90 /* GiveGiftTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GiveGiftTableViewController.m; sourceTree = "<group>"; };
+		E4E210E01B53524600940E90 /* GiveGiftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GiveGiftViewController.h; sourceTree = "<group>"; };
+		E4E210E11B53524600940E90 /* GiveGiftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GiveGiftViewController.m; sourceTree = "<group>"; };
 		E4E210E31B5357D300940E90 /* LiwuTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiwuTableViewCell.h; sourceTree = "<group>"; };
 		E4E210E41B5357D300940E90 /* LiwuTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiwuTableViewCell.m; sourceTree = "<group>"; };
 		E4E210E81B5368D500940E90 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
@@ -2336,8 +2336,8 @@
 				E446F20C1B325F240060E9D7 /* UserDetailTableViewCell5.h */,
 				E446F20D1B325F240060E9D7 /* UserDetailTableViewCell5.m */,
 				E446F20E1B325F240060E9D7 /* UserDetailTableViewCell5.xib */,
-				E4E210E01B53524600940E90 /* GiveGiftTableViewController.h */,
-				E4E210E11B53524600940E90 /* GiveGiftTableViewController.m */,
+				E4E210E01B53524600940E90 /* GiveGiftViewController.h */,
+				E4E210E11B53524600940E90 /* GiveGiftViewController.m */,
 				E4E210E31B5357D300940E90 /* LiwuTableViewCell.h */,
 				E4E210E41B5357D300940E90 /* LiwuTableViewCell.m */,
 				E43DAA671B549966008CF574 /* LiwuTableViewCell2.h */,
@@ -2982,7 +2982,7 @@
 				E446F2461B325F240060E9D7 /* AFNetworkReachabilityManager.m in Sources */,
 				E41E4CD11B82EB2F00C968A9 /* ChoosePersonViewController.m in Sources */,
 				E4FCE4721B81C90800569064 /* MLPhotoBrowserPhotoView.m in Sources */,
-				E4E210E21B53524600940E90 /* GiveGiftTableViewController.m in Sources */,
+				E4E210E21B53524600940E90 /* GiveGiftViewController.m in Sources */,
 				E446F2CD1B325F240060E9D7 /* MyCollectionViewCell.m in Sources */,
 				E42FE22C1B8435D600FEAAC3 /* MJRefreshBackNormalFooter.m in Sources */,
 				E446F2EC1B325F240060E9D7 /* UIScrollView+SVPullToRefresh.m in Sources */,

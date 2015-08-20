@@ -244,66 +244,74 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 -(void)loadData{
     
     if (_people.count < 5) {
-        NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,USER_RANDOM_URL];
-        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
-        [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
-            NSError *error;
-            NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
-            if (dic == nil) {
-                NSLog(@"json parse failed \r\n");
-            }else{
-                NSNumber *status = [dic objectForKey:@"status"];
-                if ([status intValue] == 200) {
-                    NSDictionary *message = [[dic objectForKey:@"message"] cleanNull];
-                    NSString *avatar_url = [message objectForKey:@"avatar_url"];
-                    NSString *nickname = [message objectForKey:@"nickname"];
-                    NSNumber *userid = [message objectForKey:@"id"];
-                    Person *p = [[Person alloc] initWithName:nickname
-                                                      userid:userid
-                                                       image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:avatar_url]]]
-                                                         age:15
-                                       numberOfSharedFriends:3
-                                     numberOfSharedInterests:2
-                                              numberOfPhotos:1
-                                                    userinfo:message];
-                    [_people addObject:p];
-                    DLog(@"people count:%d ",_people.count);
-                    
-                    [self loadData];
-                    
-                    if (!flag && _people.count > 2) {
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,USER_RANDOM_URL];
+            AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+            manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+            manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+            manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+            [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+                NSError *error;
+                NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+                if (dic == nil) {
+                    NSLog(@"json parse failed \r\n");
+                }else{
+                    NSNumber *status = [dic objectForKey:@"status"];
+                    if ([status intValue] == 200) {
+                        NSDictionary *message = [[dic objectForKey:@"message"] cleanNull];
+                        NSString *avatar_url = [message objectForKey:@"avatar_url"];
+                        NSString *nickname = [message objectForKey:@"nickname"];
+                        NSNumber *userid = [message objectForKey:@"id"];
+                        Person *p = [[Person alloc] initWithName:nickname
+                                                          userid:userid
+                                                           image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:avatar_url]]]
+                                                             age:15
+                                           numberOfSharedFriends:3
+                                         numberOfSharedInterests:2
+                                                  numberOfPhotos:1
+                                                        userinfo:message];
+                        [_people addObject:p];
+                        DLog(@"people count:%d ",_people.count);
                         
-                        // Display the first ChoosePersonView in front. Users can swipe to indicate
-                        // whether they like or dislike the person displayed.
-                        self.frontCardView = [self popPersonViewWithFrame:[self frontCardViewFrame]];
-                        [self.view addSubview:self.frontCardView];
-                        // Display the second ChoosePersonView in back. This view controller uses
-                        // the MDCSwipeToChooseDelegate protocol methods to update the front and
-                        // back views after each user swipe.
-                        self.backCardView = [self popPersonViewWithFrame:[self backCardViewFrame]];
-                        [self.view insertSubview:self.backCardView belowSubview:self.frontCardView];
+                        [self loadData];
                         
-                        // Add buttons to programmatically swipe the view left or right.
-                        // See the `nopeFrontCardView` and `likeFrontCardView` methods.
-                        [self constructNopeButton];
-                        [self constructLikedButton];
-                        flag = YES;
-                        [self hideHud];
+                        if (!flag && _people.count > 2) {
+                            
+                            // Display the first ChoosePersonView in front. Users can swipe to indicate
+                            // whether they like or dislike the person displayed.
+                            self.frontCardView = [self popPersonViewWithFrame:[self frontCardViewFrame]];
+                            [self.view addSubview:self.frontCardView];
+                            // Display the second ChoosePersonView in back. This view controller uses
+                            // the MDCSwipeToChooseDelegate protocol methods to update the front and
+                            // back views after each user swipe.
+                            self.backCardView = [self popPersonViewWithFrame:[self backCardViewFrame]];
+                            [self.view insertSubview:self.backCardView belowSubview:self.frontCardView];
+                            
+                            // Add buttons to programmatically swipe the view left or right.
+                            // See the `nopeFrontCardView` and `likeFrontCardView` methods.
+                            [self constructNopeButton];
+                            [self constructLikedButton];
+                            flag = YES;
+                            [self hideHud];
+                        }
+                    }else if([status intValue] >= 600){
+                        NSString *message = [dic objectForKey:@"message"];
+                        [self showHint:message];
+                        [self validateUserToken:[status intValue]];
                     }
-                }else if([status intValue] >= 600){
-                    NSString *message = [dic objectForKey:@"message"];
-                    [self showHint:message];
-                    [self validateUserToken:[status intValue]];
                 }
-            }
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"发生错误！%@",error);
-            //            [self showHint:@"连接失败"];
-        }];
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                NSLog(@"发生错误！%@",error);
+                //            [self showHint:@"连接失败"];
+            }];
+            
+            
+        });
+        
+        
     }
 }
 /**
