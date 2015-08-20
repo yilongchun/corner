@@ -150,7 +150,7 @@
     page = 1;
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setValue:[NSNumber numberWithInt:page] forKey:@"page"];
-    [parameters setValue:@"1" forKey:@"group"];
+    [parameters setValue:[NSNumber numberWithInt:1] forKey:@"groups"];
     NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,GIFT_LIST_URL];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -188,7 +188,7 @@
     page++;
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setValue:[NSNumber numberWithInt:page] forKey:@"page"];
-    [parameters setValue:@"1" forKey:@"group"];
+    [parameters setValue:[NSNumber numberWithInt:1] forKey:@"groups"];
     NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,GIFT_LIST_URL];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
