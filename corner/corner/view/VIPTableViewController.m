@@ -157,7 +157,7 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
     [manager GET:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", operation.responseString);
+//        NSLog(@"JSON: %@", operation.responseString);
         [self.tableView.header endRefreshing];
         NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
         NSError *error;
@@ -195,7 +195,7 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
     [manager GET:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", operation.responseString);
+//        NSLog(@"JSON: %@", operation.responseString);
         [self.tableView.footer endRefreshing];
         NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
         NSError *error;
@@ -248,11 +248,26 @@
     //    if (indexPath.section == 0) {
     if (indexPath.row == 0) {
         MyAccountTableViewCell1 *cell = [tableView dequeueReusableCellWithIdentifier:@"cell1" forIndexPath:indexPath];
-        NSString *coins = [userinfo objectForKey:@"coins"];
-        if ([coins isEqualToString:@""]) {
-            coins = @"0";
+        NSNumber *coins = [userinfo objectForKey:@"coins"];
+        if (coins != nil && [coins isKindOfClass:[NSNumber class]]) {
+            cell.coinsLabel.text = [coins stringValue];
+        }else{
+            cell.coinsLabel.text = @"0";
         }
-        cell.coinsLabel.text = coins;
+        
+        
+        NSNumber *type = [userinfo objectForKey:@"type"];
+        if ([type intValue] >=10) {
+            cell.vipMsgLabel.text = @"您是VIP用户";
+            cell.vipMsgLabel.textColor = [UIColor whiteColor];
+            NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:cell.vipMsgLabel.text];
+            [str addAttribute:NSForegroundColorAttributeName value:RGBACOLOR(226, 82, 69, 1) range:NSMakeRange(2,3)];
+            cell.vipMsgLabel.attributedText = str;
+        }else{
+            cell.vipMsgLabel.text = @"您当前不是VIP，升级VIP获取更多特权!";
+            cell.vipMsgLabel.textColor = [UIColor lightGrayColor];
+
+        }
         
         NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:cell.titleLabel.text];
         [str addAttribute:NSForegroundColorAttributeName value:RGBACOLOR(226, 82, 69, 1) range:NSMakeRange(2,3)];
@@ -308,44 +323,54 @@
  *  @param index 索引
  */
 -(void)buyVip:(int)index{
-    NSDictionary *vipinfo = [dataSource objectAtIndex:index];
-    NSNumber *vipid = [vipinfo objectForKey:@"id"];
     
-    NSString *userid = [UD objectForKey:USER_ID];
-    NSString *token = [UD objectForKey:[NSString stringWithFormat:@"%@%@",USER_TOKEN_ID,userid]];
-    
-    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setValue:vipid forKey:@"gift_id"];
-    [parameters setValue:token forKey:@"token"];
-    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,BUY_VIP_URL];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
-    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", operation.responseString);
+    NSNumber *type = [userinfo objectForKey:@"type"];
+    if ([type intValue] >=10) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您已经是VIP，无需重复购买" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }else{
+        NSDictionary *vipinfo = [dataSource objectAtIndex:index];
+        NSNumber *vipid = [vipinfo objectForKey:@"id"];
+        NSString *name = [vipinfo objectForKey:@"name"];//名称
+        NSString *memo = [vipinfo objectForKey:@"memo"];//时长
         
-        NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
-        NSError *error;
-        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
-        if (dic == nil) {
-            NSLog(@"json parse failed \r\n");
-        }else{
-            NSNumber *status = [dic objectForKey:@"status"];
-            if ([status intValue] == 200) {
-                [self showHint:@"购买成功"];
-            }else if([status intValue] >= 600){
-                NSString *message = [dic objectForKey:@"message"];
-                [self showHint:message];
-                [self validateUserToken:[status intValue]];
+        NSString *userid = [UD objectForKey:USER_ID];
+        NSString *token = [UD objectForKey:[NSString stringWithFormat:@"%@%@",USER_TOKEN_ID,userid]];
+        
+        NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+        [parameters setValue:vipid forKey:@"gift_id"];
+        [parameters setValue:token forKey:@"token"];
+        NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,BUY_VIP_URL];
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+        [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"JSON: %@", operation.responseString);
+            
+            NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+            NSError *error;
+            NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+            if (dic == nil) {
+                NSLog(@"json parse failed \r\n");
+            }else{
+                NSNumber *status = [dic objectForKey:@"status"];
+                if ([status intValue] == 200) {
+                    [self.tableView.header beginRefreshing];
+                    NSString *msg = [NSString stringWithFormat:@"%@ 购买成功,VIP剩余时长 %@!",name,memo];
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alert show];
+                }else if([status intValue] >= 600){
+                    NSString *message = [dic objectForKey:@"message"];
+                    [self showHint:message];
+                    [self validateUserToken:[status intValue]];
+                }
             }
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"发生错误！%@",error);
-        
-        [self showHint:@"连接失败"];
-    }];
-    
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"发生错误！%@",error);
+            [self showHint:@"连接失败"];
+        }];
+    }
 }
 
 @end

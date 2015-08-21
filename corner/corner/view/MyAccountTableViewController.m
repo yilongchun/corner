@@ -72,30 +72,43 @@
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setObject:@"1200金币" forKey:@"name"];
+    [dic setObject:@"jinbi" forKey:@"img"];
     [dic setObject:[NSNumber numberWithInt:12] forKey:@"price"];
     [dataSource addObject:dic];
     NSMutableDictionary *dic2 = [NSMutableDictionary dictionary];
     [dic2 setObject:@"3000金币" forKey:@"name"];
+    [dic2 setObject:@"jinbi" forKey:@"img"];
+    [dic2 setObject:@"200" forKey:@"song"];
     [dic2 setObject:[NSNumber numberWithInt:30] forKey:@"price"];
     [dataSource addObject:dic2];
     NSMutableDictionary *dic3 = [NSMutableDictionary dictionary];
     [dic3 setObject:@"6000金币" forKey:@"name"];
+    [dic3 setObject:@"jinbi1" forKey:@"img"];
+    [dic3 setObject:@"500" forKey:@"song"];
     [dic3 setObject:[NSNumber numberWithInt:60] forKey:@"price"];
     [dataSource addObject:dic3];
     NSMutableDictionary *dic4 = [NSMutableDictionary dictionary];
     [dic4 setObject:@"10800金币" forKey:@"name"];
+    [dic4 setObject:@"jinbi2" forKey:@"img"];
+    [dic4 setObject:@"1200" forKey:@"song"];
     [dic4 setObject:[NSNumber numberWithInt:108] forKey:@"price"];
     [dataSource addObject:dic4];
     NSMutableDictionary *dic5 = [NSMutableDictionary dictionary];
     [dic5 setObject:@"21800金币" forKey:@"name"];
+    [dic5 setObject:@"jinbi3" forKey:@"img"];
+    [dic5 setObject:@"3000" forKey:@"song"];
     [dic5 setObject:[NSNumber numberWithInt:218] forKey:@"price"];
     [dataSource addObject:dic5];
     NSMutableDictionary *dic6 = [NSMutableDictionary dictionary];
     [dic6 setObject:@"51800金币" forKey:@"name"];
+    [dic6 setObject:@"jinbi4" forKey:@"img"];
+    [dic6 setObject:@"8200" forKey:@"song"];
     [dic6 setObject:[NSNumber numberWithInt:518] forKey:@"price"];
     [dataSource addObject:dic6];
     NSMutableDictionary *dic7 = [NSMutableDictionary dictionary];
     [dic7 setObject:@"108000金币" forKey:@"name"];
+    [dic7 setObject:@"jinbi5" forKey:@"img"];
+    [dic7 setObject:@"20000" forKey:@"song"];
     [dic7 setObject:[NSNumber numberWithInt:1080] forKey:@"price"];
     [dataSource addObject:dic7];
     
@@ -181,11 +194,13 @@
     if (indexPath.section == 0) {
     
         MyTableViewCell1 *cell = [tableView dequeueReusableCellWithIdentifier:@"cell1" forIndexPath:indexPath];
-        NSString *coins = [userinfo objectForKey:@"coins"];
-        if ([coins isEqualToString:@""]) {
-            coins = @"0";
+        NSNumber *coins = [userinfo objectForKey:@"coins"];
+        if (coins != nil && [coins isKindOfClass:[NSNumber class]]) {
+            cell.coinsLabel.text = [coins stringValue];
+        }else{
+            cell.coinsLabel.text = @"0";
         }
-        cell.coinsLabel.text = coins;
+        
         return cell;
     }else if (indexPath.section == 1) {
         
@@ -194,7 +209,16 @@
         NSString *name = [info objectForKey:@"name"];
         NSNumber *price = [info objectForKey:@"price"];
         cell.label1.text = name;
-        //        cell.label2.text = [NSString stringWithFormat:@"￥%d元",[price intValue]];
+        
+        NSString *img = [info objectForKey:@"img"];
+        [cell.conisImage setImage:[UIImage imageNamed:img]];
+        
+        NSString *song = [info objectForKey:@"song"];
+        if (song != nil) {
+            cell.label2.text = [NSString stringWithFormat:@"赠送%@金币",song];
+        }else{
+            cell.label2.text = @"";
+        }
         
         [cell.payBtn setTitle:[NSString stringWithFormat:@"￥%d元",[price intValue]] forState:UIControlStateNormal];
         cell.payBtn.tag = indexPath.row+1;

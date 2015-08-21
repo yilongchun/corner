@@ -18,6 +18,7 @@
 @implementation CallTableViewController{
     NSMutableArray *dataSource;
     int page;
+    NSMutableDictionary *userinfo;
 }
 
 - (void)viewDidLoad {
@@ -73,7 +74,7 @@
     int64_t delayInSeconds = 0.5;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [self loadData];
+        [self loadUser];
     });
 }
 
@@ -83,6 +84,41 @@
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [self loadMore];
     });
+}
+
+-(void)loadUser{
+    NSString *userid = [UD objectForKey:USER_ID];
+    NSString *token = [UD objectForKey:[NSString stringWithFormat:@"%@%@",USER_TOKEN_ID,userid]];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/%@?token=%@",HOST,USER_DETAIL_URL,userid,token];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", operation.responseString);
+        
+        NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+        NSError *error;
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if (dic == nil) {
+            NSLog(@"json parse failed \r\n");
+        }else{
+            NSNumber *status = [dic objectForKey:@"status"];
+            if ([status intValue] == 200) {
+                userinfo = [NSMutableDictionary dictionaryWithDictionary:[[dic objectForKey:@"message"] cleanNull] ];
+                [self loadData];
+            }else if([status intValue] >= 600){
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
+                [self validateUserToken:[status intValue]];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"发生错误！%@",error);
+        [self.tableView.pullToRefreshView stopAnimating];
+        [self showHint:@"连接失败"];
+        
+    }];
 }
 
 -(void)loadData{
@@ -273,35 +309,57 @@
 }
 
 -(void)call:(UIButton *)sender{
-    NSDictionary *info = [[dataSource objectAtIndex:sender.tag] cleanNull];
-    NSString *dst = [info objectForKey:@"phone"];
     
-    NSDictionary *loginUser = [UD objectForKey:LOGINED_USER];
-    NSString *src = [loginUser objectForKey:@"phone"];
-    if (src == nil || (src != nil && [src isEqualToString:@""])) {
-        [self showHint:@"请先填写手机号码再拨打电话"];
-        return;
+    NSNumber *type = [userinfo objectForKey:@"type"];
+    if ([type intValue] >=10) {
+        NSDictionary *info = [[dataSource objectAtIndex:sender.tag] cleanNull];
+        NSString *dst = [info objectForKey:@"phone"];
+        
+        NSDictionary *loginUser = [UD objectForKey:LOGINED_USER];
+        NSString *src = [loginUser objectForKey:@"phone"];
+        if (src == nil || (src != nil && [src isEqualToString:@""])) {
+            [self showHint:@"请先填写手机号码再拨打电话"];
+            return;
+        }
+        if (dst == nil || (dst != nil && [dst isEqualToString:@""])) {
+            [self showHint:@"对方未填写手机号码，拨打失败"];
+            return;
+        }
+        [self showHudInView:self.view hint:@"拨打中，请稍后"];
+        
+        NSString *url = [NSString stringWithFormat:@"http://42.121.87.117:8084/2013/interface/data/call.php?action=asyn_callout&verifymethod=pwd&loginid=867600310&loginpwd=defe12aad396f90e6b179c239de260d4&src=%@&dst=%@&ringback=1",src,dst];
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+        [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"JSON: %@", operation.responseString);
+            [self hideHud];
+            
+            NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+            NSError *error;
+            NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+            if (dic == nil) {
+                NSLog(@"json parse failed \r\n");
+            }else{
+                NSString *code = [dic objectForKey:@"code"];
+                NSString *msg = [dic objectForKey:@"msg"];
+                [self showHint:msg];
+            }
+            
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [self hideHud];
+            NSLog(@"发生错误！%@",error);
+            [self showHint:@"连接失败"];
+        }];
+    }else{
+        NSString *msg = [NSString stringWithFormat:@"您不是VIP，无法拨打电话"];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
     }
-    if (dst == nil || (dst != nil && [dst isEqualToString:@""])) {
-        [self showHint:@"对方未填写手机号码，拨打失败"];
-        return;
-    }
-    [self showHudInView:self.view hint:@"拨打中，请稍后"];
     
-    NSString *url = [NSString stringWithFormat:@"http://42.121.87.117:8084/2013/interface/data/call.php?action=asyn_callout&verifymethod=pwd&loginid=867600310&loginpwd=defe12aad396f90e6b179c239de260d4&src=%@&dst=%@&ringback=1",src,dst];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
-    [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", operation.responseString);
-        [self hideHud];
-        [self showHint:@"拨打成功，请稍后接听电话"];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self hideHud];
-        NSLog(@"发生错误！%@",error);
-        [self showHint:@"连接失败"];
-    }];
+    
 }
 
 @end

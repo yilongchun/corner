@@ -2668,6 +2668,7 @@ vip可以使用电话直呼功能</string>
                                         <connections>
                                             <outlet property="coinsLabel" destination="ai2-nJ-eJh" id="QNt-x0-hNB"/>
                                             <outlet property="titleLabel" destination="hZc-WY-He9" id="IdT-wT-eeI"/>
+                                            <outlet property="vipMsgLabel" destination="yWo-8C-2bz" id="0oa-AQ-xEb"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell2" rowHeight="74" id="Izg-cK-xTT" customClass="MyAccountTableViewCell2">

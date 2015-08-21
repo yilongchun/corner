@@ -18,6 +18,7 @@
 @implementation GiveGiftViewController{
     int page;//分页设置
     NSMutableArray *dataSource;
+    NSMutableDictionary *userinfo;
 }
 
 - (void)viewDidLoad {
@@ -51,7 +52,7 @@
     int64_t delayInSeconds = 0.5;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [self loadData];
+        [self loadUser];
     });
 }
 -(void)insertRowAtBottom{
@@ -61,6 +62,41 @@
         [self loadMore];
         
     });
+}
+
+-(void)loadUser{
+    NSString *userid = [UD objectForKey:USER_ID];
+    NSString *token = [UD objectForKey:[NSString stringWithFormat:@"%@%@",USER_TOKEN_ID,userid]];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/%@?token=%@",HOST,USER_DETAIL_URL,userid,token];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", operation.responseString);
+        
+        NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+        NSError *error;
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if (dic == nil) {
+            NSLog(@"json parse failed \r\n");
+        }else{
+            NSNumber *status = [dic objectForKey:@"status"];
+            if ([status intValue] == 200) {
+                userinfo = [NSMutableDictionary dictionaryWithDictionary:[[dic objectForKey:@"message"] cleanNull] ];
+                [self loadData];
+            }else if([status intValue] >= 600){
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
+                [self validateUserToken:[status intValue]];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"发生错误！%@",error);
+        [self.mytableview.pullToRefreshView stopAnimating];
+        [self showHint:@"连接失败"];
+        
+    }];
 }
 
 /**
@@ -212,12 +248,14 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.textLabel.font = [UIFont systemFontOfSize:15];
         
-        NSDictionary *loginUser = [UD objectForKey:LOGINED_USER];
-        NSString *coins = [loginUser objectForKey:@"coins"];
-        if ([coins isEqualToString:@""]) {
-            coins = @"0";
+        NSNumber *coins = [userinfo objectForKey:@"coins"];
+        if (coins != nil && [coins isKindOfClass:[NSNumber class]]) {
+            cell.textLabel.text = [NSString stringWithFormat:@"金币余额：%@金币",[coins stringValue]];
+        }else{
+            cell.textLabel.text = @"金币余额：0金币";
         }
-        cell.textLabel.text = [NSString stringWithFormat:@"金币余额：%@金币",coins];
+        
+        
         [cell.textLabel setTextColor:[UIColor whiteColor]];
         return cell;
     }else if (indexPath.row == 1) {
@@ -286,6 +324,15 @@
             NSNumber *status = [dic objectForKey:@"status"];
             if ([status intValue] == 200) {
                 
+                NSDictionary *message = [[dic objectForKey:@"message"] cleanNull];
+                NSString *gift_name = [message objectForKey:@"gift_name"];
+                NSNumber *gift_lovers =[message objectForKey:@"gift_lovers"];
+                
+                NSString *msg = [NSString stringWithFormat:@"赠送 %@ 给 %@ 增加 %d 魅力值",gift_name,_receive_user_name,[gift_lovers intValue]];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alert show];
+                
+                [self loadUser];
             }else if([status intValue] >= 600){
                 NSString *message = [dic objectForKey:@"message"];
                 [self showHint:message];
@@ -297,7 +344,6 @@
         NSLog(@"发生错误！%@",error);
         [self showHint:@"连接失败"];
     }];
-    
 }
 
 @end

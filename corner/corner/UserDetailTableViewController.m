@@ -33,6 +33,8 @@
     CGRect resetRect;
     BOOL rectFlag;
     int viewtype;//用于区别点的是哪个区域的图片
+    
+    NSMutableDictionary *loginUserInfo;
 }
 
 @end
@@ -94,8 +96,42 @@
     int64_t delayInSeconds = 0.5;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [self loadData];
+        [self loadUser];
     });
+}
+
+-(void)loadUser{
+    NSString *userid = [UD objectForKey:USER_ID];
+    NSString *token = [UD objectForKey:[NSString stringWithFormat:@"%@%@",USER_TOKEN_ID,userid]];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/%@?token=%@",HOST,USER_DETAIL_URL,userid,token];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", operation.responseString);
+        
+        NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+        NSError *error;
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if (dic == nil) {
+            NSLog(@"json parse failed \r\n");
+        }else{
+            NSNumber *status = [dic objectForKey:@"status"];
+            if ([status intValue] == 200) {
+                loginUserInfo = [NSMutableDictionary dictionaryWithDictionary:[[dic objectForKey:@"message"] cleanNull] ];
+                [self loadData];
+            }else if([status intValue] >= 600){
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
+                [self validateUserToken:[status intValue]];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"发生错误！%@",error);
+        [self.tableView.pullToRefreshView stopAnimating];
+        [self showHint:@"连接失败"];
+    }];
 }
 
 -(void)loadData{
@@ -957,9 +993,16 @@
             cell.rightLayoutCons.constant = 15;
         }
         
-        NSString *phone = [userinfo objectForKey:@"phone"];//电话
+        NSNumber *type = [loginUserInfo objectForKey:@"type"];
+        if ([type intValue] >=10) {
+            NSString *phone = [userinfo objectForKey:@"phone"];//电话
+            cell.rightLabel.text = [phone isEqualToString:@""] ? @"未填" : phone;
+        }else{
+            cell.rightLabel.text = @"仅VIP可查看联系方式";
+        }
+        
         cell.leftLabel.text = @"手机号";
-        cell.rightLabel.text = [phone isEqualToString:@""] ? @"未填" : phone;
+        
         cell.accessoryType = UITableViewCellAccessoryNone;
         return cell;
     }
