@@ -153,6 +153,7 @@
         imageData = UIImagePNGRepresentation(img);
 //        [self uploadImage:data];
         [self.chooseImageBtn setImage:img forState:UIControlStateNormal];
+        [self.chooseImageBtn setImage:img forState:UIControlStateHighlighted];
     }
     [picker dismissViewControllerAnimated:YES completion:^{
         

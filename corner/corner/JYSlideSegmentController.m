@@ -103,8 +103,16 @@ NSString * const segmentBarItemID = @"JYSegmentBarItem";
 
 - (void)fadongtai {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    FabudongtaiViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"FabudongtaiViewController"];
-    [self.navigationController pushViewController:vc animated:YES];
+//    FabudongtaiViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"FabudongtaiViewController"];
+//    [self.navigationController pushViewController:vc animated:YES];
+    
+    UINavigationController *nc =  [[UINavigationController alloc] initWithRootViewController:[storyboard instantiateViewControllerWithIdentifier:@"FabudongtaiViewController"]];
+    nc.navigationBar.barTintColor = [UIColor colorWithRed:0/255. green:0/255. blue:0/255. alpha:1];
+    nc.navigationBar.tintColor = [UIColor whiteColor];
+    [nc.navigationBar setTitleTextAttributes:
+     @{NSFontAttributeName:[UIFont boldSystemFontOfSize:17],
+       NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    [self presentViewController:nc animated:YES completion:nil];
 }
 
 -(void)leftMenu{
