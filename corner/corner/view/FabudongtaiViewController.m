@@ -286,7 +286,7 @@
                 int64_t delayInSeconds = 1.5;
                 dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
                 dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                    [self.navigationController popViewControllerAnimated:YES];
+                    [self dismissViewControllerAnimated:YES completion:nil];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"loadDongTai" object:nil];
                 });
                 
@@ -320,5 +320,9 @@
     }
     
     
+}
+
+-(void)cancel:(id)sender{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

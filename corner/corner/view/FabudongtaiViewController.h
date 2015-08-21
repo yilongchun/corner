@@ -16,4 +16,5 @@
 @property (weak, nonatomic) IBOutlet UIButton *locationBtn;
 @property (weak, nonatomic) IBOutlet UITextView *mytextview;
 - (IBAction)submit:(id)sender;
+- (IBAction)cancel:(id)sender;
 @end

@@ -1218,14 +1218,14 @@
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TWn-Pl-bTT">
                                         <rect key="frame" x="15" y="124" width="70" height="70"/>
-                                        <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="70" id="GXI-xl-01R"/>
                                             <constraint firstAttribute="height" constant="70" id="Qb2-jn-awm"/>
                                         </constraints>
-                                        <state key="normal" image="compose_pic_big_add_highlighted">
+                                        <state key="normal" image="compose_pic_add">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <state key="highlighted" image="compose_pic_add_highlighted"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="5"/>
@@ -1289,6 +1289,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="发动态" id="eCA-uh-IFW">
+                        <barButtonItem key="leftBarButtonItem" title="取消" id="Sda-8o-dzX">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="cancel:" destination="qrM-DH-wnc" id="5Q5-EE-Smh"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="确定" id="qvD-1r-JSs">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -1890,7 +1896,7 @@ vip可以使用电话直呼功能</string>
                                                 <constraint firstAttribute="height" constant="34" id="Rcl-Cm-KYG"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <state key="normal" title="邀请参加我的活动">
+                                            <state key="normal" title="查看他的活动">
                                                 <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -2769,7 +2775,8 @@ vip可以使用电话直呼功能</string>
         <image name="a6" width="19" height="24"/>
         <image name="btn_position" width="45" height="45"/>
         <image name="call" width="23" height="23"/>
-        <image name="compose_pic_big_add_highlighted" width="24" height="24"/>
+        <image name="compose_pic_add" width="70" height="70"/>
+        <image name="compose_pic_add_highlighted" width="70" height="70"/>
         <image name="eat_arrow" width="6" height="11"/>
         <image name="fabuBtn" width="80" height="80"/>
         <image name="fengexian" width="273" height="2"/>
