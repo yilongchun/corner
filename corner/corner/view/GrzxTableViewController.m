@@ -1068,16 +1068,16 @@
         
         CGFloat y = 290 - 17;//减去自我介绍的高度 下面有算高度
         CGFloat jiange = 32;//第一个图片集 和 第二个图片集间隔
-        CGFloat totalHeight = y + jiange + 10;
+        CGFloat totalHeight = y + jiange;
         if ((photo1.count + 1) % PICTURE_NUMBER == 0) {
-            height1 = ((photo1.count + 1) / PICTURE_NUMBER) * (imgWidth + ((photo1.count + 1) / PICTURE_NUMBER -1) * PICTURE_MARGIN);
+            height1 = ((photo1.count + 1) / PICTURE_NUMBER) * (imgWidth + PICTURE_MARGIN);
         }else{
-            height1 = (((photo1.count + 1) / PICTURE_NUMBER) + 1) * (imgWidth + ((photo1.count + 1) / PICTURE_NUMBER) * PICTURE_MARGIN);
+            height1 = (((photo1.count + 1) / PICTURE_NUMBER) + 1) * (imgWidth + PICTURE_MARGIN);
         }
         if ((photo2.count + 1) % PICTURE_NUMBER == 0) {
-            height2 = ((photo2.count + 1) / PICTURE_NUMBER) * (imgWidth + ((photo2.count + 1) / PICTURE_NUMBER -1) * PICTURE_MARGIN);
+            height2 = ((photo2.count + 1) / PICTURE_NUMBER) * (imgWidth + PICTURE_MARGIN);
         }else{
-            height2 = (((photo2.count + 1) / PICTURE_NUMBER) + 1) * (imgWidth + ((photo2.count + 1) / PICTURE_NUMBER) * PICTURE_MARGIN);
+            height2 = (((photo2.count + 1) / PICTURE_NUMBER) + 1) * (imgWidth + PICTURE_MARGIN);
         }
         
         
@@ -1415,6 +1415,12 @@
 //                userImage = cell.userImage;
 //                userImageCenter = cell.userImageCenter;
 //                userImageBtn = cell.userImageBtn;
+                
+                [cell.gongkaiBtn setBackgroundImage:[UIImage imageNamed:@"compose_pic_add"] forState:UIControlStateNormal];
+                [cell.gongkaiBtn setBackgroundImage:[UIImage imageNamed:@"compose_pic_add_highlighted"] forState:UIControlStateHighlighted];
+                
+                [cell.yinsiBtn setBackgroundImage:[UIImage imageNamed:@"compose_pic_add"] forState:UIControlStateNormal];
+                [cell.yinsiBtn setBackgroundImage:[UIImage imageNamed:@"compose_pic_add_highlighted"] forState:UIControlStateHighlighted];
                 
                 [cell.gongkaiBtn addTarget:self action:@selector(gongkaiBtnClick:) forControlEvents:UIControlEventTouchUpInside];
                 [cell.yinsiBtn addTarget:self action:@selector(yinsiBtnClick:) forControlEvents:UIControlEventTouchUpInside];
