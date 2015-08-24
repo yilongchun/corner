@@ -40,7 +40,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qG0-1X-0px">
-                                <rect key="frame" x="220" y="429" width="85" height="38"/>
+                                <rect key="frame" x="220" y="437" width="85" height="38"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" image="qqlogin">
                                     <color key="titleColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
@@ -51,7 +51,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XRh-ts-Ghg">
-                                <rect key="frame" x="118" y="429" width="85" height="38"/>
+                                <rect key="frame" x="118" y="437" width="85" height="38"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" image="wblogin">
                                     <color key="titleColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
@@ -62,7 +62,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XSU-rf-wod">
-                                <rect key="frame" x="15" y="429" width="85" height="38"/>
+                                <rect key="frame" x="15" y="437" width="85" height="38"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" image="wxlogin">
                                     <color key="titleColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
@@ -78,21 +78,17 @@
                                     <constraint firstAttribute="height" constant="40" id="pBs-kh-aRc"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView userInteractionEnabled="NO" alpha="0.29999999999999966" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fengexian" translatesAutoresizingMaskIntoConstraints="NO" id="PSe-Km-0Ie">
-                                <rect key="frame" x="15" y="304" width="290" height="2"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kGY-bc-kGO">
-                                <rect key="frame" x="15" y="306" width="290" height="40"/>
+                                <rect key="frame" x="15" y="314" width="290" height="40"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mHu-kk-PDf">
-                                <rect key="frame" x="15" y="356" width="138" height="35"/>
+                                <rect key="frame" x="15" y="364" width="138" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="9pP-HB-nAg"/>
                                 </constraints>
@@ -105,22 +101,22 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJn-wa-teL">
-                                <rect key="frame" x="153" y="401" width="14" height="18"/>
+                                <rect key="frame" x="153" y="409" width="14" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" alpha="0.30000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fengexian" translatesAutoresizingMaskIntoConstraints="NO" id="4Oc-jB-TM9">
-                                <rect key="frame" x="177" y="409" width="143" height="2"/>
+                                <rect key="frame" x="177" y="417" width="143" height="2"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" alpha="0.30000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fengexian" translatesAutoresizingMaskIntoConstraints="NO" id="VzT-WN-Z75">
-                                <rect key="frame" x="0.0" y="409" width="143" height="2"/>
+                                <rect key="frame" x="0.0" y="417" width="143" height="2"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="C4N-vJ-vCs">
                                 <rect key="frame" x="71" y="75" width="179" height="159"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OUW-bc-uU5">
-                                <rect key="frame" x="168" y="356" width="137" height="35"/>
+                                <rect key="frame" x="168" y="364" width="137" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="wOy-lb-rhJ"/>
                                 </constraints>
@@ -152,14 +148,12 @@
                             <constraint firstItem="mHu-kk-PDf" firstAttribute="top" secondItem="OUW-bc-uU5" secondAttribute="top" id="OLg-K3-Iou"/>
                             <constraint firstItem="mHu-kk-PDf" firstAttribute="width" secondItem="OUW-bc-uU5" secondAttribute="width" id="P78-Q0-0p9"/>
                             <constraint firstItem="4Oc-jB-TM9" firstAttribute="centerY" secondItem="PJn-wa-teL" secondAttribute="centerY" id="PPh-q8-nc2"/>
-                            <constraint firstItem="PSe-Km-0Ie" firstAttribute="top" secondItem="U2y-ML-L1U" secondAttribute="bottom" id="QTc-l1-ge2"/>
                             <constraint firstAttribute="trailing" secondItem="OUW-bc-uU5" secondAttribute="trailing" constant="15" id="R9J-LE-eiY"/>
                             <constraint firstItem="mHu-kk-PDf" firstAttribute="top" secondItem="kGY-bc-kGO" secondAttribute="bottom" constant="10" id="Ren-jc-u4Z"/>
                             <constraint firstItem="OUW-bc-uU5" firstAttribute="leading" secondItem="mHu-kk-PDf" secondAttribute="trailing" constant="15" id="UM3-2K-Vqa"/>
                             <constraint firstItem="I48-m5-03n" firstAttribute="top" secondItem="fJG-kk-q1r" secondAttribute="top" id="YBm-H6-c90"/>
                             <constraint firstItem="XRh-ts-Ghg" firstAttribute="top" secondItem="PJn-wa-teL" secondAttribute="bottom" constant="10" id="YWH-mn-7JA"/>
                             <constraint firstItem="kGY-bc-kGO" firstAttribute="trailing" secondItem="U2y-ML-L1U" secondAttribute="trailing" id="YnE-h3-W79"/>
-                            <constraint firstItem="U2y-ML-L1U" firstAttribute="leading" secondItem="PSe-Km-0Ie" secondAttribute="leading" id="aS8-ce-okv"/>
                             <constraint firstItem="cAU-oy-tHP" firstAttribute="top" secondItem="I48-m5-03n" secondAttribute="bottom" id="bw8-ly-TfN"/>
                             <constraint firstItem="PJn-wa-teL" firstAttribute="top" secondItem="mHu-kk-PDf" secondAttribute="bottom" constant="10" id="d96-Qe-dWQ"/>
                             <constraint firstItem="PJn-wa-teL" firstAttribute="centerY" secondItem="VzT-WN-Z75" secondAttribute="centerY" id="eXV-sw-mzZ"/>
@@ -169,8 +163,7 @@
                             <constraint firstAttribute="trailing" secondItem="4Oc-jB-TM9" secondAttribute="trailing" id="oNN-Yl-dC0"/>
                             <constraint firstAttribute="trailing" secondItem="I48-m5-03n" secondAttribute="trailing" id="qrv-BR-CdE"/>
                             <constraint firstAttribute="centerX" secondItem="XRh-ts-Ghg" secondAttribute="centerX" id="reh-8x-kJw"/>
-                            <constraint firstItem="U2y-ML-L1U" firstAttribute="trailing" secondItem="PSe-Km-0Ie" secondAttribute="trailing" id="uYS-sv-0nM"/>
-                            <constraint firstItem="kGY-bc-kGO" firstAttribute="top" secondItem="PSe-Km-0Ie" secondAttribute="bottom" id="zgO-PP-hrt"/>
+                            <constraint firstItem="kGY-bc-kGO" firstAttribute="top" secondItem="U2y-ML-L1U" secondAttribute="bottom" constant="10" id="zD5-ja-fpz"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Nob-io-jBV"/>
@@ -292,7 +285,7 @@
                                 <rect key="frame" x="27" y="266" width="267" height="37"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -305,7 +298,7 @@
                                 <rect key="frame" x="27" y="313" width="267" height="37"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -1701,7 +1694,7 @@ vip可以使用电话直呼功能</string>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="时间" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F37-Je-Jcf">
                                                     <rect key="frame" x="15" y="16" width="30" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择活动时间" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9z5-YD-F34">

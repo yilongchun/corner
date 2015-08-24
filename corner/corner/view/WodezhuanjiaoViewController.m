@@ -415,14 +415,9 @@
 //    }
 //}
 
-/**
- *  发动态
- *
- *  @param sender
- */
+
 - (IBAction)fadongtai:(id)sender {
-    FabudongtaiViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"FabudongtaiViewController"];
-    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 - (void)imageClick:(UITapGestureRecognizer *)recognizer

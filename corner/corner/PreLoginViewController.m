@@ -44,6 +44,10 @@
     [self.loginBtn setBackgroundImage:loginImg forState:UIControlStateNormal];
     [self.regBtn setBackgroundImage:loginImg forState:UIControlStateNormal];
     
+    
+    [self.username setBackground:[[UIImage imageNamed:@"regBg"] stretchableImageWithLeftCapWidth:30 topCapHeight:17]];
+    [self.password setBackground:[[UIImage imageNamed:@"regBg"] stretchableImageWithLeftCapWidth:30 topCapHeight:17]];
+    
 //    UIImage *img = [[UIImage imageNamed:@"star_btn_v1"] stretchableImageWithLeftCapWidth:25 topCapHeight:0];
 //    [self.wxBtn setBackgroundImage:img forState:UIControlStateNormal];
 //    [self.wbBtn setBackgroundImage:img forState:UIControlStateNormal];
