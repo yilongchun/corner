@@ -824,8 +824,12 @@
 
             if ([connected boolValue]) {//已关注
                 cell.likeBtn.imageView.image = [UIImage imageNamed:@"like"];
+                [cell.likeBtn setImage:[UIImage imageNamed:@"like"] forState:UIControlStateNormal];
+                [cell.likeBtn setImage:[UIImage imageNamed:@"like"] forState:UIControlStateHighlighted];
             }else{//未关注
                 cell.likeBtn.imageView.image = [UIImage imageNamed:@"unlike2"];
+                [cell.likeBtn setImage:[UIImage imageNamed:@"unlike2"] forState:UIControlStateNormal];
+                [cell.likeBtn setImage:[UIImage imageNamed:@"unlike2"] forState:UIControlStateHighlighted];
             }
             
             [cell.likeBtn addTarget:self action:@selector(like) forControlEvents:UIControlEventTouchUpInside];
