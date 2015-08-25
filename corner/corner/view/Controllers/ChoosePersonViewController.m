@@ -36,6 +36,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 @implementation ChoosePersonViewController{
     BOOL flag;
+    BOOL disabledFlag;
 }
 
 #pragma mark - Object Lifecycle
@@ -57,6 +58,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     [super viewDidLoad];
     
     flag = NO;
+    disabledFlag = YES;
     UIImageView *img = [[UIImageView alloc] initWithFrame:self.view.frame];
     [img setImage:[UIImage imageNamed:@"mainbackground"]];
     [self.view addSubview:img];
@@ -105,12 +107,19 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
         // Fade the back card into view.
         self.backCardView.alpha = 0.f;
         [self.view insertSubview:self.backCardView belowSubview:self.frontCardView];
+        
         [UIView animateWithDuration:0.5
                               delay:0.0
                             options:UIViewAnimationOptionCurveEaseInOut
                          animations:^{
                              self.backCardView.alpha = 1.f;
-                         } completion:nil];
+                         } completion:^(BOOL finished){
+                             if (finished) {
+                                 if (!disabledFlag) {
+                                     disabledFlag = YES;
+                                 }
+                             }
+                         }];
     }
 }
 
@@ -224,15 +233,20 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 // Programmatically "nopes" the front card view.
 - (void)nopeFrontCardView {
-    [self.frontCardView mdc_swipe:MDCSwipeDirectionLeft];
-    [self loadData];
-    
+    if (disabledFlag) {
+        disabledFlag = NO;
+        [self.frontCardView mdc_swipe:MDCSwipeDirectionLeft];
+        [self loadData];
+    }
 }
 
 // Programmatically "likes" the front card view.
 - (void)likeFrontCardView {
-    [self.frontCardView mdc_swipe:MDCSwipeDirectionRight];
-    [self loadData];
+    if (disabledFlag) {
+        disabledFlag = NO;
+        [self.frontCardView mdc_swipe:MDCSwipeDirectionRight];
+        [self loadData];
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated{

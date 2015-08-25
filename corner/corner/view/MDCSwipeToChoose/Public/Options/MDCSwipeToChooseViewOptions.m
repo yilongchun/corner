@@ -30,11 +30,11 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _likedText = [NSLocalizedString(@"YES", nil) uppercaseString];
+        _likedText = @"喜欢";
         _likedColor = [UIColor colorWith8BitRed:29.f green:245.f blue:106.f alpha:1.f];
         _likedRotationAngle = -15.f;
 
-        _nopeText = [NSLocalizedString(@"NO", nil) uppercaseString];
+        _nopeText = @"没感觉";
         _nopeColor = [UIColor colorWith8BitRed:247.f green:91.f blue:37.f alpha:1.f];
         _nopeRotationAngle = 15.f;
 
