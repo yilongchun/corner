@@ -20,6 +20,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.automaticallyAdjustsScrollViewInsets = YES;
+        self.extendedLayoutIncludesOpaqueBars = YES;
+    }
+    
     self.title = @"联系方式";
     
     UIView *leftMargin = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 40)];

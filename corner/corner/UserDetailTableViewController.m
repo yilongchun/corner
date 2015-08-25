@@ -1529,17 +1529,27 @@
 
 //聊天
 -(void)chat{
-    WEAKSELF
-    NSNumber *userid = [userinfo objectForKey:@"id"];
-    [[CDIM sharedInstance] fetchConvWithOtherId:[userid stringValue] callback : ^(AVIMConversation *conversation, NSError *error) {
-        if (error) {
-            DLog(@"%@", error);
-        }
-        else {
-            LCEChatRoomVC *chatRoomVC = [[LCEChatRoomVC alloc] initWithConv:conversation];
-            [weakSelf.navigationController pushViewController:chatRoomVC animated:YES];
-        }
-    }];
+    NSNumber *type = [loginUserInfo objectForKey:@"type"];
+    if ([type intValue] >=10) {
+        WEAKSELF
+        NSNumber *userid = [userinfo objectForKey:@"id"];
+        [[CDIM sharedInstance] fetchConvWithOtherId:[userid stringValue] callback : ^(AVIMConversation *conversation, NSError *error) {
+            if (error) {
+                DLog(@"%@", error);
+            }
+            else {
+                LCEChatRoomVC *chatRoomVC = [[LCEChatRoomVC alloc] initWithConv:conversation];
+                [weakSelf.navigationController pushViewController:chatRoomVC animated:YES];
+            }
+        }];
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"仅VIP才能聊天" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    
+    
+    
+    
 }
 
 @end

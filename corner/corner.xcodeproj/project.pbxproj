@@ -301,6 +301,10 @@
 		E46E8DE41B4677EB006CAE06 /* ChooseXingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E46E8DE21B4677EB006CAE06 /* ChooseXingViewController.xib */; };
 		E46E8DE81B467D7D006CAE06 /* XiangxueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E46E8DE61B467D7D006CAE06 /* XiangxueViewController.m */; };
 		E46E8DE91B467D7D006CAE06 /* XiangxueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E46E8DE71B467D7D006CAE06 /* XiangxueViewController.xib */; };
+		E47C3F621B8C00FA0002CBAA /* CallLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E47C3F601B8C00FA0002CBAA /* CallLogViewController.m */; };
+		E47C3F631B8C00FA0002CBAA /* CallLogViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E47C3F611B8C00FA0002CBAA /* CallLogViewController.xib */; };
+		E47C3F671B8C01C00002CBAA /* CallLogTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E47C3F651B8C01C00002CBAA /* CallLogTableViewCell.m */; };
+		E47C3F681B8C01C00002CBAA /* CallLogTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E47C3F661B8C01C00002CBAA /* CallLogTableViewCell.xib */; };
 		E48ACEE41B70926900E18970 /* UIButton+Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = E48ACEE31B70926900E18970 /* UIButton+Badge.m */; };
 		E48ACEE71B70927700E18970 /* UIBarButtonItem+Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = E48ACEE61B70927700E18970 /* UIBarButtonItem+Badge.m */; };
 		E4CDAFEC1B6879B000A0432E /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4CDAFEB1B6879B000A0432E /* MainViewController.m */; };
@@ -944,6 +948,12 @@
 		E46E8DE51B467D7D006CAE06 /* XiangxueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XiangxueViewController.h; sourceTree = "<group>"; };
 		E46E8DE61B467D7D006CAE06 /* XiangxueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XiangxueViewController.m; sourceTree = "<group>"; };
 		E46E8DE71B467D7D006CAE06 /* XiangxueViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XiangxueViewController.xib; sourceTree = "<group>"; };
+		E47C3F5F1B8C00FA0002CBAA /* CallLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallLogViewController.h; sourceTree = "<group>"; };
+		E47C3F601B8C00FA0002CBAA /* CallLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallLogViewController.m; sourceTree = "<group>"; };
+		E47C3F611B8C00FA0002CBAA /* CallLogViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CallLogViewController.xib; sourceTree = "<group>"; };
+		E47C3F641B8C01C00002CBAA /* CallLogTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallLogTableViewCell.h; sourceTree = "<group>"; };
+		E47C3F651B8C01C00002CBAA /* CallLogTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallLogTableViewCell.m; sourceTree = "<group>"; };
+		E47C3F661B8C01C00002CBAA /* CallLogTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CallLogTableViewCell.xib; sourceTree = "<group>"; };
 		E48ACEE21B70926900E18970 /* UIButton+Badge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Badge.h"; sourceTree = "<group>"; };
 		E48ACEE31B70926900E18970 /* UIButton+Badge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Badge.m"; sourceTree = "<group>"; };
 		E48ACEE51B70927700E18970 /* UIBarButtonItem+Badge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Badge.h"; sourceTree = "<group>"; };
@@ -2203,6 +2213,12 @@
 				E43DAA6B1B54B1FC008CF574 /* CallTableViewController.m */,
 				E43DAA6D1B54B7F7008CF574 /* CallTableViewCell.h */,
 				E43DAA6E1B54B7F7008CF574 /* CallTableViewCell.m */,
+				E47C3F5F1B8C00FA0002CBAA /* CallLogViewController.h */,
+				E47C3F601B8C00FA0002CBAA /* CallLogViewController.m */,
+				E47C3F611B8C00FA0002CBAA /* CallLogViewController.xib */,
+				E47C3F641B8C01C00002CBAA /* CallLogTableViewCell.h */,
+				E47C3F651B8C01C00002CBAA /* CallLogTableViewCell.m */,
+				E47C3F661B8C01C00002CBAA /* CallLogTableViewCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -2657,6 +2673,7 @@
 				E446F2F01B325F240060E9D7 /* UserDetailTableViewCell2.xib in Resources */,
 				E446F2F21B325F240060E9D7 /* UserDetailTableViewCell3.xib in Resources */,
 				E4DBFAFA1B4529A5002004BC /* XuanshiViewController.xib in Resources */,
+				E47C3F681B8C01C00002CBAA /* CallLogTableViewCell.xib in Resources */,
 				E446F2E71B325F240060E9D7 /* sr_refresh.png in Resources */,
 				E41E4CD91B831CD600C968A9 /* ShaixuanViewController.xib in Resources */,
 				E44D47F71B325DA40064404B /* Main.storyboard in Resources */,
@@ -2673,6 +2690,7 @@
 				E44BE9D01B4A181000D35DE8 /* UpdateAgeViewController.xib in Resources */,
 				E4DBFAF01B4517E3002004BC /* NichengUpdateViewController.xib in Resources */,
 				E44BE9DE1B4A589A00D35DE8 /* WeiboSDK.bundle in Resources */,
+				E47C3F631B8C00FA0002CBAA /* CallLogViewController.xib in Resources */,
 				E446F3021B325F240060E9D7 /* GrzxTableViewCell.xib in Resources */,
 				E4E2111C1B5368D600940E90 /* BaiduWalletSDKBundle.bundle in Resources */,
 				E46928421B3AA3550094CA7A /* TongchengyaoyueTableViewCell.xib in Resources */,
@@ -2816,6 +2834,7 @@
 				E446F2A21B325F240060E9D7 /* UITableViewCell+NIB.m in Sources */,
 				E45E03161B565AC800724211 /* CDIMService.m in Sources */,
 				E446F2AE1B325F240060E9D7 /* UIViewController+RecursiveDescription.m in Sources */,
+				E47C3F621B8C00FA0002CBAA /* CallLogViewController.m in Sources */,
 				E4F59DEA1B42437200A6F002 /* WodeyaoyueTableViewCell.m in Sources */,
 				E45E03191B565AC800724211 /* MCPhotographyHelper.m in Sources */,
 				E446F26E1B325F240060E9D7 /* NSObject+AutoCoding.m in Sources */,
@@ -3023,6 +3042,7 @@
 				E446F2B11B325F240060E9D7 /* UIWebView+Alert.m in Sources */,
 				E446F3071B325F240060E9D7 /* PaihangTableViewCell.m in Sources */,
 				E446F2841B325F240060E9D7 /* UIButton+CountDown.m in Sources */,
+				E47C3F671B8C01C00002CBAA /* CallLogTableViewCell.m in Sources */,
 				E41E4CC11B82EAE600C968A9 /* MDCSwipeToChooseViewOptions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

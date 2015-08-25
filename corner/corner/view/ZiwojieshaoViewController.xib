@@ -33,6 +33,10 @@
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="point_yellow" translatesAutoresizingMaskIntoConstraints="NO" id="E1X-kF-Sav">
                     <rect key="frame" x="8" y="175" width="4" height="4"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="4" id="3nD-aE-hym"/>
+                        <constraint firstAttribute="height" constant="4" id="5hZ-Lg-qLK"/>
+                    </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="point_yellow" translatesAutoresizingMaskIntoConstraints="NO" id="eMK-6N-8U9">
                     <rect key="frame" x="8" y="194" width="4" height="4"/>

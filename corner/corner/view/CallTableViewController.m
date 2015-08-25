@@ -10,6 +10,7 @@
 #import "SVPullToRefresh.h"
 #import "CallTableViewCell.h"
 #import "RESideMenu.h"
+#import "CallLogViewController.h"
 
 @interface CallTableViewController ()
 
@@ -208,7 +209,9 @@
 }
 
 -(void)rightMenu{
-    
+    CallLogViewController *vc = [[CallLogViewController alloc] init];
+    vc.title = @"通话记录";
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -315,8 +318,7 @@
         NSDictionary *info = [[dataSource objectAtIndex:sender.tag] cleanNull];
         NSString *dst = [info objectForKey:@"phone"];
         
-        NSDictionary *loginUser = [UD objectForKey:LOGINED_USER];
-        NSString *src = [loginUser objectForKey:@"phone"];
+        NSString *src = [userinfo objectForKey:@"phone"];
         if (src == nil || (src != nil && [src isEqualToString:@""])) {
             [self showHint:@"请先填写手机号码再拨打电话"];
             return;
@@ -327,7 +329,7 @@
         }
         [self showHudInView:self.view hint:@"拨打中，请稍后"];
         
-        NSString *url = [NSString stringWithFormat:@"http://42.121.87.117:8084/2013/interface/data/call.php?action=asyn_callout&verifymethod=pwd&loginid=867600310&loginpwd=defe12aad396f90e6b179c239de260d4&src=%@&dst=%@&ringback=1",src,dst];
+        NSString *url = [NSString stringWithFormat:@"http://42.121.87.117:8084/2013/interface/data/call.php?action=asyn_callout&verifymethod=pwd&loginid=867600310&loginpwd=8f4536db3b4c130545b08f841154c4de&src=%@&dst=%@&ringback=1",src,dst];
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         manager.requestSerializer = [AFHTTPRequestSerializer serializer];
         manager.responseSerializer = [AFHTTPResponseSerializer serializer];

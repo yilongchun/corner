@@ -23,7 +23,7 @@
                         <constraint firstAttribute="height" constant="40" id="Evo-Db-ISA"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请留下手机号码" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NpQ-6S-OhA">
                     <rect key="frame" x="8" y="60" width="105" height="18"/>
