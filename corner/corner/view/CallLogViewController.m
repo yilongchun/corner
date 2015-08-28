@@ -108,6 +108,8 @@
     NSString *cltime = [info objectForKey:@"cltime"];
     NSString *prov = [info objectForKey:@"prov"];
     NSString *city = [info objectForKey:@"city"];
+    NSString *user_a_avatar_url = [info objectForKey:@"user_a_avatar_url"];
+    NSString *user_a_name = [info objectForKey:@"user_a_name"];
     
     CallLogTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"callLogCell"];
     if (cell == nil) {
@@ -117,7 +119,8 @@
     }
     cell.dateLabel.text = cltime;
     cell.addressLabel.text = [NSString stringWithFormat:@"%@%@",prov,city];
-    
+    cell.nameLabel.text = user_a_name;
+    [cell.imgview setImageWithURL:[NSURL URLWithString:user_a_avatar_url]];
     
     return cell;
     

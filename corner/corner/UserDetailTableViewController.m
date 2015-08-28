@@ -476,7 +476,7 @@
         NSArray *activities = [userinfo objectForKey:@"activities"];
         
         if ([activities count] == 0) {
-            return 167;
+            return 70;
         }else{
             NSDictionary *activity = [[activities objectAtIndex:indexPath.row] cleanNull];
             NSString *pic_url = [activity objectForKey:@"pic_url"];
@@ -523,7 +523,7 @@
         }
         
     }else if (indexPath.section == 3){//礼物
-        return 167;
+        return 70;
     }else if (indexPath.section == 4){//电话
         return 50;
     }

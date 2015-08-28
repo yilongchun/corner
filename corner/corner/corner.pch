@@ -13,7 +13,7 @@
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
 //#define HOST @"http://corner.songguokeji.com"
-#define HOST @"http://112.74.197.223"
+#define HOST @"http://112.74.197.223"//正式地址
 
 
 #define GAODE_API_KEY @"ed58ad8bba7f735f54ddbeb44472a67d"
@@ -41,6 +41,8 @@
 #define USER_LIST_URL @"/user/list"
 //用户详情
 #define USER_DETAIL_URL @"/user/detail"
+//我参与的邀约
+#define ACTIVITY_MY_URL @"/activity/my"
 //修改用户信息
 #define USER_SET_URL @"/user/set"
 //添加好友

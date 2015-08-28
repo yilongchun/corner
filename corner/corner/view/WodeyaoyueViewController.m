@@ -93,61 +93,88 @@
     
     NSString *userid = [UD objectForKey:USER_ID];
     NSString *token = [UD objectForKey:[NSString stringWithFormat:@"%@%@",USER_TOKEN_ID,userid]];
-    NSString *urlString = [NSString stringWithFormat:@"%@%@/%@?token=%@",HOST,USER_DETAIL_URL,userid,token];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
-    [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", operation.responseString);
-        
-        if (self.segmentControl.selectedSegmentIndex == 0){
+    NSString *urlString;
+    
+    
+    if (self.segmentControl.selectedSegmentIndex == 0){
+        urlString = [NSString stringWithFormat:@"%@%@/%@?token=%@",HOST,USER_DETAIL_URL,userid,token];
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+        [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"JSON: %@", operation.responseString);
             [tableview1.pullToRefreshView stopAnimating];
-        }else{
-            [tableview2.pullToRefreshView stopAnimating];
-        }
-        
-     
-        NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
-        NSError *error;
-        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
-        if (dic == nil) {
-            NSLog(@"json parse failed \r\n");
-        }else{
-            NSNumber *status = [dic objectForKey:@"status"];
-            if ([status intValue] == 200) {
-                
-                
-                NSDictionary *userinfo = [[dic objectForKey:@"message"] cleanNull];
-                
-                //用户的邀约
-                NSArray *activities = [userinfo objectForKey:@"activities"];
-                
-                if (self.segmentControl.selectedSegmentIndex == 0){
+            NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+            NSError *error;
+            NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+            if (dic == nil) {
+                NSLog(@"json parse failed \r\n");
+            }else{
+                NSNumber *status = [dic objectForKey:@"status"];
+                if ([status intValue] == 200) {
+                    NSDictionary *userinfo = [[dic objectForKey:@"message"] cleanNull];
+                    //用户的邀约
+                    NSArray *activities = [userinfo objectForKey:@"activities"];
                     [dataSource1 removeAllObjects];
                     [dataSource1 addObjectsFromArray:activities];
                     [tableview1 reloadData];
-                }else{
-                    [dataSource2 removeAllObjects];
-                    [dataSource2 addObjectsFromArray:activities];
-                    [tableview2 reloadData];
+                }else if([status intValue] >= 600){
+                    NSString *message = [dic objectForKey:@"message"];
+                    [self showHint:message];
+                    [self validateUserToken:[status intValue]];
                 }
-            }else if([status intValue] >= 600){
-                NSString *message = [dic objectForKey:@"message"];
-                [self showHint:message];
-                [self validateUserToken:[status intValue]];
             }
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"发生错误！%@",error);
-        if (self.segmentControl.selectedSegmentIndex == 0){
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"发生错误！%@",error);
             [tableview1 reloadData];
-        }else{
-            [tableview2 reloadData];
-        }
-        [self showHint:@"连接失败"];
+            [self showHint:@"连接失败"];
+        }];
+    }else{
+        urlString = [NSString stringWithFormat:@"%@%@",HOST,ACTIVITY_MY_URL];
+        page2 = 1;
         
-    }];
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        [params setValue:[NSNumber numberWithInt:page2] forKey:@"page"];
+        [params setValue:token forKey:@"token"];
+        
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+        [manager POST:urlString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"JSON: %@", operation.responseString);
+            [tableview2.pullToRefreshView stopAnimating];
+            NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+            NSError *error;
+            NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+            if (dic == nil) {
+                NSLog(@"json parse failed \r\n");
+            }else{
+                NSNumber *status = [dic objectForKey:@"status"];
+                if ([status intValue] == 200) {
+                    
+//                    NSDictionary *userinfo = [[dic objectForKey:@"message"] cleanNull];
+//
+//                    //用户的邀约
+//                    NSArray *activities = [userinfo objectForKey:@"activities"];
+//                    [dataSource2 removeAllObjects];
+//                    [dataSource2 addObjectsFromArray:activities];
+                    [tableview2 reloadData];
+                    
+                }else if([status intValue] >= 600){
+                    NSString *message = [dic objectForKey:@"message"];
+                    [self showHint:message];
+                    [self validateUserToken:[status intValue]];
+                }
+            }
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"发生错误！%@",error);
+            [tableview2 reloadData];
+            [self showHint:@"连接失败"];
+            
+        }];
+    }
 }
 
 

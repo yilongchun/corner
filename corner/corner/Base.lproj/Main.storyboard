@@ -1877,19 +1877,19 @@ vip可以使用电话直呼功能</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="zanwuyaoyuecell" rowHeight="167" id="tVC-gm-SpE">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="zanwuyaoyuecell" rowHeight="70" id="tVC-gm-SpE">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tVC-gm-SpE" id="Os2-Fw-Da3">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uEL-fx-qNu">
-                                            <rect key="frame" x="40" y="123" width="240" height="34"/>
+                                            <rect key="frame" x="40" y="26" width="240" height="34"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="34" id="Rcl-Cm-KYG"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <state key="normal" title="查看他的活动">
+                                            <state key="normal" title="没有发布任何邀约">
                                                 <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -1902,14 +1902,14 @@ vip可以使用电话直呼功能</string>
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="liwucell" rowHeight="167" id="Haf-tl-XtM">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="liwucell" rowHeight="70" id="Haf-tl-XtM">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Haf-tl-XtM" id="2vc-Z7-NbU">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ThA-0w-GY2">
-                                            <rect key="frame" x="40" y="123" width="240" height="34"/>
+                                            <rect key="frame" x="40" y="26" width="240" height="34"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="34" id="bWW-n4-aEU"/>
                                             </constraints>
