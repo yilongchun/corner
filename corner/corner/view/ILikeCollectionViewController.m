@@ -145,7 +145,7 @@ static NSString * const reuseIdentifier = @"ILikeCollectionViewCell";
     ILikeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     NSDictionary *info = [[dataSource objectAtIndex:indexPath.row] cleanNull];
-    NSString *avatar_url = [info objectForKey:@"avatar_url"];//头像
+    NSString *avatar_url = [NSString stringWithFormat:@"%@-small",[info objectForKey:@"avatar_url"]];//头像
     [cell.myimageview setImageWithURL:[NSURL URLWithString:avatar_url] placeholderImage:[UIImage imageNamed:@"public_load_face"]];
     
     NSNumber *sex = [info objectForKey:@"sex"];

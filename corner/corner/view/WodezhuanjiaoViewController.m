@@ -258,7 +258,7 @@
     NSString *nickname = [user objectForKey:@"nickname"];
     NSNumber *userid = [user objectForKey:@"id"];
     if (![avatar_url isEqualToString:@""]) {
-        [cell.userImage setImageWithURL:[NSURL URLWithString:avatar_url]];
+        [cell.userImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@-small",avatar_url]]];
     }
     if (![nickname isEqualToString:@""]) {
         cell.username.text = nickname;
@@ -282,7 +282,7 @@
    
     if (![pic_url hasSuffix:@"post.jpg"] && ![pic_url isEqualToString:@""]) {
         cell.imgViewHeight.constant = 140;
-        [cell.myimage setImageWithURL:[NSURL URLWithString:pic_url] placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
+        [cell.myimage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@-small",pic_url]] placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
     }else{
         cell.imgViewHeight.constant = 0;
     }

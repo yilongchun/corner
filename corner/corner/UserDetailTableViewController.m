@@ -263,7 +263,7 @@
         for (int i = 0; i < [photo1 count]; i++) {
             UIImageView *img = [[UIImageView alloc] initWithFrame:cell.gongkaiBtn.frame];
             img.contentMode = UIViewContentModeScaleToFill;
-            [img setImageWithURL:[NSURL URLWithString:[[photo1 objectAtIndex:i] objectForKey:@"url"]]];
+            [img setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@-small", [[photo1 objectAtIndex:i] objectForKey:@"url"]]]];
             img.tag = i;
             img.userInteractionEnabled = YES;
             UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageClick:)];
@@ -293,7 +293,7 @@
         for (int i = 0; i < [photo2 count]; i++) {
             UIImageView *img = [[UIImageView alloc] initWithFrame:cell.yinsiBtn.frame];
             img.contentMode = UIViewContentModeScaleToFill;
-            [img setImageWithURL:[NSURL URLWithString:[[photo2 objectAtIndex:i] objectForKey:@"url"]]];
+            [img setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@-small", [[photo2 objectAtIndex:i] objectForKey:@"url"]]]];
             img.tag = i;
             img.userInteractionEnabled = YES;
             UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageClick:)];

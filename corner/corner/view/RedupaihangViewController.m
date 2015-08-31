@@ -232,7 +232,7 @@
         
         //    NSString *age = [info objectForKey:@"age"];
 //        NSString *zhiye = [info objectForKey:@"zhiye"];
-        NSString *avatar_url = [info objectForKey:@"avatar_url"];
+        NSString *avatar_url = [NSString stringWithFormat:@"%@-small",[info objectForKey:@"avatar_url"]];
         
         switch (indexPath.row) {
             case 0:
@@ -301,7 +301,7 @@
         NSNumber *sexnum = [info objectForKey:@"sex"];
         //    NSString *age = [info objectForKey:@"age"];
 //        NSString *zhiye = [info objectForKey:@"zhiye"];
-        NSString *avatar_url = [info objectForKey:@"avatar_url"];
+        NSString *avatar_url = [NSString stringWithFormat:@"%@-small",[info objectForKey:@"avatar_url"]];
         
         cell.sortLabel.text = [NSString stringWithFormat:@"%d",indexPath.row + 1];
         if ([nickname isEqualToString:@""]) {
