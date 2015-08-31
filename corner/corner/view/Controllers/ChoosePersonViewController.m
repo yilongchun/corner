@@ -321,8 +321,6 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
                 NSLog(@"发生错误！%@",error);
                 //            [self showHint:@"连接失败"];
             }];
-            
-            
         });
         
         
