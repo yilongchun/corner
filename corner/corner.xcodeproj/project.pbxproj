@@ -3239,7 +3239,7 @@
 					"-fobjc-arc",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ec1eb976-0ab7-4683-bbab-9ef4ce307e43";
+				PROVISIONING_PROFILE = "39020f61-f964-4a8b-a8d2-33e253cd2cd1";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
@@ -3321,7 +3321,7 @@
 					"-fobjc-arc",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ec1eb976-0ab7-4683-bbab-9ef4ce307e43";
+				PROVISIONING_PROFILE = "39020f61-f964-4a8b-a8d2-33e253cd2cd1";
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;
