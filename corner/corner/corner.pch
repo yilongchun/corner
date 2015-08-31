@@ -8,14 +8,17 @@
 
 #ifndef corner_corner_pch
 #define corner_corner_pch
-
+#endif
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+
+//API接口定义
 
 //#define HOST @"http://corner.songguokeji.com"
 #define HOST @"http://112.74.197.223"//正式地址
 
-
+//高德地图
 #define GAODE_API_KEY @"ed58ad8bba7f735f54ddbeb44472a67d"
 //leancloud
 #define LEANCLOUD_APP_ID  @"hkvqbh84v4aeta0pgay00qwws1bejf0g6xx7g2i2guoeji36"
@@ -29,6 +32,7 @@
 #define kWeixinAppId @"wxd96d1f7d05fe7b81"
 #define kWeixinAppSecret @"34b37037fb862d1acf9f813c63232bd7"
 
+//邀约类别
 #define TypeDataSource @[@"吃饭",@"唱歌",@"看电影",@"谈天",@"游泳",@"跑步",@"其他"]
 /*user*/
 //登陆
@@ -144,19 +148,7 @@
 //定义常用的颜色
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
 #define kDarkGrayColor [UIColor colorWithRed:100.0/255 green:100.0/255 blue:100.0/255alpha:1.0]
-//定义调试语句
-#define DEBUG_MODE 1
-#if DEBUG_MODE
-#define DLog( s, ... ) NSLog( @"<%p %@:(%d)> %@", self, [[NSString stringWithUTF8String:__FILE__] lastPathComponent], __LINE__, [NSString stringWithFormat:(s), ##__VA_ARGS__] )
-#else
-#define DLog( s, ... )
-#endif
-//后台运行
-#define BACK_GCD(block) dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
-//主线程运行
-#define MAIN_GCD(block) dispatch_async(dispatch_get_main_queue(),block)
 
-#endif
 
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
@@ -170,10 +162,14 @@
     #import "NSDate+Addition.h"
 #endif
 
-#ifdef DEBUG
-    #define NSLog(...) NSLog(__VA_ARGS__)
-    #define debugMethod() NSLog(@"%s", __func__)
+//后台运行
+#define BACK_GCD(block) dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
+//主线程运行
+#define MAIN_GCD(block) dispatch_async(dispatch_get_main_queue(),block)
+
+//调试语句
+#ifndef __OPTIMIZE__
+#define DLog( s, ... ) NSLog( @"<%p %@:(%d)> %@", self, [[NSString stringWithUTF8String:__FILE__] lastPathComponent], __LINE__, [NSString stringWithFormat:(s), ##__VA_ARGS__] )
 #else
-    #define NSLog(...)
-    #define debugMethod()
+#define DLog(...)
 #endif
