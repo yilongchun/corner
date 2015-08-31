@@ -84,6 +84,14 @@
     });
 }
 
+-(void)insertRowAtBottom2{
+    int64_t delayInSeconds = 0.5;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [self loadMore];
+    });
+}
+
 /**
  *  初始化 加载数据
  */
@@ -137,12 +145,11 @@
         NSMutableDictionary *params = [NSMutableDictionary dictionary];
         [params setValue:[NSNumber numberWithInt:page2] forKey:@"page"];
         [params setValue:token forKey:@"token"];
-        
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         manager.requestSerializer = [AFHTTPRequestSerializer serializer];
         manager.responseSerializer = [AFHTTPResponseSerializer serializer];
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
-        [manager POST:urlString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [manager GET:urlString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"JSON: %@", operation.responseString);
             [tableview2.pullToRefreshView stopAnimating];
             NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
@@ -153,13 +160,9 @@
             }else{
                 NSNumber *status = [dic objectForKey:@"status"];
                 if ([status intValue] == 200) {
-                    
-//                    NSDictionary *userinfo = [[dic objectForKey:@"message"] cleanNull];
-//
-//                    //用户的邀约
-//                    NSArray *activities = [userinfo objectForKey:@"activities"];
-//                    [dataSource2 removeAllObjects];
-//                    [dataSource2 addObjectsFromArray:activities];
+                    NSArray *array = [dic objectForKey:@"message"];
+                    [dataSource2 removeAllObjects];
+                    [dataSource2 addObjectsFromArray:array];
                     [tableview2 reloadData];
                     
                 }else if([status intValue] >= 600){
@@ -177,6 +180,58 @@
     }
 }
 
+-(void)loadMore{
+    NSString *userid = [UD objectForKey:USER_ID];
+    NSString *token = [UD objectForKey:[NSString stringWithFormat:@"%@%@",USER_TOKEN_ID,userid]];
+    NSString *urlString;
+    urlString = [NSString stringWithFormat:@"%@%@",HOST,ACTIVITY_MY_URL];
+    page2 ++;;
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:[NSNumber numberWithInt:page2] forKey:@"page"];
+    [params setValue:token forKey:@"token"];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager GET:urlString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", operation.responseString);
+        [tableview2.pullToRefreshView stopAnimating];
+        NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+        NSError *error;
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if (dic == nil) {
+            NSLog(@"json parse failed \r\n");
+        }else{
+            NSNumber *status = [dic objectForKey:@"status"];
+            if ([status intValue] == 200) {
+                NSArray *array = [dic objectForKey:@"message"];
+                
+                
+                if ([array count] > 0) {
+                    [dataSource2 addObjectsFromArray:array];
+                    [tableview2 reloadData];
+                }else{
+                    page2--;
+                }
+                
+                [tableview2 reloadData];
+                
+            }else if([status intValue] >= 600){
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
+                [self validateUserToken:[status intValue]];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        page2--;
+        NSLog(@"发生错误！%@",error);
+        [tableview2 reloadData];
+        [self showHint:@"连接失败"];
+        
+    }];
+}
+
 
 
 - (void)didReceiveMemoryWarning {
@@ -190,7 +245,7 @@
     if (self.segmentControl.selectedSegmentIndex == 0) {
         return 129;
     }else{
-        return 152;
+        return 95;
     }
 }
 
@@ -230,6 +285,17 @@
             [cell.backgroundImageView setImage:[[UIImage imageNamed:@"activity_9_v1"] stretchableImageWithLeftCapWidth:12 topCapHeight:12]];
         }
         
+        NSDictionary *activity = [[dataSource2 objectAtIndex:indexPath.row] cleanNull];
+        
+        NSString *location_desc = [NSString stringWithFormat:@"地点：%@",[activity objectForKey:@"location_desc"]];
+        NSString *description = [activity objectForKey:@"description"];
+        NSString *created_at = [NSString stringWithFormat:@"时间：%@",[activity objectForKey:@"created_at"]];
+        
+        cell.title.text = description;
+        cell.date.text = created_at;
+        cell.address.text = location_desc;
+        
+        
         return cell;
     }
 }
@@ -245,6 +311,7 @@
             break;
         case 1:
             vc.activityDic = [[dataSource2 objectAtIndex:indexPath.row] cleanNull];
+            [self.navigationController pushViewController:vc animated:YES];
             break;
     }
     
@@ -271,6 +338,10 @@
                 [tableview2 addPullToRefreshWithActionHandler:^{
                     [weakSelf insertRowAtTop2];
                 }];
+                [tableview2 addInfiniteScrollingWithActionHandler:^{
+                    [weakSelf insertRowAtBottom2];
+                }];
+                
                 [tableview2 triggerPullToRefresh];
             }
             [self.view bringSubviewToFront:tableview2];

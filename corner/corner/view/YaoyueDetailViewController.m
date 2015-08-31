@@ -324,7 +324,7 @@
     [parameters setValue:token forKey:@"token"];
     [parameters setValue:[_activityDic objectForKey:@"id"] forKey:@"activity_id"];
     
-    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,POST_CREATE_URL];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,ACTIVITY_CARED_URL];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];

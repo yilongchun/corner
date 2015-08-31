@@ -344,12 +344,13 @@
             if (dic == nil) {
                 NSLog(@"json parse failed \r\n");
             }else{
-                NSString *code = [dic objectForKey:@"code"];
-                NSString *msg = [dic objectForKey:@"msg"];
-                [self showHint:msg];
+                NSString *errorcode = [dic objectForKey:@"errorcode"];
+                if ([errorcode isEqualToString:@"0"]) {
+                    [self showHint:@"拨打成功，请稍后接听电话"];
+                }else{
+                    [self showHint:@"拨打失败"];
+                }
             }
-            
-            
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             [self hideHud];
             NSLog(@"发生错误！%@",error);
