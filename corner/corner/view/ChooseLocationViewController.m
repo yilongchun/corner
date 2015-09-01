@@ -67,8 +67,8 @@
         return;
     }
     //处理搜索结果
-    NSString *strCount = [NSString stringWithFormat:@"count: %ld",(long)response.count];
-    NSString *strSuggestion = [NSString stringWithFormat:@"Suggestion: %@",response.suggestion];
+//    NSString *strCount = [NSString stringWithFormat:@"count: %ld",(long)response.count];
+//    NSString *strSuggestion = [NSString stringWithFormat:@"Suggestion: %@",response.suggestion];
     NSString *strPoi = @"";
     for (AMapPOI *p in response.pois) {
         strPoi = [NSString stringWithFormat:@"%@\nPOI: %@", strPoi, p.description];
