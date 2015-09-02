@@ -48,11 +48,11 @@ static const CGFloat ChoosePersonViewImageLabelWidth = 42.f;
         _person = person;
         self.imageView.image = _person.image;
 
-        self.autoresizingMask = UIViewAutoresizingFlexibleHeight |
-                                UIViewAutoresizingFlexibleWidth |
-                                UIViewAutoresizingFlexibleBottomMargin;
-        self.imageView.autoresizingMask = self.autoresizingMask;
-
+//        self.autoresizingMask = UIViewAutoresizingFlexibleHeight |
+//                                UIViewAutoresizingFlexibleWidth |
+//                                UIViewAutoresizingFlexibleBottomMargin;
+//        self.imageView.autoresizingMask = self.autoresizingMask;
+        self.imageView.contentMode = UIViewContentModeScaleAspectFill;
         [self constructInformationView];
     }
     return self;

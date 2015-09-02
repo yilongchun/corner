@@ -356,7 +356,7 @@
         
         for (int i = 0; i < [photo1 count]; i++) {
             UIImageView *img = [[UIImageView alloc] initWithFrame:cell.gongkaiBtn.frame];
-            img.contentMode = UIViewContentModeScaleToFill;
+            img.contentMode = UIViewContentModeScaleAspectFill;
             [img setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@-small", [[photo1 objectAtIndex:i] objectForKey:@"url"]]]];
             img.tag = i;
             img.userInteractionEnabled = YES;
@@ -386,7 +386,7 @@
     }else{
         for (int i = 0; i < [photo2 count]; i++) {
             UIImageView *img = [[UIImageView alloc] initWithFrame:cell.yinsiBtn.frame];
-            img.contentMode = UIViewContentModeScaleToFill;
+            img.contentMode = UIViewContentModeScaleAspectFill;
             [img setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@-small", [[photo2 objectAtIndex:i] objectForKey:@"url"]]]];
             img.tag = i;
             img.userInteractionEnabled = YES;
