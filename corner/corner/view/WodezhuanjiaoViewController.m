@@ -283,8 +283,11 @@
     if (![pic_url hasSuffix:@"post.jpg"] && ![pic_url isEqualToString:@""]) {
         cell.imgViewHeight.constant = 140;
         [cell.myimage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@-small",pic_url]] placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
+        cell.myimage.contentMode = UIViewContentModeScaleToFill;
+//        [cell.myimage setHidden:YES];
     }else{
         cell.imgViewHeight.constant = 0;
+//        [cell.myimage setHidden:YES];
     }
     
     cell.myimage.tag = indexPath.row;

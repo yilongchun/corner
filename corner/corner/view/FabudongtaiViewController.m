@@ -80,7 +80,7 @@
             if (imagePicker1 == nil) {
                 imagePicker1 = [[UIImagePickerController alloc] init];
                 imagePicker1.delegate = self;
-                imagePicker1.allowsEditing = YES;
+                imagePicker1.allowsEditing = NO;
                 imagePicker1.sourceType = UIImagePickerControllerSourceTypeCamera;
                 imagePicker1.mediaTypes =  [[NSArray alloc] initWithObjects:@"public.image", nil];
             }
@@ -90,7 +90,7 @@
             if (imagePicker2 == nil) {
                 imagePicker2 = [[UIImagePickerController alloc] init];
                 imagePicker2.delegate = self;
-                imagePicker2.allowsEditing = YES;
+                imagePicker2.allowsEditing = NO;
                 imagePicker2.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
                 imagePicker2.mediaTypes =  [[NSArray alloc] initWithObjects:@"public.image", nil];
                 [[imagePicker2 navigationBar] setTintColor:[UIColor whiteColor]];
@@ -118,7 +118,7 @@
                 if (imagePicker1 == nil) {
                     imagePicker1 = [[UIImagePickerController alloc] init];
                     imagePicker1.delegate = self;
-                    imagePicker1.allowsEditing = YES;
+                    imagePicker1.allowsEditing = NO;
                     imagePicker1.sourceType = UIImagePickerControllerSourceTypeCamera;
                     imagePicker1.mediaTypes =  [[NSArray alloc] initWithObjects:@"public.image", nil];
                 }
@@ -130,7 +130,7 @@
                 if (imagePicker2 == nil) {
                     imagePicker2 = [[UIImagePickerController alloc] init];
                     imagePicker2.delegate = self;
-                    imagePicker2.allowsEditing = YES;
+                    imagePicker2.allowsEditing = NO;
                     imagePicker2.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
                     imagePicker2.mediaTypes =  [[NSArray alloc] initWithObjects:@"public.image", nil];
                     [[imagePicker2 navigationBar] setTintColor:[UIColor whiteColor]];
@@ -149,8 +149,8 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     if ([[info objectForKey:UIImagePickerControllerMediaType] isEqualToString:@"public.image"]) {
-        UIImage  *img = [info objectForKey:UIImagePickerControllerEditedImage];
-        imageData = UIImagePNGRepresentation(img);
+        UIImage  *img = [info objectForKey:UIImagePickerControllerOriginalImage];
+        imageData = UIImageJPEGRepresentation(img,0.5);
 //        [self uploadImage:data];
         [self.chooseImageBtn setImage:img forState:UIControlStateNormal];
         [self.chooseImageBtn setImage:img forState:UIControlStateHighlighted];

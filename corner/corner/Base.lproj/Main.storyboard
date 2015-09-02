@@ -1111,6 +1111,7 @@
                                             <rect key="frame" x="58" y="50" width="150" height="150"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="wIy-7v-uQk" secondAttribute="height" multiplier="1:1" id="68T-y8-sGm"/>
+                                                <constraint firstAttribute="height" constant="150" id="QdT-KK-JUe"/>
                                                 <constraint firstAttribute="width" constant="150" id="Xkq-Bf-FuP"/>
                                             </constraints>
                                         </imageView>

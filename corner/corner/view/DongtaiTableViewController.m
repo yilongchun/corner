@@ -13,6 +13,7 @@
 #import "SVPullToRefresh.h"
 #import "DongtaiTableViewCellOther.h"
 #import "NSDate+Extension.h"
+#import "MLPhotoBrowserViewController.h"
 
 @interface DongtaiTableViewController (){
     int page;//分页设置
@@ -243,6 +244,7 @@
             DongtaiTableViewCellOther *cell = [tableView dequeueReusableCellWithIdentifier:@"dongtaicell3"];
             
             [cell.userImage setImageWithURL:[NSURL URLWithString:_avatar_url] placeholderImage:[UIImage imageNamed:@"public_load_face"]];
+            
             cell.nameLabel.text = _nickname;
             
             
@@ -288,6 +290,11 @@
         }else{
             cell.imageWidth.constant = 150;
             [cell.userimage setImageWithURL:[NSURL URLWithString:pic_url] placeholderImage:[UIImage imageNamed:@"public_load"]];
+            cell.userimage.contentMode = UIViewContentModeScaleToFill;
+            cell.userimage.userInteractionEnabled = YES;
+            cell.userimage.tag = indexPath.row;
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showPic:)];
+            [cell.userimage addGestureRecognizer:tap];
         }
         
         NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
@@ -328,5 +335,38 @@
 }
 
 
+/**
+ *  点击图片查看大图
+ */
+-(void)showPic:(UITapGestureRecognizer *)recognizer{
 
+
+
+    // 图片游览器
+    MLPhotoBrowserViewController *photoBrowser = [[MLPhotoBrowserViewController alloc] init];
+    // 缩放动画
+    photoBrowser.status = UIViewAnimationAnimationStatusFade;
+    // 可以删除
+    photoBrowser.editing = NO;
+    // 数据源/delegate
+    //    photoBrowser.delegate = self;
+    // 同样支持数据源/DataSource
+    //                    photoBrowser.dataSource = self;
+    
+    
+    NSDictionary *info = [[dataSource objectAtIndex:recognizer.view.tag - 1] cleanNull];
+    NSString *pic_url = [info objectForKey:@"pic_url"];
+    
+    MLPhotoBrowserPhoto *photo = [[MLPhotoBrowserPhoto alloc] init];
+    photo.photoURL = [NSURL URLWithString:pic_url];
+    
+    
+    
+    photoBrowser.photos = @[photo];
+    
+    // 当前选中的值
+    photoBrowser.currentIndexPath = [NSIndexPath indexPathForItem:0 inSection:0];
+    // 展示控制器
+    [photoBrowser showPickerVc:self];
+}
 @end
