@@ -262,7 +262,7 @@
         
         for (int i = 0; i < [photo1 count]; i++) {
             UIImageView *img = [[UIImageView alloc] initWithFrame:cell.gongkaiBtn.frame];
-            img.contentMode = UIViewContentModeScaleAspectFill;
+            img.contentMode = UIViewContentModeScaleToFill;
             [img setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@-small", [[photo1 objectAtIndex:i] objectForKey:@"url"]]]];
             img.tag = i;
             img.userInteractionEnabled = YES;
@@ -292,7 +292,7 @@
     }else{
         for (int i = 0; i < [photo2 count]; i++) {
             UIImageView *img = [[UIImageView alloc] initWithFrame:cell.yinsiBtn.frame];
-            img.contentMode = UIViewContentModeScaleAspectFill;
+            img.contentMode = UIViewContentModeScaleToFill;
             [img setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@-small", [[photo2 objectAtIndex:i] objectForKey:@"url"]]]];
             img.tag = i;
             img.userInteractionEnabled = YES;
@@ -411,6 +411,9 @@
         UIFont *font = [UIFont systemFontOfSize:14];
         // 該行要顯示的內容
         NSString *content = [userinfo objectForKey:@"aboutme"];//自我介绍
+        if ([content isEqualToString:@""]) {
+            content = @"未填写个性签名";
+        }
         // 計算出顯示完內容需要的最小尺寸
         
         CGSize textSize;
