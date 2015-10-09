@@ -14,9 +14,10 @@
 
 
 //API接口定义
-
+//com.hmzl.inhouse.corner
 //#define HOST @"http://corner.songguokeji.com"
 #define HOST @"http://112.74.197.223"//正式地址
+//com.cslg.corner
 
 //高德地图
 #define GAODE_API_KEY @"ed58ad8bba7f735f54ddbeb44472a67d"
